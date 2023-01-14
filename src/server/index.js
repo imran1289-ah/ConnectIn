@@ -10,9 +10,9 @@ dotenv.config();
 mongoose.set("strictQuery", true);
 
 //Database connection (MongoDB Atlas)
-const connect = () => {
+const dbConnect = () => {
   mongoose
-    .connect(process.env.MONGO)
+    .connect(process.env.DATABASE)
     .then(() => {
       console.log("Database Connected Successfully");
     })
@@ -25,7 +25,8 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+//Running the server
 app.listen(port, () => {
-  connect();
+  dbConnect();
   console.log(`Server listening on port ${port}`);
 });

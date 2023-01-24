@@ -1,0 +1,16 @@
+.WebLogo {
+  font-style: italic;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 78px;
+  color: #ffffff;
+}
+
+.Icon {
+  background-color: transparent;
+  border: none;
+}
+
+.navbar {
+  border: 1px solid #000000;
+}

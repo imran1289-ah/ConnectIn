@@ -22,9 +22,11 @@ const dbConnect = () => {
         });
 };
 
+
 app.get("/", (req, res) => {
     res.send("Hello World!");
 });
+app.use('/users', require('./routes/userRoutes.js'))
 
 //Running the server
 app.listen(port, () => {
@@ -32,9 +34,3 @@ app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
 
-app.get("/signup", (req, res) => {
-    res.send("Sign Up");
-});
-app.get("/login", (req, res) => {
-    res.send("Login ");
-});

@@ -60,3 +60,21 @@
 .Form {
   margin-left: 20px;
 }
+/* Responsive to Iphone 6 and above */
+@media (min-width: 330px) and (max-width: 600px) {
+  .Wrapper {
+    height: 420px;
+    width: 350px;
+  }
+
+  .Input {
+    width: 270px;
+  }
+
+  .LoginButton {
+    margin-left: 25%;
+  }
+  .Title {
+    font-size: 22px;
+  }
+}

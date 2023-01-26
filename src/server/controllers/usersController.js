@@ -1,11 +1,12 @@
 
-
+const User = require('../models/user');
 const createUser = async (req, res) =>{
             
 }
 
 const getUser = async (req, res) => {
 
+   
 }
 
 const updateUser = async (req, res) => {

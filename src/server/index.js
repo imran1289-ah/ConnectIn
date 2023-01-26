@@ -1,10 +1,12 @@
 const express = require("express"); 
 const mongoose = require("mongoose"); 
 const dotenv  = require("dotenv"); 
+const session = require("express-session")
 
 
 const app = express();
 app.use(express.json());
+app.use(session({secret:'secret123'}))
 const port = 9000;
 dotenv.config();
 

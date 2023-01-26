@@ -5,7 +5,8 @@ const usersControllers = require('../controllers/usersController')
 
 
 router.route('/')
-    .get(usersControllers.getUser)
+    //.get(usersControllers.getUserByEmail)
+    .get(usersControllers.verifyUser)
     .post(usersControllers.createUser)
     .patch(usersControllers.updateUser)
     .delete(usersControllers.deleteUser)

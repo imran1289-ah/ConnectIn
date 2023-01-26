@@ -5,7 +5,7 @@ const createUser = async (req, res) =>{
 }
 
 const getUser = async (req, res) => {
-
+    res.send('test')
    
 }
 

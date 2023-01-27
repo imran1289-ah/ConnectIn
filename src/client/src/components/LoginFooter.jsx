@@ -6,7 +6,6 @@ const Footer = () => {
     // Footer of the page
     <div className="FooterLine">
       <div className="Info">
-        <br></br>
         Home | About | Languages
         <br></br>
         ConnectIn @2023

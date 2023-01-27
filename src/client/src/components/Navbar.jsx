@@ -16,7 +16,7 @@ const navbar = () => {
       <AppBar
         position="static"
         className="navbar"
-        style={{ background: "#0077b5" }}
+        style={{ background: "#19718D" }}
       >
         <Toolbar>
           <Typography component="div" sx={{ flexGrow: 1 }}>

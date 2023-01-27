@@ -3,6 +3,7 @@ import SignIn from "./components/SignIn";
 import LoginFooter from "./components/LoginFooter";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SignUp from "./components/SignUp";
 
 function App() {
   return (
@@ -10,6 +11,14 @@ function App() {
       {/* Link to pages using React Router DOM */}
       <BrowserRouter>
         <Routes>
+          <Route
+            path="/signup"
+            element={
+              <>
+                <Navbar /> <SignUp /> <LoginFooter />
+              </>
+            }
+          ></Route>
           <Route
             path="/signin"
             element={

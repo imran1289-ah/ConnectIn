@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../css/signin.css";
 
 const SignIn = () => {
@@ -7,7 +8,7 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
 
   //HTTP Request to autenticate user
-  const submitLogin = async (e) => {};
+  const submitLogin = async e => {};
 
   return (
     //Signin page
@@ -19,27 +20,20 @@ const SignIn = () => {
             <label className="Placeholder">
               Email or Username
               <br></br>
-              <input
-                className="Input"
-                placeholder="Enter your email or username"
-                onChange={(e) => setUser(e.target.value)}
-              ></input>
+              <input className="Input" placeholder="Enter your email or username" onChange={e => setUser(e.target.value)}></input>
             </label>
             <br></br>
             <br></br>
             <label className="Placeholder">
               Password
               <br></br>
-              <input
-                className="Input"
-                placeholder="Enter your password"
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-              ></input>
+              <input className="Input" placeholder="Enter your password" type="password" onChange={e => setPassword(e.target.value)}></input>
             </label>
             <br></br>
             <br></br>
-            <div className="Link">Dont Have an account ? Sign Up</div>
+            <div className="Link">
+              Dont Have an account ? <Link to={`/signup`}> Sign Up</Link>
+            </div>
           </div>
           <br></br>
           <br></br>

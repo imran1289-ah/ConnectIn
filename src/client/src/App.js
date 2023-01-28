@@ -4,6 +4,7 @@ import LoginFooter from "./components/LoginFooter";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   return (
@@ -24,6 +25,14 @@ function App() {
             element={
               <>
                 <Navbar /> <SignIn /> <LoginFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/UserProfile"
+            element={
+              <>
+                <Navbar /> <UserProfile /> <LoginFooter />
               </>
             }
           ></Route>

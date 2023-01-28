@@ -35,7 +35,7 @@ function SignUp() {
                     <label className="PlaceholderSignup">
                       First Name
                       <br></br>
-                      <input className="Input" placeholder="Enter Your First Name" name="firstname" value={userData.firstName} onChange={e => setUserData(e.target.value)}></input>
+                      <input className="Input" placeholder="Enter Your First Name" name="firstname" value={userData.firstName} onChange={e => setUserData({ ...userData, firstName: e.target.value })}></input>
                     </label>
                     <br></br>
                     <br></br>
@@ -43,7 +43,7 @@ function SignUp() {
                     <label className="PlaceholderSignup">
                       Last Name
                       <br></br>
-                      <input className="Input" placeholder="Enter Your Last Name" name="lastname" value={userData.lastName} onChange={e => setUserData(e.target.value)}></input>
+                      <input className="Input" placeholder="Enter Your Last Name" name="lastname" value={userData.lastName} onChange={e => setUserData({ ...userData, lastName: e.target.value })}></input>
                     </label>
                     <br></br>
                     <br></br>
@@ -51,14 +51,14 @@ function SignUp() {
                     <label className="PlaceholderSignup">
                       Email
                       <br></br>
-                      <input className="Input" placeholder="Enter Your Email" name="email" value={userData.email} onChange={e => setUserData(e.target.value)}></input>
+                      <input className="Input" placeholder="Enter Your Email" name="email" value={userData.email} onChange={e => setUserData({ ...userData, email: e.target.value })}></input>
                     </label>
                     <br></br>
                     <br></br>
                     <label className="PlaceholderSignup">
                       Password
                       <br></br>
-                      <input className="Input" placeholder="Enter your password" name="password" type="password" value={userData.password} onChange={e => setUserData(e.target.value)}></input>
+                      <input className="Input" placeholder="Enter your password" name="password" type="password" value={userData.password} onChange={e => setUserData({ ...userData, password: e.target.value })}></input>
                     </label>
                     <br></br>
                     <br></br>

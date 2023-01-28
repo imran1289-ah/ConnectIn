@@ -18,8 +18,8 @@ const createUser = asyncHandler(async (req, res) =>{
     }
     
     // Hashing passwords to encrypt user data
-    const hashPwd = await bcrypt.hash(password,10) 
-    const userDocument = {firstname,lastname,email,"password": hashPwd}
+    //const hashPwd = await bcrypt.hash(password,10) 
+    const userDocument = {firstname,lastname,email,password}
     const newUser = await User.create(userDocument)
     
     if (newUser) {

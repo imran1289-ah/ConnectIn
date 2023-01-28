@@ -1,0 +1,65 @@
+.button {
+  background-color: steelblue;
+  color: white;
+  padding: 5px 62px;
+  border-radius: 5px;
+}
+
+.info {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-top: 10%;
+  font-style: bold;
+}
+
+.profilepic {
+  display: flex;
+  margin: 18px 0px;
+  margin-left: 5%;
+  margin-top: 10%;
+}
+
+.name {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
+.connections {
+  background-color: cadetblue;
+  margin-top: 10%;
+  border-radius: 5px;
+}
+
+.h {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fcontact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aliceblue;
+  width: auto;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.scontact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aliceblue;
+  width: auto;
+  height: 30px;
+  border-radius: 5px;
+}

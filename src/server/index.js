@@ -32,8 +32,9 @@ app.get("/", (req, res) => {
 app.use('/users', require('./routes/userRoutes.js'))
 
 //Running the server
-app.listen(port, () => {
+const server = app.listen(port, () => {
     dbConnect();
     console.log(`Server listening on port ${port}`);
 });
 
+module.exports = server

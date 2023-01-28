@@ -1,7 +1,6 @@
 const request = require('supertest');
 const app = require('../index')
 const mongoose = require("mongoose");
-const { response } = require('express');
 const server = require('../index');
 
 beforeAll(() => {
@@ -77,7 +76,6 @@ describe('POST /user', function(){
       })
         .expect(400)
         .then((response) => {
-            console.log(response);
             expect(response.text).toBe('{"message":"Please fill out all fields!"}')
         })
     })

@@ -2,12 +2,13 @@ const request = require('supertest');
 const app = require('../index')
 const mongoose = require("mongoose")
 
+// Connects to the DB
 beforeAll(() => {
  mongoose.connect(process.env.DATABASE)
 })
 
+// Closing the DB connection allows Jest to exit successfully.
 afterAll((done) => {
-  // Closing the DB connection allows Jest to exit successfully.
   mongoose.disconnect();
   done();
 }) 
@@ -18,7 +19,7 @@ describe('GET /users', function(){
       .get("/users")
       .send({email: "test@mail.com",
             password: "test123"})
-      .expect(200); // successfully logged in
+      .expect(200);
   })
 });
 
@@ -28,7 +29,7 @@ describe('GET /users', function(){
       .get("/users")
       .send({email: "test@gmail.com",
             password: "test123"})
-      .expect(404); // failed to log in
+      .expect(404);
   })
 });
 

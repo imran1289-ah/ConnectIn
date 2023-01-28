@@ -11,13 +11,14 @@ const createUser = asyncHandler(async (req, res) =>{
         return res.status(400).json({ message: 'Please fill out all fields!'})
     }
     
-    // Checks if a duplicate user exists on the database?
+    // Checks if a duplicate user exists on the database
     const isThereADuplicate = await User.findOne({email}).lean().exec();
     if (isThereADuplicate) {
         return res.status(409).json({message: 'A user with this email already exists.'})
     }
     
-    const hashPwd = await bcrypt.hash(password,10)
+    // Hashing passwords to encrypt user data
+    const hashPwd = await bcrypt.hash(password,10) 
     const userDocument = {firstname,lastname,email,"password": hashPwd}
     const newUser = await User.create(userDocument)
     

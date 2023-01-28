@@ -1,10 +1,12 @@
 const express = require("express"); 
 const mongoose = require("mongoose"); 
 const dotenv  = require("dotenv"); 
+const session = require("express-session")
 
 
 const app = express();
 app.use(express.json());
+app.use(session({secret:'secret123'}))
 const port = 9000;
 dotenv.config();
 
@@ -29,9 +31,10 @@ app.get("/", (req, res) => {
 });
 app.use('/users', require('./routes/userRoutes.js'))
 
+//Running the server
 const server = app.listen(port, () => {
     dbConnect();
     console.log(`Server listening on port ${port}`);
 });
-//Running the server
-module.exports = server;
+
+module.exports = server

@@ -20,8 +20,17 @@ const userSchema = new Schema({
         type: String,
         required: true
     }
-
-
 });
 
-module.exports = mongoose.model("PublicUser", userSchema);
+// user.js
+// replace email with _id
+// Sample user creation
+// const collection = mongoose.model("PublicUser2",userSchema);
+// collection.create({
+//     firstName: "Joe",
+//     lastName: "Test",
+//     email: "test@mail.com",
+//     password: "test123"
+// })
+
+module.exports = mongoose.model("PublicUser2", userSchema);

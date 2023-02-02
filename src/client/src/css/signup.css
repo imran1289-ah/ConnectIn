@@ -1,8 +1,3 @@
-.OverallSignupPage {
-  min-height: 98vh;
-  width: 100%;
-}
-
 .WelcomeText {
   position: absolute;
   text-align: center;
@@ -81,20 +76,38 @@
 }
 /* Responsive to Iphone 6 and above */
 @media (min-width: 330px) and (max-width: 600px) {
-  .Wrapper {
-    height: 420px;
+  .WrapperSignup {
+    position: absolute;
+    left: 50%;
+    text-align: center;
+    height: 550px;
+    width: 350px;
+  }
+
+  .FormSignup {
+    margin-left: auto;
+    height: 300px;
     width: 350px;
   }
 
   .Input {
     width: 270px;
-    width: auto;
   }
 
-  .LoginButton {
-    margin-left: 25%;
+  .SignupButton {
+    margin-top: 10%;
+    margin-left: auto;
   }
   .Title {
     font-size: 22px;
+  }
+
+  .WelcomeText {
+    left: 50%;
+    margin-top: 575px;
+    text-align: center;
+    height: 550px;
+    width: 350px;
+    position: absolute;
   }
 }

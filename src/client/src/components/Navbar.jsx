@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -8,8 +8,17 @@ import "../css/navbar.css";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Icon } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-const navbar = () => {
+const Navbar = () => {
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
+  const HandleSearch = () => {
+    console.log(query);
+    navigate(`/users/search?term=${query}`);
+  };
+
   return (
     //Material UI navbar
     <Box sx={{ flexGrow: 1 }}>
@@ -21,12 +30,14 @@ const navbar = () => {
         <Toolbar>
           <Typography component="div" sx={{ flexGrow: 1 }}>
             <span className="WebLogo">ConnectIn</span>
-            <button className="Icon">
+            {/* <button className="Icon">
               <HomeOutlinedIcon></HomeOutlinedIcon>
             </button>
             <button className="Icon">
               <InfoOutlinedIcon></InfoOutlinedIcon>
-            </button>
+            </button> */}
+            <input onChange={(e) => setQuery(e.target.value)}></input>
+            <button type="submit" onClick={HandleSearch}></button>
           </Typography>
         </Toolbar>
       </AppBar>
@@ -34,4 +45,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default Navbar;

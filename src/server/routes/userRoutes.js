@@ -11,4 +11,7 @@ router
 
 router.route("/signin").post(usersControllers.verifyUser);
 
+//route to search users
+router.route("/search").get(usersControllers.search);
+
 module.exports = router;

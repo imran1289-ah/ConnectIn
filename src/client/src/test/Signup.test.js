@@ -2,10 +2,15 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import SignUp from "../components/SignUp";
+import '@testing-library/jest-dom';
+import { BrowserRouter } from "react-router-dom";
 
 test("page renders properly", () => {
-  render(<SignUp />);
-  const textboxElement = screen.getByRole("textbox");
+  render(<BrowserRouter><SignUp /></BrowserRouter>);
+  // Knowing there's more than 1 textbox, the test checks
+  // if there's a textbox which has an aria-label value set
+  // to firstname.
+  const textboxElement = screen.getByRole('textbox', {name: 'firstname'});
   const buttonElement = screen.getByRole("button");
   fireEvent.click(buttonElement);
   expect(textboxElement).toBeInTheDocument();

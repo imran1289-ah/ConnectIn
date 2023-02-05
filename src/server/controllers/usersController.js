@@ -80,11 +80,24 @@ const search = async (req, res) => {
   });
 };
 
+//Action to return public user info
+const getUserInfo = async (req, res) => {
+  const user = await User.findById(req.params.id).then((user) => {
+    if (user) {
+      console.log(`Found user ${user}`);
+      res.status(200).json(user);
+    } else {
+      return res.status(400).json({ message: "No user found" });
+    }
+  });
+};
+
 module.exports = {
   createUser,
   updateUser,
   deleteUser,
   verifyUser,
   search,
+  getUserInfo,
   //getUserByEmail
 };

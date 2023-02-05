@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import UserProfile from "./components/UserProfile";
 import SearchUser from "./components/SearchUser";
+import PublicUserProfile from "./components/PublicUserProfile";
 
 function App() {
   return (
@@ -42,6 +43,14 @@ function App() {
             element={
               <>
                 <Navbar /> <SearchUser /> <LoginFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/users/search/:id"
+            element={
+              <>
+                <Navbar /> <PublicUserProfile /> <LoginFooter />
               </>
             }
           ></Route>

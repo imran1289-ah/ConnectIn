@@ -1,0 +1,18 @@
+.userContainer {
+  display: flex;
+  margin: 20px;
+}
+
+img {
+  border-radius: 70%;
+  width: 150px;
+  height: 150px;
+}
+
+.singleUser {
+  margin: 20px;
+}
+
+.userInfo {
+  text-align: center;
+}

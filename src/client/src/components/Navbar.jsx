@@ -9,6 +9,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Icon } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import SearchIcon from "@mui/icons-material/Search";
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
@@ -22,23 +23,28 @@ const Navbar = () => {
   return (
     //Material UI navbar
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="static"
-        className="navbar"
-        style={{ background: "#19718D" }}
-      >
+      <AppBar position="static" style={{ background: "#19718D" }}>
         <Toolbar>
           <Typography component="div" sx={{ flexGrow: 1 }}>
             <span className="WebLogo">ConnectIn</span>
-            {/* <button className="Icon">
-              <HomeOutlinedIcon></HomeOutlinedIcon>
-            </button>
-            <button className="Icon">
-              <InfoOutlinedIcon></InfoOutlinedIcon>
-            </button> */}
-            <input onChange={(e) => setQuery(e.target.value)}></input>
-            <button type="submit" onClick={HandleSearch}></button>
           </Typography>
+          <div className="searchArea">
+            <Typography>
+              {" "}
+              <input
+                className="searchInput"
+                onChange={(e) => setQuery(e.target.value)}
+              ></input>
+              <button
+                className="searchButton"
+                type="submit"
+                onClick={HandleSearch}
+              >
+                {" "}
+                <SearchIcon> </SearchIcon>
+              </button>
+            </Typography>
+          </div>
         </Toolbar>
       </AppBar>
     </Box>

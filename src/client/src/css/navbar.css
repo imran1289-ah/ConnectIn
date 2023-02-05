@@ -14,3 +14,20 @@
 .navbar {
   border: 1px solid #000000;
 }
+
+.searchArea {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.searchInput {
+  width: 400px;
+  height: 40px;
+}
+
+.searchButton {
+  background-color: transparent;
+  border: none;
+  margin: 5px;
+}

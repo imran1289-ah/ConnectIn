@@ -1,0 +1,44 @@
+.userProfileContainer {
+  display: flex;
+}
+
+.userInformation {
+  border: 1px solid black;
+  height: 220px;
+  width: 700px;
+  radius: 15px;
+}
+
+.userContainer {
+}
+
+.userProfilePic {
+  display: inline-block;
+}
+
+.userAboutSection {
+  display: inline-block;
+  margin: 20px;
+  width: 100%;
+}
+
+.userName {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.companyPic {
+  width: 90px;
+  height: 90px;
+}
+
+.jobInfo {
+  display: flex;
+  align-items: center;
+}
+
+.right {
+  height: 500px;
+  width: 500px;
+  radius: 15px;
+}

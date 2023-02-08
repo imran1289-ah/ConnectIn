@@ -1,0 +1,37 @@
+.JAPContainer{
+
+    border:5px red solid;
+    text-align: center;
+    border-radius: 5%;
+    width: 800px;
+    height: 500px;
+    margin:auto;
+    padding: auto;
+    
+    /*rgba(255, 254, 254, 0.6);*/
+}
+.JAPContainer image {
+    border: 1px red solid;
+    border-radius: 50%;
+    
+}
+
+.JAPContainer button{
+    color: white;
+    border: #19718d;
+    background-color: #19718d;
+    width: 100px;
+    height: 50px;
+
+
+}
+
+.JAPContainer button:hover{
+    color: black;
+    border: #19718d;
+    background-color: #19718d;
+    width: 100px;
+    height: 50px;
+
+
+}

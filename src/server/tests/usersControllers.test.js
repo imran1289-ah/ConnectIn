@@ -11,6 +11,7 @@ beforeAll(() => {
 afterAll((done) => {
   mongoose.disconnect();
   done();
+  app.close();
 }) 
 
 describe('GET /users', function(){

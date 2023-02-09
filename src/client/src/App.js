@@ -50,7 +50,7 @@ function App() {
             path="/users/search/:id"
             element={
               <>
-                <Navbar /> <PublicUserProfile /> <LoginFooter />
+                <Navbar /> <PublicUserProfile />
               </>
             }
           ></Route>

@@ -38,6 +38,10 @@ const SearchUser = () => {
           <div className="userInfo">
             {user.firstname} {user.lastname}
           </div>
+          <br></br>
+          <div className="buttonSection">
+            <button className="searchConnectButton">Connect</button>
+          </div>
         </div>
       ))}
     </div>

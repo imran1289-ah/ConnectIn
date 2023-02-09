@@ -1,6 +1,7 @@
 .userContainer {
   display: flex;
   margin: 20px;
+  font-family: "Inter" sans-serif;
 }
 
 img {
@@ -15,4 +16,17 @@ img {
 
 .userInfo {
   text-align: center;
+}
+
+.buttonSection {
+  text-align: center;
+}
+
+.searchConnectButton {
+  background-color: #19718d;
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  color: white;
+  font-size: 15px;
 }

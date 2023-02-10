@@ -38,6 +38,10 @@ app.get("/", (req, res) => {
 });
 app.use("/users", require("./routes/userRoutes.js"));
 
+
+app.use("/collection/jobs", require("./routes/jobsRoutes.js"));
+
+
 //Running the server
 const server = app.listen(port, () => {
   dbConnect();

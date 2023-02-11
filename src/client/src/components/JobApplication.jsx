@@ -3,7 +3,7 @@ import axios from "axios";
 import "../css/jobApplication.css";
 
 
-const getJobList = async (e) => {
+const getJob = async (e) => {
     e.preventDefault();
     axios.get("http://localhost:9000/jobs/:job_id", () =>{
 
@@ -26,19 +26,28 @@ const JobApplication= () =>{
 
         <div className="JAPContainer">
         
-        <image src="">image</image>
-        <p> Job Title </p>
-        <p>  Job description</p>
-
-        <p> Salary</p>
-
+        <p>Job Posting Name</p>
         
-        <button> Apply</button>
-
+        <form>
         
+        <input className="Textbox" type="text" name="fname" placeholder="First Name"/>
+        <input className="Textbox" type="text" name="lname" placeholder="Last Name"/>
+        <br/>
+        <input className="Textbox" type="text" name="email" placeholder="Email"/>
+        <input className="Textbox" type="text" name="phoneNumber" placeholder="Phone Number"/>
+        <br/>
+        <input className="cv" type="file" name="CV"/>
+        
+
+        </form>
+
+
+
+
+        <button> Send Application</button>
 
         </div>
-
+        
         
     );
     }

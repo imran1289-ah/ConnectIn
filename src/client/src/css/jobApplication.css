@@ -20,8 +20,9 @@
     color: white;
     border: #19718d;
     background-color: #19718d;
-    width: 100px;
+    width: 150px;
     height: 50px;
+    border-radius: 10%;
 
 
 }
@@ -30,8 +31,44 @@
     color: black;
     border: #19718d;
     background-color: #19718d;
-    width: 100px;
+    width: 150px;
     height: 50px;
+    border-radius: 10%;
 
 
+}
+
+.JAPContainer .Textbox {
+    margin: 35px;
+    border: 2px grey solid;
+    border-radius: 10px;
+    background-color: lightgrey;
+    color: black;
+    height: 25px;
+}
+
+.JAPContainer .cv {
+    margin: 10px;
+    border: 2px lightgrey solid;
+    border-radius: 10px;
+    height: 25px;
+    background-color: lightgrey;
+    
+}
+
+.JAPContainer .cv::file-selector-button {
+    margin: 10px;
+    border: 2px lightgrey solid;
+    border-radius: 10px;
+    display: none;
+    background-color: lightgrey;
+
+    
+}
+
+
+.JAPContainer input::placeholder {
+    
+    color: black;
+    height: 25px;
 }

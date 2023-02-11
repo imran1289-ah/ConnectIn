@@ -14,21 +14,25 @@ const JobSchema = new Schema({
         type: String,
         required: true
     },
+    job_description: {
+        type: String,
+        required: true
+    },
 
     salary: {
         type: Number,
-        required: false
+        required: true
 
     },
 
     contract_type: {
         type: String,
-        required: false
+        required: true
     },
 
     other: {
         type: String,
-        required: false
+        required: true
     }
 });
 

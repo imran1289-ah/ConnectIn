@@ -36,37 +36,34 @@
 // module.exports = mongoose.model("PublicUser2", userSchema);
 
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-    user_id: {
-        type: Number,
-        required: true,
-        unique: true
-    },
-    fname: {
+const UserSchema = new mongoose.Schema({
+    firstname: {
         type: String,
-        required: true
     },
-    lname: {
+    lastname: {
         type: String,
-        required: true
     },
     email: {
         type: String,
-        required: true,
-        unique: true
     },
     password: {
         type: String,
-        required: true
     },
-    jobsApplied: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Job'
-    }]
+    jobsApplied: [],
+    picture: Buffer,
+    resume: Buffer,
+    coverLetter: Buffer,
+    bio: String,
+    headLine: String,
+    volunteering: [],
+    connections: [],
+    education: [],
+    skills: [],
+    workExp: [],
+    contact: Number,
 });
 
-const user = mongoose.model('User', userSchema);
+const User = mongoose.model('User', UserSchema);
 
-module.exports = user;
+module.exports = User;

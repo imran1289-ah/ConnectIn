@@ -1,36 +1,45 @@
 const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema;
-
-const userSchema = new Schema({
-
+const UserSchema = new mongoose.Schema({
     firstname: {
         type: String,
-        required: true
     },
     lastname: {
         type: String,
-        required: true
     },
     email: {
         type: String,
-        required: true
     },
-    password:{
+    password: {
         type: String,
-        required: true
-    }
+    },
+    picture: {
+        type: Buffer,
+    },
+    resume: {
+        type: Buffer,
+    },
+    coverLetter: {
+        type: Buffer,
+    },
+    bio: {
+        type: String,
+    },
+    headLine: {
+        type: String,
+    },
+    contact: {
+        type: Number,
+    },
+    jobsApplied: [],
+    volunteering: [],
+    connections: [],
+    education: [],
+    skills: [],
+    workExp: [],
+
 });
 
-// user.js
-// replace email with _id
-// Sample user creation
-// const collection = mongoose.model("PublicUser2",userSchema);
-// collection.create({
-//     firstName: "Joe",
-//     lastName: "Test",
-//     email: "test@mail.com",
-//     password: "test123"
-// })
+const User = mongoose.model("Users", UserSchema);
 
-module.exports = mongoose.model("PublicUser2", userSchema);
+module.exports = User;

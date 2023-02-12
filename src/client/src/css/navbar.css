@@ -33,3 +33,9 @@
   border: none;
   margin: 5px;
 }
+
+@media (min-width: 330px) and (max-width: 600px) {
+  .searchArea {
+    display: none;
+  }
+}

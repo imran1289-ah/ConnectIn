@@ -1,7 +1,7 @@
 .userContainer {
   display: flex;
   margin: 20px;
-  font-family: "Inter" sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 img {
@@ -29,4 +29,21 @@ img {
   border-radius: 20px;
   color: white;
   font-size: 15px;
+}
+
+/*Responsive for iphone 6 and up*/
+@media (min-width: 330px) and (max-width: 600px) {
+  .userContainer {
+    display: block;
+    text-align: center;
+  }
+
+  .singleUser {
+    margin-bottom: auto;
+  }
+
+  .searchConnectButton {
+    width: 180px;
+    height: 40px;
+  }
 }

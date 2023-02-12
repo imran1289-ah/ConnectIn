@@ -125,3 +125,78 @@
 .body {
   background-color: #f5f5f5;
 }
+
+/*Responsive for iphone 6 and up*/
+@media (min-width: 330px) and (max-width: 600px) {
+  .userProfileContainer {
+    display: block;
+  }
+
+  .userAboutSection {
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  .right {
+    width: auto;
+    margin: 10px;
+  }
+
+  .connectionName {
+    margin-left: 40px;
+    font-size: 20px;
+  }
+
+  .userInformation {
+    min-height: 150px;
+    width: auto;
+    margin: 10px;
+  }
+
+  .userJobInformation {
+    min-height: 130px;
+    width: auto;
+  }
+
+  .userKnowledgeInformation {
+    min-height: 100px;
+    width: auto;
+  }
+
+  .userProfilePic {
+    width: 90px;
+    height: 90px;
+  }
+
+  .connectButton {
+    width: 150px;
+    height: 35px;
+  }
+}
+
+/*Media queries for ipad*/
+@media (min-device-width: 768px) and (max-device-width: 1024px) {
+  .userProfileContainer {
+    display: block;
+  }
+
+  .right {
+    width: auto;
+    margin: 20px;
+  }
+
+  .userInformation {
+    min-height: 140px;
+    width: auto;
+  }
+
+  .userJobInformation {
+    min-height: 130px;
+    width: auto;
+  }
+
+  .userKnowledgeInformation {
+    min-height: 100px;
+    width: auto;
+  }
+}

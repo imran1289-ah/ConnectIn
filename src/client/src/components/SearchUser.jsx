@@ -10,7 +10,7 @@ const SearchUser = () => {
   //Get the search string from the user input
   let locationURL = useLocation().search;
 
-  //HTTP request to backend
+  //HTTP request to backend to fetch searched users
   useEffect(() => {
     const searchUser = async () => {
       try {
@@ -26,6 +26,7 @@ const SearchUser = () => {
   }, [locationURL]);
 
   return (
+    // Display searched users
     <div className="userContainer">
       {search.map((user) => (
         <div className="singleUser">

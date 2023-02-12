@@ -11,7 +11,7 @@ const PublicUserProfile = () => {
   let locationURL = useLocation().pathname;
   let profileId = useLocation().pathname.split("/")[3];
 
-  //HTTP request to backend
+  //HTTP request to backend to fetch user info
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -28,6 +28,7 @@ const PublicUserProfile = () => {
 
   return (
     <div className="userProfileContainer">
+      {/* User Information Component */}
       <div className="left">
         <div className="userInformation">
           <div className="userContainer">
@@ -114,7 +115,16 @@ const PublicUserProfile = () => {
             </l1>
           </ul>
         </div>
+        <div className="userKnowledgeInformation">
+          <span className="subTitle">Volunteering</span>
+          <ul className="elementList">
+            <l1 className="jobInfo">
+              <p className="element">Tutor 2nd grade student</p>
+            </l1>
+          </ul>
+        </div>
       </div>
+      {/* User Connections  */}
       <div className="right">
         <span className="subTitle">Contacts</span>
         <br></br>

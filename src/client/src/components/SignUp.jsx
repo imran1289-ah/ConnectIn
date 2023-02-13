@@ -55,6 +55,7 @@ function SignUp() {
                       First Name
                       <br></br>
                       <input
+                        aria-label="firstname"
                         className="Input"
                         placeholder="Enter Your First Name"
                         name="firstname"

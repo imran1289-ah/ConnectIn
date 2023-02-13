@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import UserProfile from "./components/UserProfile";
 import JobApplication from "./components/JobApplication";
+import JobPosting from "./components/JobPosting";
 
 function App() {
   return (
@@ -38,10 +39,18 @@ function App() {
             }
           ></Route>
           <Route
+            path="/JobPosting"
+            element={
+              <>
+                <Navbar /> <JobPosting /> <LoginFooter />
+              </>
+            }
+          ></Route>
+          <Route
             path="/jobs/:jobId"
             element={
               <>
-                <Navbar /> <JobApplication/> <LoginFooter />
+                <Navbar /> <JobApplication /> <LoginFooter />
               </>
             }
           ></Route>

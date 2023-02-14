@@ -11,6 +11,7 @@ const createUser = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Please fill out all fields!" });
   }
 
+
   // Checks if a duplicate user exists on the database
   const isThereADuplicate = await User.findOne({ email }).lean().exec();
   if (isThereADuplicate) {
@@ -31,7 +32,6 @@ const createUser = asyncHandler(async (req, res) => {
   }
 });
 
-// This action returns the user based on the email
 const getUserByEmail = async (req, res) => {
   const user = await User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
@@ -65,10 +65,40 @@ const updateUser = async (req, res) => {};
 
 const deleteUser = async (req, res) => {};
 
+//Action to return list user's based on the firstname
+const search = async (req, res) => {
+  const firstname = req.query.term;
+
+  const users = await User.find({
+    firstname: { $regex: firstname, $options: "i" },
+  }).then((users) => {
+    if (users) {
+      res.status(200).json(users);
+    } else {
+      return res.status(400).json({ message: "No user exists with this name" });
+    }
+  });
+};
+
+//Action to return public user info
+const getUserInfo = async (req, res) => {
+  const user = await User.findById(req.params.id).then((user) => {
+    if (user) {
+      console.log(`Found user ${user}`);
+      res.status(200).json(user);
+    } else {
+      return res.status(400).json({ message: "No user found" });
+    }
+  });
+};
+
 module.exports = {
+
   createUser,
   updateUser,
   deleteUser,
   verifyUser,
+  search,
+  getUserInfo,
   //getUserByEmail
 };

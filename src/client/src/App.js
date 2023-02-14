@@ -7,6 +7,8 @@ import SignUp from "./components/SignUp";
 import UserProfile from "./components/UserProfile";
 import JobApplication from "./components/JobApplication";
 import JobListing from "./components/JobListing";
+import SearchUser from "./components/SearchUser";
+import PublicUserProfile from "./components/PublicUserProfile";
 
 function App() {
   return (
@@ -38,52 +40,24 @@ function App() {
               </>
             }
           ></Route>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          <Route
+            path="/users/search"
+            element={
+              <>
+                <Navbar /> <SearchUser /> <LoginFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/users/search/:id"
+            element={
+              <>
+                <Navbar /> <PublicUserProfile />
+              </>
+            }
+          ></Route>
 
           
-          <Route
-            path="/jobs/:jobId"
-            element={
-              <>
-                <Navbar /> <JobApplication/> <LoginFooter />
-              </>
-            }
-          ></Route>
-          <Route
-            path="/jobs"
-            element={
-              <>
-                <Navbar /> <JobListing/> <LoginFooter />
-              </>
-            }
-          ></Route>
         </Routes>
       </BrowserRouter>
     </div>

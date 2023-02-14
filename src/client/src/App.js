@@ -56,7 +56,22 @@ function App() {
               </>
             }
           ></Route>
-
+          <Route
+            path="/jobs"
+            element={
+              <>
+                <Navbar /> <JobListing /> <LoginFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/jobs/:id"
+            element={
+              <>
+                <Navbar /> <JobApplication /> <LoginFooter />
+              </>
+            }
+          ></Route>
           
         </Routes>
       </BrowserRouter>

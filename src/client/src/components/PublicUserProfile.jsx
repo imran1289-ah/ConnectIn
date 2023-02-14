@@ -11,20 +11,27 @@ const PublicUserProfile = () => {
   let locationURL = useLocation().pathname;
   let profileId = useLocation().pathname.split("/")[3];
 
-  //HTTP request to backend to fetch user info
+  //HTTP Request in Backend to fetch user info
+  const fetchProfile = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:9000/users/profile/${profileId}`
+      );
+      setPublicUser(response.data);
+      console.log(response.data);
+      localStorage.setItem("userProfile", JSON.stringify(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //Make the request once and only when locationURL changes
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:9000/users/profile/${profileId}`
-        );
-        setPublicUser(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     fetchProfile();
   }, [locationURL]);
+
+  //Local storage which sotre user info
+  const publicUserArray = JSON.parse(localStorage.getItem("userProfile"));
 
   return (
     <div className="userProfileContainer">
@@ -56,7 +63,7 @@ const PublicUserProfile = () => {
         <div className="userJobInformation">
           <span className="subTitle">Experience</span>
           <ul className="elementList">
-            {/* {publicUser.workExp.map((workExperience) => (
+            {publicUserArray.workExp.map((workExperience) => (
               <li key={workExperience} className="jobInfo">
                 <img
                   src="https://png.pngtree.com/png-vector/20210207/ourlarge/pngtree-yellow-brown-mens-briefcase-clip-art-png-image_2882849.png"
@@ -67,13 +74,14 @@ const PublicUserProfile = () => {
                   <span>{workExperience}</span>
                 </div>
               </li>
-            ))}  */}
+            ))}
+            {}
           </ul>
         </div>
         <div className="userJobInformation">
           <span className="subTitle">Education</span>
           <ul className="elementList">
-            {/* {publicUser.education.map((education) => (
+            {publicUserArray.education.map((education) => (
               <li key={education} className="jobInfo">
                 <img
                   src="https://img.freepik.com/premium-vector/square-academic-cap-clipart-high-school-college-graduation-concept_302536-253.jpg?w=2000"
@@ -84,38 +92,38 @@ const PublicUserProfile = () => {
                   <span>{education}</span>
                 </div>
               </li>
-            ))}  */}
+            ))}
           </ul>
         </div>
         <div className="userKnowledgeInformation">
           <span className="subTitle">Skills</span>
           <ul className="elementList">
-            {/* {publicUser.skills.map((skill) => (
+            {publicUserArray.skills.map((skill) => (
               <li key={skill} className="jobInfo">
                 <p className="element">{skill}</p>
               </li>
-            ))} */}
+            ))}
           </ul>
         </div>
         <div className="userKnowledgeInformation">
           <span className="subTitle">Languages</span>
           <ul className="elementList">
-            {/* {publicUser.languages.map((language) => (
+            {publicUserArray.languages.map((language) => (
               <li key={language} className="jobInfo">
                 <p className="element">{language}</p>
               </li>
-            ))} */}
+            ))}
           </ul>
         </div>
         <div className="userKnowledgeInformation">
           <span className="subTitle">Volunteering</span>
           <ul className="elementList">
             <ul className="elementList">
-              {/* {publicUser.volunteering.map((volunteeringExp) => (
+              {publicUserArray.volunteering.map((volunteeringExp) => (
                 <li key={volunteeringExp} className="jobInfo">
                   <p className="element">{volunteeringExp}</p>
                 </li>
-              ))} */}
+              ))}
             </ul>
           </ul>
         </div>

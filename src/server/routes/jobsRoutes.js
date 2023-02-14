@@ -1,17 +1,29 @@
 const express = require("express");
 const router = express.Router();
-const jobsControllers = require("../controllers/jobsController");
+// const jobsControllers = require("../controllers/jobsController");
+const Jobs = require("../models/Job");
 
-router
-  .route("/")
-  .get(jobsControllers.getJobs)
-  .post(jobsControllers.createJob)
-  .patch(jobsControllers.updateJob)
-  .delete(jobsControllers.deleteJob);
+router.get('/', async (req, res) => {
+
+  try{
+    const jobs = await Jobs.find();
+    res.status(200).send(jobs);
+  }catch(err){
+      res.status(400).send("Unable to retrieve data!");
+  }
+
+})
 
 
-router
-  .route("/jobs/:id")
+
+
+
+  // .post(jobsControllers.createJob)
+  // .patch(jobsControllers.updateJob)
+  // .delete(jobsControllers.deleteJob);
+
+
+
 
 
 module.exports = router;

@@ -1,5 +1,4 @@
 const Job = require("../models/Job");
-const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
 
 
@@ -20,6 +19,8 @@ const getJobs = async (req, res) => {
     //     return res.status[200].json(jobs);
     // });
 };
+
+
 
 const updateJob = () => {
 

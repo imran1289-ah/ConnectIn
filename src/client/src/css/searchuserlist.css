@@ -1,0 +1,49 @@
+.userContainer {
+  display: flex;
+  margin: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+img {
+  border-radius: 70%;
+  width: 150px;
+  height: 150px;
+}
+
+.singleUser {
+  margin: 20px;
+}
+
+.userInfo {
+  text-align: center;
+}
+
+.buttonSection {
+  text-align: center;
+}
+
+.searchConnectButton {
+  background-color: #19718d;
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  color: white;
+  font-size: 15px;
+}
+
+/*Responsive for iphone 6 and up*/
+@media (min-width: 330px) and (max-width: 600px) {
+  .userContainer {
+    display: block;
+    text-align: center;
+  }
+
+  .singleUser {
+    margin-bottom: auto;
+  }
+
+  .searchConnectButton {
+    width: 180px;
+    height: 40px;
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../css/signin.css";
 import axios from "axios";
@@ -9,6 +9,7 @@ const SignIn = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const MessageRef = useRef(null);
 
   //HTTP Request to autenticate user
   const submitLogin = async (e) => {
@@ -20,12 +21,16 @@ const SignIn = () => {
       })
       .then((response) => {
         console.log(response.data);
-        alert("Welcome Back");
-        navigate("/UserProfile");
+        MessageRef.current.style.color = "#66FF00";
+        MessageRef.current.innerHTML = "Login Sucess. Welcome Back";
+        const delayTimer = setTimeout(() => {
+          navigate("/UserProfile");
+        }, 1000);
       })
       .catch((error) => {
         console.log(error);
-        alert("Error loggin in");
+        MessageRef.current.style.color = "red";
+        MessageRef.current.innerHTML = "Incorrect Credentials Please try again";
       });
   };
 
@@ -33,14 +38,16 @@ const SignIn = () => {
     //Signin page
     <div className="Wrapper">
       <div className="Form">
-        <h3 className="Title">Log in to your account </h3>
+        <p className="LoginMessage" ref={MessageRef}>
+          Log in to your account{" "}
+        </p>
         <form>
           <div className="Form">
             <label className="Placeholder">
               Email or Username
               <br></br>
               <input
-                className="Input"
+                className="LoginInput"
                 placeholder="Enter your email or username"
                 onChange={(e) => setUser(e.target.value)}
               ></input>
@@ -51,7 +58,7 @@ const SignIn = () => {
               Password
               <br></br>
               <input
-                className="Input"
+                className="LoginInput"
                 placeholder="Enter your password"
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}

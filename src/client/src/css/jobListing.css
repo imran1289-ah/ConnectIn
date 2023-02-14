@@ -41,13 +41,13 @@
 .preferences {
     border: 1px red solid;
     background-color: lightblue;
-    
+    text-align: center;
     width: 30%;
     height: 400px;
     
     margin: 20px;
     margin-left: 200px;
-    border-radius: 10px;
+    border-radius: 20px;
 
 
 }
@@ -56,6 +56,8 @@
     background-color: #19718d;
     display: block;
     width: 100px;
+    border-radius: 20px;
+
 }
 
 

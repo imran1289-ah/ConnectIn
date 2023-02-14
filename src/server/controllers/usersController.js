@@ -11,6 +11,7 @@ const createUser = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Please fill out all fields!" });
   }
 
+
   // Checks if a duplicate user exists on the database
   const isThereADuplicate = await User.findOne({ email }).lean().exec();
   if (isThereADuplicate) {
@@ -31,7 +32,6 @@ const createUser = asyncHandler(async (req, res) => {
   }
 });
 
-// This action returns the user based on the email
 const getUserByEmail = async (req, res) => {
   const user = await User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
@@ -66,6 +66,7 @@ const updateUser = async (req, res) => {};
 const deleteUser = async (req, res) => {};
 
 module.exports = {
+
   createUser,
   updateUser,
   deleteUser,

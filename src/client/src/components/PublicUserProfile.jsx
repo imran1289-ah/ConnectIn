@@ -42,7 +42,7 @@ const PublicUserProfile = () => {
                 {publicUser.firstname} {publicUser.lastname}
               </span>
               <br />
-              <p>Software Engineering Student At Concordia University MTL/QC</p>
+              <p>{publicUser.headLine}</p>
               <div className="connectButtonSection">
                 <button className="connectButton">Connect</button>
               </div>
@@ -51,76 +51,73 @@ const PublicUserProfile = () => {
         </div>
         <div className="userInformation">
           <span className="subTitle">Bio</span>
-          <p className="userBio">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum
-          </p>
+          <p className="userBio">{publicUser.bio}</p>
         </div>
         <div className="userJobInformation">
           <span className="subTitle">Experience</span>
           <ul className="elementList">
-            <l1 className="jobInfo">
-              <img
-                src="https://play-lh.googleusercontent.com/5pZMqQYClc5McEjaISPkvhF8pDmlbLqraTMwk1eeqTlnUSjVxPCq-MItIrJPJGe7xW4"
-                alt="comapnyPic"
-                className="companyPic"
-              ></img>
-              <div>
-                <span>Software Engineer</span>
-                <br></br>
-                <span>Facebook</span>
-                <br></br>
-                <span>2007-2019</span>
-              </div>
-            </l1>
+            *
+            {/* {publicUser.workExp.map((workExperience) => (
+              <li key={workExperience} className="jobInfo">
+                <img
+                  src="https://png.pngtree.com/png-vector/20210207/ourlarge/pngtree-yellow-brown-mens-briefcase-clip-art-png-image_2882849.png"
+                  alt="comapnyPic"
+                  className="companyPic"
+                ></img>
+                <div>
+                  <span>{workExperience}</span>
+                </div>
+              </li>
+            ))} 
           </ul>
         </div>
         <div className="userJobInformation">
           <span className="subTitle">Education</span>
           <ul className="elementList">
-            <l1 className="jobInfo">
-              <img
-                src="https://concordiabootcamps.ca/wp-content/uploads/2019/03/icon.png"
-                alt="comapnyPic"
-                className="companyPic"
-              ></img>
-              <div>
-                <span>Software Engineering COOP</span>
-                <br></br>
-                <span>Concordia University</span>
-                <br></br>
-                <span>2020-2024</span>
-              </div>
-            </l1>
+            {/* {publicUser.education.map((education) => (
+              <li key={education} className="jobInfo">
+                <img
+                  src="https://img.freepik.com/premium-vector/square-academic-cap-clipart-high-school-college-graduation-concept_302536-253.jpg?w=2000"
+                  alt="comapnyPic"
+                  className="companyPic"
+                ></img>
+                <div>
+                  <span>{education}</span>
+                </div>
+              </li>
+            ))} */}
           </ul>
         </div>
         <div className="userKnowledgeInformation">
           <span className="subTitle">Skills</span>
           <ul className="elementList">
-            <l1 className="jobInfo">
-              <p className="element">C++</p>
-            </l1>
+            {/* {publicUser.skills.map((skill) => (
+              <li key={skill} className="jobInfo">
+                <p className="element">{skill}</p>
+              </li>
+            ))} */}
           </ul>
         </div>
         <div className="userKnowledgeInformation">
           <span className="subTitle">Languages</span>
           <ul className="elementList">
-            <l1 className="jobInfo">
-              <p className="element">English</p>
-            </l1>
+            {/* {publicUser.languages.map((language) => (
+              <li key={language} className="jobInfo">
+                <p className="element">{language}</p>
+              </li>
+            ))} */}
           </ul>
         </div>
         <div className="userKnowledgeInformation">
           <span className="subTitle">Volunteering</span>
           <ul className="elementList">
-            <l1 className="jobInfo">
-              <p className="element">Tutor 2nd grade student</p>
-            </l1>
+            <ul className="elementList">
+              {/* {publicUser.volunteering.map((volunteeringExp) => (
+                <li key={volunteeringExp} className="jobInfo">
+                  <p className="element">{volunteeringExp}</p>
+                </li>
+              ))} */}
+            </ul>
           </ul>
         </div>
       </div>

@@ -35,35 +35,36 @@
 
 // module.exports = mongoose.model("PublicUser2", userSchema);
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
-    firstname: {
-        type: String,
-    },
-    lastname: {
-        type: String,
-    },
-    email: {
-        type: String,
-    },
-    password: {
-        type: String,
-    },
-    jobsApplied: [],
-    picture: Buffer,
-    resume: Buffer,
-    coverLetter: Buffer,
-    bio: String,
-    headLine: String,
-    volunteering: [],
-    connections: [],
-    education: [],
-    skills: [],
-    workExp: [],
-    contact: Number,
+  firstname: {
+    type: String,
+  },
+  lastname: {
+    type: String,
+  },
+  email: {
+    type: String,
+  },
+  password: {
+    type: String,
+  },
+  jobsApplied: [],
+  picture: Buffer,
+  resume: Buffer,
+  coverLetter: Buffer,
+  bio: String,
+  headLine: String,
+  volunteering: [],
+  connections: [],
+  education: [],
+  skills: [],
+  workExp: [],
+  contact: Number,
+  languages: [],
 });
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model("User", UserSchema);
 
 module.exports = User;

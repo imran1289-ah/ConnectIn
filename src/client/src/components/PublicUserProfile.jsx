@@ -56,7 +56,6 @@ const PublicUserProfile = () => {
         <div className="userJobInformation">
           <span className="subTitle">Experience</span>
           <ul className="elementList">
-            *
             {/* {publicUser.workExp.map((workExperience) => (
               <li key={workExperience} className="jobInfo">
                 <img
@@ -68,7 +67,7 @@ const PublicUserProfile = () => {
                   <span>{workExperience}</span>
                 </div>
               </li>
-            ))} 
+            ))}  */}
           </ul>
         </div>
         <div className="userJobInformation">
@@ -85,7 +84,7 @@ const PublicUserProfile = () => {
                   <span>{education}</span>
                 </div>
               </li>
-            ))} */}
+            ))}  */}
           </ul>
         </div>
         <div className="userKnowledgeInformation">

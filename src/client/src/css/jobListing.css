@@ -1,0 +1,60 @@
+
+.Container{
+    border: 10px blue solid;
+    width: auto;
+    height: auto;
+
+
+}
+
+.jobPosts{
+    border: 2px #19718d solid;
+    width: 500px;
+    height: auto;
+    border-radius: 15px;
+    margin: 20px;
+    display: inline-block;
+    scrollbar-width: normal;
+
+    scrollbar-color: black;
+    
+
+}
+
+
+
+.jobPosts .heading{
+    background-color: #19718d;
+    height: 50px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    text-transform: uppercase;
+
+}
+
+
+
+.jobPosts .jobPost{
+
+    border: 2px grey solid;
+    margin: 5px;
+    display: block;
+}
+
+.preferences {
+    border: 1px red solid;
+    background-color: lightblue;
+    width: 300px;
+    height: 100px;
+    float: right;
+    display: flex;
+    margin-top: -122px;
+    position: absolute;
+    left: 600px;
+    right: auto;
+}
+
+
+
+

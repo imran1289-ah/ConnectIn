@@ -39,7 +39,7 @@ app.get("/", (req, res) => {
 app.use("/users", require("./routes/userRoutes.js"));
 
 
-app.use("/collection/jobs", require("./routes/jobsRoutes.js"));
+app.use("/jobs", require("./routes/jobsRoutes.js"));
 
 
 //Running the server

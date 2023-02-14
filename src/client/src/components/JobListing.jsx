@@ -4,6 +4,13 @@ import "../css/jobListing.css";
 
 
 
+
+
+const getJobList = () => {
+    axios.get("")
+       
+}
+
 const jobListing = () =>{
     
     return(

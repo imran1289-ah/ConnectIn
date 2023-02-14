@@ -1,24 +1,20 @@
 
 .Container{
     border: 10px blue solid;
-    width: auto;
-    height: auto;
+    display: flex;
+    
 
 
 }
 
 .jobPosts{
     border: 2px #19718d solid;
-    width: 500px;
-    height: auto;
+    width: 50%;
+    height: 400px;
     border-radius: 15px;
     margin: 20px;
     display: inline-block;
-    scrollbar-width: normal;
-
-    scrollbar-color: black;
     
-
 }
 
 
@@ -45,14 +41,21 @@
 .preferences {
     border: 1px red solid;
     background-color: lightblue;
-    width: 300px;
-    height: 100px;
-    float: right;
-    display: flex;
-    margin-top: -122px;
-    position: absolute;
-    left: 600px;
-    right: auto;
+    
+    width: 30%;
+    height: 400px;
+    
+    margin: 20px;
+    margin-left: 200px;
+    border-radius: 10px;
+
+
+}
+
+.preferences button{
+    background-color: #19718d;
+    display: block;
+    width: 100px;
 }
 
 

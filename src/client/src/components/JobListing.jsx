@@ -27,7 +27,10 @@ const jobListing = () =>{
                </div>
 
             <div className="preferences">
-                    Preferences
+                    <b>Preferences</b>
+
+                    <button> Change</button>  
+                    
             </div>
             
         </div>

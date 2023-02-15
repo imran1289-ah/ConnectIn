@@ -8,6 +8,7 @@ import SignUp from "./components/SignUp";
 import UserProfile from "./components/UserProfile";
 import SearchUser from "./components/SearchUser";
 import PublicUserProfile from "./components/PublicUserProfile";
+import EditJobPosting from "./components/EditJobPosting";
 
 function App() {
   return (
@@ -52,6 +53,14 @@ function App() {
             element={
               <>
                 <Navbar /> <PublicUserProfile />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/postedit"
+            element={
+              <>
+                <Navbar /> <EditJobPosting /> <SignupFooter />
               </>
             }
           ></Route>

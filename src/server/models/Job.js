@@ -26,4 +26,13 @@ const jobsSchema = new mongoose.Schema({
 
 const Jobs = mongoose.model("Jobs", jobsSchema);
 
+// Jobs.create({
+//     job_id:12341312342323,
+//     description: "test2",
+//     salary: 123,
+//     company: "testCompany2",
+//     category:"Software",
+//     title: "testTitle2"
+// })
+
 module.exports = Jobs;

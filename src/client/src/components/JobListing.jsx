@@ -1,26 +1,39 @@
 import React from "react";
-import axios from "axios";
+import axios from "axios"
 import "../css/jobListing.css";
 
 
+const getJobListing = () =>{
 
+    const jobs = axios.get("http://localhost:9000/jobs")
+    
 
-
-const getJobList = () => {
-    axios.get("")
-       
 }
 
+
+function getJobs() {
+    const [jobsData, setJobsData] = useState({
+      job_id: null,
+      description: "",
+      salary: null,
+      company: "",
+      catagory: "",
+      title: ""
+    });
+}
+  
 const jobListing = () =>{
     
+    
     return(
-
+            
         <div className="Container">
-
+            
             <div className="jobPosts">
                 <div className="heading">
                     <b>Job Posts</b>
                 </div>
+               
                 <div className = "jobPost">
                     
                    <p>Job title </p>
@@ -30,6 +43,7 @@ const jobListing = () =>{
                    <p>Other information </p>
                    <button> Select</button>
                 </div>
+
 
                </div>
 

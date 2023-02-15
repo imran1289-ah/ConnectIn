@@ -1,0 +1,10 @@
+
+
+GET http://localhost:9000/jobs
+
+
+###
+
+GET http://localhost:9000/jobs/1234131231242
+
+###

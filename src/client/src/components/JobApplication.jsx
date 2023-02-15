@@ -3,21 +3,6 @@ import axios from "axios";
 import "../css/jobApplication.css";
 
 
-const getJob = async (e) => {
-    e.preventDefault();
-    axios.get("http://localhost:9000/jobs/:job_id", () =>{
-
-    })
-    .then((response) =>{
-
-    })
-    .catch((error) => {
-
-    })
-
-    }
-
-
 
 const JobApplication= () =>{
 

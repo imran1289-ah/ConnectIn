@@ -1,6 +1,6 @@
 
 .Container{
-    border: 10px blue solid;
+
     display: flex;
     
 
@@ -10,6 +10,7 @@
 .jobPosts{
     border: 2px #19718d solid;
     width: 50%;
+    min-height: 525px;
     height: auto;
     border-radius: 15px;
     margin: 20px;
@@ -45,10 +46,10 @@
     background-color: lightblue;
     text-align: center;
     width: 30%;
-    height: 400px;
+    height: 525px;
     
     margin: 20px;
-    margin-left: 200px;
+    margin-left: 125px;
     border-radius: 20px;
 
 

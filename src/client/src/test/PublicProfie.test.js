@@ -4,7 +4,8 @@ import { screen, render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 
-test("test if text is rendered correctly", () => {
+//Test to check if public profile page is being rendered correctly
+test("test if text is rendered correctly in the profile page", () => {
   render(
     <BrowserRouter>
       <PublicUserProfile></PublicUserProfile>

@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar";
 import SignIn from "./components/SignIn";
 import LoginFooter from "./components/LoginFooter";
+import SignupFooter from "./components/SignupFooter";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
@@ -20,7 +21,7 @@ function App() {
             path="/signup"
             element={
               <>
-                <Navbar /> <SignUp /> <LoginFooter />
+                <Navbar /> <SignUp /> <SignupFooter />
               </>
             }
           ></Route>

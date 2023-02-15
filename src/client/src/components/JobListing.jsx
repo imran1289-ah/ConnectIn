@@ -42,11 +42,6 @@ const JobListing = () =>{
                         </Link>
                     </div>
                 ))}
-               
-
-                
-
-
             </div>
 
             <div className="preferences">

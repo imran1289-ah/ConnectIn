@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/jobApplication.css";
 
@@ -6,6 +6,17 @@ import "../css/jobApplication.css";
 
 const JobApplication= () =>{
 
+    const [job, setJob] = useState();
+    const fetchData = async (req, res) =>{
+        
+
+    }
+
+    useEffect( () =>{
+
+    }, []
+
+    )
     
     return(
 

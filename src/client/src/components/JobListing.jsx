@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios"
 import "../css/jobListing.css";
 import {useEffect, useState} from "react";
+import {Link} from 'react-router-dom'
 
 
 const JobListing = () =>{
@@ -36,7 +37,9 @@ const JobListing = () =>{
                         <p>Salary: {jobs.salary}</p>
                         <p>Company: {jobs.company}</p>
                         <p>Category: {jobs.category}</p>
-                        <button> Select</button>
+                        <Link to={"/jobs/" + jobs.job_id}>
+                            <button>Select</button>
+                        </Link>
                     </div>
                 ))}
                
@@ -48,7 +51,9 @@ const JobListing = () =>{
 
             <div className="preferences">
                     <b>Preferences</b>
-
+                    <div className="preference"> Software</div>
+                    <div className="preference"> Full-time</div>
+                    <div className="preference"> 120k or higher</div>
                     <button> Change</button>  
                     
             </div>

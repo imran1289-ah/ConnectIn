@@ -1,10 +1,13 @@
 import Navbar from "./components/Navbar";
 import SignIn from "./components/SignIn";
 import LoginFooter from "./components/LoginFooter";
+import SignupFooter from "./components/SignupFooter";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import UserProfile from "./components/UserProfile";
+import SearchUser from "./components/SearchUser";
+import PublicUserProfile from "./components/PublicUserProfile";
 
 function App() {
   return (
@@ -16,7 +19,7 @@ function App() {
             path="/signup"
             element={
               <>
-                <Navbar /> <SignUp /> <LoginFooter />
+                <Navbar /> <SignUp /> <SignupFooter />
               </>
             }
           ></Route>
@@ -33,6 +36,22 @@ function App() {
             element={
               <>
                 <Navbar /> <UserProfile /> <LoginFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/users/search"
+            element={
+              <>
+                <Navbar /> <SearchUser /> <LoginFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/users/search/:id"
+            element={
+              <>
+                <Navbar /> <PublicUserProfile />
               </>
             }
           ></Route>

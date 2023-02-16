@@ -4,43 +4,49 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
+import { ReactDOM } from "react-dom";
+import { useNavigate } from "react-router-dom";
+
 
 function EditJobPosting() {
-  const [jobData, setjobData] = useState({
-    jobtitle: "",
-    jobdescription: "",
-    annualpay: 0,
-    employeetype: "",
-    worklocation: ""
-  });
+
+  const navigate = useNavigate();
+
+  const [jobData, setjobData] = useState([]);
 
   useEffect(() => {
-    fetchPosts();
-  }, []);
-  function fetchPosts(e) {
-    e.preventDefault();
-    axios.get("http://localhost:9000/jobs/:job_id").then(response => {
-      setjobData({
-        jobtitle: response.data.jobtitle,
-        jobdescription: response.data.jobdescription,
-        annualpay: response.data.annualpay,
-        employeetype: response.data.employeetype,
-        worklocation: response.data.worklocation
-      });
+    fetchData();
+  },[]);
+
+  const fetchData = async () => {
+    axios.get("http://localhost:9000/jobs").then(response => {
+      setjobData(response.data);
+      console.log(response.data);
     });
   }
 
-  function savePost(e) {
+  const savePost = async e => {
     e.preventDefault();
-    axios.post("http://localhost:9000/jobs/:job_id", {
-      jobtitle: jobData.jobtitle,
-      jobdescription: jobData.jobdescription,
-      annualpay: jobData.annualpay,
-      employeetype: jobData.employeetype,
-      worklocation: jobData.worklocation
+    axios.post("http://localhost:9000/jobs", {
+      job_id: jobData.job_id,
+      title: jobData.title,
+      description: jobData.description,
+      salary: jobData.salary,
+      category: jobData.category,
+      location: jobData.location
+    })
+    .then(response => {
+      console.log(response.data);
+      alert("Update Successful!");
+      // This should navigate back to the recruiter's 
+      // job posting page
+      // navigate("/UserProfile");
+    })
+    .catch(error => {
+      console.log(error);
+      alert("Update Failed! Please check the logs!");
     });
-  }
-
+  };
   return (
     //Edit posting page
     <Container>
@@ -48,20 +54,21 @@ function EditJobPosting() {
         <Col md={12}>
           <div className="WrapperEditPost">
             <h3 className="Title"> EDIT YOUR POSTING </h3>
-            <form>
+            <form onSubmit={savePost}>
               <div className="FormEditPost">
                 <label className="PlaceholderEditPost">
-                  Title
+                  Title {" "}
                   <br></br>
                   <input
                     aria-label="jobtitle"
                     className="Input"
                     name="jobtitle"
-                    value={jobData.jobtitle}
+                    value={jobData.title}
+                    pattern="[a-zA-Z\s]+"
                     onChange={e =>
                       setjobData({
                         ...jobData,
-                        jobtitle: e.target.value
+                        title: e.target.value
                       })
                     }
                   ></input>
@@ -70,38 +77,38 @@ function EditJobPosting() {
                 <br></br>
 
                 <label className="PlaceholderEditPost">
-                  Description
+                  Description {" "}
                   <br></br>
-                  <input className="InputJobDescription" name="jobdescription" value={jobData.jobdescription} onChange={e => setjobData({ ...jobData, jobdescription: e.target.value })}></input>
+                  <input className="InputJobDescription" name="jobdescription" value={jobData.description} onChange={e => setjobData({ ...jobData, description: e.target.value })}></input>
                 </label>
                 <br></br>
                 <br></br>
 
                 <label className="PlaceholderEditPost">
-                  Annual Pay
+                  Annual Pay {" "}
                   <br></br>
-                  <input className="Input" name="annualpay" type="number" value={jobData.annualpay} onChange={e => setjobData({ ...jobData, annualpay: e.target.value })}></input>
+                  <input className="Input" name="salary" type="number" pattern="\d+" value={jobData.salary} onChange={e => setjobData({ ...jobData, salary: e.target.value })}></input>
                 </label>
                 <br></br>
                 <br></br>
                 <label className="PlaceholderEditPost">
-                  Full-Time/Part-Time
+                  Full-Time/Part-Time {" "}
                   <br></br>
-                  <input className="Input" name="employeetype" value={jobData.employeetype} onChange={e => setjobData({ ...jobData, employeetype: e.target.value })}></input>
+                  <input className="Input" name="category" value={jobData.category} onChange={e => setjobData({ ...jobData, category: e.target.value })}></input>
                 </label>
                 <br></br>
                 <br></br>
                 <label className="PlaceholderEditPost">
-                  Location
+                  Location {" "}
                   <br></br>
-                  <input className="Input" name="worklocation" value={jobData.worklocation} onChange={e => setjobData({ ...jobData, worklocation: e.target.value })}></input>
+                  <input className="Input" name="worklocation" value={jobData.location} onChange={e => setjobData({ ...jobData, location: e.target.value })}></input>
                 </label>
                 <br></br>
                 <br></br>
                 <br></br>
                 <br></br>
-                <button onClick={savePost} className="SaveButton">
-                  Save
+                <button type="submit" className="SaveButton">
+                  Save {" "}
                 </button>
               </div>
               <br></br>

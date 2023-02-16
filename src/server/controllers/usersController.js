@@ -80,21 +80,6 @@ const updateUser = async (req, res) => {};
 
 const deleteUser = async (req, res) => {};
 
-//Action to return list user's based on the firstname
-// const search = async (req, res) => {
-//   const firstname = req.query.term;
-
-//   const users = await User.find({
-//     firstname: { $regex: firstname, $options: "i" },
-//   }).then((users) => {
-//     if (users) {
-//       res.status(200).json(users);
-//     } else {
-//       return res.status(400).json({ message: "No user exists with this name" });
-//     }
-//   });
-// };
-
 //Action to return public user info
 const getUserInfo = async (req, res) => {
   const user = await User.findById(req.params.id).then((user) => {
@@ -112,7 +97,6 @@ module.exports = {
   updateUser,
   deleteUser,
   verifyUser,
-
   getUserInfo,
   getUser,
 

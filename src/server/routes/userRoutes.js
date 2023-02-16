@@ -17,9 +17,6 @@ router
 
 router.route("/signin").post(usersControllers.verifyUser);
 
-//route to search users
-// router.route("/search").get(usersControllers.search);
-
 //router to fetch user info for profile page
 router.route("/profile/:id").get(usersControllers.getUserInfo);
 

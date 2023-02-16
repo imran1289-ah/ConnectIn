@@ -39,20 +39,7 @@ app.get("/", (req, res) => {
 });
 app.use("/users", require("./routes/userRoutes.js"));
 app.use("/resume", require("./routes/uploadResumeCL.js"));
-
-app.get("/search", async (req, res) => {
-  const firstname = req.query.term;
-
-  const users = await User.find({
-    firstname: { $regex: firstname, $options: "i" },
-  }).then((users) => {
-    if (users) {
-      res.status(200).json(users);
-    } else {
-      return res.status(400).json({ message: "No user exists with this name" });
-    }
-  });
-});
+app.use("/search", require("./routes/searchRoute.js"));
 
 //Running the server
 const server = app.listen(port, () => {

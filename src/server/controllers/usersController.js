@@ -92,6 +92,19 @@ const getUserInfo = async (req, res) => {
   });
 };
 
+
+const getUserSpecfificJobApplied = async (req, res) =>{
+        try{
+            
+        }catch(err){
+
+        }
+}
+
+const addJobAppliedToUser = async (req, res) => {
+      
+}
+
 module.exports = {
 
   createUser,
@@ -100,5 +113,8 @@ module.exports = {
   verifyUser,
   search,
   getUserInfo,
+  getUserSpecfificJobApplied,
+  addJobAppliedToUser
+
   //getUserByEmail
 };

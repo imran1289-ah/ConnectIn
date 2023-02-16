@@ -22,17 +22,6 @@ router.get('/:jobId', async (req, res) => {
     }catch(err){
         res.status[400].json({message: "Something went wrong."})
     }
-
-
-  // try{
-  //   const job = await Job.findOne({}, "job_id");
-  //   res.status(200).json(job);
-
-
-  // }catch(err){
-  //   res.status(500).json( {message: "Unable to retrieve specific job."});
-  //   console.log(err)
-  // }
   
 })
 

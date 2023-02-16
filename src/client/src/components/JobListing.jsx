@@ -29,15 +29,17 @@ const JobListing = () =>{
                     <b>Job Posts</b>
                 </div>
 
-                {jobs.map(jobs => (
-                    <div className="jobPost">
-                        <p> Job id: {jobs.job_id}</p>
-                        <p>Title: {jobs.title}</p>
-                        <p>Description: {jobs.description}</p>
-                        <p>Salary: {jobs.salary}</p>
-                        <p>Company: {jobs.company}</p>
-                        <p>Category: {jobs.category}</p>
-                        <Link to={"/jobs/" + jobs.job_id}>
+                {jobs.map(job => (
+                
+                    <div key = {job._id} className="jobPost">
+                        
+                        <p> Job id: {job.job_id}</p>
+                        <p>Title: {job.title}</p>
+                        <p>Description: {job.description}</p>
+                        <p>Salary: {job.salary}</p>
+                        <p>Company: {job.company}</p>
+                        <p>Category: {job.category}</p>
+                        <Link to = {`String text ${job.job_id}`} state = {{jobState:job}}>
                             <button>Select</button>
                         </Link>
                     </div>

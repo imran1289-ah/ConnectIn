@@ -1,29 +1,25 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import "../css/jobApplication.css";
+import { useLocation } from "react-router-dom";
 
 
 
-const JobApplication= () =>{
+const JobApplication = () =>{
 
-    const [job, setJob] = useState();
-    const fetchData = async (req, res) =>{
-        
+    const location = useLocation();
+    const job = location.state;
+
+    const submitApplication = () =>{
 
     }
 
-    useEffect( () =>{
-
-    }, []
-
-    )
-    
     return(
 
         <div className="JAPContainer">
         
-        <p>Job Posting Name</p>
-        
+        <p>Job ID : {job.jobState.job_id}</p>
+        <p> Job Title: {job.jobState.title}</p>
+        <p> Job Description : {job.jobState.description}</p>
         <form>
         
         <input className="Textbox" type="text" name="fname" placeholder="First Name"/>
@@ -40,7 +36,7 @@ const JobApplication= () =>{
 
 
 
-        <button> Send Application</button>
+        <button onSubmit={submitApplication}> Send Application</button>
 
         </div>
         

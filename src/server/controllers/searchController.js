@@ -1,5 +1,6 @@
 const User = require("../models/user");
 
+//Action to return profiles based on firstname given by end user
 const search = async (req, res) => {
   const firstname = req.query.term;
 

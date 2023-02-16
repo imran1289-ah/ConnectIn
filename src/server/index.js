@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const session = require("express-session");
 const cors = require("cors");
+const User = require("./models/user");
 
 const app = express();
 app.use(express.json());
@@ -37,6 +38,8 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 app.use("/users", require("./routes/userRoutes.js"));
+app.use("/resume", require("./routes/uploadResumeCL.js"));
+app.use("/search", require("./routes/searchRoute.js"));
 
 
 app.use("/jobs", require("./routes/jobsRoutes.js"));
@@ -45,7 +48,7 @@ app.use("/jobs", require("./routes/jobsRoutes.js"));
 //Running the server
 const server = app.listen(port, () => {
   dbConnect();
-  console.log(`Server listening on port ${port}`);
+  // console.log(`Server listening on port ${port}`);
 });
 
 module.exports = server;

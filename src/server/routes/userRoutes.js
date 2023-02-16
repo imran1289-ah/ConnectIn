@@ -10,10 +10,13 @@ router
   .delete(usersControllers.deleteUser);
   
 
-router.route("/signin").post(usersControllers.verifyUser);
+router
+  .route("/:_id")
+  .get(usersControllers.getUser)
+  .patch(usersControllers.updateUser)
+  .delete(usersControllers.deleteUser);
 
-//route to search users
-router.route("/search").get(usersControllers.search);
+router.route("/signin").post(usersControllers.verifyUser);
 
 //router to fetch user info for profile page
 router.route("/profile/:id").get(usersControllers.getUserInfo);

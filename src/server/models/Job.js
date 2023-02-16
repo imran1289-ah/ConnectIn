@@ -22,6 +22,9 @@ const jobsSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    location: {
+        type: String,
+    },
 });
 
 const Jobs = mongoose.model("Jobs", jobsSchema);
@@ -36,3 +39,4 @@ const Jobs = mongoose.model("Jobs", jobsSchema);
 // })
 
 module.exports = Jobs;
+

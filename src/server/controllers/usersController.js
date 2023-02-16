@@ -11,7 +11,6 @@ const createUser = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Please fill out all fields!" });
   }
 
-
   // Checks if a duplicate user exists on the database
   const isThereADuplicate = await User.findOne({ email }).lean().exec();
   if (isThereADuplicate) {
@@ -61,24 +60,25 @@ const verifyUser = async (req, res) => {
   });
 };
 
+//get user by ID
+const getUser = (req, res, next) => {
+  const userId = req.params._id;
+  console.log(userId);
+  User.findById(userId)
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      res.status(200).json({ user });
+    })
+    .catch((err) => {
+      res.status(500).json({ message: "Fetching user failed" });
+    });
+};
+
 const updateUser = async (req, res) => {};
 
 const deleteUser = async (req, res) => {};
-
-//Action to return list user's based on the firstname
-const search = async (req, res) => {
-  const firstname = req.query.term;
-
-  const users = await User.find({
-    firstname: { $regex: firstname, $options: "i" },
-  }).then((users) => {
-    if (users) {
-      res.status(200).json(users);
-    } else {
-      return res.status(400).json({ message: "No user exists with this name" });
-    }
-  });
-};
 
 //Action to return public user info
 const getUserInfo = async (req, res) => {
@@ -110,15 +110,14 @@ const addJobAppliedToUser = async (req, res) => {
 }
 
 module.exports = {
-
   createUser,
   updateUser,
   deleteUser,
   verifyUser,
-  search,
   getUserInfo,
   getUserJobsApplied,
-  addJobAppliedToUser
+  addJobAppliedToUser,
+  getUser
 
   //getUserByEmail
 };

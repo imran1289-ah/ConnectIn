@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../css/jobApplication.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+
 
 
 
@@ -9,14 +10,23 @@ const JobApplication = () =>{
 
     const location = useLocation();
     const job = location.state;
-    const userId = "63ec3858d054c2f0772df03c";
+
+    //User id hard coded for now until we get user session fixed. 
+    const userId = "63edb27d0e77e161a004824c";
+    
+    const navigate = useNavigate();
 
     const submitApplication = async () =>{
-        try{
-            axios.post(`http://localhost:9000/${userId}/jobsApplied`);
-        }catch(err){
-
+        const alreadyJobsApplied = await axios.get(`http://localhost:9000/users/${userId}/jobsApplied`)
+        
+        if(alreadyJobsApplied.data.includes(job.jobState.job_id)){
+            alert(`UserID ${userId} has already applied for this job!`);
+            navigate("/jobs");
+        }else{
+            
         }
+        
+        
     }
 
     return(
@@ -42,7 +52,7 @@ const JobApplication = () =>{
 
 
 
-        <button> Send Application</button>
+        <button onClick={submitApplication}> Send Application</button>
 
         </div>
         

@@ -19,9 +19,10 @@ router.route("/search").get(usersControllers.search);
 router.route("/profile/:id").get(usersControllers.getUserInfo);
 
 //router to check if
-router.route("/:id/jobsApplied/:jobId").get(usersControllers.getUserSpecfificJobApplied);
+router.route("/:id/jobsApplied").get(usersControllers.getUserJobsApplied);
 
 router.route("/:id/jobsApplied").post(usersControllers.addJobAppliedToUser);
+
 
 
 

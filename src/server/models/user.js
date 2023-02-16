@@ -66,4 +66,13 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema);
 
+
+// User.create({
+//     firstname: "Bob",
+//     lastname: "Test",
+//     email: "bobTest@hotmail.com",
+//     password: "122121212",
+//     jobsApplied: [1234131231242]
+// })
+
 module.exports = User;

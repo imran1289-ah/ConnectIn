@@ -1,6 +1,7 @@
 import React from "react";
 import "../css/jobApplication.css";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 
 
@@ -8,9 +9,14 @@ const JobApplication = () =>{
 
     const location = useLocation();
     const job = location.state;
+    const userId = "63ec3858d054c2f0772df03c";
 
-    const submitApplication = () =>{
+    const submitApplication = async () =>{
+        try{
+            axios.post(`http://localhost:9000/${userId}/jobsApplied`);
+        }catch(err){
 
+        }
     }
 
     return(
@@ -36,7 +42,7 @@ const JobApplication = () =>{
 
 
 
-        <button onSubmit={submitApplication}> Send Application</button>
+        <button> Send Application</button>
 
         </div>
         

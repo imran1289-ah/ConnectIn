@@ -92,12 +92,16 @@ const getUserInfo = async (req, res) => {
   });
 };
 
-
-const getUserSpecfificJobApplied = async (req, res) =>{
+//Gets a list of all the jobs applied for a specific user
+const getUserJobsApplied = async (req, res) =>{
         try{
+            const user = await User.findOne({_id: req.params.id});
+            return res.status(200).json(user.jobsApplied);
+            
+            
             
         }catch(err){
-
+          res.status(400).json({ message: "Unable to retrieve jobs applied." });
         }
 }
 
@@ -113,7 +117,7 @@ module.exports = {
   verifyUser,
   search,
   getUserInfo,
-  getUserSpecfificJobApplied,
+  getUserJobsApplied,
   addJobAppliedToUser
 
   //getUserByEmail

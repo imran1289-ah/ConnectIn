@@ -37,9 +37,11 @@ const UserSchema = new mongoose.Schema({
     education: [],
     skills: [],
     workExp: [],
+    languages: [],
 
 });
 
 const User = mongoose.model("Users", UserSchema);
+
 
 module.exports = User;

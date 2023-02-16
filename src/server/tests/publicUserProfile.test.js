@@ -17,6 +17,6 @@ afterAll((done) => {
 //Test to check if a user is found on the database
 describe("GET profile", function () {
   it("successfully searches for a user and provides their details", async () => {
-    await request(app).get("/users/search?term=test").expect(200);
+    await request(app).get("/search?term=test").expect(200);
   });
 });

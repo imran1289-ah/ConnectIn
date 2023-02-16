@@ -1,5 +1,6 @@
 const request = require("supertest");
 const app = require("../index");
+const User = require("../models/user");
 
 describe("Resume and Cover Letter Upload", () => {
 
@@ -18,6 +19,12 @@ describe("Resume and Cover Letter Upload", () => {
         userId = userResponse.body.id;
 
         // console.log(userId);
+
+
+    });
+    afterAll(async() => {
+        // Delete the user from the database after running all the tests
+        await User.findByIdAndDelete(userId);
     });
 
     it("should upload resume for a specific user", async() => {

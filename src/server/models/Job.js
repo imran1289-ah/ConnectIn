@@ -22,6 +22,10 @@ const jobsSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    location: {
+        type: String,
+        required: true,
+    }
 });
 
 const Jobs = mongoose.model("Jobs", jobsSchema);

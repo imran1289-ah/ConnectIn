@@ -56,13 +56,13 @@ const UserSchema = new mongoose.Schema({
   coverLetter: Buffer,
   bio: String,
   headLine: String,
-  volunteering: String,
+  volunteering: [],
   connections: [],
-  education: String,
-  skills: String,
-  workExp: String,
+  education: [],
+  skills: [],
+  workExp: [],
   contact: Number,
-  languages: String,
+  languages: [],
 });
 
 const User = mongoose.model("User", UserSchema);

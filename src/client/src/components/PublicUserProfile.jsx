@@ -5,11 +5,29 @@ import "../css/publicuserprofile.css";
 
 const PublicUserProfile = () => {
   //States
-  const [publicUser, setPublicUser] = useState([]);
+  const [publicUser, setPublicUser] = useState([
+    {
+      _id: "",
+      firstname: "",
+      lastname: "",
+      volunteering: [],
+      skills: [],
+      workExp: [],
+      bio: "",
+      headLine: "",
+      languages: [],
+      education: [],
+    },
+  ]);
 
   //Get the search string from the user input
   let locationURL = useLocation().pathname;
   let profileId = useLocation().pathname.split("/")[3];
+
+  //Make the request once and only when locationURL changes
+  useEffect(() => {
+    fetchProfile();
+  }, [locationURL]);
 
   //HTTP Request in Backend to fetch user info
   const fetchProfile = async () => {
@@ -17,17 +35,23 @@ const PublicUserProfile = () => {
       const response = await axios.get(
         `http://localhost:9000/users/profile/${profileId}`
       );
-      setPublicUser(response.data);
+      setPublicUser({
+        _id: response.data._id,
+        firstname: response.data.firstname,
+        lastname: response.data.lastname,
+        volunteering: response.data.volunteering,
+        skills: response.data.skills,
+        workExp: response.data.workExp,
+        bio: response.data.bio,
+        headLine: response.data.headLine,
+        languages: response.data.languages,
+        education: response.data.education,
+      });
       console.log(response.data);
     } catch (error) {
       console.log(error);
     }
   };
-
-  //Make the request once and only when locationURL changes
-  useEffect(() => {
-    fetchProfile();
-  }, [locationURL]);
 
   return (
     <div className="userProfileContainer">
@@ -59,65 +83,73 @@ const PublicUserProfile = () => {
         <div className="userJobInformation">
           <span className="subTitle">Experience</span>
           <ul className="elementList">
-            <li className="jobInfo">
-              <img
-                src="https://png.pngtree.com/png-vector/20210207/ourlarge/pngtree-yellow-brown-mens-briefcase-clip-art-png-image_2882849.png"
-                alt="comapnyPic"
-                className="companyPic"
-              ></img>
-              <div>
-                {publicUser.workExp ? (
-                  <span>{publicUser.workExp}</span>
-                ) : (
-                  <span>No Experience</span>
-                )}
-              </div>
-            </li>
+            {publicUser.workExp &&
+              publicUser.workExp.map((workExperience) => (
+                <li key={workExperience} className="jobInfo">
+                  <img
+                    src="https://png.pngtree.com/png-vector/20210207/ourlarge/pngtree-yellow-brown-mens-briefcase-clip-art-png-image_2882849.png"
+                    alt="comapnyPic"
+                    className="companyPic"
+                  ></img>
+                  <div>
+                    <span>{workExperience}</span>
+                  </div>
+                </li>
+              ))}
           </ul>
         </div>
         <div className="userJobInformation">
           <span className="subTitle">Education</span>
           <ul className="elementList">
-            <li className="jobInfo">
-              <img
-                src="https://img.freepik.com/premium-vector/square-academic-cap-clipart-high-school-college-graduation-concept_302536-253.jpg?w=2000"
-                alt="comapnyPic"
-                className="companyPic"
-              ></img>
-              <div>
-                {publicUser.education ? (
-                  <span>{publicUser.education}</span>
-                ) : (
-                  <span>No Experience</span>
-                )}
-              </div>
-            </li>
+            {publicUser.education &&
+              publicUser.education.map((education) => (
+                <li key={education} className="jobInfo">
+                  <img
+                    src="https://img.freepik.com/premium-vector/square-academic-cap-clipart-high-school-college-graduation-concept_302536-253.jpg?w=2000"
+                    alt="comapnyPic"
+                    className="companyPic"
+                  ></img>
+                  <div>
+                    <span>{education}</span>
+                  </div>
+                </li>
+              ))}
           </ul>
         </div>
         <div className="userKnowledgeInformation">
           <span className="subTitle">Skills</span>
           <ul className="elementList">
-            <li className="jobInfo">
-              <p className="element">{publicUser.skills}</p>
-            </li>
+            {publicUser.skills &&
+              publicUser.skills.map((skill) => (
+                <li key={skill} className="jobInfo">
+                  <p className="element">{skill}</p>
+                </li>
+              ))}{" "}
           </ul>
         </div>
         <div className="userKnowledgeInformation">
           <span className="subTitle">Languages</span>
           <ul className="elementList">
-            <li className="jobInfo">
-              <p className="element">{publicUser.languages}</p>
-            </li>
+            {publicUser.languages &&
+              publicUser.languages.map((language) => (
+                <li key={language} className="jobInfo">
+                  <p className="element">{language}</p>
+                </li>
+              ))}
           </ul>
         </div>
         <div className="userKnowledgeInformation">
           <span className="subTitle">Volunteering</span>
+
           <ul className="elementList">
-            <ul className="elementList">
-              <li className="jobInfo">
-                <p className="element">{publicUser.volunteering}</p>
-              </li>
-            </ul>
+            <li className="jobInfo">
+              {publicUser.volunteering &&
+                publicUser.volunteering.map((volunteeringExp) => (
+                  <li key={volunteeringExp} className="jobInfo">
+                    <p className="element">{volunteeringExp}</p>
+                  </li>
+                ))}{" "}
+            </li>
           </ul>
         </div>
       </div>

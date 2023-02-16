@@ -57,7 +57,7 @@ function App() {
             }
           ></Route>
           <Route
-            path="/postedit"
+            path="/jobs"
             element={
               <>
                 <Navbar /> <EditJobPosting /> <SignupFooter />

@@ -37,6 +37,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 app.use("/users", require("./routes/userRoutes.js"));
+app.use("/jobs", require("./routes/jobRoutes"));
 
 //Running the server
 const server = app.listen(port, () => {

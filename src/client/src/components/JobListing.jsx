@@ -39,7 +39,7 @@ const JobListing = () =>{
                         <p>Salary: {job.salary}</p>
                         <p>Company: {job.company}</p>
                         <p>Category: {job.category}</p>
-                        <Link to = {`String text ${job.job_id}`} state = {{jobState:job}}>
+                        <Link to = {`/jobs/${job.job_id}`} state = {{jobState:job}}>
                             <button>Select</button>
                         </Link>
                     </div>

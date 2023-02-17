@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import { margin } from "@mui/system";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { FaRegEdit } from "react-icons/fa";
 import "../css/JobPosting.css";
 import axios from "axios";

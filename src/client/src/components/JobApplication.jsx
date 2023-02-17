@@ -4,8 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
-
-
 const JobApplication = () =>{
 
     const location = useLocation();
@@ -22,8 +20,6 @@ const JobApplication = () =>{
         phoneNumber: "",
         cv: null
     })
-
-    
 
     const submitApplication = async () =>{
         const alreadyJobsApplied = await axios.get(`http://localhost:9000/users/${userId}/jobsApplied`)

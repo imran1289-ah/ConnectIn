@@ -1,6 +1,6 @@
 .JAPContainer{
-
-    border:5px red solid;
+    margin-top: 50px;
+    /* border:5px #19718d solid; */
     text-align: center;
     border-radius: 5%;
     width: 800px;
@@ -11,7 +11,7 @@
     /*rgba(255, 254, 254, 0.6);*/
 }
 .JAPContainer image {
-    border: 1px red solid;
+    
     border-radius: 50%;
     
 }

@@ -1,42 +1,37 @@
 const express = require("express");
 const router = express.Router();
-// const jobsControllers = require("../controllers/jobsController");
+const jobsControllers = require("../controllers/jobsController");
 const Job = require("../models/Job");
 
-router.get('/', async (req, res) => {
 
-  try{
-    const jobs = await Job.find();
-    res.status(200).json(jobs);
-  }catch(err){
-      res.status(500).json( {message: "Unable to retrieve all jobs."});
-      console.log(err);
-  }
-})
+//returns all jobs available
+// router.get('/', async (req, res) => {
 
-router.get('/:jobId', async (req, res) => {
+//   try{
+//     const jobs = await Job.find();
+//     res.status(200).json(jobs);
+//   }catch(err){
+//       res.status(500).json( {message: "Unable to retrieve all jobs."});
+//       console.log(err);
+//   }
+// })
+router.get('/', jobsControllers.getAllJobs)
 
-    try{
-        const job = await Job.findOne({job_id: req.params.jobId});
-        res.send(job);
-    }catch(err){
-        res.status[400].json({message: "Something went wrong."})
-    }
+//returns all information of a specific job_id
+// router.get('/:jobId', async (req, res) => {
+
+//     try{
+//         const job = await Job.findOne({job_id: req.params.jobId});
+//         res.send(job);
+//     }catch(err){
+//         res.status[400].json({message: "Something went wrong."})
+//     }
   
-})
+// })
 
-router.post("/jobs", async (req, res) => {
-    
-}
-)
+router.get('/:jobId', jobsControllers.getJobDetails)
 
 
-
-
-
-  // .post(jobsControllers.createJob)
-  // .patch(jobsControllers.updateJob)
-  // .delete(jobsControllers.deleteJob);
 
 
 

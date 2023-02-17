@@ -7,6 +7,7 @@ import SignUp from "./components/SignUp";
 import UserProfile from "./components/UserProfile";
 import SearchUser from "./components/SearchUser";
 import PublicUserProfile from "./components/PublicUserProfile";
+import WaitingConnections from "./components/waitingConnections";
 
 function App() {
   return (
@@ -58,7 +59,7 @@ function App() {
             path="/waitingConnections"
             element={
               <>
-                <Navbar /> <waitingConnections /> <LoginFooter />
+                <Navbar /> <WaitingConnections /> <LoginFooter />
               </>
             }
           ></Route>

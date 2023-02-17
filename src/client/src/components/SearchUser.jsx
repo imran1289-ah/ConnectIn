@@ -3,11 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import "../css/searchuserlist.css";
 
-//function Clickme(userid){
-    //userid.preventDefault();
-    //console.log(userid);
-//}
-
 
 const SearchUser = () => {
 

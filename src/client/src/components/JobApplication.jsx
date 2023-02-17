@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../css/jobApplication.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -13,19 +13,20 @@ const JobApplication = () =>{
     const userId = "63edb27d0e77e161a004824c";
     
     const navigate = useNavigate();
-    const [form, setForm] = useState({
-        fname:"",
-        lname:"",
-        email:"",
-        phoneNumber: "",
-        cv: null
-    })
+    // const [form, setForm] = useState({
+    //     fname:"",
+    //     lname:"",
+    //     email:"",
+    //     phoneNumber: "",
+    //     cv: null
+    // })
 
     const submitApplication = async () =>{
         const alreadyJobsApplied = await axios.get(`http://localhost:9000/users/${userId}/jobsApplied`)
         
         if(alreadyJobsApplied.data.includes(job.jobState.job_id)){
-            alert(`UserID ${userId} has already applied for this job!`);
+            // alert(`UserID ${userId} has already applied for this job!`);
+            alert("You've already applied for this job!")
             navigate("/jobs");
         }else{
 
@@ -33,7 +34,8 @@ const JobApplication = () =>{
                 userId: userId,
                 jobId: job.jobState.job_id
             })
-            alert(`UserID ${userId} has successully applied for this job!`);
+            // alert(`UserID ${userId} has successully applied for this job!`);
+            alert("You've successfully applfied for this job!")
             navigate("/jobs");
             
             

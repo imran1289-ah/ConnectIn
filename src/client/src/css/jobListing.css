@@ -15,6 +15,7 @@
     border-radius: 15px;
     margin: 20px;
     display: inline-block;
+
     
 }
 
@@ -37,6 +38,17 @@
     border: 2px grey solid;
     margin: 5px;
     display: block;
+    width: 80%;
+    height: 240px;
+}
+
+.jobPosts .jobPost button{
+    background-color: #19718d;
+    display: block;
+    width: 100px;
+    border-radius: 20px;
+    margin: 15px;
+    text-decoration: none;
 }
 
 .preferences {

@@ -5,8 +5,15 @@ const asyncHandler = require('express-async-handler')
 // @route GET /jobs
 // @access Private
 const fetchJobData = asyncHandler(async(req, res) => {
-    const jobData = await Jobs.findOne(req.params.job_id).then((job) => {
+    /* Placeholder for grabbing a random job
+    Will remove once the view Jobs page is implemented
+    with an edit button.
+    const jobData = await Jobs.findOne(req.params.job_id)
+    */
+    const {job_id} = req.body;
+    const jobData = await Jobs.findOne({job_id}).then((job) => {
         if (job){
+            console.log(job);
             res.status(200).json(job);
         } else {
             return res.status(400).json({ message: "No job exists with this id" });
@@ -23,7 +30,7 @@ const updateJobData = asyncHandler(async(req, res) => {
 
     // Checks if the job posting exists by id
     const jobPosting = await Jobs.findOne({job_id: job_id}).exec()
-    if (!jobPosting){
+    if (!jobPosting) {
         return res.status(400).status({message: "Job Posting Not Found!"})
     }
 
@@ -34,8 +41,13 @@ const updateJobData = asyncHandler(async(req, res) => {
         category: category,
         location: location
     })
-
-    res.json({message: 'Succesfully Updated Job Posting!'})
+    .then((update) => {
+        if(update){
+            res.status(200).json({message: 'Successfully Updated Job Posting'});
+        } else {
+            return res.status(400).json({ message: "Error Updating the Job Posting" });
+        }
+    });
 })
 
 module.exports = {

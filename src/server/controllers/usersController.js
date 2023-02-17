@@ -25,7 +25,7 @@ const createUser = asyncHandler(async (req, res) => {
   const newUser = await User.create(userDocument);
   
   if (newUser) {
-    res.status(201).json({ message: "User successfully created!" });
+    res.status(201).json({ message: "User successfully created!", id: newUser._id });
   } else {
     res.status(400).json({ message: "User unsuccessfully created." });
   }

@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
+const { db } = require("../models/user");
 var sesh;
 
 const createUser = asyncHandler(async (req, res) => {
@@ -106,7 +107,26 @@ const getUserJobsApplied = async (req, res) =>{
 }
 
 const addJobAppliedToUser = async (req, res) => {
-      
+
+  User.updateOne({
+    _id:req.body.userId,
+
+  }, {
+    $addToSet: {
+      jobsApplied: req.body.jobId
+    }
+  },
+  function(err, result) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  }
+  )
+  
+
+  
 }
 
 module.exports = {

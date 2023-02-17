@@ -48,7 +48,7 @@ app.use("/jobs", require("./routes/jobsRoutes.js"));
 //Running the server
 const server = app.listen(port, () => {
   dbConnect();
-  // console.log(`Server listening on port ${port}`);
+  console.log(`Server listening on port ${port}`);
 });
 
 module.exports = server;

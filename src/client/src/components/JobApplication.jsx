@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/jobApplication.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -15,6 +15,15 @@ const JobApplication = () =>{
     const userId = "63edb27d0e77e161a004824c";
     
     const navigate = useNavigate();
+    const [form, setForm] = useState({
+        fname:"",
+        lname:"",
+        email:"",
+        phoneNumber: "",
+        cv: null
+    })
+
+    
 
     const submitApplication = async () =>{
         const alreadyJobsApplied = await axios.get(`http://localhost:9000/users/${userId}/jobsApplied`)
@@ -23,12 +32,19 @@ const JobApplication = () =>{
             alert(`UserID ${userId} has already applied for this job!`);
             navigate("/jobs");
         }else{
+
+            axios.post(`http://localhost:9000/users/${userId}/jobsApplied`, {
+                userId: userId,
+                jobId: job.jobState.job_id
+            })
+            alert(`UserID ${userId} has successully applied for this job!`);
+            navigate("/jobs");
+            
             
         }
-        
-        
     }
 
+    
     return(
 
         <div className="JAPContainer">

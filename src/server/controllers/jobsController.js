@@ -3,9 +3,6 @@ const bcrypt = require("bcrypt");
 
 
 
-const createJob = () => {
-
-}
 
 const getAllJobs = async (req, res) => {
 
@@ -39,4 +36,5 @@ module.exports = {
     
 getAllJobs,
 getJobDetails
+
 }

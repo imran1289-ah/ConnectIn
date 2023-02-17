@@ -24,7 +24,7 @@ const JobListing = () =>{
         <div className="Container">
             
             
-            <div className="jobPosts">
+            <div data-testid = "jobPostsContainer" className="jobPosts">
                 <div className="heading">
                     <b>Job Posts</b>
                 </div>

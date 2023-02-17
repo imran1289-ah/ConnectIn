@@ -115,15 +115,17 @@ const addJobAppliedToUser = async (req, res) => {
     $addToSet: {
       jobsApplied: req.body.jobId
     }
-  },
-  function(err, result) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(result);
-    }
   }
+  // function(err, result) {
+  //   if (err) {
+  //     res.send(err);
+  //   } else {
+  //     res.send(result);
+  //   }
+  // })
   )
+
+  res.send(201);
   
 
   

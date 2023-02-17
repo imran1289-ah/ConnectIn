@@ -39,7 +39,7 @@
     margin: 5px;
     display: block;
     width: 80%;
-    height: 240px;
+    height: auto;
 }
 
 .jobPosts .jobPost button{

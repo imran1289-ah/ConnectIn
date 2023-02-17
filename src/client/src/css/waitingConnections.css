@@ -1,0 +1,26 @@
+.userWaitingConnection {
+    min-height: 220px;
+    width: 700px;
+    border-radius: 15px;
+    margin: 20px;
+    height: auto;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+.acceptButton{
+background-color: lightgreen;
+color: black;
+border-radius: 10px;
+}
+.rejectButton{
+background-color: lightcoral;
+color:black;
+border-radius: 10px;
+}
+.connectionDisplay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-family: "Inter", sans-serif;
+  }

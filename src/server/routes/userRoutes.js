@@ -7,6 +7,8 @@ router
   .get(usersControllers.verifyUser)
   .post(usersControllers.createUser)
   .patch(usersControllers.updateUser)
+  //.post(usersControllers.updateAwaitingConnections)
+  //.patch(usersControllers.updateConnections)
   .delete(usersControllers.deleteUser);
 
 router.route("/signin").post(usersControllers.verifyUser);
@@ -16,5 +18,9 @@ router.route("/search").get(usersControllers.search);
 
 //router to fetch user info for profile page
 router.route("/profile/:id").get(usersControllers.getUserInfo);
+
+router.route("/searchuserlist").post(usersControllers.updateAwaitingConnections);
+
+//router.route("/newConnection").patch(usersControllers.updateConnections);
 
 module.exports = router;

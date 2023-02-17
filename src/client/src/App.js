@@ -54,6 +54,14 @@ function App() {
               </>
             }
           ></Route>
+          <Route
+            path="/waitingConnections"
+            element={
+              <>
+                <Navbar /> <waitingConnections /> <LoginFooter />
+              </>
+            }
+          ></Route>
         </Routes>
       </BrowserRouter>
     </div>

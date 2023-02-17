@@ -61,7 +61,45 @@ const verifyUser = async (req, res) => {
   });
 };
 
-const updateUser = async (req, res) => {};
+//This will be used to update the user's profile information
+const updateUser = async (req, res) => {
+  
+};
+
+//Action of deleting a user from awaitingConnections and transfer them to connections
+const updateConnections = async (req, res) => {
+  const { firstname, lastname, _id, waitingConnections, connections} = req.body;
+  //In case data is missing or wrong
+  if(!firstname||!lastname||!_id|| !Array.isArray(waitingConnections)||!Array.isArray(connections) ){
+    return res.status(400).jason({message:'button malfunction due to missing or incorrect data'})
+  }
+  
+  const user = await User.findOneAndUpdate(
+    {_id: _id},
+    {$addToSet: {
+      connections: [{firstname:"scrappy", lastname:"oo"}]
+    }}
+  )
+
+};
+
+//Action to add user's name and Id to another user's AwaitingConnections
+const updateAwaitingConnections = async (req, res) => {
+  const { _id} = req.body;
+  const user = await User.findOneAndUpdate(
+    {_id: _id},
+    {$addToSet: { waitingConnections: {firstname:"ittle", lastname:"doo"}
+    }},
+    function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(result);
+      }
+    }
+  )
+  //return res.status(200).json({message:"sent request sucessfully"});
+};
 
 const deleteUser = async (req, res) => {};
 
@@ -100,5 +138,7 @@ module.exports = {
   verifyUser,
   search,
   getUserInfo,
+  updateConnections,
+  updateAwaitingConnections,
   //getUserByEmail
 };

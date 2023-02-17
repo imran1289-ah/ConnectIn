@@ -62,6 +62,7 @@ const UserSchema = new mongoose.Schema({
     skills: [],
     workExp: [],
     contact: Number,
+    waitingConnections: [],
 });
 
 const User = mongoose.model('User', UserSchema);

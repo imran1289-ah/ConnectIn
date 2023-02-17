@@ -38,6 +38,10 @@ const SearchUser = () => {
         .post(`http://localhost:9000/users/searchuserlist${locationURL}`, {
           _id: userid
         })
+        .then((response) => {
+          console.log(response.data);
+          alert("Succesfully added user " + userid + " in awaiting connections!");
+        })
       .catch((error) => {
         console.log(error);
         //alert("Cannot connect");

@@ -26,6 +26,22 @@ const PublicUserProfile = () => {
     fetchProfile();
   }, [locationURL]);
 
+  const Clickme = async (userid) => {
+    console.log(userid);
+      axios
+        .post(`http://localhost:9000/users/searchuserlist`, {
+          _id: userid
+        })
+        .then((response) => {
+          console.log(response.data);
+          alert("Succesfully added user " + userid + " in awaiting connections!");
+        })
+      .catch((error) => {
+        console.log(error);
+        //alert("Cannot connect");
+      });
+  }
+
   return (
     <div className="userProfileContainer">
       {/* User Information Component */}
@@ -44,7 +60,7 @@ const PublicUserProfile = () => {
               <br />
               <p>Software Engineering Student At Concordia University MTL/QC</p>
               <div className="connectButtonSection">
-                <button className="connectButton">Connect</button>
+                <button className="connectButton" onClick={() => Clickme(`${publicUser._id}`)}>Connect</button>
               </div>
             </div>
           </div>

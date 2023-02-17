@@ -71,7 +71,7 @@ const updateConnections = async (req, res) => {
   const { firstname, lastname, _id, waitingConnections, connections} = req.body;
   //In case data is missing or wrong
   if(!firstname||!lastname||!_id|| !Array.isArray(waitingConnections)||!Array.isArray(connections) ){
-    return res.status(400).jason({message:'button malfunction due to missing or incorrect data'})
+    return res.status(400).json({message:'button malfunction due to missing or incorrect data'})
   }
   
   const user = await User.findOneAndUpdate(
@@ -88,16 +88,17 @@ const updateAwaitingConnections = async (req, res) => {
   const { _id} = req.body;
   const user = await User.findOneAndUpdate(
     {_id: _id},
-    {$addToSet: { waitingConnections: {firstname:"ittle", lastname:"doo"}
-    }},
-    function(err, result) {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send(result);
-      }
+    {$addToSet: { waitingConnections: {firstname:"batle", lastname:"doo"}
+    }})
+    if (user) {
+      console.log('Succesfully updated awaiting connections');
+      res.status(200).json({message: "Succesfully added user `${_id}`"})
     }
-  )
+    else {
+      return res.status(404).json({
+        message: "Error not found"
+      });
+    }
   //return res.status(200).json({message:"sent request sucessfully"});
 };
 

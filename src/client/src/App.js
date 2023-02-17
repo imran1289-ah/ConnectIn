@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import SignIn from "./components/SignIn";
 import LoginFooter from "./components/LoginFooter";
 import SignupFooter from "./components/SignupFooter";
+import JobPosting from "./components/JobPosting";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
@@ -28,6 +29,14 @@ function App() {
             element={
               <>
                 <Navbar /> <SignIn /> <LoginFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/JobPosting"
+            element={
+              <>
+                <Navbar /> <JobPosting /> <LoginFooter />
               </>
             }
           ></Route>

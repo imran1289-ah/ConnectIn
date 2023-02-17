@@ -21,6 +21,8 @@ router.route("/profile/:id").get(usersControllers.getUserInfo);
 
 router.route("/searchuserlist").post(usersControllers.updateAwaitingConnections);
 
+router.route("/waitingConnections").get(usersControllers.getAwaitingConnections);
+
 //router.route("/newConnection").patch(usersControllers.updateConnections);
 
 module.exports = router;

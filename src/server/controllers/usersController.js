@@ -102,6 +102,39 @@ const updateAwaitingConnections = async (req, res) => {
   //return res.status(200).json({message:"sent request sucessfully"});
 };
 
+//Action to retrieve waiting connections
+const getAwaitingConnections = async (req, res) => {
+  const _id = "63ec4acc2bb05555a5b97c46";
+  const user = await User.findOne({
+    _id: _id,
+
+    })
+if(user){
+    res.status(200).json(user.waitingConnections);
+}
+else{
+  return res.status(404).json({
+         message: "Error not found"
+       });
+}
+
+    // .then((user) => {
+    //   return res.status(200).json(user.waitingConnections);
+    // })
+    // if (user) {
+    //   console.log('Succesfully updated awaiting connections');
+    //   res.status(200).json({message: "Succesfully added user `${_id}`"})
+    // }
+    // else {
+    //   return res.status(404).json({
+    //     message: "Error not found"
+    //   });
+    // }
+
+  //return res.status(200).json({message:"sent request sucessfully"});
+
+};
+
 const deleteUser = async (req, res) => {};
 
 //Action to return list user's based on the firstname
@@ -141,5 +174,6 @@ module.exports = {
   getUserInfo,
   updateConnections,
   updateAwaitingConnections,
+  getAwaitingConnections,
   //getUserByEmail
 };

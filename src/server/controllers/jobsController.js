@@ -17,28 +17,9 @@ const getJobDetails = async(req, res) => {
         const job = await Job.findOne({job_id: req.params.jobId});
         res.send(job);
     }catch(err){
-        res.status[400].json({message: "Something went wrong."})
+        res.status(400).json({message: "Something went wrong."})
     }
 }
-    
-// @desc Find Job from ID
-// @route GET /jobs
-// @access Private
-const fetchJobData = asyncHandler(async(req, res) => {
-    /* Placeholder for grabbing a random job
-    Will remove once the view Jobs page is implemented
-    with an edit button.
-    const jobData = await Jobs.findOne(req.params.job_id)
-    */
-    const {job_id} = req.body;
-    const jobData = await Jobs.findOne({job_id}).then((job) => {
-        if (job){
-            res.status(200).json(job);
-        } else {
-            return res.status(400).json({ message: "No job exists with this id" });
-        }
-    });
-})
     
 const updateJobData = asyncHandler(async(req, res) => {
     const {job_id, title, description, salary, category, location} = req.body
@@ -48,12 +29,12 @@ const updateJobData = asyncHandler(async(req, res) => {
     }
 
     // Checks if the job posting exists by id
-    const jobPosting = await Jobs.findOne({job_id: job_id}).exec()
+    const jobPosting = await Job.findOne({job_id: job_id}).exec()
     if (!jobPosting) {
         return res.status(400).status({message: "Job Posting Not Found!"})
     }
 
-    const updatedJobPosting = await Jobs.findOneAndUpdate({job_id: job_id},{
+    const updatedJobPosting = await Job.findOneAndUpdate({job_id: job_id},{
         title: title,
         description: description,
         salary: salary,
@@ -72,6 +53,5 @@ const updateJobData = asyncHandler(async(req, res) => {
 module.exports = {
     getAllJobs,
     getJobDetails,
-    fetchJobData,
     updateJobData
 }

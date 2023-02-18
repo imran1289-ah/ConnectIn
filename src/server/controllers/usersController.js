@@ -92,6 +92,51 @@ const getUserInfo = async (req, res) => {
   });
 };
 
+//Action to edit the user profile
+const editUserInfo = async(req, res) => {
+  
+  const { email, bio, headLine, languages, education, volunteering, skills, workExp } = req.body;
+  console.log("here");
+  User.findByIdAndUpdate(req.params.id)
+    .then(user => {
+      if (email) {
+        user.email = email
+      }
+      if(bio) {
+        user.bio = bio
+      }
+      if (headLine) {
+        user.headLine = headLine
+      }
+      if (languages.length > 0) {
+        user.languages = languages
+      }
+      if (education.length > 0) {
+        user.education = education
+      }
+      if (volunteering.length > 0) {
+        user.volunteering = volunteering
+      }
+      if (skills.length > 0) {
+        user.skills = skills
+      }
+      if (workExp.length > 0) {
+        user.workExp = workExp
+      }
+
+      user.save()
+        .then(() => {
+          console.log("User was updated in the database")
+          console.log(user)
+          res.status(200).json(user)
+          res.end()
+        })
+        .catch(err => console.log(err));
+    })
+    .catch(() => res.json("Error finding user"));
+
+};
+
 module.exports = {
 
   createUser,
@@ -101,4 +146,5 @@ module.exports = {
   search,
   getUserInfo,
   //getUserByEmail
+  editUserInfo
 };

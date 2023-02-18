@@ -8,6 +8,7 @@ import SignUp from "./components/SignUp";
 import UserProfile from "./components/UserProfile";
 import SearchUser from "./components/SearchUser";
 import PublicUserProfile from "./components/PublicUserProfile";
+import EditUserProfile from "./components/EditUserProfile";
 
 function App() {
   return (
@@ -52,6 +53,14 @@ function App() {
             element={
               <>
                 <Navbar /> <PublicUserProfile />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/editUserProfile"
+            element={
+              <>
+                <Navbar /> <EditUserProfile /> <LoginFooter />
               </>
             }
           ></Route>

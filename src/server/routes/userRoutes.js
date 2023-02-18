@@ -15,6 +15,8 @@ router.route("/signin").post(usersControllers.verifyUser);
 router.route("/search").get(usersControllers.search);
 
 //router to fetch user info for profile page
-router.route("/profile/:id").get(usersControllers.getUserInfo);
+router.route("/profile/:id")
+    .get(usersControllers.getUserInfo)
+    .patch(usersControllers.editUserInfo)
 
 module.exports = router;

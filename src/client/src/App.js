@@ -7,6 +7,8 @@ import JobPosting from "./components/JobPosting";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import UserProfile from "./components/UserProfile";
+import JobApplication from "./components/JobApplication";
+import JobListing from "./components/JobListing";
 import SearchUser from "./components/SearchUser";
 import PublicUserProfile from "./components/PublicUserProfile";
 
@@ -64,6 +66,23 @@ function App() {
               </>
             }
           ></Route>
+          <Route
+            path="/jobs"
+            element={
+              <>
+                <Navbar /> <JobListing /> <LoginFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/jobs/:id"
+            element={
+              <>
+                <Navbar /> <JobApplication /> <LoginFooter />
+              </>
+            }
+          ></Route>
+          
         </Routes>
       </BrowserRouter>
     </div>

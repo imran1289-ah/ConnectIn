@@ -20,6 +20,27 @@ const getJobDetails = async(req, res) => {
         res.status(400).json({message: "Something went wrong."})
     }
 }
+
+const createJob = async (req, res) => {
+  try {
+    const { job_id, description, salary, company, category, title, location } =
+      req.body;
+    const newJob = new Jobs({
+      job_id,
+      description,
+      salary,
+      company,
+      category,
+      title,
+      location,
+    });
+    const savedJob = await newJob.save();
+    res.status(200).json(savedJob);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+}
     
 const updateJobData = asyncHandler(async(req, res) => {
     const {job_id, title, description, salary, category, location} = req.body
@@ -53,5 +74,6 @@ const updateJobData = asyncHandler(async(req, res) => {
 module.exports = {
     getAllJobs,
     getJobDetails,
-    updateJobData
+    updateJobData,
+    createJob
 }

@@ -16,16 +16,16 @@ afterAll((done) => {
 
 describe('GET /jobs', function(){
     it("Succesfully Grabs data information from the database, given a valid job id", async () => {
+        jobId = 1;
         await request(app)
-        .get('/jobs')
-        .send({job_id: 1})
+        .get(`/jobs/edit/${jobId}`)
         .expect(200);
     });
-    it("Fails to grab data information from the database," 
+    it("Fails to grab data information from the database,"
     +" given an invalid job id", async () => {
+        jobId = null;
         await request(app)
-        .get('/jobs')
-        .send({job_id: null})
+        .get(`/jobs/edit/${jobId}`)
         .expect(400);
     });  
 });
@@ -33,11 +33,11 @@ describe('GET /jobs', function(){
 describe ('POST /jobs', function(){
     it("Successfully updates job information, given valid data", async() => {
         await request(app)
-        .post('/jobs')
+        .post('/jobs/edit/4')
         .send({
             job_id: 4,
             title: "Changed Title",
-            description: "This is a changed description",
+            description: "This is a changed description 333",
             salary: 12345,
             category: "Full-Time",
             location: "Part-Time"
@@ -46,7 +46,7 @@ describe ('POST /jobs', function(){
     });
     it("Fails to update job information, given invalid job id", async() => {
         await request(app)
-        .post('/jobs')
+        .post('/jobs/edit/null')
         .send({
             job_id: null,
             title: "Changed Null",
@@ -59,7 +59,7 @@ describe ('POST /jobs', function(){
     })
     it("Fails to update job information, given valid id and invalid information", async() => {
         await request(app)
-        .post('/jobs')
+        .post('/jobs/edit/5')
         .send({
             job_id: 5,
             title: 12345,

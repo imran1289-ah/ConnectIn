@@ -6,6 +6,6 @@ router.get('/', jobsControllers.getAllJobs)
 router.get('/:jobId', jobsControllers.getJobDetails)
 router.get('/edit/:jobId',jobsControllers.getJobDetails)
 router.post('/edit/:jobId',jobsControllers.updateJobData)
-router.post("/create", createJob);
+router.post("/create", jobsControllers.createJob);
  
 module.exports = router;

@@ -25,7 +25,7 @@ const createJob = async (req, res) => {
   try {
     const { job_id, description, salary, company, category, title, location } =
       req.body;
-    const newJob = new Jobs({
+    const newJob = new Job({
       job_id,
       description,
       salary,

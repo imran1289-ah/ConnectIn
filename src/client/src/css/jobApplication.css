@@ -8,13 +8,9 @@
     margin:auto;
     padding: auto;
     
-    /*rgba(255, 254, 254, 0.6);*/
-}
-.JAPContainer image {
-    
-    border-radius: 50%;
     
 }
+
 
 .JAPContainer button{
     color: white;
@@ -71,4 +67,23 @@
     
     color: black;
     height: 25px;
+}
+
+
+@media all and (max-width:800px) {
+    .JAPContainer{
+        width: auto;
+    }
+    
+    
+}
+
+@media all and (max-width:445px) {
+    .JAPContainer{
+        width: auto;
+    }
+    .JAPContainer .Textbox{
+        margin: 15px;
+    }
+    
 }

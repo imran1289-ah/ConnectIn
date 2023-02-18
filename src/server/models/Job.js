@@ -24,10 +24,11 @@ const jobsSchema = new mongoose.Schema({
     },
     location: {
         type: String,
-        required: true,
-    }
+    },
 });
 
 const Jobs = mongoose.model("Jobs", jobsSchema);
 
+
 module.exports = Jobs;
+

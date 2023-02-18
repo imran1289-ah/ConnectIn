@@ -12,21 +12,21 @@ const createUser = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Please fill out all fields!" });
   }
 
-  // Checks if a duplicate user exists on the database
-  const isThereADuplicate = await User.findOne({ email }).lean().exec();
-  if (isThereADuplicate) {
-    return res
-      .status(409)
-      .json({ message: "A user with this email already exists." });
-  }
+    // Checks if a duplicate user exists on the database
+    const isThereADuplicate = await User.findOne({ email }).lean().exec();
+    if (isThereADuplicate) {
+        return res
+            .status(409)
+            .json({ message: "A user with this email already exists." });
+    }
 
   // Hashing passwords to encrypt user data
   //const hashPwd = await bcrypt.hash(password,10)
   const userDocument = { firstname, lastname, email, password };
   const newUser = await User.create(userDocument);
-
+  
   if (newUser) {
-    res.status(201).json({ message: "User successfully created!" });
+    res.status(201).json({ message: "User successfully created!", id: newUser._id });
   } else {
     res.status(400).json({ message: "User unsuccessfully created." });
   }
@@ -41,6 +41,7 @@ const getUserByEmail = async (req, res) => {
       return res.status(400).json({ message: "No user found" });
     }
   });
+
 };
 
 // This action is to verify the credentials of the user when logging in
@@ -79,18 +80,34 @@ const getUser = (req, res, next) => {
 
 const updateUser = async (req, res) => {};
 
+
+//Action to return list user's based on the firstname
+const search = async(req, res) => {
+    const firstname = req.query.term;
+
+    const users = await User.find({
+        firstname: { $regex: firstname, $options: "i" },
+    }).then((users) => {
+        if (users) {
+            res.status(200).json(users);
+        } else {
+            return res.status(400).json({ message: "No user exists with this name" });
+        }
+    });
+};
 const deleteUser = async (req, res) => {};
 
+
 //Action to return public user info
-const getUserInfo = async (req, res) => {
-  const user = await User.findById(req.params.id).then((user) => {
-    if (user) {
-      console.log(`Found user ${user}`);
-      res.status(200).json(user);
-    } else {
-      return res.status(400).json({ message: "No user found" });
-    }
-  });
+const getUserInfo = async(req, res) => {
+    const user = await User.findById(req.params.id).then((user) => {
+        if (user) {
+            console.log(`Found user ${user}`);
+            res.status(200).json(user);
+        } else {
+            return res.status(400).json({ message: "No user found" });
+        }
+    });
 };
 
 //Gets a list of all the jobs applied for a specific user

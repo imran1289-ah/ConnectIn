@@ -13,13 +13,6 @@ const JobApplication = () =>{
     const userId = "63edb27d0e77e161a004824c";
     
     const navigate = useNavigate();
-    // const [form, setForm] = useState({
-    //     fname:"",
-    //     lname:"",
-    //     email:"",
-    //     phoneNumber: "",
-    //     cv: null
-    // })
 
     const submitApplication = async () =>{
         const alreadyJobsApplied = await axios.get(`http://localhost:9000/users/${userId}/jobsApplied`)
@@ -52,7 +45,7 @@ const JobApplication = () =>{
         <p> Job Description : {job.jobState.description}</p>
         <form>
         
-        <input className="Textbox" type="text" name="fname" placeholder="First Name"/>
+        <input data-testid = "fname-textbox" className="Textbox" type="text" name="fname" placeholder="First Name"/>
         <input className="Textbox" type="text" name="lname" placeholder="Last Name"/>
         <br/>
         <input className="Textbox" type="text" name="email" placeholder="Email"/>

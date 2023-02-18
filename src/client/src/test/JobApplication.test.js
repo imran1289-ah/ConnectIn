@@ -1,13 +1,14 @@
-import JobPosting from "../components/JobListing";
+import JobApplication from "../components/JobApplication";
 import '@testing-library/jest-dom';
 import React from "react";
-import { render, screen, fireEvent, cleanup } from "@testing-library/react";
+import { render, screen, fireEvent} from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 
 
 test("jobListing page renders properly", ()=>{
-    render(<JobPosting/>);
+    render(<BrowserRouter><JobApplication/></BrowserRouter>);
 
-    const fnameTextboxElement = screen.getByRole('textbok', {name:'fname'});
+    const fnameTextboxElement = screen.getByTestId("fname-textbox");
     const buttonElement =screen.getByRole("button");
     fireEvent.click(buttonElement);
     expect(fnameTextboxElement).toBeInTheDocument();

@@ -107,10 +107,8 @@
 
     
 }
-
-
 @media all and (max-width:280px) {
-    
+
     .Container{
 
         display: flex;
@@ -119,13 +117,11 @@
     }
     .jobPosts{
         width: 270px;
-    }
+}
     .preferences{
         display: flex;
         width: 300px;
         margin-right: 125px;
         height: 350px;
     }
-
-    
 }

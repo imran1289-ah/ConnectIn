@@ -35,7 +35,7 @@ const JobApplication = () =>{
                 jobId: job.jobState.job_id
             })
             // alert(`UserID ${userId} has successully applied for this job!`);
-            alert("You've successfully applfied for this job!")
+            alert("You've successfully applied for this job!")
             navigate("/jobs");
             
             

@@ -3,8 +3,39 @@ import React, { useState, useEffect } from "react";
 import "../css/waitingConnections.css";
 import axios from "axios";
 
-function Clickme() {
-  alert("Button Works");
+const Clickme = async (first, last) => {
+  console.log(first);
+  console.log(last);
+    axios
+      .post(`http://localhost:9000/users/newConnection`, {
+        firstname: first,
+        lastname: last
+      })
+      .then((response) => {
+        console.log(response.data);
+        alert("Succesfully added user " + first+" "+ last  + " in awaiting connections!");
+      })
+    .catch((error) => {
+      console.log(error);
+      //alert("Cannot connect");
+    });
+}
+const Clickmetoo = async (first, last) => {
+  console.log(first);
+  console.log(last);
+    axios
+      .post(`http://localhost:9000/users/deleteAwaiting`, {
+        firstname: first,
+        lastname: last
+      })
+      .then((response) => {
+        console.log(response.data);
+        alert("Succesfully removed " + first+" "+ last + " in awaiting connections!");
+      })
+    .catch((error) => {
+      console.log(error);
+      //alert("Cannot connect");
+    });
 }
 
 
@@ -33,8 +64,8 @@ const WaitingConnections = () => {
     <div className="connectionDisplay ">
         <div>
             <h3 position={"center"}>{object.firstname} {object.lastname}</h3>
-            <button className="acceptButton" onClick={Clickme}>Accept</button>
-            <button className="rejectButton" onClick={Clickme}>Reject</button>
+            <button className="acceptButton" onClick={() => Clickme(`${object.firstname}`,`${object.lastname}`)}>Accept</button>
+            <button className="rejectButton" onClick={() => Clickmetoo(`${object.firstname}`,`${object.lastname}`)}>Reject</button>
         </div>
     </div>
   </div>

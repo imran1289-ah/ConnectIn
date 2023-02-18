@@ -23,6 +23,8 @@ router.route("/searchuserlist").post(usersControllers.updateAwaitingConnections)
 
 router.route("/waitingConnections").get(usersControllers.getAwaitingConnections);
 
-//router.route("/newConnection").patch(usersControllers.updateConnections);
+router.route("/newConnection").post(usersControllers.updateConnections);
+
+router.route("/deleteAwaiting").post(usersControllers.deleteAwaitingConnections);
 
 module.exports = router;

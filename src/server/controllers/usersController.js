@@ -65,21 +65,42 @@ const verifyUser = async (req, res) => {
 const updateUser = async (req, res) => {
   
 };
-
-//Action of deleting a user from awaitingConnections and transfer them to connections
-const updateConnections = async (req, res) => {
-  const { firstname, lastname, _id, waitingConnections, connections} = req.body;
-  //In case data is missing or wrong
-  if(!firstname||!lastname||!_id|| !Array.isArray(waitingConnections)||!Array.isArray(connections) ){
-    return res.status(400).json({message:'button malfunction due to missing or incorrect data'})
-  }
-  
+//Action of deleting  a user from awaiting connections list 
+const deleteAwaitingConnections  = async (req, res) => {
+  const { firstname , lastname} = req.body;
+  const  _id = "63ec4acc2bb05555a5b97c46";
   const user = await User.findOneAndUpdate(
     {_id: _id},
-    {$addToSet: {
-      connections: [{firstname:"scrappy", lastname:"oo"}]
-    }}
-  )
+    {$pull: { waitingconnections: {firstname: firstname, lastname: lastname}
+    }})
+    if (user) {
+      console.log('Succesfully updated awaiting connections');
+      res.status(200).json({message: "Succesfully added user `${_id}`"})
+    }
+    else {
+      return res.status(404).json({
+        message: "Error not found"
+      });
+    }
+
+};
+//Action of transferring a connection from awaiting connections list to connections list
+const updateConnections = async (req, res) => {
+  const { firstname , lastname} = req.body;
+  const  _id = "63ec4acc2bb05555a5b97c46";
+  const user = await User.findOneAndUpdate(
+    {_id: _id},
+    {$addToSet: { connections: {firstname: firstname, lastname: lastname}
+    }})
+    if (user) {
+      console.log('Succesfully updated awaiting connections');
+      res.status(200).json({message: "Succesfully added user `${_id}`"})
+    }
+    else {
+      return res.status(404).json({
+        message: "Error not found"
+      });
+    }
 
 };
 
@@ -175,5 +196,6 @@ module.exports = {
   updateConnections,
   updateAwaitingConnections,
   getAwaitingConnections,
+  deleteAwaitingConnections,
   //getUserByEmail
 };

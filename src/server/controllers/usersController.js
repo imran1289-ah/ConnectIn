@@ -119,11 +119,7 @@ const addJobAppliedToUser = async (req, res) => {
         .catch(err => console.log(err));
       
   });
-
-  
  res.send(201);
-  
-  
 }
 
 module.exports = {
@@ -135,6 +131,4 @@ module.exports = {
   getUserJobsApplied,
   addJobAppliedToUser,
   getUser
-
-  //getUserByEmail
 };

@@ -4,13 +4,13 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
-import { ReactDOM } from "react-dom";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useLocation } from "react-router-dom";
 
 function EditJobPosting() {
 
   const navigate = useNavigate();
+  let locationURL = useLocation().pathname;
+  let jobId = locationURL.split("/")[3];
 
   const [jobData, setjobData] = useState([]);
 
@@ -19,15 +19,14 @@ function EditJobPosting() {
   },[]);
 
   const fetchData = async () => {
-    axios.get("http://localhost:9000/jobs").then(response => {
+    axios.get(`http://localhost:9000/jobs/edit/${jobId}`).then(response => {
       setjobData(response.data);
-      console.log(response.data);
     });
   }
 
   const savePost = async e => {
     e.preventDefault();
-    axios.post("http://localhost:9000/jobs", {
+    axios.post(`http://localhost:9000/jobs/edit/${jobId}`, {
       job_id: jobData.job_id,
       title: jobData.title,
       description: jobData.description,
@@ -47,6 +46,7 @@ function EditJobPosting() {
       alert("Update Failed! Please check the logs!");
     });
   };
+
   return (
     //Edit posting page
     <Container>

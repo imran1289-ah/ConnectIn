@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
+const { db } = require("../models/user");
 var sesh;
 
 const createUser = asyncHandler(async (req, res) => {
@@ -109,13 +110,42 @@ const getUserInfo = async(req, res) => {
     });
 };
 
+//Gets a list of all the jobs applied for a specific user
+const getUserJobsApplied = async (req, res) =>{
+        try{
+            const user = await User.findOne({_id: req.params.id});
+            return res.status(200).json(user.jobsApplied);
+            
+            
+            
+        }catch(err){
+          res.status(400).json({ message: "Unable to retrieve jobs applied." });
+        }
+}
+
+const addJobAppliedToUser = async (req, res) => {
+  
+  User.findOneAndUpdate({_id: req.body.userId}).then((user) =>{
+      const array = user.jobsApplied;
+      array.push(req.body.jobId);
+      user.jobsApplied = array;
+      user.save()
+        .then(() =>{
+          console.log('Job id succesfully added to user!')
+        })
+        .catch(err => console.log(err));
+      
+  });
+ res.send(201);
+}
+
 module.exports = {
-    createUser,
-    updateUser,
-    deleteUser,
-    verifyUser,
-    search,
-    getUserInfo,
-    getUser
-    //getUserByEmail
+  createUser,
+  updateUser,
+  deleteUser,
+  verifyUser,
+  getUserInfo,
+  getUserJobsApplied,
+  addJobAppliedToUser,
+  getUser
 };

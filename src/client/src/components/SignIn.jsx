@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../css/signin.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   //State for each input
@@ -23,7 +22,7 @@ const SignIn = () => {
         console.log(response.data);
         MessageRef.current.style.color = "#66FF00";
         MessageRef.current.innerHTML = "Login Sucess. Welcome Back";
-        const delayTimer = setTimeout(() => {
+        setTimeout(() => {
           navigate("/UserProfile");
         }, 1000);
       })

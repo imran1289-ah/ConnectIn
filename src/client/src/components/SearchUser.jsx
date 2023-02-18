@@ -17,7 +17,7 @@ const SearchUser = () => {
     const searchUser = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:9000/users/search${locationURL}`
+          `http://localhost:9000/search${locationURL}`
         );
         setSearch(response.data);
       } catch (error) {

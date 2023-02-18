@@ -1,1 +1,21 @@
 GET http://localhost:9000/users/waitingConnections
+
+
+GET http://localhost:9000/jobs
+
+
+###
+
+GET http://localhost:9000/jobs/1234131231242
+
+###
+
+GET http://localhost:9000/users/63edb27d0e77e161a004824c/jobsApplied
+
+
+###
+
+POST http://localhost:9000/users/63edb27d0e77e161a004824c/jobsApplied
+
+###
+

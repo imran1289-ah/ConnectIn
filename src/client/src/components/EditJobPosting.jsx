@@ -37,6 +37,7 @@ function EditJobPosting() {
     .then(response => {
       console.log(response.data);
       alert("Update Successful!");
+      navigate("/jobs");
       // This should navigate back to the recruiter's 
       // job posting page
       // navigate("/UserProfile");

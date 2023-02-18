@@ -42,6 +42,9 @@ const JobListing = () =>{
                         <Link to = {`/jobs/${job.job_id}`} state = {{jobState:job}}>
                             <button>Select</button>
                         </Link>
+                        <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
+                            <button class = "edit">Edit</button>
+                        </Link>
                     </div>
                 ))}
             </div>

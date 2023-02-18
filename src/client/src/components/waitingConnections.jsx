@@ -12,8 +12,9 @@ const Clickme = async (first, last) => {
         lastname: last
       })
       .then((response) => {
+        Clickmetoo(`${first}`,`${last}`)
         console.log(response.data);
-        alert("Succesfully added user " + first+" "+ last  + " in awaiting connections!");
+        alert("Succesfully added user " + "ab ab" + " in awaiting connections!");
       })
     .catch((error) => {
       console.log(error);
@@ -24,13 +25,13 @@ const Clickmetoo = async (first, last) => {
   console.log(first);
   console.log(last);
     axios
-      .post(`http://localhost:9000/users/deleteAwaiting`, {
+      .patch(`http://localhost:9000/users/deleteAwaiting`, {
         firstname: first,
         lastname: last
       })
       .then((response) => {
         console.log(response.data);
-        alert("Succesfully removed " + first+" "+ last + " in awaiting connections!");
+        alert("Succesfully removed " + first+"  "+ last + " in awaiting connections!");
       })
     .catch((error) => {
       console.log(error);

@@ -25,6 +25,6 @@ router.route("/waitingConnections").get(usersControllers.getAwaitingConnections)
 
 router.route("/newConnection").post(usersControllers.updateConnections);
 
-router.route("/deleteAwaiting").post(usersControllers.deleteAwaitingConnections);
+router.route("/deleteAwaiting").patch(usersControllers.deleteAwaitingConnections);
 
 module.exports = router;

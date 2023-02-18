@@ -71,11 +71,11 @@ const deleteAwaitingConnections  = async (req, res) => {
   const  _id = "63ec4acc2bb05555a5b97c46";
   const user = await User.findOneAndUpdate(
     {_id: _id},
-    {$pull: { waitingconnections: {firstname: firstname, lastname: lastname}
+    {$pull: { waitingConnections: {firstname: firstname, lastname: lastname}
     }})
     if (user) {
       console.log('Succesfully updated awaiting connections');
-      res.status(200).json({message: "Succesfully added user `${_id}`"})
+      res.status(200).json({message: "Succesfully deleted user "})
     }
     else {
       return res.status(404).json({
@@ -94,7 +94,7 @@ const updateConnections = async (req, res) => {
     }})
     if (user) {
       console.log('Succesfully updated awaiting connections');
-      res.status(200).json({message: "Succesfully added user `${_id}`"})
+      res.status(200).json({message: "Succesfully added user to connections"})
     }
     else {
       return res.status(404).json({
@@ -109,7 +109,7 @@ const updateAwaitingConnections = async (req, res) => {
   const { _id} = req.body;
   const user = await User.findOneAndUpdate(
     {_id: _id},
-    {$addToSet: { waitingConnections: {firstname:"batle", lastname:"doo"}
+    {$addToSet: { waitingConnections: {firstname:"Opal", lastname:"sliverson"}
     }})
     if (user) {
       console.log('Succesfully updated awaiting connections');

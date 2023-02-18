@@ -107,18 +107,22 @@ const getUserJobsApplied = async (req, res) =>{
 }
 
 const addJobAppliedToUser = async (req, res) => {
-
-  User.updateOne({
-    _id:req.body.userId,
-
-  }, {
-    $addToSet: {
-      jobsApplied: req.body.jobId
-    }
-  },
   
-  )
-  res.send(201);
+  User.findOneAndUpdate({_id: req.body.userId}).then((user) =>{
+      const array = user.jobsApplied;
+      array.push(req.body.jobId);
+      user.jobsApplied = array;
+      user.save()
+        .then(() =>{
+          console.log('Job id succesfully added to user!')
+        })
+        .catch(err => console.log(err));
+      
+  });
+
+  
+ res.send(201);
+  
   
 }
 

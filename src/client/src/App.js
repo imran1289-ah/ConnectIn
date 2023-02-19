@@ -42,7 +42,7 @@ function App() {
             }
           ></Route>
           <Route
-            path="/jobs/create"
+            path="/jobPosting"
             element={
               <>
                 <Navbar /> <JobPosting /> <LoginFooter />

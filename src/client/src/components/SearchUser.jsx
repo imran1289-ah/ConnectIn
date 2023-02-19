@@ -3,7 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import "../css/searchuserlist.css";
 
+
 const SearchUser = () => {
+
   //States
   const [search, setSearch] = useState([]);
 
@@ -25,6 +27,22 @@ const SearchUser = () => {
     searchUser();
   }, [locationURL]);
 
+  const Clickme = async (userid) => {
+    console.log(userid);
+      axios
+        .post(`http://localhost:9000/users/searchuserlist${locationURL}`, {
+          _id: userid
+        })
+        .then((response) => {
+          console.log(response.data);
+          alert("Succesfully added user " + userid + " in awaiting connections!");
+        })
+      .catch((error) => {
+        console.log(error);
+        //alert("Cannot connect");
+      });
+  }
+
   return (
     // Display searched users
     <div className="userContainer">
@@ -41,7 +59,7 @@ const SearchUser = () => {
           </div>
           <br></br>
           <div className="buttonSection">
-            <button className="searchConnectButton">Connect</button>
+            <button className="searchConnectButton" onClick={() => Clickme(`${user._id}`)} >Connect</button>
           </div>
         </div>
       ))}

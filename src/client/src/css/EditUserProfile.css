@@ -1,18 +1,19 @@
-.Container{
+/*
+.Container {
   display: flex;
   justify-content: center;
-  background: #D9D9D9;
+  background: #d9d9d9;
 }
 
-.Form-Container{
-  margin:50px;
+.Form-Container {
+  margin: 50px;
 }
 
 .list-button {
   float: right;
 }
 
-form {
+.userProfileForm {
   margin-top: 75px;
   margin-bottom: 75px;
   display: flex;
@@ -20,7 +21,7 @@ form {
   flex-direction: row;
   background: #19718d;
   border-radius: 70px;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
 }
 
 label {
@@ -31,7 +32,8 @@ label {
   font-weight: bold;
 }
 
-input, textarea {
+input,
+textarea {
   padding: 0.5rem;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -51,3 +53,4 @@ button {
   width: 100%;
   margin: 10px;
 }
+*/

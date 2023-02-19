@@ -114,13 +114,12 @@ const getUserInfo = async(req, res) => {
 const editUserInfo = async(req, res) => {
   
   const { email, bio, headLine, languages, education, volunteering, skills, workExp } = req.body;
-  console.log("here");
   User.findByIdAndUpdate(req.params.id)
     .then(user => {
       if (email) {
         user.email = email
       }
-      if(bio) {
+      if (bio) {
         user.bio = bio
       }
       if (headLine) {
@@ -151,7 +150,9 @@ const editUserInfo = async(req, res) => {
         })
         .catch(err => console.log(err));
     })
-    .catch(() => res.json("Error finding user"));
+    .catch(() => {
+      res.status(400).json({ message: "Unexpected error when finding user by ID" })
+    });
 
 };
 

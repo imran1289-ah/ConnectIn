@@ -112,7 +112,7 @@ const EditUserProfile = () => {
           Work Experience
           <input type="text" value={workExp} onChange={(e) => setWorkExp(e.target.value)} />
         </label>
-        <div class="list-button">
+        <div className="list-button">
           <button type="button" onClick={workExpChange}>Add</button>
         </div>
         <br />
@@ -120,7 +120,7 @@ const EditUserProfile = () => {
           Education
           <input type="text" value={education} onChange={(e) => setEducation(e.target.value)} />
         </label>
-        <div class="list-button">
+        <div className="list-button">
           <button type="button" onClick={educationChange}>Add</button>
         </div>
         <br />
@@ -128,7 +128,7 @@ const EditUserProfile = () => {
           Skills
           <input type="text" value={skills} onChange={(e) => setSkills(e.target.value)} />
         </label>
-        <div class="list-button">
+        <div className="list-button">
           <button type="button" onClick={skillsChange}>Add</button>
         </div>
         <br />
@@ -136,7 +136,7 @@ const EditUserProfile = () => {
           Languages
           <input type="text" value={languages} onChange={(e) => setLanguages(e.target.value)} />
         </label>
-        <div class="list-button">
+        <div className="list-button">
           <button type="button" onClick={languagesChange}>Add</button>
         </div>
         <br />
@@ -144,7 +144,7 @@ const EditUserProfile = () => {
           Volunteering
           <textarea value={volunteering} onChange={(e) => setVolunteering(e.target.value)} />
         </label>
-        <div class="list-button">
+        <div className="list-button">
           <button type="button" onClick={volunteeringChange}>Add</button>
         </div>
         <br />

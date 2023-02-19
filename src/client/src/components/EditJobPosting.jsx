@@ -47,7 +47,7 @@ function EditJobPosting() {
 
   return (
     //Edit posting page
-    <Container>
+    <Container id="editPostcontainer">
       <Row>
         <Col md={12}>
           <div className="WrapperEditPost">

@@ -1,0 +1,41 @@
+.WebLogo {
+  font-style: italic;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 78px;
+  color: #ffffff;
+}
+
+.Icon {
+  background-color: transparent;
+  border: none;
+}
+
+.navbar {
+  border: 1px solid #000000;
+}
+
+.searchArea {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.searchInput {
+  width: 400px;
+  height: 40px;
+  background: #edf1f7;
+  border-radius: 4px;
+}
+
+.searchButton {
+  background-color: transparent;
+  border: none;
+  margin: 5px;
+}
+
+@media (min-width: 330px) and (max-width: 600px) {
+  .searchArea {
+    display: none;
+  }
+}

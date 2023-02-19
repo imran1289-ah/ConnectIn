@@ -1,0 +1,56 @@
+
+.EditUserProfileContainer {
+  display: flex;
+  justify-content: center;
+  background: #d9d9d9;
+}
+
+.EditUserForm-Container {
+  margin: 50px;
+}
+
+.list-button {
+  float: right;
+}
+
+.userProfileForm {
+  margin-top: 75px;
+  margin-bottom: 75px;
+  display: flex;
+  width: 60%;
+  flex-direction: row;
+  background: #19718d;
+  border-radius: 70px;
+  justify-content: space-evenly;
+}
+
+.EditUserForm-Container label {
+  font-style: normal;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.EditUserForm-Container input,
+.EditUserForm-Container textarea {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  width: 100%;
+  margin: 5px;
+}
+
+.EditUserForm-Container button {
+  padding: 0.5rem 1rem;
+  background-color: #0077ff;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  margin: 10px;
+}
+

@@ -137,21 +137,6 @@ else{
        });
 }
 
-    // .then((user) => {
-    //   return res.status(200).json(user.waitingConnections);
-    // })
-    // if (user) {
-    //   console.log('Succesfully updated awaiting connections');
-    //   res.status(200).json({message: "Succesfully added user `${_id}`"})
-    // }
-    // else {
-    //   return res.status(404).json({
-    //     message: "Error not found"
-    //   });
-    // }
-
-  //return res.status(200).json({message:"sent request sucessfully"});
-
 };
 //get user by ID
 const getUser = (req, res, next) => {

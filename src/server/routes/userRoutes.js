@@ -7,8 +7,7 @@ router
   .get(usersControllers.verifyUser)
   .post(usersControllers.createUser)
   .patch(usersControllers.updateUser)
-  //.post(usersControllers.updateAwaitingConnections)
-  //.patch(usersControllers.updateConnections)
+
   .delete(usersControllers.deleteUser);
   
 

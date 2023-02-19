@@ -110,7 +110,7 @@ const updateAwaitingConnections = async (req, res) => {
   const { _id} = req.body;
   const user = await User.findOneAndUpdate(
     {_id: _id},
-    {$addToSet: { waitingConnections: {firstname:"Opal", lastname:"sliverson"}
+    {$addToSet: { waitingConnections: {firstname:"Ittle", lastname:"doo"}
     }})
     if (user) {
       console.log('Succesfully updated awaiting connections');
@@ -126,11 +126,8 @@ const updateAwaitingConnections = async (req, res) => {
 
 //Action to retrieve waiting connections
 const getAwaitingConnections = async (req, res) => {
-  const _id = "63ec4acc2bb05555a5b97c46";
-  const user = await User.findOne({
-    _id: _id,
-
-    })
+  const id = "63ec4acc2bb05555a5b97c46";
+  const user = await User.findById(id)
 if(user){
     res.status(200).json(user.waitingConnections);
 }
@@ -172,7 +169,7 @@ const getUser = (req, res, next) => {
     });
 };
 
-const updateUser = async (req, res) => {};
+//const updateUser = async (req, res) => {};
 
 
 //Action to return list user's based on the firstname

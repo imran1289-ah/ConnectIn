@@ -14,8 +14,8 @@ router
 
 router
   .route("/:_id")
-  .get(usersControllers.getUser)
-  .patch(usersControllers.updateUser)
+  //.get(usersControllers.getUser)
+  //.patch(usersControllers.updateUser)
   .delete(usersControllers.deleteUser);
 
 router.route("/signin").post(usersControllers.verifyUser);
@@ -30,7 +30,7 @@ router.route("/waitingConnections").get(usersControllers.getAwaitingConnections)
 router.route("/newConnection").post(usersControllers.updateConnections);
 
 router.route("/deleteAwaiting").patch(usersControllers.deleteAwaitingConnections);
-//router to check if
+//router to check if 
 router.route("/:id/jobsApplied").get(usersControllers.getUserJobsApplied);
 
 router.route("/:id/jobsApplied").post(usersControllers.addJobAppliedToUser);

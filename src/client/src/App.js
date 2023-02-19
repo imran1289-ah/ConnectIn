@@ -66,14 +66,14 @@ function App() {
               </>
             }
           ></Route>
-          <Route>
+          <Route
             path="/jobs"
             element={
               <>
                 <Navbar /> <JobListing /> <LoginFooter />
               </>
             }
-          </Route>
+          ></Route>
           <Route
             path="/jobs/:id"
             element={

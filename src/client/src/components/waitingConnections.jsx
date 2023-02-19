@@ -14,7 +14,7 @@ const Clickme = async (first, last) => {
       .then((response) => {
         Clickmetoo(`${first}`,`${last}`)
         console.log(response.data);
-        alert("Succesfully added user " + "ab ab" + " in awaiting connections!");
+        alert("Succesfully added user " + " " + " to connections!");
       })
     .catch((error) => {
       console.log(error);

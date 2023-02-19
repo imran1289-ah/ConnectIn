@@ -1,0 +1,113 @@
+.container {
+  min-height: 120vh;
+}
+
+.InputJobDescription {
+  background: rgba(255, 254, 254, 0.6);
+  border: 1px solid #2d3d77;
+  border-radius: 10px;
+  width: 400px;
+  height: 200px;
+  text-align: center;
+}
+.InputJobDescription ::placeholder {
+  padding-top: 80px;
+  line-height: 40px;
+}
+
+.WrapperEditPost {
+  top: 70%;
+  margin: auto;
+  text-align: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: auto;
+  border-radius: 70px;
+  float: left;
+  width: 40%;
+  min-height: 100vh;
+}
+
+.Title {
+  font-style: normal;
+  color: hwb(0 0% 100%);
+  text-align: center;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 72px;
+}
+
+.PlaceholderEditPost {
+  font-style: normal;
+  color: hsl(0, 0%, 0%);
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.LinkEditPost {
+  font-style: normal;
+  color: hsl(0, 0%, 0%);
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+  margin-right: 10%;
+}
+
+.Input {
+  background: rgba(255, 254, 254, 0.6);
+  border: 1px solid #2d3d77;
+  border-radius: 10px;
+  width: 400px;
+  height: 30px;
+  text-align: center;
+}
+
+.SaveButton {
+  box-sizing: border-box;
+  background: #cfb79d;
+  border: 1px solid #000000;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 70px;
+  width: 150px;
+  height: 30px;
+}
+
+.FormSignup {
+  margin-left: 20px;
+}
+/* Responsive to Iphone 6 and above */
+@media (min-width: 330px) and (max-width: 600px) {
+  .WrapperEditPost {
+    position: absolute;
+    margin: auto;
+    left: 50%;
+    text-align: center;
+    height: auto;
+    width: 350px;
+    top: 65%;
+  }
+
+  .container {
+    min-height: 180vh;
+  }
+
+  .FormEditPost {
+    margin-left: auto;
+    height: 300px;
+    width: 350px;
+  }
+
+  .Input {
+    width: 270px;
+  }
+
+  .SaveButton {
+    margin-top: 10%;
+    margin-left: auto;
+  }
+  .Title {
+    font-size: 22px;
+  }
+}

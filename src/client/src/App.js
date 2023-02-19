@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import SignIn from "./components/SignIn";
 import LoginFooter from "./components/LoginFooter";
 import SignupFooter from "./components/SignupFooter";
+import JobPosting from "./components/JobPosting";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
@@ -11,6 +12,7 @@ import JobListing from "./components/JobListing";
 import SearchUser from "./components/SearchUser";
 import PublicUserProfile from "./components/PublicUserProfile";
 import WaitingConnections from "./components/waitingConnections";
+import EditJobPosting from "./components/EditJobPosting";
 
 function App() {
   return (
@@ -31,6 +33,14 @@ function App() {
             element={
               <>
                 <Navbar /> <SignIn /> <LoginFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/jobs/create"
+            element={
+              <>
+                <Navbar /> <JobPosting /> <LoginFooter />
               </>
             }
           ></Route>
@@ -82,7 +92,14 @@ function App() {
               </>
             }
           ></Route>
-          
+          <Route
+            path="/jobs/edit/:id"
+            element={
+              <>
+                <Navbar /> <EditJobPosting /> <SignupFooter />
+              </>
+            }
+          ></Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -12,8 +12,6 @@ const EditUserProfile = () => {
   
 
   const [userData, setUserData] = useState({
-    // firstName: "",
-    // lastName: "",
     email: "",
     bio: "",
     headLine: "",
@@ -30,8 +28,6 @@ const EditUserProfile = () => {
     e.preventDefault();
     axios
       .patch('http://localhost:9000/users/profile/63ec368ad3117dd2175dbd62', {
-        // firstname: userData.firstName,
-        // lastname: userData.lastName,
         bio: userData.bio,
         headLine: userData.headLine,
         languages: userData.languages,
@@ -82,22 +78,7 @@ const EditUserProfile = () => {
       
     </div>
     <form onSubmit={submitEditProfile}>
-    <img
-        src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
-        alt="default pic"
-        className="userProfilePic"
-      ></img>
       <div className="Form-Container">
-        {/* <label>
-          First Name
-          <input type="text" value={userData.firstName} onChange={(e) => setUserData({ ...userData, firstName: e.target.value })} />
-        </label>
-        <br />
-        <label>
-          Last Name
-          <input type="text" value={userData.lastName} onChange={(e) => setUserData({ ...userData, lastName: e.target.value })} />
-        </label>
-        <br /> */}
         <label>
           Email
           <input type="email" value={userData.email} onChange={(e) => setUserData({ ...userData, email: e.target.value })} />

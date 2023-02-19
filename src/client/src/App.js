@@ -80,7 +80,8 @@ function App() {
               <>
                 <Navbar /> <WaitingConnections /> <LoginFooter />
              </>
-            ></Route>
+             }
+             ></Route>
 
             <Route
             path="/editUserProfile"

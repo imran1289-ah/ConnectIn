@@ -12,6 +12,10 @@ import JobListing from "./components/JobListing";
 import SearchUser from "./components/SearchUser";
 import PublicUserProfile from "./components/PublicUserProfile";
 
+import WaitingConnections from "./components/waitingConnections";
+import EditJobPosting from "./components/EditJobPosting";
+
+
 import EditUserProfile from "./components/EditUserProfile";
 
 
@@ -70,10 +74,20 @@ function App() {
             }
           ></Route>
           <Route
+
+            path="/waitingConnections"
+            element={
+              <>
+                <Navbar /> <WaitingConnections /> <LoginFooter />
+             </>
+            ></Route>
+
+            <Route
             path="/editUserProfile"
             element={
               <>
                 <Navbar /> <EditUserProfile /> <LoginFooter />
+
               </>
             }
           ></Route>

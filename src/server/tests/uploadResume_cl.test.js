@@ -1,6 +1,18 @@
 const request = require("supertest");
 const app = require("../index");
 const User = require("../models/user");
+const mongoose = require("mongoose");
+
+beforeAll(() => {
+    mongoose.connect(process.env.DATABASE);
+  });
+  
+  // Closing the DB connection allows Jest to exit successfully.
+  afterAll((done) => {
+    mongoose.disconnect();
+    done();
+    app.close();
+  });
 
 describe("Resume and Cover Letter Upload", () => {
 
@@ -15,10 +27,11 @@ describe("Resume and Cover Letter Upload", () => {
                 lastname: "Doe",
                 email: "johndoe@example.com",
                 password: "password",
-            });
+            })
+            .then()
         userId = userResponse.body.id;
 
-        // console.log(userId);
+        console.log(userId);
 
 
     });

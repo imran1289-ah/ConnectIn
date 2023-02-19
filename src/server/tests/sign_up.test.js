@@ -2,15 +2,20 @@ const request = require('supertest');
 const app = require('../index')
 const mongoose = require("mongoose");
 const server = require('../index');
+const User = require("../models/user");
+
+let userId;
 
 beforeAll(() => {
     mongoose.connect(process.env.DATABASE)
 })
 
-afterAll((done) => {
+afterAll(async() => {
+  // Delete the user from the database after running all the tests
+  await User.findByIdAndDelete(userId);
+  
   // Closing the DB connection allows Jest to exit successfully.
   mongoose.disconnect();
-  done();
   server.close();
 }) 
 
@@ -22,7 +27,7 @@ afterAll((done) => {
 describe('POST /user', function(){
   it("successfully creates a user with valid information provided", async () => {
     
-    await request(app)
+    const userResponse = await request(app)
       .post("/users")
       .send({
         firstname: "Test",
@@ -31,6 +36,7 @@ describe('POST /user', function(){
         password: "test123"
     })
       .expect(201); // successfully created account
+      userId = userResponse.body.id
   })
 });
 

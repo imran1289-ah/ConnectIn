@@ -72,10 +72,10 @@ const EditUserProfile = () => {
   };
 
   return (
-    <div className="Container">
+    <div className="EditUserProfileContainer">
       <div className="left-side"></div>
       <form className="userProfileForm" onSubmit={submitEditProfile}>
-        <div className="Form-Container">
+        <div className="EditUserForm-Container">
           <label>
             Email
             <input type="email" value={userData.email} onChange={e => setUserData({ ...userData, email: e.target.value })} />

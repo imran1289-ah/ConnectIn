@@ -1,12 +1,8 @@
-/*
-.Container{
 
+.jobPosts_Container{
     display: flex;
-    
-
-
 }
-*/
+
 
 .jobPosts {
   border: 2px #19718d solid;
@@ -99,7 +95,7 @@
 }
 
 @media all and (max-width: 690px) {
-  .Container {
+  .jobPosts_Container {
     display: flex;
     flex-direction: column;
     align-items: center;

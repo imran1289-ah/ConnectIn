@@ -42,7 +42,7 @@ const JobListing = () =>{
     
     return(
             
-        <div className="Container">
+        <div className="jobPosts_Container">
             
             
             <div data-testid = "jobPostsContainer" className="jobPosts">

@@ -1,11 +1,11 @@
-/*
-.Container {
+
+.EditUserProfileContainer {
   display: flex;
   justify-content: center;
   background: #d9d9d9;
 }
 
-.Form-Container {
+.EditUserForm-Container {
   margin: 50px;
 }
 
@@ -24,7 +24,7 @@
   justify-content: space-evenly;
 }
 
-label {
+.EditUserForm-Container label {
   font-style: normal;
   color: #ffffff;
   display: block;
@@ -32,8 +32,8 @@ label {
   font-weight: bold;
 }
 
-input,
-textarea {
+.EditUserForm-Container input,
+.EditUserForm-Container textarea {
   padding: 0.5rem;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -42,7 +42,7 @@ textarea {
   margin: 5px;
 }
 
-button {
+.EditUserForm-Container button {
   padding: 0.5rem 1rem;
   background-color: #0077ff;
   color: #fff;
@@ -53,4 +53,4 @@ button {
   width: 100%;
   margin: 10px;
 }
-*/
+

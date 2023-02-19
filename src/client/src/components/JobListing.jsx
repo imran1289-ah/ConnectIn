@@ -3,10 +3,13 @@ import axios from "axios"
 import "../css/jobListing.css";
 import {useEffect, useState} from "react";
 import {Link} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 
 const JobListing = () =>{
     const [jobs, setJobs] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect( () => {
         fetchData()
@@ -17,6 +20,23 @@ const JobListing = () =>{
 
         setJobs(data)
     }
+
+    const deletePost = async (jobId,e) => {
+        e.preventDefault();
+        console.log(jobId);
+        axios.post(`http://localhost:9000/jobs/delete/${jobId}`, {
+          jobId: jobId,
+        })
+        .then(response => {
+          console.log(response.data);
+          alert("Remove Successful!");
+          navigate("/jobs");
+        })
+        .catch(error => {
+          console.log(error);
+          alert("Update Failed! Please check the logs!");
+        });
+      };
 
     
     return(
@@ -45,6 +65,7 @@ const JobListing = () =>{
                         <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
                             <button class = "edit">Edit</button>
                         </Link>
+                        <button class = "delete" onClick={(e) => deletePost(`${job.job_id}`,e)}>Delete</button>
                     </div>
                 ))}
             </div>

@@ -62,6 +62,16 @@
     text-decoration: none;
 }
 
+.jobPosts .jobPost button.delete {
+    background-color: red;
+    display: block;
+    color: white;
+    width: 100px;
+    border-radius: 20px;
+    margin: 15px;
+    text-decoration: none;
+}
+
 .preferences {
     display: flex;
     flex-direction: column;

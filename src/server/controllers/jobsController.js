@@ -41,6 +41,17 @@ const createJob = async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 }
+
+const deleteJob = async(req, res) => {
+    try{
+        const jobId = req.body.jobId;
+        await Job.find({job_id: jobId}).remove().exec();
+        res.status(200).json({message: `Successfully removed job id ${jobId}`});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Error deleting this job!" });
+    }
+}
     
 const updateJobData = asyncHandler(async(req, res) => {
     const {job_id, title, description, salary, category, location} = req.body
@@ -75,5 +86,6 @@ module.exports = {
     getAllJobs,
     getJobDetails,
     updateJobData,
-    createJob
+    createJob,
+    deleteJob
 }

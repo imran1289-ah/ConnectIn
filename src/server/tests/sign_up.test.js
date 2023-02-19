@@ -2,15 +2,26 @@ const request = require('supertest');
 const app = require('../index')
 const mongoose = require("mongoose");
 const server = require('../index');
-const User = require('../models/user')
+
+const User = require("../models/user");
+
+let userId;
+
 
 beforeAll(() => {
     mongoose.connect(process.env.DATABASE)
 })
 
+
+afterAll(async() => {
+  // Delete the user from the database after running all the tests
+  await User.findByIdAndDelete(userId);
+  
+  // Closing the DB connection allows Jest to exit successfully.
+=======
 afterAll((done) => {
+
   mongoose.disconnect();
-  done();
   server.close();
 })
 
@@ -21,24 +32,28 @@ afterAll((done) => {
 
 describe('POST /user', function(){
   
-  let id;
-
-  afterAll(async () => {
-    await User.findByIdAndDelete(id);
-  })
 
   it("successfully creates a user with valid information provided", async () => {
+
+    
+    const userResponse = await request(app)
+=======
     const response = await request(app)
+
       .post("/users")
       .send({
         firstname: "Test",
         lastname: "epic",
         email: "test@email2.com",
         password: "test123"
-      })
-    .expect(201); // successfully created account
-    id = response.body.id;
-  });
+
+    })
+      .expect(201); // successfully created account
+      userId = userResponse.body.id
+  })
+});
+
+
 
     it("should not create a user if the email used already exists", async () => {
       var user = 

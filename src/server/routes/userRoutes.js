@@ -20,7 +20,9 @@ router
 router.route("/signin").post(usersControllers.verifyUser);
 
 //router to fetch user info for profile page
-router.route("/profile/:id").get(usersControllers.getUserInfo);
+router.route("/profile/:id")
+    .get(usersControllers.getUserInfo)
+    .patch(usersControllers.editUserInfo)
 
 router.route("/searchuserlist").post(usersControllers.updateAwaitingConnections);
 

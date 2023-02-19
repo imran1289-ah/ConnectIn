@@ -1,0 +1,105 @@
+.Jobpostingform {
+  padding: 10px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  margin-bottom: 80px;
+}
+
+.title {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 5px auto;
+  margin-left: 0%;
+  margin-right: -18%;
+}
+
+.description {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 5px auto;
+  margin-left: 0%;
+  margin-right: -18%;
+}
+
+.salary {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 5px auto;
+  margin-left: 0%;
+  margin-right: -18%;
+}
+
+.company {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 5px auto;
+  margin-left: 0%;
+  margin-right: -18%;
+}
+
+.category {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 5px auto;
+  margin-left: 0%;
+  margin-right: -18%;
+}
+
+.location {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 5px auto;
+  margin-left: 0%;
+  margin-right: -18%;
+}
+
+.button {
+  color: #ffffff;
+  background-color: #19718d;
+  display: flex;
+  justify-content: center;
+  width: 5cm;
+  margin-left: 3cm;
+}
+
+#job_title {
+  width: 10cm;
+  max-width: none;
+}
+
+#job_description {
+  width: 10cm;
+  max-width: none;
+  height: 10cm;
+  max-height: none;
+}
+
+#salary {
+  width: 10cm;
+  max-width: none;
+}
+
+#category {
+  width: 10cm;
+  max-width: none;
+}
+
+#location {
+  width: 10cm;
+  max-width: none;
+}
+
+#company_name {
+  width: 10cm;
+  max-width: none;
+}

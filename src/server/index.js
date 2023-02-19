@@ -37,13 +37,11 @@ const dbConnect = () => {
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+
 app.use("/users", require("./routes/userRoutes.js"));
 app.use("/resume", require("./routes/uploadResumeCL.js"));
 app.use("/search", require("./routes/searchRoute.js"));
-
-
 app.use("/jobs", require("./routes/jobsRoutes.js"));
-
 
 //Running the server
 const server = app.listen(port, () => {

@@ -110,6 +110,52 @@ const getUserInfo = async(req, res) => {
     });
 };
 
+//Action to edit the user profile
+const editUserInfo = async(req, res) => {
+  
+  const { email, bio, headLine, languages, education, volunteering, skills, workExp } = req.body;
+  User.findByIdAndUpdate(req.params.id)
+    .then(user => {
+      if (email) {
+        user.email = email
+      }
+      if (bio) {
+        user.bio = bio
+      }
+      if (headLine) {
+        user.headLine = headLine
+      }
+      if (languages.length > 0) {
+        user.languages = languages
+      }
+      if (education.length > 0) {
+        user.education = education
+      }
+      if (volunteering.length > 0) {
+        user.volunteering = volunteering
+      }
+      if (skills.length > 0) {
+        user.skills = skills
+      }
+      if (workExp.length > 0) {
+        user.workExp = workExp
+      }
+
+      user.save()
+        .then(() => {
+          console.log("User was updated in the database")
+          console.log(user)
+          res.status(200).json(user)
+          res.end()
+        })
+        .catch(err => console.log(err));
+    })
+    .catch(() => {
+      res.status(400).json({ message: "Unexpected error when finding user by ID" })
+    });
+
+};
+
 //Gets a list of all the jobs applied for a specific user
 const getUserJobsApplied = async (req, res) =>{
         try{
@@ -121,7 +167,7 @@ const getUserJobsApplied = async (req, res) =>{
         }catch(err){
           res.status(400).json({ message: "Unable to retrieve jobs applied." });
         }
-}
+};
 
 const addJobAppliedToUser = async (req, res) => {
   
@@ -137,7 +183,8 @@ const addJobAppliedToUser = async (req, res) => {
       
   });
  res.send(201);
-}
+
+};
 
 module.exports = {
   createUser,
@@ -145,6 +192,8 @@ module.exports = {
   deleteUser,
   verifyUser,
   getUserInfo,
+  //getUserByEmail
+  editUserInfo,
   getUserJobsApplied,
   addJobAppliedToUser,
   getUser

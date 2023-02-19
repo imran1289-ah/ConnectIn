@@ -11,7 +11,9 @@ import JobApplication from "./components/JobApplication";
 import JobListing from "./components/JobListing";
 import SearchUser from "./components/SearchUser";
 import PublicUserProfile from "./components/PublicUserProfile";
-import EditJobPosting from "./components/EditJobPosting";
+
+import EditUserProfile from "./components/EditUserProfile";
+
 
 function App() {
   return (
@@ -64,6 +66,14 @@ function App() {
             element={
               <>
                 <Navbar /> <PublicUserProfile />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/editUserProfile"
+            element={
+              <>
+                <Navbar /> <EditUserProfile /> <LoginFooter />
               </>
             }
           ></Route>

@@ -6,11 +6,12 @@ import {Link} from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 
 
+
 const JobListing = () =>{
     const [jobs, setJobs] = useState([]);
 
-    const navigate = useNavigate();
 
+    const navigate = useNavigate();
     useEffect( () => {
         fetchData()
     }, [])
@@ -20,6 +21,7 @@ const JobListing = () =>{
 
         setJobs(data)
     }
+
 
     const deletePost = async (jobId,e) => {
         e.preventDefault();
@@ -37,7 +39,6 @@ const JobListing = () =>{
           alert("Update Failed! Please check the logs!");
         });
       };
-
     
     return(
             
@@ -66,6 +67,7 @@ const JobListing = () =>{
                             <button class = "edit">Edit</button>
                         </Link>
                         <button class = "delete" onClick={(e) => deletePost(`${job.job_id}`,e)}>Delete</button>
+
                     </div>
                 ))}
             </div>

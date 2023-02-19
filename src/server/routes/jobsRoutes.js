@@ -9,4 +9,5 @@ router.post('/edit/:jobId',jobsControllers.updateJobData)
 router.post("/create", jobsControllers.createJob);
 router.post('/delete/:jobId', jobsControllers.deleteJob)
  
+
 module.exports = router;

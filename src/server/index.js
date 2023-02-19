@@ -40,7 +40,6 @@ app.get("/", (req, res) => {
 app.use("/users", require("./routes/userRoutes.js"));
 app.use("/resume", require("./routes/uploadResumeCL.js"));
 app.use("/search", require("./routes/searchRoute.js"));
-app.use("/jobs", require("./routes/jobsRoutes.js"));
 
 
 app.use("/jobs", require("./routes/jobsRoutes.js"));

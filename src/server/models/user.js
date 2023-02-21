@@ -37,11 +37,13 @@ const UserSchema = new mongoose.Schema({
     education: [],
     skills: [],
     workExp: [],
+    contact: Number,
+    waitingConnections: [],
     languages: [],
 
 });
 
 const User = mongoose.model("Users", UserSchema);
 
-
 module.exports = User;
+ 

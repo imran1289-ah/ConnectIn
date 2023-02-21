@@ -2,12 +2,22 @@ import Navbar from "./components/Navbar";
 import SignIn from "./components/SignIn";
 import LoginFooter from "./components/LoginFooter";
 import SignupFooter from "./components/SignupFooter";
+import JobPosting from "./components/JobPosting";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import UserProfile from "./components/UserProfile";
+import JobApplication from "./components/JobApplication";
+import JobListing from "./components/JobListing";
 import SearchUser from "./components/SearchUser";
 import PublicUserProfile from "./components/PublicUserProfile";
+
+import WaitingConnections from "./components/waitingConnections";
+import EditJobPosting from "./components/EditJobPosting";
+
+
+import EditUserProfile from "./components/EditUserProfile";
+
 
 function App() {
   return (
@@ -32,6 +42,14 @@ function App() {
             }
           ></Route>
           <Route
+            path="/jobPosting"
+            element={
+              <>
+                <Navbar /> <JobPosting /> <LoginFooter />
+              </>
+            }
+          ></Route>
+          <Route
             path="/UserProfile"
             element={
               <>
@@ -52,6 +70,49 @@ function App() {
             element={
               <>
                 <Navbar /> <PublicUserProfile />
+              </>
+            }
+          ></Route>
+          <Route
+
+            path="/waitingConnections"
+            element={
+              <>
+                <Navbar /> <WaitingConnections /> <LoginFooter />
+             </>
+             }
+             ></Route>
+
+            <Route
+            path="/editUserProfile"
+            element={
+              <>
+                <Navbar /> <EditUserProfile /> <LoginFooter />
+
+              </>
+            }
+          ></Route>
+          <Route
+            path="/jobs"
+            element={
+              <>
+                <Navbar /> <JobListing /> <LoginFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/jobs/:id"
+            element={
+              <>
+                <Navbar /> <JobApplication /> <LoginFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/jobs/edit/:id"
+            element={
+              <>
+                <Navbar /> <EditJobPosting /> <SignupFooter />
               </>
             }
           ></Route>

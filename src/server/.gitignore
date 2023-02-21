@@ -8,6 +8,8 @@
 # testing
 /coverage
 
+#rest api test
+./routes.rest
 # production
 /build
 

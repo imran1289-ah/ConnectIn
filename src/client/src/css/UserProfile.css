@@ -1,65 +1,202 @@
-.button {
-  background-color: steelblue;
+.userProfileContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: "Inter", sans-serif;
+}
+
+.userInformation {
+  min-height: 220px;
+  width: 700px;
+  border-radius: 15px;
+  margin: 20px;
+  height: auto;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.userJobInformation {
+  min-height: 130px;
+  width: 700px;
+  border-radius: 15px;
+  margin: 20px;
+  height: auto;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.userKnowledgeInformation {
+  min-height: 100px;
+  width: 700px;
+  border-radius: 15px;
+  margin: 20px;
+  height: auto;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.userProfilePic {
+  display: inline-block;
+}
+
+.userAboutSection {
+  display: inline-block;
+  margin: 20px;
+  width: 100%;
+  height: auto;
+}
+
+.userName {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.companyPic {
+  width: 60px;
+  height: 60px;
+}
+
+.jobInfo {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.right {
+  height: auto;
+  min-width: 350px;
+  border-radius: 15px;
+
+  margin-bottom: auto;
+  margin-top: 20px;
+  width: auto;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.connectionsInfo {
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  width: 300px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.connectionName {
+  margin-left: 40px;
+  font-size: 26px;
+}
+
+.subTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-left: 20px;
+}
+
+.userBio {
+  margin-left: 20px;
+}
+
+.elementList {
+  display: inline;
+}
+
+.element {
+  margin: 10px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.connectButton {
+  background-color: #19718d;
+  width: 300px;
+  height: 40px;
+  border-radius: 20px;
   color: white;
-  padding: 5px 62px;
-  border-radius: 5px;
+  font-size: 20px;
 }
 
-.info {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  margin-top: 10%;
-  font-style: bold;
+.connectButtonSection {
+  text-align: center;
 }
 
-.profilepic {
-  display: flex;
-  margin: 18px 0px;
-  margin-left: 5%;
-  margin-top: 10%;
+.body {
+  background-color: #f5f5f5;
 }
 
-.name {
-  align-items: center;
-  justify-content: center;
-  display: flex;
+/*Responsive for iphone 6 and up*/
+@media (min-width: 330px) and (max-width: 600px) {
+  .userProfileContainer {
+    display: block;
+  }
+
+  .userAboutSection {
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  .right {
+    width: auto;
+    margin: 10px;
+  }
+
+  .connectionName {
+    margin-left: 40px;
+    font-size: 20px;
+  }
+
+  .userInformation {
+    min-height: 150px;
+    width: auto;
+    margin: 10px;
+  }
+
+  .userJobInformation {
+    min-height: 130px;
+    width: auto;
+  }
+
+  .userKnowledgeInformation {
+    min-height: 100px;
+    width: auto;
+  }
+
+  .userProfilePic {
+    width: 90px;
+    height: 90px;
+  }
+
+  .connectButton {
+    width: 150px;
+    height: 35px;
+  }
 }
 
-.container {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-}
+/*Media queries for ipad*/
+@media (min-device-width: 768px) and (max-device-width: 1024px) {
+  .userProfileContainer {
+    display: block;
+  }
 
-.connections {
-  background-color: cadetblue;
-  margin-top: 10%;
-  border-radius: 5px;
-}
+  .right {
+    width: auto;
+    margin: 20px;
+  }
 
-.h {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .userInformation {
+    min-height: 140px;
+    width: auto;
+  }
 
-.fcontact {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: aliceblue;
-  width: auto;
-  height: 30px;
-  border-radius: 5px;
-}
+  .userJobInformation {
+    min-height: 130px;
+    width: auto;
+  }
 
-.scontact {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: aliceblue;
-  width: auto;
-  height: 30px;
-  border-radius: 5px;
+  .userKnowledgeInformation {
+    min-height: 100px;
+    width: auto;
+  }
 }

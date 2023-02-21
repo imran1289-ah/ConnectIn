@@ -30,7 +30,7 @@ const UserProfile = () => {
   const fetchProfile = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:9000/users/profile/63ec368ad3117dd2175dbd62`
+        `http://localhost:9000/users/profile/63f41b0123e995b64434ece0`
       );
       setPublicUser({
         _id: response.data._id,

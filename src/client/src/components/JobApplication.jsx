@@ -10,7 +10,7 @@ const JobApplication = () =>{
     const job = location.state;
 
     //User id hard coded for now until we get user session fixed. 
-    const userId = "63edb27d0e77e161a004824c";
+    const userId = "63f41b0123e995b64434ece0";
     
     const navigate = useNavigate();
 

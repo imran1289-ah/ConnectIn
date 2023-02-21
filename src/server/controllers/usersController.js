@@ -69,7 +69,7 @@ const updateUser = async (req, res) => {
 //Action of deleting  a user from awaiting connections list 
 const deleteAwaitingConnections  = async (req, res) => {
   const { firstname , lastname} = req.body;
-  const  _id = "63ec4acc2bb05555a5b97c46";
+  const  _id = "63f41b0123e995b64434ece0";
   const user = await User.findOneAndUpdate(
     {_id: _id},
     {$pull: { waitingConnections: {firstname: firstname, lastname: lastname}
@@ -88,7 +88,7 @@ const deleteAwaitingConnections  = async (req, res) => {
 //Action of transferring a connection from awaiting connections list to connections list
 const updateConnections = async (req, res) => {
   const { firstname , lastname} = req.body;
-  const  _id = "63ec4acc2bb05555a5b97c46";
+  const  _id = "63f41b0123e995b64434ece0";
   const user = await User.findOneAndUpdate(
     {_id: _id},
     {$addToSet: { connections: {firstname: firstname, lastname: lastname}
@@ -126,7 +126,7 @@ const updateAwaitingConnections = async (req, res) => {
 
 //Action to retrieve waiting connections
 const getAwaitingConnections = async (req, res) => {
-  const id = "63ec4acc2bb05555a5b97c46";
+  const id = "63f41b0123e995b64434ece0";
   const user = await User.findById(id)
 if(user){
     res.status(200).json(user.waitingConnections);
@@ -247,7 +247,7 @@ const getUserJobsApplied = async (req, res) =>{
 
 const addJobAppliedToUser = async (req, res) => {
   
-  User.findOneAndUpdate({_id: req.body.userId}).then((user) =>{
+  User.findById(req.body.userId).then((user) =>{
       const array = user.jobsApplied;
       array.push(req.body.jobId);
       user.jobsApplied = array;

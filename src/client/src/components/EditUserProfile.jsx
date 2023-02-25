@@ -9,6 +9,8 @@ const EditUserProfile = () => {
   const [skills, setSkills] = useState([]);
   const [workExp, setWorkExp] = useState([]);
   const [volunteering, setVolunteering] = useState([]);
+  const [resume, setResume] = useState(null);
+  const [coverLetter, setCoverLetter] = useState(null);
 
   const [userData, setUserData] = useState({
     email: "",
@@ -25,8 +27,12 @@ const EditUserProfile = () => {
 
   const submitEditProfile = async e => {
     e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("resume", resume);
+    formData.append("coverLetter", coverLetter);
     axios
-      .patch("http://localhost:9000/users/profile/63f41b0123e995b64434ece0", {
+      .patch("http://localhost:9000/users/profile/63f8efc91b1f68ef98ff0c56", {
         bio: userData.bio,
         headLine: userData.headLine,
         languages: userData.languages,
@@ -38,6 +44,8 @@ const EditUserProfile = () => {
       })
       .then(response => {
         console.log(response.data);
+        axios.post(`http://localhost:9000/resume/uploadResume/63f8efc91b1f68ef98ff0c56`, formData).then(res => console.log(res)).catch(error => console.log(error));
+        axios.post(`http://localhost:9000/resume/uploadCoverLetter/63f8efc91b1f68ef98ff0c56`, formData).then(res => console.log(res)).catch(error => console.log(error));
         navigate("/UserProfile");
       })
       .catch(error => {
@@ -69,6 +77,13 @@ const EditUserProfile = () => {
   const volunteeringChange = () => {
     setUserData({ ...userData, volunteering: [...userData.volunteering, volunteering] });
     setVolunteering("");
+  };
+  const handleResumeChange = e => {
+    setResume(e.target.files[0]);
+  };
+
+  const handleCoverLetterChange = e => {
+    setCoverLetter(e.target.files[0]);
   };
 
   return (
@@ -138,6 +153,18 @@ const EditUserProfile = () => {
           <br />
           <button type="submit">Save changes</button>
         </div>
+        <label>
+        Resume
+        <input type="file" accept=".pdf" onChange={handleResumeChange} />
+      </label>
+      <br />
+      <label>
+        Cover Letter
+        <input type="file" accept=".pdf" onChange={handleCoverLetterChange} />
+      </label>
+      <br />
+      <button type="submit">Save Changes</button>
+    
       </form>
     </div>
   );

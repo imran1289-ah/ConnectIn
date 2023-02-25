@@ -27,9 +27,8 @@ module.exports.updateResume = async(req, res) => {
             resume: req.file.buffer,
         }, { new: true });
         res.status(200).send(user);
-    } catch (error) {
-        res.status(400).send({ error: error.message });
-    }
+    } catch (error) {}
+
 };
 //update the cl for a the specific user
 module.exports.updateCoverLetter = async(req, res) => {
@@ -40,7 +39,7 @@ module.exports.updateCoverLetter = async(req, res) => {
         }, { new: true });
         res.status(200).send(user);
     } catch (error) {
-        res.status(400).send({ error: error.message });
+
     }
 };
 
@@ -63,7 +62,7 @@ module.exports.getResume = async(req, res) => {
             }
         });
     } catch (error) {
-        res.status(400).send({ error: error.message });
+
     }
 };
 
@@ -86,6 +85,6 @@ module.exports.getCoverLetter = async(req, res) => {
             }
         });
     } catch (error) {
-        res.status(400).send({ error: error.message });
+
     }
 };

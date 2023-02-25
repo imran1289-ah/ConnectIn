@@ -4,12 +4,36 @@ const dotenv = require("dotenv");
 const session = require("express-session");
 const cors = require("cors");
 const User = require("./models/user");
+const MongoDBStore = require("connect-mongodb-session")(session);
 
 const app = express();
 app.use(express.json());
-app.use(session({ secret: "secret123" }));
 const port = 9000;
 dotenv.config();
+
+//Seission length
+const session_length = 1000 * 60 * 60;
+
+//MongoDB seission store
+const mongoDBstore = new MongoDBStore({
+  uri: process.env.DATABASE,
+  collection: "userSessions",
+});
+
+app.use(
+  session({
+    secret: "secret123",
+    name: "user_session_id",
+    store: mongoDBstore,
+    cookie: {
+      maxAge: session_length,
+      sameSite: false,
+      secure: false,
+    },
+    resave: true,
+    saveUninitialized: false,
+  })
+);
 
 //Cors middleware to accept request from client
 app.use(
@@ -38,10 +62,12 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+//Routes for our API endpoints
 app.use("/users", require("./routes/userRoutes.js"));
 app.use("/resume", require("./routes/uploadResumeCL.js"));
 app.use("/search", require("./routes/searchRoute.js"));
 app.use("/jobs", require("./routes/jobsRoutes.js"));
+app.use("/session", require("./routes/sessionRoutes.js"));
 
 //Running the server
 const server = app.listen(port, () => {

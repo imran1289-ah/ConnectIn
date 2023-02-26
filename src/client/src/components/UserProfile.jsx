@@ -39,6 +39,9 @@ const UserProfile = () => {
     }
   };
 
+  //Get id of logged in user
+  const userID = sessionStorage.getItem("userID");
+
   //Make the request only on the first render
   useEffect(() => {
     fetchProfile();
@@ -48,9 +51,7 @@ const UserProfile = () => {
   const fetchProfile = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:9000/users/profile/${sessionStorage.getItem(
-          "userID"
-        )}`
+        `http://localhost:9000/users/profile/${userID}`
       );
       setPublicUser({
         _id: response.data._id,

@@ -42,6 +42,9 @@ const EditUserProfile = () => {
     }
   };
 
+  //Get id of logged in user
+  const userID = sessionStorage.getItem("userID");
+
   const navigate = useNavigate();
 
   const submitEditProfile = async (e) => {
@@ -51,21 +54,16 @@ const EditUserProfile = () => {
     formData.append("resume", resume);
     formData.append("coverLetter", coverLetter);
     axios
-      .patch(
-        `http://localhost:9000/users/profile/${sessionStorage.getItem(
-          "userID"
-        )}`,
-        {
-          bio: userData.bio,
-          headLine: userData.headLine,
-          languages: userData.languages,
-          email: userData.email,
-          education: userData.education,
-          skills: userData.skills,
-          workExp: userData.workExp,
-          volunteering: userData.volunteering,
-        }
-      )
+      .patch(`http://localhost:9000/users/profile/${userID}`, {
+        bio: userData.bio,
+        headLine: userData.headLine,
+        languages: userData.languages,
+        email: userData.email,
+        education: userData.education,
+        skills: userData.skills,
+        workExp: userData.workExp,
+        volunteering: userData.volunteering,
+      })
       .then((response) => {
         console.log(response.data);
         axios

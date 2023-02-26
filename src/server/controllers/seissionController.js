@@ -1,6 +1,10 @@
 //Get info of the current logged in user
 const getSessionInfo = (req, res) => {
-  res.status(200).json({ user_id: req.session.user });
+  if (req.session.user) {
+    res.status(200).json({ user_info: req.session.user });
+  } else {
+    res.status(401).json({ message: "user not autenticated" });
+  }
 };
 
 //Destroy seission

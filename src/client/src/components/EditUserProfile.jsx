@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "../css/EditUserProfile.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../Store";
 
 const EditUserProfile = () => {
   const [languages, setLanguages] = useState([]);
@@ -20,35 +21,70 @@ const EditUserProfile = () => {
     education: [],
     skills: [],
     workExp: [],
-    volunteering: []
+    volunteering: [],
   });
+
+  //Global loginState
+  const [login, setLogin] = useContext(Context);
+
+  useEffect(() => {
+    fetchSession();
+  }, []);
+
+  //Having the loginState persist on all pages
+  const fetchSession = async () => {
+    try {
+      setLogin({
+        isLoggedIn: true,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const navigate = useNavigate();
 
-  const submitEditProfile = async e => {
+  const submitEditProfile = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append("resume", resume);
     formData.append("coverLetter", coverLetter);
     axios
-      .patch("http://localhost:9000/users/profile/63f8efc91b1f68ef98ff0c56", {
-        bio: userData.bio,
-        headLine: userData.headLine,
-        languages: userData.languages,
-        email: userData.email,
-        education: userData.education,
-        skills: userData.skills,
-        workExp: userData.workExp,
-        volunteering: userData.volunteering
-      })
-      .then(response => {
+      .patch(
+        `http://localhost:9000/users/profile/${sessionStorage.getItem(
+          "userID"
+        )}`,
+        {
+          bio: userData.bio,
+          headLine: userData.headLine,
+          languages: userData.languages,
+          email: userData.email,
+          education: userData.education,
+          skills: userData.skills,
+          workExp: userData.workExp,
+          volunteering: userData.volunteering,
+        }
+      )
+      .then((response) => {
         console.log(response.data);
-        axios.post(`http://localhost:9000/resume/uploadResume/63f8efc91b1f68ef98ff0c56`, formData).then(res => console.log(res)).catch(error => console.log(error));
-        axios.post(`http://localhost:9000/resume/uploadCoverLetter/63f8efc91b1f68ef98ff0c56`, formData).then(res => console.log(res)).catch(error => console.log(error));
+        axios
+          .post(
+            `http://localhost:9000/resume/uploadResume/63f8efc91b1f68ef98ff0c56`,
+            formData
+          )
+          .then((res) => console.log(res))
+          .catch((error) => console.log(error));
+        axios
+          .post(
+            `http://localhost:9000/resume/uploadCoverLetter/63f8efc91b1f68ef98ff0c56`,
+            formData
+          )
+          .then((res) => console.log(res))
+          .catch((error) => console.log(error));
         navigate("/UserProfile");
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         alert("Error editing user profile");
       });
@@ -75,14 +111,17 @@ const EditUserProfile = () => {
   };
 
   const volunteeringChange = () => {
-    setUserData({ ...userData, volunteering: [...userData.volunteering, volunteering] });
+    setUserData({
+      ...userData,
+      volunteering: [...userData.volunteering, volunteering],
+    });
     setVolunteering("");
   };
-  const handleResumeChange = e => {
+  const handleResumeChange = (e) => {
     setResume(e.target.files[0]);
   };
 
-  const handleCoverLetterChange = e => {
+  const handleCoverLetterChange = (e) => {
     setCoverLetter(e.target.files[0]);
   };
 
@@ -93,17 +132,32 @@ const EditUserProfile = () => {
         <div className="EditUserForm-Container">
           <label>
             Email
-            <input type="email" value={userData.email} onChange={e => setUserData({ ...userData, email: e.target.value })} />
+            <input
+              type="email"
+              value={userData.email}
+              onChange={(e) =>
+                setUserData({ ...userData, email: e.target.value })
+              }
+            />
           </label>
           <br />
           <label>
             Bio
-            <textarea value={userData.bio} onChange={e => setUserData({ ...userData, bio: e.target.value })} />
+            <textarea
+              value={userData.bio}
+              onChange={(e) =>
+                setUserData({ ...userData, bio: e.target.value })
+              }
+            />
           </label>
           <br />
           <label>
             Work Experience
-            <input type="text" value={workExp} onChange={e => setWorkExp(e.target.value)} />
+            <input
+              type="text"
+              value={workExp}
+              onChange={(e) => setWorkExp(e.target.value)}
+            />
           </label>
           <div className="list-button">
             <button type="button" onClick={workExpChange}>
@@ -113,7 +167,11 @@ const EditUserProfile = () => {
           <br />
           <label>
             Education
-            <input type="text" value={education} onChange={e => setEducation(e.target.value)} />
+            <input
+              type="text"
+              value={education}
+              onChange={(e) => setEducation(e.target.value)}
+            />
           </label>
           <div className="list-button">
             <button type="button" onClick={educationChange}>
@@ -123,7 +181,11 @@ const EditUserProfile = () => {
           <br />
           <label>
             Skills
-            <input type="text" value={skills} onChange={e => setSkills(e.target.value)} />
+            <input
+              type="text"
+              value={skills}
+              onChange={(e) => setSkills(e.target.value)}
+            />
           </label>
           <div className="list-button">
             <button type="button" onClick={skillsChange}>
@@ -133,7 +195,11 @@ const EditUserProfile = () => {
           <br />
           <label>
             Languages
-            <input type="text" value={languages} onChange={e => setLanguages(e.target.value)} />
+            <input
+              type="text"
+              value={languages}
+              onChange={(e) => setLanguages(e.target.value)}
+            />
           </label>
           <div className="list-button">
             <button type="button" onClick={languagesChange}>
@@ -143,7 +209,10 @@ const EditUserProfile = () => {
           <br />
           <label>
             Volunteering
-            <textarea value={volunteering} onChange={e => setVolunteering(e.target.value)} />
+            <textarea
+              value={volunteering}
+              onChange={(e) => setVolunteering(e.target.value)}
+            />
           </label>
           <div className="list-button">
             <button type="button" onClick={volunteeringChange}>
@@ -154,17 +223,16 @@ const EditUserProfile = () => {
           <button type="submit">Save changes</button>
         </div>
         <label>
-        Resume
-        <input type="file" accept=".pdf" onChange={handleResumeChange} />
-      </label>
-      <br />
-      <label>
-        Cover Letter
-        <input type="file" accept=".pdf" onChange={handleCoverLetterChange} />
-      </label>
-      <br />
-      <button type="submit">Save Changes</button>
-    
+          Resume
+          <input type="file" accept=".pdf" onChange={handleResumeChange} />
+        </label>
+        <br />
+        <label>
+          Cover Letter
+          <input type="file" accept=".pdf" onChange={handleCoverLetterChange} />
+        </label>
+        <br />
+        <button type="submit">Save Changes</button>
       </form>
     </div>
   );

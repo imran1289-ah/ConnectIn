@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../css/UserProfile.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { Context } from "../Store";
 
 const UserProfile = () => {
-  
   //States
   const [publicUser, setPublicUser] = useState([
     {
@@ -21,16 +21,36 @@ const UserProfile = () => {
     },
   ]);
 
+  //Global loginState
+  const [login, setLogin] = useContext(Context);
+
+  useEffect(() => {
+    fetchSession();
+  }, []);
+
+  //Having the loginState persist on all pages
+  const fetchSession = async () => {
+    try {
+      setLogin({
+        isLoggedIn: true,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //Make the request only on the first render
   useEffect(() => {
     fetchProfile();
-  },[]);
+  }, []);
 
   //HTTP Request in Backend to fetch user info
   const fetchProfile = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:9000/users/profile/63f41b0123e995b64434ece0`
+        `http://localhost:9000/users/profile/${sessionStorage.getItem(
+          "userID"
+        )}`
       );
       setPublicUser({
         _id: response.data._id,
@@ -67,9 +87,9 @@ const UserProfile = () => {
               <br />
               <p>{publicUser.headLine}</p>
               <div className="connectButtonSection">
-              <Link to={`/EditUserProfile`}>
-                <button className="connectButton">Edit Profile Page</button>
-              </Link>
+                <Link to={`/EditUserProfile`}>
+                  <button className="connectButton">Edit Profile Page</button>
+                </Link>
               </div>
             </div>
           </div>
@@ -191,7 +211,7 @@ const UserProfile = () => {
         </div>
       </div>
     </div>
-  );   
+  );
 };
 
 export default UserProfile;

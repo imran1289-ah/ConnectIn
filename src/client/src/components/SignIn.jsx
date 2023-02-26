@@ -1,7 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../css/signin.css";
 import axios from "axios";
+import { Context } from "../Store";
 
 const SignIn = () => {
   //State for each input
@@ -9,12 +10,13 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const MessageRef = useRef(null);
+  const [login, setLogin] = useContext(Context);
 
   //HTTP Request to autenticate user
   const submitLogin = async (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:9000/users/signin", {
+      .post("users/signin", {
         email: user,
         password: password,
       })
@@ -22,9 +24,13 @@ const SignIn = () => {
         console.log(response.data);
         MessageRef.current.style.color = "#66FF00";
         MessageRef.current.innerHTML = "Login Sucess. Welcome Back";
+        setLogin({
+          isLoggedIn: true,
+        });
+
         setTimeout(() => {
-          navigate("/UserProfile");
-        }, 1000);
+          navigate("/userTimeline");
+        }, 10);
       })
       .catch((error) => {
         console.log(error);

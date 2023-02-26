@@ -60,7 +60,7 @@ const verifyUser = async (req, res) => {
       };
       req.session.user = userSession;
       console.log(`Found user ${user.email}`);
-      res.status(200).json({ sessionID: req.sessionID });
+      res.status(200).json({ message: "login succesfull", userSession });
     } else {
       return res.status(404).json({
         errors: [{ user: "not found" }],

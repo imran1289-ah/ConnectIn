@@ -29,9 +29,6 @@ beforeAll(async() => {
 afterAll(async() => {
     // Delete the user from the database after running all the tests
     await User.findByIdAndDelete(userId);
-});
-
-afterAll((done) => {
     // Closing the DB connection allows Jest to exit successfully.
     mongoose.disconnect();
     done();

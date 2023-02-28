@@ -16,7 +16,6 @@
 }
 
 .WrapperEditPost {
-  /* display:flex; */
   justify-content: center;
   top: 70%;
   margin: auto;
@@ -24,7 +23,6 @@
   position: relative;
   width: auto;
   border-radius: 70px;
-  width: 40%;
   min-height: 90vh;
 }
 
@@ -42,6 +40,8 @@
   color: hsl(0, 0%, 0%);
   font-weight: bold;
   font-size: 16px;
+  margin-left: auto;
+  margin-right: auto;
   line-height: 30px;
 }
 
@@ -84,7 +84,7 @@
     margin: auto;
     text-align: center;
     height: auto;
-    width: 350px;
+    width: 330px;
     top: 65%;
   }
 
@@ -94,8 +94,9 @@
 
   .FormEditPost {
     margin-left: auto;
+    margin-right: auto;
     height: 300px;
-    width: 350px;
+    width: auto;
   }
 
   .Input {

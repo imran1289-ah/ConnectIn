@@ -5,6 +5,7 @@ import { Link, Navigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import swal from "sweetalert";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -29,12 +30,12 @@ function SignUp() {
       })
       .then(response => {
         console.log(response.data);
-        alert("Welcome to ConnectIn");
+        swal("Welcome to ConnectIn!", "success");
         navigate("/UserProfile");
       })
       .catch(error => {
         console.log(error);
-        alert("Error loggin in");
+        swal("Error in sign up!", "error");
       });
     //sets field to blank after form submission
     setUserData({ firstName: "", lastName: "", email: "", password: "" });

@@ -1,27 +1,22 @@
-
 .EditUserProfileContainer {
-  display: flex;
-  justify-content: center;
-  background: #d9d9d9;
+  /* display: flex;
+  justify-content: center; */
+
 }
 
 .EditUserForm-Container {
   margin: 50px;
-}
-
-.list-button {
-  float: right;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row
 }
 
 .userProfileForm {
-  margin-top: 75px;
-  margin-bottom: 75px;
+  margin: 75px;
   display: flex;
-  width: 60%;
-  flex-direction: row;
+  flex-direction: column;
   background: #19718d;
   border-radius: 70px;
-  justify-content: space-evenly;
 }
 
 .EditUserForm-Container label {
@@ -34,6 +29,7 @@
 
 .EditUserForm-Container input,
 .EditUserForm-Container textarea {
+  box-sizing:border-box;
   padding: 0.5rem;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -42,7 +38,32 @@
   margin: 5px;
 }
 
-.EditUserForm-Container button {
+.userProfileForm .submit-button button {
+  background-color: 0077ff;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 75%;
+  margin: 15px;
+
+}
+
+.userProfileForm .submit-button,
+.userProfileForm .edit-profile-title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.userProfileForm .list-button {
+  float: right;
+  box-sizing:border-box; 
+}
+
+.userProfileForm button {
   padding: 0.5rem 1rem;
   background-color: #0077ff;
   color: #fff;
@@ -51,6 +72,4 @@
   font-size: 1rem;
   cursor: pointer;
   width: 100%;
-  margin: 10px;
 }
-

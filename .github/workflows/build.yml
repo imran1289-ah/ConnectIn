@@ -15,10 +15,10 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: Install dependencies in server
-        working-directory: ./server
+        working-directory: ./src/server
         run: yarn install --frozen-lockfile
       - name: Install dependencies in client
-        working-directory: ./client
+        working-directory: ./src/client
         run: yarn install --frozen-lockfile
       - name: Test and coverage
         working-directory: ./server

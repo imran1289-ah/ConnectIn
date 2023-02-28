@@ -31,7 +31,6 @@ afterAll(async() => {
     await User.findByIdAndDelete(userId);
     // Closing the DB connection allows Jest to exit successfully.
     mongoose.disconnect();
-    done();
     app.close();
 });
 

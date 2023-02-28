@@ -7,8 +7,9 @@ import { useNavigate } from "react-router-dom";
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import { createTheme } from '@mui/material/styles';
-
-
+import { Alert, AlertTitle } from "@mui/material";
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import WorkIcon from '@mui/icons-material/Work';
 
 
 
@@ -20,22 +21,28 @@ import { createTheme } from '@mui/material/styles';
 
 const JobListing = () =>{
     const [jobs, setJobs] = useState([]);
-
+    const [jobsApplied, setJobsApplied] = useState([]);
+    const userId = "63f41b0123e995b64434ece0";
 
     const navigate = useNavigate();
     useEffect( () => {
-        fetchData()
+        fetchJobs();
+        fetchAppliedJob();
     }, [])
 
-    const fetchData = async () => {
+    const fetchJobs = async () => {
         const {data} = await axios.get("http://localhost:9000/jobs")
 
         setJobs(data)
     }
 
-    const learnMore = async () => {
+    const fetchAppliedJob = async () =>{
+        const {data} = await axios.get(`http://localhost:9000/users/${userId}/jobsApplied`)
+        
+       setJobsApplied(data)
         
     }
+
 
     const deletePost = async (jobId,e) => {
         e.preventDefault();
@@ -80,28 +87,26 @@ const JobListing = () =>{
                         
                         
                         
-                        <div className="jobContent">
+                    <div className="jobContent">
+
+                            {jobsApplied.includes(job.job_id) ? <Alert className ="AlertJobListing" severity='info' variant="outlined"><AlertTitle>You've already applied for this job</AlertTitle></Alert>: <></> }
                             <h3 className="jobTitle"><b>{job.title}</b></h3>
                             
                             <p>{job.company}</p>
                             <p>{job.location}</p>
-                            <p>{job.category}</p>
+
+                            <div className="Icons">
+                                <h3 className="jobCategory"><WorkIcon/>{job.category}</h3>
+
+                            </div>
                             
-                           
-                               
-                            <Button>
-                                <Link to = {`/jobs/${job.job_id}`} state = {{jobState:job}} style ={linkStyle} >
-                                    Select
-                                </Link>
-                            </Button>
-                            {/* <Button onClick={learnMore()}>
-                                Learn More
-                            </Button> */}
-                                    
-                              
-                            
-                            
-                        {/* </Link> */}
+                                
+                        <Button className ="selectButton"variant="contained" component="label">
+                                        <Link className="jobListLink"to = {`/jobs/${job.job_id}`} state = {{jobState:job}} style ={linkStyle} >
+                                            Select
+                                       </Link>
+                        </Button>
+                                
 
                     </div>
 

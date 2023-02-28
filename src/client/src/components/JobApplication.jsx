@@ -29,8 +29,10 @@ const JobApplication = () =>{
         const alreadyJobsApplied = await axios.get(`http://localhost:9000/users/${userId}/jobsApplied`)
         
         if(alreadyJobsApplied.data.includes(job.jobState.job_id)){
-            swal("You've already applied for this job!");
-            await delay(1000)
+            swal("You've already applied for this job!",{
+                
+            });
+            await delay(1000);
             navigate("/jobs");
         }
         else{
@@ -39,8 +41,10 @@ const JobApplication = () =>{
                 userId: userId,
                 jobId: job.jobState.job_id
             })
-            swal("You've successfully applied for this job!");
-            await delay(1000)
+            swal("You've successfully applied for this job!",{
+                confirm: true
+            });
+            await delay(1000);
             navigate("/jobs");
         }
     }

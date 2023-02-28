@@ -1,19 +1,17 @@
-
+/* 
 .jobPosts_Container{
     display: flex;
-}
+} */
 
 
 .jobPosts {
   border: 2px #19718d solid;
-  width: 50%;
+  width: 75%;
   min-height: 500px;
   height: 550px;
   border-radius: 15px;
   margin: 20px;
   display: inline-block;
-  /* scroll-behavior: smooth;
-  overflow-y: scroll; */
 }
 
 .jobPosts .heading {
@@ -44,22 +42,30 @@
   width: 95%;
   height: auto;
   border-radius: 10px;
+
 }
 
 .jobPosts .jobs .jobPost .logo {
   margin: 5px;
   margin-top: 40px;
-  margin-right: 40px;
+  margin-right: 25px;
 }
 
 .jobPosts .jobs .jobPost .jobContent {
 
   padding-left: 50px;
-  display: block;
+  display: inline-block;
   width: 100%;
-  
-  
-  
+
+}
+
+.jobPosts .jobs .jobPost .jobContent .AlertJobListing {
+
+    border-radius: 10px;
+    width: 40%;
+    border: 1px solid #19718d;
+    margin-top: 10px;
+    color: #19718d;
 }
 
 .jobPosts .jobs .jobPost .jobContent .jobTitle:hover {
@@ -67,23 +73,51 @@
   text-decoration: underline;
 }
 
+.jobPosts .jobs .jobPost .jobContent .Icons{
+  display: flex;
+  flex-direction: row;
 
-.jobPosts .jobPost button {
+}
+.jobPosts .jobs .jobPost .jobContent .jobCategory {
+
+  border: 1px solid grey;
+  background-color: lightgrey;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+
+}
+
+
+.jobPosts .jobs .jobPost .jobContent .jobListLink{
+
+  /* border: 5px red solid; */
+  text-decoration: none;
+  color:white
+}
+
+.jobPosts .jobs .jobPost .jobContent .selectButton{
+
+  border-radius: 10;
+  background-color: #19718d;
+  font-size: 14px;
+  width:100px;
+  text-align: center;
+  margin-bottom: 10px;
+  
+}
+
+/* .jobPosts .jobPost button {
   background-color: #19718d;
   display: block;
   width: 100px;
   border-radius: 20px;
-  margin: 15px;
   text-decoration: none;
-}
+} */
 
 
-.jobPosts .jobPost Link{
-  height: 100%;
-  width: 100%;
-}
 
-.jobPosts .jobPost button.edit {
+/* .jobPosts .jobPost button.edit {
   background-color: green;
   display: block;
   color: white;
@@ -101,7 +135,7 @@
   border-radius: 20px;
   margin: 15px;
   text-decoration: none;
-}
+} */
 
 /* .preferences {
   display: flex;

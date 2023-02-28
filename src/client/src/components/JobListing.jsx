@@ -4,6 +4,15 @@ import "../css/jobListing.css";
 import {useEffect, useState} from "react";
 import {Link} from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
+import Avatar from '@mui/material/Avatar'
+import Button from '@mui/material/Button'
+
+
+
+
+
+
+
 
 
 
@@ -49,37 +58,59 @@ const JobListing = () =>{
                 <div className="heading">
                     <b>Job Posts</b>
                 </div>
-                
-                {jobs.map(job => (
+                <div class="jobs">
+                 {jobs.map(job => (
                 
                     <div key = {job._id} className="jobPost">
+
+                            <div className="logo">
+                            <Avatar alt="Logo" src="./logo/logo.png" sx={{ width: 75, height: 75 }}/>
+
+                            </div>
                         
-                        <p> Job id: {job.job_id}</p>
-                        <p>Title: {job.title}</p>
-                        <p>Description: {job.description}</p>
-                        <p>Salary: {job.salary}</p>
-                        <p>Company: {job.company}</p>
-                        <p>Category: {job.category}</p>
-                        <Link to = {`/jobs/${job.job_id}`} state = {{jobState:job}}>
-                            <button>Select</button>
-                        </Link>
-                        <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
+                        
+                        
+                        <div className="jobContent">
+                            <h3 className="jobTitle"><b>{job.title}</b></h3>
+                            
+                            <p>{job.company}</p>
+                            <p>{job.location}</p>
+                            <p>{job.category}</p>
+
+
+                            <button>
+                                
+                                     <Link to = {`/jobs/${job.job_id}`} state = {{jobState:job}}>
+                                        Apply
+                                    </Link>
+                            </button>
+
+                            
+                                
+
+                            
+                            
+                        </div>
+
+                        
+                        {/* <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
                             <button class = "edit">Edit</button>
-                        </Link>
-                        <button class = "delete" onClick={(e) => deletePost(`${job.job_id}`,e)}>Delete</button>
+                        </Link> */}
+                        {/* <button class = "delete" onClick={(e) => deletePost(`${job.job_id}`,e)}>Delete</button> */}
 
                     </div>
-                ))}
+                    ))}
+                </div>
             </div>
 
-            <div className="preferences">
+            {/* <div className="preferences">
                     <b>Preferences</b>
                     <div className="preference"> Software</div>
                     <div className="preference"> Full-time</div>
                     <div className="preference"> 120k or higher</div>
                     <button> Change</button>  
                     
-            </div>
+            </div> */}
             
         </div>
     );

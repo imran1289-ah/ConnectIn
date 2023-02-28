@@ -38,7 +38,7 @@ const JobApplication = () =>{
     
     return(
 
-        <div className="JAPContainer">
+        <div data-testid="JAPage"className="JAPContainer">
         
         <p>Job ID : {job.jobState.job_id}</p>
         <p> Job Title: {job.jobState.title}</p>

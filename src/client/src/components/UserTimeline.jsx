@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Context } from "../Store";
+import { Context } from "../UserSession";
 import axios from "axios";
 
 const UserTimeline = () => {

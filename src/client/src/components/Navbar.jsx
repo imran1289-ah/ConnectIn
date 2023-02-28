@@ -14,7 +14,7 @@ import GroupIcon from "@mui/icons-material/Group";
 import HomeIcon from "@mui/icons-material/Home";
 import { IconButton } from "@mui/material";
 import { fontSize } from "@mui/system";
-import { Context } from "../Store";
+import { Context } from "../UserSession";
 import axios from "axios";
 
 const Navbar = () => {

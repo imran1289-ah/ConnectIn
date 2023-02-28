@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import "../css/UserProfile.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Context } from "../Store";
+import { Context } from "../UserSession";
 
 const UserProfile = () => {
   //States

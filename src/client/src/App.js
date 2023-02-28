@@ -17,11 +17,11 @@ import EditJobPosting from "./components/EditJobPosting";
 
 import EditUserProfile from "./components/EditUserProfile";
 import UserTimeline from "./components/UserTimeline";
-import Store from "./Store";
+import UserSession from "./UserSession";
 
 function App() {
   return (
-    <Store>
+    <UserSession>
       {/* Link to pages using React Router DOM */}
       <BrowserRouter>
         <Routes>
@@ -124,7 +124,7 @@ function App() {
           ></Route>
         </Routes>
       </BrowserRouter>
-    </Store>
+    </UserSession>
   );
 }
 

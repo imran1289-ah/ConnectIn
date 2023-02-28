@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 
 const initialState = {
-  email: "",
-  firstname: "",
-  lastname: "",
-  user_id: "",
   isLoggedIn: false,
 };
 
 export const Context = React.createContext();
 
-const Store = ({ children }) => {
+const UserSession = ({ children }) => {
   const [login, setLogin] = useState(initialState);
 
   return (
@@ -18,4 +14,4 @@ const Store = ({ children }) => {
   );
 };
 
-export default Store;
+export default UserSession;

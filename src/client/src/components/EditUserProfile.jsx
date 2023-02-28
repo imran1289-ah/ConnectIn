@@ -131,117 +131,127 @@ const EditUserProfile = () => {
 
   return (
     <div className="EditUserProfileContainer">
-      <div className="left-side"></div>
       {userID && userData ? (
         <form className="userProfileForm" onSubmit={submitEditProfile}>
+          <h1 className="edit-profile-title">Edit your profile</h1>
           <div className="EditUserForm-Container">
-            <label>
-              Email
-              <input
-                type="email"
-                value={userData.email}
-                onChange={(e) =>
-                  setUserData({ ...userData, email: e.target.value })
-                }
-              />
-            </label>
-            <br />
-            <label>
-              Bio
-              <textarea
-                value={userData.bio}
-                onChange={(e) =>
-                  setUserData({ ...userData, bio: e.target.value })
-                }
-              />
-            </label>
-            <br />
-            <label>
-              Work Experience
-              <input
-                type="text"
-                value={workExp}
-                onChange={(e) => setWorkExp(e.target.value)}
-              />
-            </label>
-            <div className="list-button">
-              <button type="button" onClick={workExpChange}>
-                Add
-              </button>
+            <div className="edit-right-side">
+              <label>
+                Email
+                <input
+                  type="email"
+                  value={userData.email}
+                  onChange={(e) =>
+                    setUserData({ ...userData, email: e.target.value })
+                  }
+                />
+              </label>
+              <br />
+              <label>
+                Bio
+                <textarea
+                  rows="3"
+                  value={userData.bio}
+                  onChange={(e) =>
+                    setUserData({ ...userData, bio: e.target.value })
+                  }
+                />
+              </label>
+              <br />
+              <div className="list-button">
+                <button type="button" onClick={workExpChange}>
+                  Add
+                </button>
+              </div>
+              <label>
+                Work Experience
+                <input
+                  type="text"
+                  value={workExp}
+                  onChange={(e) => setWorkExp(e.target.value)}
+                />
+              </label>
+              <br />
+              <div className="list-button">
+                <button type="button" onClick={educationChange}>
+                  Add
+                </button>
+              </div>
+              <label>
+                Education
+                <input
+                  type="text"
+                  value={education}
+                  onChange={(e) => setEducation(e.target.value)}
+                />
+              </label>
+              <br />
             </div>
-            <br />
-            <label>
-              Education
-              <input
-                type="text"
-                value={education}
-                onChange={(e) => setEducation(e.target.value)}
-              />
-            </label>
-            <div className="list-button">
-              <button type="button" onClick={educationChange}>
-                Add
-              </button>
+            <div className="edit-left-side">
+              <div className="list-button">
+                <button type="button" onClick={skillsChange}>
+                  Add
+                </button>
+              </div>
+              <label>
+                Skills
+                <input
+                  type="text"
+                  value={skills}
+                  onChange={(e) => setSkills(e.target.value)}
+                />
+              </label>
+              <br />
+              <div className="list-button">
+                <button type="button" onClick={languagesChange}>
+                  Add
+                </button>
+              </div>
+              <label>
+                Languages
+                <input
+                  type="text"
+                  value={languages}
+                  onChange={(e) => setLanguages(e.target.value)}
+                />
+              </label>
+              <br />
+              <div className="list-button">
+                <button type="button" onClick={volunteeringChange}>
+                  Add
+                </button>
+              </div>
+              <label>
+                Volunteering
+                <textarea
+                  rows="3"
+                  value={volunteering}
+                  onChange={(e) => setVolunteering(e.target.value)}
+                />
+              </label>
+              <br />
+              <label>
+                Resume
+                <input
+                  type="file"
+                  accept=".pdf"
+                  onChange={handleResumeChange}
+                />
+              </label>
+              <br />
+              <label>
+                Cover Letter
+                <input
+                  type="file"
+                  accept=".pdf"
+                  onChange={handleCoverLetterChange}
+                />
+              </label>
             </div>
-            <br />
-            <label>
-              Skills
-              <input
-                type="text"
-                value={skills}
-                onChange={(e) => setSkills(e.target.value)}
-              />
-            </label>
-            <div className="list-button">
-              <button type="button" onClick={skillsChange}>
-                Add
-              </button>
-            </div>
-            <br />
-            <label>
-              Languages
-              <input
-                type="text"
-                value={languages}
-                onChange={(e) => setLanguages(e.target.value)}
-              />
-            </label>
-            <div className="list-button">
-              <button type="button" onClick={languagesChange}>
-                Add
-              </button>
-            </div>
-            <br />
-            <label>
-              Volunteering
-              <textarea
-                value={volunteering}
-                onChange={(e) => setVolunteering(e.target.value)}
-              />
-            </label>
-            <div className="list-button">
-              <button type="button" onClick={volunteeringChange}>
-                Add
-              </button>
-            </div>
-            <br />
+          </div>
+          <div className="submit-button">
             <button type="submit">Save changes</button>
           </div>
-          <label>
-            Resume
-            <input type="file" accept=".pdf" onChange={handleResumeChange} />
-          </label>
-          <br />
-          <label>
-            Cover Letter
-            <input
-              type="file"
-              accept=".pdf"
-              onChange={handleCoverLetterChange}
-            />
-          </label>
-          <br />
-          <button type="submit">Save Changes</button>
         </form>
       ) : (
         <h1 style={{ textAlign: "center" }}>Please login to your account</h1>

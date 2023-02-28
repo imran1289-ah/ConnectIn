@@ -34,13 +34,8 @@
 
 }
 
-.JAPContainer .Textbox {
+.JAPContainer .textbox {
     margin: 35px;
-    border: 2px grey solid;
-    border-radius: 10px;
-    background-color: lightgrey;
-    color: black;
-    height: 25px;
 }
 
 .JAPContainer .cv {

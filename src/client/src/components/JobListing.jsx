@@ -6,6 +6,8 @@ import {Link} from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
+import { createTheme } from '@mui/material/styles';
+
 
 
 
@@ -31,6 +33,9 @@ const JobListing = () =>{
         setJobs(data)
     }
 
+    const learnMore = async () => {
+        
+    }
 
     const deletePost = async (jobId,e) => {
         e.preventDefault();
@@ -49,6 +54,11 @@ const JobListing = () =>{
         });
       };
     
+      const linkStyle = {
+        height: "100%",
+        width:"100%",
+        display:'inline-block'
+      };
     return(
             
         <div className="jobPosts_Container">
@@ -76,21 +86,24 @@ const JobListing = () =>{
                             <p>{job.company}</p>
                             <p>{job.location}</p>
                             <p>{job.category}</p>
-
-
-                            <button>
-                                
-                                     <Link to = {`/jobs/${job.job_id}`} state = {{jobState:job}}>
-                                        Apply
-                                    </Link>
-                            </button>
-
                             
-                                
+                           
+                               
+                            <Button>
+                                <Link to = {`/jobs/${job.job_id}`} state = {{jobState:job}} style ={linkStyle} >
+                                    Select
+                                </Link>
+                            </Button>
+                            {/* <Button onClick={learnMore()}>
+                                Learn More
+                            </Button> */}
+                                    
+                              
+                            
+                            
+                        {/* </Link> */}
 
-                            
-                            
-                        </div>
+                    </div>
 
                         
                         {/* <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>

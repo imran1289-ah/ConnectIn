@@ -11,7 +11,7 @@ app.use(express.json());
 const port = 9000;
 dotenv.config();
 
-//Seission length
+//Session length
 const session_length = 1000 * 60 * 60;
 
 //MongoDB seission store

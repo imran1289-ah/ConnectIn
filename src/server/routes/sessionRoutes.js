@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const sessionController = require("../controllers/seissionController");
+const sessionController = require("../controllers/sessionController");
 
 //Route to get seission information
 router.get("/", sessionController.getSessionInfo);

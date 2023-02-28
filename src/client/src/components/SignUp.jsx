@@ -13,26 +13,26 @@ function SignUp() {
     firstName: "",
     lastName: "",
     email: "",
-    password: ""
+    password: "",
   });
 
   const navigate = useNavigate();
 
-  const submitSignup = async e => {
+  const submitSignup = async (e) => {
     e.preventDefault();
     axios
       .post("http://localhost:9000/users", {
         firstname: userData.firstName,
         lastname: userData.lastName,
         email: userData.email,
-        password: userData.password
+        password: userData.password,
       })
-      .then(response => {
+      .then((response) => {
         console.log(response.data);
         alert("Welcome to ConnectIn");
-        navigate("/UserProfile");
+        navigate("/signin");
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         alert("Error loggin in");
       });
@@ -60,10 +60,10 @@ function SignUp() {
                         placeholder="Enter Your First Name"
                         name="firstname"
                         value={userData.firstName}
-                        onChange={e =>
+                        onChange={(e) =>
                           setUserData({
                             ...userData,
-                            firstName: e.target.value
+                            firstName: e.target.value,
                           })
                         }
                       ></input>
@@ -74,7 +74,15 @@ function SignUp() {
                     <label className="PlaceholderSignup">
                       Last Name
                       <br></br>
-                      <input className="Input" placeholder="Enter Your Last Name" name="lastname" value={userData.lastName} onChange={e => setUserData({ ...userData, lastName: e.target.value })}></input>
+                      <input
+                        className="Input"
+                        placeholder="Enter Your Last Name"
+                        name="lastname"
+                        value={userData.lastName}
+                        onChange={(e) =>
+                          setUserData({ ...userData, lastName: e.target.value })
+                        }
+                      ></input>
                     </label>
                     <br></br>
                     <br></br>
@@ -82,21 +90,39 @@ function SignUp() {
                     <label className="PlaceholderSignup">
                       Email
                       <br></br>
-                      <input className="Input" placeholder="Enter Your Email" name="email" value={userData.email} onChange={e => setUserData({ ...userData, email: e.target.value })}></input>
+                      <input
+                        className="Input"
+                        placeholder="Enter Your Email"
+                        name="email"
+                        value={userData.email}
+                        onChange={(e) =>
+                          setUserData({ ...userData, email: e.target.value })
+                        }
+                      ></input>
                     </label>
                     <br></br>
                     <br></br>
                     <label className="PlaceholderSignup">
                       Password
                       <br></br>
-                      <input className="Input" placeholder="Enter your password" name="password" type="password" value={userData.password} onChange={e => setUserData({ ...userData, password: e.target.value })}></input>
+                      <input
+                        className="Input"
+                        placeholder="Enter your password"
+                        name="password"
+                        type="password"
+                        value={userData.password}
+                        onChange={(e) =>
+                          setUserData({ ...userData, password: e.target.value })
+                        }
+                      ></input>
                     </label>
                     <br></br>
                     <br></br>
                     <div className="LinkSignup">
                       {" "}
                       <strong>
-                        Already have an account ? <Link to={`/signin`}> Log In</Link>
+                        Already have an account ?{" "}
+                        <Link to={`/signin`}> Log In</Link>
                       </strong>
                     </div>
                   </div>
@@ -112,18 +138,26 @@ function SignUp() {
           <Col md={6}>
             <div className="WelcomeText">
               <h1>
-                <p> Sign up today to connect with your boss, your colleagues, and your friends! </p>
+                <p>
+                  {" "}
+                  Sign up today to connect with your boss, your colleagues, and
+                  your friends!{" "}
+                </p>
               </h1>
               <h3>
                 <p>
                   {" "}
-                  We are the leading platform for networking and sharing your professional activities.
+                  We are the leading platform for networking and sharing your
+                  professional activities.
                   <br></br>
-                  Our mission is to help you to become more productive in your life.
+                  Our mission is to help you to become more productive in your
+                  life.
                   <br></br>
-                  Social networking has never been easier with the help of our dedicated team of developers.
+                  Social networking has never been easier with the help of our
+                  dedicated team of developers.
                   <br></br>
-                  Join us today and you won't regret it. We are like LinkedIn, but better!{" "}
+                  Join us today and you won't regret it. We are like LinkedIn,
+                  but better!{" "}
                 </p>
               </h3>
             </div>

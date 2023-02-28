@@ -37,3 +37,5 @@ We decided to go with the MERN stack, so we'll use:
 * Messaging other users
 * Creating job postings
 * Searching and Applying for jobs
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Kunal22shah_SOEN390-Team05-W23&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Kunal22shah_SOEN390-Team05-W23)

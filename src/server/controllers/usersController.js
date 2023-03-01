@@ -21,8 +21,9 @@ const createUser = asyncHandler(async(req, res) => {
     }
 
     // Hashing passwords to encrypt user data
-    //const hashPwd = await bcrypt.hash(password,10)
-    const userDocument = { firstname, lastname, email, password };
+    const saltRounds = 10;
+    const hashPwd = await bcrypt.hash(password, saltRounds);
+    const userDocument = { firstname, lastname, email, password: hashPwd };
     const newUser = await User.create(userDocument);
 
     if (newUser) {
@@ -47,24 +48,26 @@ const getUserByEmail = async(req, res) => {
 
 // This action is to verify the credentials of the user when logging in
 const verifyUser = async(req, res) => {
-    const user = await User.findOne({
-        email: req.body.email,
-        password: req.body.password,
-    }).then((user) => {
-        if (user) {
-            const userSession = {
-                email: user.email,
-                user_id: user._id,
-                firstname: user.firstname,
-                lastname: user.lastname,
-            };
-            req.session.user = userSession;
-            console.log(`Found user ${user.email}`);
-            res.status(200).json({ message: "login succesfull", userSession });
-        } else {
-            return res.status(401).json({ message: 'Incorrect password' });
-        }
-    })
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+        return res.status(401).json({ message: "User not found" });
+    }
+
+    const match = await bcrypt.compare(password, user.password);
+    if (match) {
+        const userSession = {
+            email: user.email,
+            user_id: user._id,
+            firstname: user.firstname,
+            lastname: user.lastname,
+        };
+        req.session.user = userSession;
+        console.log(`Found user ${user.email}`);
+        res.status(200).json({ message: "login succesfull", userSession });
+    } else {
+        return res.status(401).json({ message: "Incorrect password" });
+    }
 };
 
 //This will be used to update the user's profile information

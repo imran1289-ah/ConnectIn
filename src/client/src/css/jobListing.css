@@ -43,6 +43,7 @@
   height: auto;
   border-radius: 10px;
   flex-direction: row;
+  box-shadow: -3px 2px 2px #dff3f9;
 
 }
 

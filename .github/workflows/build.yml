@@ -1,9 +1,11 @@
+ 
 name: Build
 on:
   push:
     branches:
       -main
       -dev
+      -dev_new
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:

@@ -21,12 +21,14 @@ const createUser = asyncHandler(async(req, res) => {
     }
 
     // Hashing passwords to encrypt user data
-    const hashPwd = await bcrypt.hash(password, 10);
-    const userDocument = { firstname, lastname, email, password: hashPwd };
+    //const hashPwd = await bcrypt.hash(password,10)
+    const userDocument = { firstname, lastname, email, password };
     const newUser = await User.create(userDocument);
 
     if (newUser) {
-        res.status(201).json({ message: "User successfully created!", id: newUser._id });
+        res
+            .status(201)
+            .json({ message: "User successfully created!", id: newUser._id });
     } else {
         res.status(400).json({ message: "User unsuccessfully created." });
     }
@@ -41,70 +43,63 @@ const getUserByEmail = async(req, res) => {
             return res.status(400).json({ message: "No user found" });
         }
     });
-
 };
 
 // This action is to verify the credentials of the user when logging in
 const verifyUser = async(req, res) => {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email }).exec();
-
-    if (!user) {
-        return res.status(404).json({ message: 'User not found' });
-    }
-
-    const passwordMatches = await bcrypt.compare(password, user.password);
-
-    if (passwordMatches) {
-        req.session.email = user.email;
-        console.log(`Found user ${user.email}`);
-        res.status(200).json(user);
-    } else {
-        return res.status(401).json({ message: 'Incorrect password' });
-    }
+    const user = await User.findOne({
+        email: req.body.email,
+        password: req.body.password,
+    }).then((user) => {
+        if (user) {
+            const userSession = {
+                email: user.email,
+                user_id: user._id,
+                firstname: user.firstname,
+                lastname: user.lastname,
+            };
+            req.session.user = userSession;
+            console.log(`Found user ${user.email}`);
+            res.status(200).json({ message: "login succesfull", userSession });
+        } else {
+            return res.status(401).json({ message: 'Incorrect password' });
+        }
+    })
 };
 
 //This will be used to update the user's profile information
-const updateUser = async(req, res) => {
-
-};
-//Action of deleting  a user from awaiting connections list 
+const updateUser = async(req, res) => {};
+//Action of deleting  a user from awaiting connections list
 const deleteAwaitingConnections = async(req, res) => {
     const { firstname, lastname } = req.body;
     const _id = "63f41b0123e995b64434ece0";
     const user = await User.findOneAndUpdate({ _id: _id }, {
         $pull: {
-            waitingConnections: { firstname: firstname, lastname: lastname }
-        }
-    })
+            waitingConnections: { firstname: firstname, lastname: lastname },
+        },
+    });
     if (user) {
-        console.log('Succesfully updated awaiting connections');
-        res.status(200).json({ message: "Succesfully deleted user " })
+        console.log("Succesfully updated awaiting connections");
+        res.status(200).json({ message: "Succesfully deleted user " });
     } else {
         return res.status(404).json({
-            message: "Error not found"
+            message: "Error not found",
         });
     }
-
 };
 //Action of transferring a connection from awaiting connections list to connections list
 const updateConnections = async(req, res) => {
     const { firstname, lastname } = req.body;
     const _id = "63f41b0123e995b64434ece0";
-    const user = await User.findOneAndUpdate({ _id: _id }, {
-        $addToSet: {
-            connections: { firstname: firstname, lastname: lastname }
-        }
-    })
+    const user = await User.findOneAndUpdate({ _id: _id }, { $addToSet: { connections: { firstname: firstname, lastname: lastname } } });
     if (user) {
-        console.log('Successfully updated awaiting connections');
-        res.status(200).json({ message: "Successfully added user to connections" })
+        console.log("Succesfully updated awaiting connections");
+        res.status(200).json({ message: "Succesfully added user to connections" });
     } else {
         return res.status(404).json({
-            message: "Error not found"
+            message: "Error not found",
         });
     }
-
 };
 
 //Action to add user's name and Id to another user's AwaitingConnections
@@ -112,15 +107,15 @@ const updateAwaitingConnections = async(req, res) => {
     const { _id } = req.body;
     const user = await User.findOneAndUpdate({ _id: _id }, {
         $addToSet: {
-            waitingConnections: { firstname: "Ittle", lastname: "doo" }
-        }
-    })
+            waitingConnections: { firstname: "Ittle", lastname: "doo" },
+        },
+    });
     if (user) {
-        console.log('Successfully updated awaiting connections');
-        res.status(200).json({ message: "Successfully added user `${_id}`" })
+        console.log("Succesfully updated awaiting connections");
+        res.status(200).json({ message: "Succesfully added user `${_id}`" });
     } else {
         return res.status(404).json({
-            message: "Error not found"
+            message: "Error not found",
         });
     }
     //return res.status(200).json({message:"sent request sucessfully"});
@@ -157,7 +152,6 @@ const getUser = (req, res, next) => {
 
 //const updateUser = async (req, res) => {};
 
-
 //Action to return list user's based on the firstname
 const search = async(req, res) => {
     const firstname = req.query.term;
@@ -174,7 +168,6 @@ const search = async(req, res) => {
 };
 const deleteUser = async(req, res) => {};
 
-
 //Action to return public user info
 const getUserInfo = async(req, res) => {
     const user = await User.findById(req.params.id).then((user) => {
@@ -189,33 +182,41 @@ const getUserInfo = async(req, res) => {
 
 //Action to edit the user profile
 const editUserInfo = async(req, res) => {
-
-    const { email, bio, headLine, languages, education, volunteering, skills, workExp } = req.body;
+    const {
+        email,
+        bio,
+        headLine,
+        languages,
+        education,
+        volunteering,
+        skills,
+        workExp,
+    } = req.body;
     User.findByIdAndUpdate(req.params.id)
-        .then(user => {
+        .then((user) => {
             if (email) {
-                user.email = email
+                user.email = email;
             }
             if (bio) {
-                user.bio = bio
+                user.bio = bio;
             }
             if (headLine) {
-                user.headLine = headLine
+                user.headLine = headLine;
             }
             if (languages.length > 0) {
-                user.languages = languages
+                user.languages = languages;
             }
             if (education.length > 0) {
-                user.education = education
+                user.education = education;
             }
             if (volunteering.length > 0) {
-                user.volunteering = volunteering
+                user.volunteering = volunteering;
             }
             if (skills.length > 0) {
-                user.skills = skills
+                user.skills = skills;
             }
             if (workExp.length > 0) {
-                user.workExp = workExp
+                user.workExp = workExp;
             }
 
             user.save()
@@ -238,29 +239,24 @@ const getUserJobsApplied = async(req, res) => {
     try {
         const user = await User.findOne({ _id: req.params.id });
         return res.status(200).json(user.jobsApplied);
-
-
-
     } catch (err) {
         res.status(400).json({ message: "Unable to retrieve jobs applied." });
     }
 };
 
 const addJobAppliedToUser = async(req, res) => {
-
     User.findById(req.body.userId).then((user) => {
         const array = user.jobsApplied;
         array.push(req.body.jobId);
         user.jobsApplied = array;
-        user.save()
+        user
+            .save()
             .then(() => {
-                console.log('Job id succesfully added to user!')
+                console.log("Job id succesfully added to user!");
             })
-            .catch(err => console.log(err));
-
+            .catch((err) => console.log(err));
     });
     res.send(201);
-
 };
 
 module.exports = {
@@ -275,11 +271,10 @@ module.exports = {
     getAwaitingConnections,
     deleteAwaitingConnections,
 
-
     //getUserByEmail
     editUserInfo,
 
     getUserJobsApplied,
     addJobAppliedToUser,
-    getUser
+    getUser,
 };

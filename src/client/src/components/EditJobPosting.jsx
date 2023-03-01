@@ -3,6 +3,8 @@ import "../css/editjobposting.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { TextField } from "@mui/material";
+import swal from 'sweetalert';
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -36,12 +38,18 @@ function EditJobPosting() {
     })
     .then(response => {
       console.log(response.data);
-      alert("Update Successful!");
+      swal("Saved!","Successfully updated job posting!","success",{
+        button:false,
+        timer:2000
+      });
       navigate("/jobs");
     })
     .catch(error => {
       console.log(error);
-      alert("Update Failed! Please check the logs!");
+      swal("Failed to Save!","Cannot updated the job posting","error",{
+        button:false,
+        timer:2000
+      });
     });
   };
 
@@ -54,52 +62,39 @@ function EditJobPosting() {
             <h3 className="Title"> EDIT YOUR POSTING </h3>
             <form onSubmit={savePost}>
               <div className="FormEditPost">
-                <label className="PlaceholderEditPost">
-                  Title {" "}
+                <label className="PlaceholderEditPost">Title</label>
                   <br></br>
-                  <input
-                    aria-label="jobtitle"
-                    className="Input"
-                    name="jobtitle"
-                    value={jobData.title}
-                    pattern="[a-zA-Z\s]+"
-                    onChange={e =>
-                      setjobData({
-                        ...jobData,
-                        title: e.target.value
-                      })
-                    }
-                  ></input>
-                </label>
+                  <TextField sx={{width: { sm: 400, md: 600 }}} fullWidth className='editInput' id="job_title" value = {jobData.title} variant="outlined"
+                   pattern="[a-zA-Z\s]+" onChange={e =>
+                    setjobData({
+                      ...jobData,
+                      title: e.target.value
+                    })
+                  }/>
                 <br></br>
                 <br></br>
-
-                <label className="PlaceholderEditPost">
-                  Description {" "}
+                <label className="PlaceholderEditPost">Description</label>
                   <br></br>
-                  <input className="InputJobDescription" name="jobdescription" value={jobData.description} onChange={e => setjobData({ ...jobData, description: e.target.value })}></input>
-                </label>
+                  <TextField sx={{width: { sm: 400, md: 600 }}} fullWidth className='editInput' id="job_description" multiline rows={6} value = {jobData.description} variant="outlined"
+                   pattern="[a-zA-Z\s]+" onChange={e => setjobData({ ...jobData, description: e.target.value })}/>
                 <br></br>
                 <br></br>
-
-                <label className="PlaceholderEditPost">
-                  Annual Pay {" "}
+                <label className="PlaceholderEditPost">Annual Pay</label>
                   <br></br>
-                  <input className="Input" name="salary" type="number" pattern="\d+" value={jobData.salary} onChange={e => setjobData({ ...jobData, salary: e.target.value })}></input>
-                </label>
+                  <TextField sx={{width: { sm: 400, md: 600 }}} fullWidth className='editInput' id="salary" value = {jobData.salary} variant="outlined"
+                   pattern="\d+" onChange={e => setjobData({ ...jobData, salary: e.target.value })}/>
                 <br></br>
                 <br></br>
-                <label className="PlaceholderEditPost">
-                  Full-Time/Part-Time {" "}
+                <label className="PlaceholderEditPost">Category(Full/Part Time)</label>
                   <br></br>
-                  <input className="Input" name="category" value={jobData.category} onChange={e => setjobData({ ...jobData, category: e.target.value })}></input>
-                </label>
-                <br></br>
+                  <TextField sx={{width: { sm: 400, md: 600 }}} fullWidth className='editInput' id="category" value = {jobData.category} variant="outlined"
+                  pattern="\d+" onChange={e => setjobData({ ...jobData, salary: e.target.value })}/>                <br></br>
                 <br></br>
                 <label className="PlaceholderEditPost">
                   Location {" "}
                   <br></br>
-                  <input className="Input" name="worklocation" value={jobData.location} onChange={e => setjobData({ ...jobData, location: e.target.value })}></input>
+                  <TextField sx={{width: { sm: 400, md: 600 }}} fullWidth className='editInput' id="job_title" value = {jobData.location} variant="outlined" pattern="[a-zA-Z\s]+" 
+                  onChange={e => setjobData({ ...jobData, location: e.target.value })}/>
                 </label>
                 <br></br>
                 <br></br>

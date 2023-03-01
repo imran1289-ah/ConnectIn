@@ -38,13 +38,18 @@ function EditJobPosting() {
     })
     .then(response => {
       console.log(response.data);
-      swal("Saved!","Successfully updated the job posting!","success");
+      swal("Saved!","Successfully updated job posting!","success",{
+        button:false,
+        timer:2000
+      });
       navigate("/jobs");
     })
     .catch(error => {
       console.log(error);
-      swal("Failed to Save!","Cannot updated the job posting","error");
-      navigate("/jobs");
+      swal("Failed to Save!","Cannot updated the job posting","error",{
+        button:false,
+        timer:2000
+      });
     });
   };
 

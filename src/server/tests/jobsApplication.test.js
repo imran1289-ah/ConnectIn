@@ -1,6 +1,7 @@
 const request = require('supertest');
 const app = require('../index')
 const mongoose = require("mongoose");
+const User = require('../models/user');
 
 
 
@@ -25,12 +26,11 @@ beforeAll(async() => {
 
 });
 
-
-
-afterAll((done) => {
+afterAll(async() => {
+    // Delete the user from the database after running all the tests
+    await User.findByIdAndDelete(userId);
     // Closing the DB connection allows Jest to exit successfully.
     mongoose.disconnect();
-    done();
     app.close();
 });
 

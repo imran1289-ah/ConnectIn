@@ -4,9 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { TextField } from "@mui/material";
 import Button from '@mui/material/Button'
-import Alert from '@mui/material/Alert';
 import swal from 'sweetalert';
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 const JobApplication = () =>{
@@ -49,19 +48,28 @@ const JobApplication = () =>{
         }
     }
 
+    const backFunction = () =>{
+        navigate("/jobs");
+    }
 
     return(
 
         <div data-testid="JAPage"className="JAPContainer">
 
+        <button onClick = {backFunction}><ArrowBackIcon/></button>
+
+        <div className="jobDetails">
+        <h1>You're applying for the following job:</h1>
+        <p> Title: {job.jobState.title}</p>
+        <p> Description: {job.jobState.description}</p>
+        <p>Salary: ${job.jobState.salary}</p>
+        <p>Category: {job.jobState.category}</p>
+        </div>
         
-        <p>Job ID : {job.jobState.job_id}</p>
-        <p> Job Title: {job.jobState.title}</p>
-        <p> Job Description : {job.jobState.description}</p>
+        <div className="jobApplicationForm">
 
         <form>
         
-
             <TextField className ="textbox" id="fname" label="First Name" variant="outlined" defaultValue="Default fname"/>
             <TextField className ="textbox" id="lname" label="Last Name" variant="outlined" defaultValue="Default lname"/>
             <br/>
@@ -69,29 +77,23 @@ const JobApplication = () =>{
             <TextField className ="textbox" id="phoneNumber" label="Phone Number" variant="outlined" defaultValue="default phone"/>
             <br/>
             
-            <Button variant="contained" component="label" style={{
-                borderRadius: 10,
-                backgroundColor: "#19718d",
-                fontSize: "14px",
-                margin: "30px"
-                }}>
+            <Button className ="uploadButton"variant="contained" component="label">
                 Upload CV
                 <input hidden accept="image/*" multiple type="file" />
             </Button>
-        
+    
 
         </form>
 
 
-        <Button onClick ={submitApplication} variant="contained" component="label" style={{
-                            borderRadius: 10,
-                            backgroundColor: "#19718d",
-                            fontSize: "14px",
-                            margin: "30px"
-                            }}>
-            Send Application
+            <Button className ="sendApplicationButton"onClick ={submitApplication} variant="contained" component="label">
+                Send Application
 
-        </Button>
+            </Button>
+
+        </div>
+
+        
 
         </div> 
         

@@ -42,6 +42,7 @@
   width: 95%;
   height: auto;
   border-radius: 10px;
+  flex-direction: row;
 
 }
 
@@ -54,18 +55,20 @@
 .jobPosts .jobs .jobPost .jobContent {
 
   padding-left: 50px;
-  display: inline-block;
-  width: 100%;
+  display: block;
+  width: 70%;
 
 }
 
-.jobPosts .jobs .jobPost .jobContent .AlertJobListing {
+.jobPosts .jobs .jobPost .AlertJobListing {
 
     border-radius: 10px;
-    width: 40%;
+    width: 55%;
     border: 1px solid #19718d;
-    margin-top: 10px;
+    margin: 10px;
     color: #19718d;
+    height: 40px;
+    border: 1px #19718d solid;
 }
 
 .jobPosts .jobs .jobPost .jobContent .jobTitle:hover {
@@ -73,7 +76,7 @@
   text-decoration: underline;
 }
 
-.jobPosts .jobs .jobPost .jobContent .Icons{
+.jobPosts .jobs .jobPost .jobContent .Tags{
   display: flex;
   flex-direction: row;
 

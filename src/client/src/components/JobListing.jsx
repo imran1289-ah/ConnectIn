@@ -6,10 +6,10 @@ import {Link} from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
-import { createTheme } from '@mui/material/styles';
 import { Alert, AlertTitle } from "@mui/material";
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import WorkIcon from '@mui/icons-material/Work';
+import PlaceIcon from '@mui/icons-material/Place';
+import BusinessIcon from '@mui/icons-material/Business';
 
 
 
@@ -87,28 +87,28 @@ const JobListing = () =>{
                         
                         
                         
-                    <div className="jobContent">
+                            <div className="jobContent">
 
-                            {jobsApplied.includes(job.job_id) ? <Alert className ="AlertJobListing" severity='info' variant="outlined"><AlertTitle>You've already applied for this job</AlertTitle></Alert>: <></> }
-                            <h3 className="jobTitle"><b>{job.title}</b></h3>
+                                
+                                <h3 className="jobTitle"><b>{job.title}</b></h3>
+                                
+                                <p><BusinessIcon></BusinessIcon>{job.company}</p>
+                                <p><PlaceIcon></PlaceIcon>{job.location}</p>
+
+                                <div className="Tags">
+                                    <h3 className="jobCategory"><WorkIcon/>{job.category}</h3>
+                                
+                                </div>
                             
-                            <p>{job.company}</p>
-                            <p>{job.location}</p>
-
-                            <div className="Icons">
-                                <h3 className="jobCategory"><WorkIcon/>{job.category}</h3>
+                                
+                                    <Button className ="selectButton"variant="contained" component="label">
+                                                    <Link className="jobListLink"to = {`/jobs/${job.job_id}`} state = {{jobState:job}} style ={linkStyle} >
+                                                        Select
+                                                </Link>
+                                    </Button>
 
                             </div>
-                            
-                                
-                        <Button className ="selectButton"variant="contained" component="label">
-                                        <Link className="jobListLink"to = {`/jobs/${job.job_id}`} state = {{jobState:job}} style ={linkStyle} >
-                                            Select
-                                       </Link>
-                        </Button>
-                                
-
-                    </div>
+                            {jobsApplied.includes(job.job_id) ? <Alert className ="AlertJobListing" severity='info' variant="outlined"><AlertTitle>You've already applied for this job.</AlertTitle></Alert>: <></> }
 
                         
                         {/* <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>

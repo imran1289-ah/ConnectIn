@@ -12,21 +12,23 @@ const createUser = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Please fill out all fields!" });
   }
 
-    // Checks if a duplicate user exists on the database
-    const isThereADuplicate = await User.findOne({ email }).lean().exec();
-    if (isThereADuplicate) {
-        return res
-            .status(409)
-            .json({ message: "A user with this email already exists." });
-    }
+  // Checks if a duplicate user exists on the database
+  const isThereADuplicate = await User.findOne({ email }).lean().exec();
+  if (isThereADuplicate) {
+    return res
+      .status(409)
+      .json({ message: "A user with this email already exists." });
+  }
 
   // Hashing passwords to encrypt user data
   //const hashPwd = await bcrypt.hash(password,10)
   const userDocument = { firstname, lastname, email, password };
   const newUser = await User.create(userDocument);
-  
+
   if (newUser) {
-    res.status(201).json({ message: "User successfully created!", id: newUser._id });
+    res
+      .status(201)
+      .json({ message: "User successfully created!", id: newUser._id });
   } else {
     res.status(400).json({ message: "User unsuccessfully created." });
   }
@@ -41,7 +43,6 @@ const getUserByEmail = async (req, res) => {
       return res.status(400).json({ message: "No user found" });
     }
   });
-
 };
 
 // This action is to verify the credentials of the user when logging in
@@ -51,9 +52,15 @@ const verifyUser = async (req, res) => {
     password: req.body.password,
   }).then((user) => {
     if (user) {
-      req.session.email = user.email;
+      const userSession = {
+        email: user.email,
+        user_id: user._id,
+        firstname: user.firstname,
+        lastname: user.lastname,
+      };
+      req.session.user = userSession;
       console.log(`Found user ${user.email}`);
-      res.status(200).json(user);
+      res.status(200).json({ message: "login succesfull", userSession });
     } else {
       return res.status(404).json({
         errors: [{ user: "not found" }],
@@ -63,80 +70,79 @@ const verifyUser = async (req, res) => {
 };
 
 //This will be used to update the user's profile information
-const updateUser = async (req, res) => {
-  
-};
-//Action of deleting  a user from awaiting connections list 
-const deleteAwaitingConnections  = async (req, res) => {
-  const { firstname , lastname} = req.body;
-  const  _id = "63f41b0123e995b64434ece0";
+const updateUser = async (req, res) => {};
+//Action of deleting  a user from awaiting connections list
+const deleteAwaitingConnections = async (req, res) => {
+  const { firstname, lastname } = req.body;
+  const _id = "63f41b0123e995b64434ece0";
   const user = await User.findOneAndUpdate(
-    {_id: _id},
-    {$pull: { waitingConnections: {firstname: firstname, lastname: lastname}
-    }})
-    if (user) {
-      console.log('Succesfully updated awaiting connections');
-      res.status(200).json({message: "Succesfully deleted user "})
+    { _id: _id },
+    {
+      $pull: {
+        waitingConnections: { firstname: firstname, lastname: lastname },
+      },
     }
-    else {
-      return res.status(404).json({
-        message: "Error not found"
-      });
-    }
-
+  );
+  if (user) {
+    console.log("Succesfully updated awaiting connections");
+    res.status(200).json({ message: "Succesfully deleted user " });
+  } else {
+    return res.status(404).json({
+      message: "Error not found",
+    });
+  }
 };
 //Action of transferring a connection from awaiting connections list to connections list
 const updateConnections = async (req, res) => {
-  const { firstname , lastname} = req.body;
-  const  _id = "63f41b0123e995b64434ece0";
+  const { firstname, lastname } = req.body;
+  const _id = "63f41b0123e995b64434ece0";
   const user = await User.findOneAndUpdate(
-    {_id: _id},
-    {$addToSet: { connections: {firstname: firstname, lastname: lastname}
-    }})
-    if (user) {
-      console.log('Succesfully updated awaiting connections');
-      res.status(200).json({message: "Succesfully added user to connections"})
-    }
-    else {
-      return res.status(404).json({
-        message: "Error not found"
-      });
-    }
-
+    { _id: _id },
+    { $addToSet: { connections: { firstname: firstname, lastname: lastname } } }
+  );
+  if (user) {
+    console.log("Succesfully updated awaiting connections");
+    res.status(200).json({ message: "Succesfully added user to connections" });
+  } else {
+    return res.status(404).json({
+      message: "Error not found",
+    });
+  }
 };
 
 //Action to add user's name and Id to another user's AwaitingConnections
 const updateAwaitingConnections = async (req, res) => {
-  const { _id} = req.body;
+  const { _id } = req.body;
   const user = await User.findOneAndUpdate(
-    {_id: _id},
-    {$addToSet: { waitingConnections: {firstname:"Ittle", lastname:"doo"}
-    }})
-    if (user) {
-      console.log('Succesfully updated awaiting connections');
-      res.status(200).json({message: "Succesfully added user `${_id}`"})
+    { _id: _id },
+    {
+      $addToSet: {
+        waitingConnections: { firstname: "Ittle", lastname: "doo" },
+      },
     }
-    else {
-      return res.status(404).json({
-        message: "Error not found"
-      });
-    }
+  );
+  if (user) {
+    console.log("Succesfully updated awaiting connections");
+    res.status(200).json({ message: "Succesfully added user `${_id}`" });
+  } else {
+    return res.status(404).json({
+      message: "Error not found",
+    });
+  }
   //return res.status(200).json({message:"sent request sucessfully"});
 };
 
 //Action to retrieve waiting connections
 const getAwaitingConnections = async (req, res) => {
   const id = "63f41b0123e995b64434ece0";
-  const user = await User.findById(id)
-if(user){
+  const user = await User.findById(id);
+  if (user) {
     res.status(200).json(user.waitingConnections);
-}
-else{
-  return res.status(404).json({
-         message: "Error not found"
-       });
-}
-
+  } else {
+    return res.status(404).json({
+      message: "Error not found",
+    });
+  }
 };
 //get user by ID
 const getUser = (req, res, next) => {
@@ -156,110 +162,113 @@ const getUser = (req, res, next) => {
 
 //const updateUser = async (req, res) => {};
 
-
 //Action to return list user's based on the firstname
-const search = async(req, res) => {
-    const firstname = req.query.term;
+const search = async (req, res) => {
+  const firstname = req.query.term;
 
-    const users = await User.find({
-        firstname: { $regex: firstname, $options: "i" },
-    }).then((users) => {
-        if (users) {
-            res.status(200).json(users);
-        } else {
-            return res.status(400).json({ message: "No user exists with this name" });
-        }
-    });
+  const users = await User.find({
+    firstname: { $regex: firstname, $options: "i" },
+  }).then((users) => {
+    if (users) {
+      res.status(200).json(users);
+    } else {
+      return res.status(400).json({ message: "No user exists with this name" });
+    }
+  });
 };
 const deleteUser = async (req, res) => {};
 
-
 //Action to return public user info
-const getUserInfo = async(req, res) => {
-    const user = await User.findById(req.params.id).then((user) => {
-        if (user) {
-            console.log(`Found user ${user}`);
-            res.status(200).json(user);
-        } else {
-            return res.status(400).json({ message: "No user found" });
-        }
-    });
+const getUserInfo = async (req, res) => {
+  const user = await User.findById(req.params.id).then((user) => {
+    if (user) {
+      console.log(`Found user ${user}`);
+      res.status(200).json(user);
+    } else {
+      return res.status(400).json({ message: "No user found" });
+    }
+  });
 };
 
 //Action to edit the user profile
-const editUserInfo = async(req, res) => {
-  
-  const { email, bio, headLine, languages, education, volunteering, skills, workExp } = req.body;
+const editUserInfo = async (req, res) => {
+  const {
+    email,
+    bio,
+    headLine,
+    languages,
+    education,
+    volunteering,
+    skills,
+    workExp,
+  } = req.body;
   User.findByIdAndUpdate(req.params.id)
-    .then(user => {
+    .then((user) => {
       if (email) {
-        user.email = email
+        user.email = email;
       }
       if (bio) {
-        user.bio = bio
+        user.bio = bio;
       }
       if (headLine) {
-        user.headLine = headLine
+        user.headLine = headLine;
       }
       if (languages.length > 0) {
-        user.languages = languages
+        user.languages = languages;
       }
       if (education.length > 0) {
-        user.education = education
+        user.education = education;
       }
       if (volunteering.length > 0) {
-        user.volunteering = volunteering
+        user.volunteering = volunteering;
       }
       if (skills.length > 0) {
-        user.skills = skills
+        user.skills = skills;
       }
       if (workExp.length > 0) {
-        user.workExp = workExp
+        user.workExp = workExp;
       }
 
-      user.save()
+      user
+        .save()
         .then(() => {
-          console.log("User was updated in the database")
-          console.log(user)
-          res.status(200).json(user)
-          res.end()
+          console.log("User was updated in the database");
+          console.log(user);
+          res.status(200).json(user);
+          res.end();
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     })
     .catch(() => {
-      res.status(400).json({ message: "Unexpected error when finding user by ID" })
+      res
+        .status(400)
+        .json({ message: "Unexpected error when finding user by ID" });
     });
-
 };
 
 //Gets a list of all the jobs applied for a specific user
-const getUserJobsApplied = async (req, res) =>{
-        try{
-            const user = await User.findOne({_id: req.params.id});
-            return res.status(200).json(user.jobsApplied);
-            
-            
-            
-        }catch(err){
-          res.status(400).json({ message: "Unable to retrieve jobs applied." });
-        }
+const getUserJobsApplied = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.params.id });
+    return res.status(200).json(user.jobsApplied);
+  } catch (err) {
+    res.status(400).json({ message: "Unable to retrieve jobs applied." });
+  }
 };
 
 const addJobAppliedToUser = async (req, res) => {
-  
-  User.findById(req.body.userId).then((user) =>{
-      const array = user.jobsApplied;
-      array.push(req.body.jobId);
-      user.jobsApplied = array;
-      user.save()
-        .then(() =>{
-          console.log('Job id succesfully added to user!')
-        })
-        .catch(err => console.log(err));
-      
+  User.findById(req.body.userId).then((user) => {
+    const array = user.jobsApplied;
+    array.push(req.body.jobId);
+    user.jobsApplied = array;
+    user
+      .save()
+      .then(() => {
+        console.log("Job id succesfully added to user!");
+      })
+      .catch((err) => console.log(err));
   });
- res.send(201);
-
+  res.send(201);
 };
 
 module.exports = {
@@ -273,12 +282,11 @@ module.exports = {
   updateAwaitingConnections,
   getAwaitingConnections,
   deleteAwaitingConnections,
-  
 
   //getUserByEmail
   editUserInfo,
 
   getUserJobsApplied,
   addJobAppliedToUser,
-  getUser
+  getUser,
 };

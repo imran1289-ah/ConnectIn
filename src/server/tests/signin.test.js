@@ -18,6 +18,7 @@ beforeAll(async() => {
             lastname: "Doe",
             email: "johndoe@example.com",
             password: "password",
+            role: "User"
         });
     userId = userResponse.body.id;
 

@@ -19,6 +19,7 @@ beforeAll(async() => {
             email: "johndoe@example.com",
             password: "password",
             jobsApplied: ["test", "test"],
+            role: "User"
         })
         .then()
     userId = userResponse.body.id;

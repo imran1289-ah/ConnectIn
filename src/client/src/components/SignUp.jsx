@@ -138,7 +138,6 @@ function SignUp() {
                       <MenuItem value={"User"}>User</MenuItem>
                       <MenuItem value={"Recruiter"}>Recruiter</MenuItem>
                       <MenuItem value={"Administrator"}>Administrator</MenuItem>
-                      <MenuItem value={"Illegal"}>Illegal</MenuItem>
                     </Select>
                     </label>
                     <br />

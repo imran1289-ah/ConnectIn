@@ -79,7 +79,7 @@ function EditJobPosting() {
     });
   };
 
-  if (userID && userID && (userRole === "Recruiter" || userRole === 'Administrator')) {
+  if (userID && (userRole === "Recruiter" || userRole === 'Administrator')) {
     return (
       //Edit posting page
       <Container id="editPostcontainer">

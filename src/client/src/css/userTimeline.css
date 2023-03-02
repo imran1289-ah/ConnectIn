@@ -1,0 +1,169 @@
+.userTimelineContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: "Inter", sans-serif;
+}
+
+.postTextField {
+  width: 650px;
+  height: 60px;
+  border-radius: 20px;
+  background: #f4f2f2;
+}
+
+.userInformationTimeline {
+  min-height: 80px;
+  width: 700px;
+  border-radius: 15px;
+  margin: 20px;
+  height: auto;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.userPostsTimeline {
+  min-height: 130px;
+  width: 700px;
+  border-radius: 15px;
+  margin: 20px;
+  height: auto;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.userNameTimeline {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+.connectionsLinkTimeline {
+  font-size: 15px;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+.rightTimeline {
+  height: auto;
+  min-width: 350px;
+  border-radius: 15px;
+
+  margin-bottom: auto;
+  margin-top: 20px;
+  width: auto;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.leftTimeline {
+  height: auto;
+  min-height: 200px;
+  min-width: 220px;
+  border-radius: 15px;
+  margin-bottom: auto;
+  margin-top: 20px;
+  width: auto;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.postText {
+  margin: auto;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.subTitleTimeline {
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 20px;
+}
+
+.body {
+  background-color: #f5f5f5;
+}
+
+.userContainerTimeline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*Responsive for iphone 6 and up*/
+@media (min-width: 330px) and (max-width: 600px) {
+  .userTimelineContainer {
+    display: block;
+  }
+
+  .middleTimeline {
+    margin: auto;
+  }
+
+  .userAboutSectionTimeline {
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  .rightTimeline {
+    width: auto;
+    margin: 10px;
+  }
+
+  .connectionNameTimeline {
+    margin-left: 40px;
+    font-size: 20px;
+  }
+
+  .userInformationTimeline {
+    min-height: 120px;
+    width: auto;
+    margin: 10px;
+  }
+
+  .userJobInformationTimeline {
+    min-height: 130px;
+    width: auto;
+  }
+
+  .userProfilePicTimeline {
+    width: 20;
+    height: 20;
+  }
+
+  .connectButtonTimeline {
+    width: 150px;
+    height: 35px;
+  }
+}
+
+/*Media queries for ipad*/
+@media (min-device-width: 768px) and (max-device-width: 1024px) {
+  .userTimelineContainerTimeline {
+    display: block;
+  }
+
+  .rightTimeline {
+    width: auto;
+    margin: 20px;
+  }
+
+  .userInformationTimeline {
+    min-height: 140px;
+    width: auto;
+  }
+
+  .userJobInformationTimeline {
+    min-height: 130px;
+    width: auto;
+  }
+
+  .userKnowledgeInformationTimeline {
+    min-height: 100px;
+    width: auto;
+  }
+}

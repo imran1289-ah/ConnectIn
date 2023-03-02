@@ -10,19 +10,40 @@ import { Alert, AlertTitle } from "@mui/material";
 import WorkIcon from '@mui/icons-material/Work';
 import PlaceIcon from '@mui/icons-material/Place';
 import BusinessIcon from '@mui/icons-material/Business';
-
-
-
-
-
-
-
+import { Context } from "../UserSession";
+import { useContext } from "react";
+import ArrowBack from "@mui/icons-material/ArrowBack";
 
 
 const JobListing = () =>{
+
+        //Global loginState
+    const [login, setLogin] = useContext(Context);
+
+    //Get id of logged in user
+    const userID = sessionStorage.getItem("userID");
+
+    useEffect(() => {
+    if (userID) {
+        fetchSession();
+    }
+    }, []);
+
+    //Having the loginState persist on all pages
+    const fetchSession = async () => {
+    try {
+        if (userID) {
+        setLogin({
+            isLoggedIn: true,
+        });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+    };
+
     const [jobs, setJobs] = useState([]);
     const [jobsApplied, setJobsApplied] = useState([]);
-    const userId = "63f41b0123e995b64434ece0";
 
     const navigate = useNavigate();
     useEffect( () => {
@@ -37,7 +58,7 @@ const JobListing = () =>{
     }
 
     const fetchAppliedJob = async () =>{
-        const {data} = await axios.get(`http://localhost:9000/users/${userId}/jobsApplied`)
+        const {data} = await axios.get(`http://localhost:9000/users/${userID}/jobsApplied`)
         
        setJobsApplied(data)
         
@@ -61,20 +82,20 @@ const JobListing = () =>{
         });
       };
     
-      const linkStyle = {
-        height: "100%",
-        width:"100%",
-        display:'inline-block'
-      };
+    const navigateBackToSignIn = () =>{
+        navigate("/signin")
+    }
     return(
             
         <div className="jobPosts_Container">
             
+            {userID ? (
             
             <div data-testid = "jobPostsContainer" className="jobPosts">
                 <div className="heading">
                     <b>Job Posts</b>
                 </div>
+
                 <div class="jobs">
                  {jobs.map(job => (
                 
@@ -102,7 +123,7 @@ const JobListing = () =>{
                             
                                 
                                     <Button className ="selectButton"variant="contained" component="label">
-                                                    <Link className="jobListLink"to = {`/jobs/${job.job_id}`} state = {{jobState:job}} style ={linkStyle} >
+                                                    <Link className="jobListLink"to = {`/jobs/${job.job_id}`} state = {{jobState:job}} >
                                                         Select
                                                 </Link>
                                     </Button>
@@ -121,15 +142,23 @@ const JobListing = () =>{
                 </div>
             </div>
 
-            {/* <div className="preferences">
+            /* <div className="preferences">
                     <b>Preferences</b>
                     <div className="preference"> Software</div>
                     <div className="preference"> Full-time</div>
                     <div className="preference"> 120k or higher</div>
                     <button> Change</button>  
                     
-            </div> */}
+            </div> */
+            ): (<div className = "notLoggedInContent">
+                <h1>Please login to your account!</h1> 
+                <p>It looks like you are not logged in.</p>
+                <Button onClick={navigateBackToSignIn} className ="redirectSignIn" variant="contained" component="label">
+                         <ArrowBack></ArrowBack> Back to Signin
+                </Button>
             
+            
+            </div>)};
         </div>
     );
 }

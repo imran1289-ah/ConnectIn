@@ -57,3 +57,14 @@
     display: none;
   }
 }
+
+/*To be changed later*/
+@media (min-device-width: 768px) and (max-device-width: 1024px) {
+  .searchArea {
+    display: none;
+  }
+
+  .userButtons {
+    display: none;
+  }
+}

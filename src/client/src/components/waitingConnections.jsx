@@ -2,6 +2,7 @@ import { margin } from "@mui/system";
 import React, { useState, useEffect } from "react";
 import "../css/waitingConnections.css";
 import axios from "axios";
+//import logo from "./images/acceptButton";
 
 const Clickme = async (first, last) => {
   console.log(first);
@@ -64,9 +65,31 @@ const WaitingConnections = () => {
   <div className="userWaitingConnection">
     <div className="connectionDisplay ">
         <div>
+          <table>
+            <tr>
+              <td>
+              <img
+              margin="20px"
+                src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
+                alt="comapnyPic"
+                className="companyPic"
+              ></img>
+              </td>
+              <td>
             <h3 position={"center"}>{object.firstname} {object.lastname}</h3>
+            </td>
+            <td>
+               {/* <img src = './images/acceptButton' alt= "bad"
+              >
+                
+              </img>  */}
             <button className="acceptButton" onClick={() => Clickme(`${object.firstname}`,`${object.lastname}`)}>Accept</button>
+            </td>
+            <td>
             <button className="rejectButton" onClick={() => Clickmetoo(`${object.firstname}`,`${object.lastname}`)}>Reject</button>
+        </td>
+        </tr>
+        </table>
         </div>
     </div>
   </div>

@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import swal from "sweetalert";
 import axios from "axios";
+import { Select, MenuItem } from "@mui/material"; 
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
@@ -15,6 +16,7 @@ function SignUp() {
     lastName: "",
     email: "",
     password: "",
+    role: "",
   });
 
   const navigate = useNavigate();
@@ -27,18 +29,25 @@ function SignUp() {
         lastname: userData.lastName,
         email: userData.email,
         password: userData.password,
+        role: userData.role
       })
       .then((response) => {
         console.log(response.data);
-        swal("Welcome to ConnectIn!", "success");
+        swal("Success!","Successfully created an account!","success",{
+          button:false,
+          timer:2000
+        });
+        //sets field to blank after form submission
+        setUserData({ firstName: "", lastName: "", email: "", password: "" });
         navigate("/signin");
       })
       .catch((error) => {
         console.log(error);
-        swal("Error in sign up!", "error");
+        swal("Failed!","Failed to create an account!","error",{
+          button:false,
+          timer:2000
+        });
       });
-    //sets field to blank after form submission
-    setUserData({ firstName: "", lastName: "", email: "", password: "" });
   };
 
   return (
@@ -55,7 +64,7 @@ function SignUp() {
                     <label className="PlaceholderSignup">
                       First Name
                       <br></br>
-                      <input
+                      <input required
                         aria-label="firstname"
                         className="Input"
                         placeholder="Enter Your First Name"
@@ -75,7 +84,7 @@ function SignUp() {
                     <label className="PlaceholderSignup">
                       Last Name
                       <br></br>
-                      <input
+                      <input required
                         className="Input"
                         placeholder="Enter Your Last Name"
                         name="lastname"
@@ -91,7 +100,7 @@ function SignUp() {
                     <label className="PlaceholderSignup">
                       Email
                       <br></br>
-                      <input
+                      <input required
                         className="Input"
                         placeholder="Enter Your Email"
                         name="email"
@@ -106,7 +115,7 @@ function SignUp() {
                     <label className="PlaceholderSignup">
                       Password
                       <br></br>
-                      <input
+                      <input required
                         className="Input"
                         placeholder="Enter your password"
                         name="password"
@@ -119,6 +128,20 @@ function SignUp() {
                     </label>
                     <br></br>
                     <br></br>
+                    <label className="PlaceholderSignup">Account Type
+                    <br />
+                    <Select required id="select" value={userData.role} 
+                    sx={{width: 250, height: 40, backgroundColor: "#a3c5d0",borderColor: "white"}}
+                    onChange={(e) =>
+                      setUserData({ ...userData, role: e.target.value })
+                    }>
+                      <MenuItem value={"User"}>User</MenuItem>
+                      <MenuItem value={"Recruiter"}>Recruiter</MenuItem>
+                      <MenuItem value={"Administrator"}>Administrator</MenuItem>
+                    </Select>
+                    </label>
+                    <br />
+                    <br />
                     <div className="LinkSignup">
                       {" "}
                       <strong>

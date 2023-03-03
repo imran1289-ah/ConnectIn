@@ -21,6 +21,7 @@ const UserTimeline = () => {
       sessionStorage.setItem("userID", response.data.user_info.user_id);
       sessionStorage.setItem("firstname", response.data.user_info.firstname);
       sessionStorage.setItem("lastname", response.data.user_info.lastname);
+      sessionStorage.setItem("role", response.data.user_info.role);
       console.log(response.data);
     } catch (error) {
       console.log(error);

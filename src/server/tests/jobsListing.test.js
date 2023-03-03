@@ -2,12 +2,9 @@ const request = require('supertest');
 const app = require('../index')
 const mongoose = require("mongoose");
 
-
-
 beforeAll(() => {
     mongoose.connect(process.env.DATABASE)
 })
-
 
 afterAll((done) => {
     // Closing the DB connection allows Jest to exit successfully.
@@ -16,15 +13,11 @@ afterAll((done) => {
     app.close();
 })
 
-
-
 describe('GET /jobs', function() {
     it("it successfully gets an array of all the jobs posted on ConnectIn", async() => {
-
         await request(app)
             .get("/jobs")
             .expect(200);
-
     })
 })
 

@@ -5,10 +5,10 @@ const { db } = require("../models/user");
 var sesh;
 
 const createUser = asyncHandler(async(req, res) => {
-    const { firstname, lastname, email, password } = req.body;
+    const { firstname, lastname, email, password, role } = req.body;
 
     // Checking if all fields are filled.
-    if (!firstname || !lastname || !email || !password) {
+    if (!firstname || !lastname || !email || !password || !role) {
         return res.status(400).json({ message: "Please fill out all fields!" });
     }
 
@@ -23,7 +23,7 @@ const createUser = asyncHandler(async(req, res) => {
     // Hashing passwords to encrypt user data
     const saltRounds = 10;
     const hashPwd = await bcrypt.hash(password, saltRounds);
-    const userDocument = { firstname, lastname, email, password: hashPwd };
+    const userDocument = { firstname, lastname, email, password: hashPwd, role };
     const newUser = await User.create(userDocument);
 
     if (newUser) {
@@ -61,6 +61,7 @@ const verifyUser = async(req, res) => {
             user_id: user._id,
             firstname: user.firstname,
             lastname: user.lastname,
+            role: user.role
         };
         req.session.user = userSession;
         console.log(`Found user ${user.email}`);

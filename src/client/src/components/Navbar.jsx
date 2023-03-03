@@ -39,11 +39,16 @@ const Navbar = () => {
     sessionStorage.removeItem("userID");
     sessionStorage.removeItem("firstname");
     sessionStorage.removeItem("lastname");
+    sessionStorage.removeItem("role");
   };
 
   const redirectProfile = () => {
     navigate("/userProfile");
   };
+
+  const redirectJobs = () => {
+    navigate("/jobs")
+  }
 
   const redirectHome = () => {
     navigate("/userTimeline");
@@ -110,7 +115,7 @@ const Navbar = () => {
                 </Box>
               </IconButton>
 
-              <IconButton color="inherit">
+              <IconButton color="inherit" onClick={redirectJobs}>
                 <Box className="parentUserIconContainer">
                   <Typography className="userIconContainer">
                     <WorkIcon

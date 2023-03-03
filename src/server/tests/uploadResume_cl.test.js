@@ -29,6 +29,7 @@ describe("Resume and Cover Letter Upload", () => {
                 lastname: "Doe",
                 email: "johndoe@example.com",
                 password: "password",
+                role: "User"
             })
             .then()
         userId = userResponse.body.id;

@@ -109,11 +109,11 @@ const fetchSession = async () => {
                 
             <form>
             
-                <TextField className ="textbox" onChange = { (e) => {setFname(e.target.value)}} id="fname" label="First Name" variant="outlined" defaultValue="Default fname"/>
-                <TextField className ="textbox"  onChange = { (e) => {setLname(e.target.value)}} id="lname" label="Last Name" variant="outlined" defaultValue="Default lname"/>
+                <TextField className ="textbox" onChange = { (e) => {setFname(e.target.value)}} id="fname" label="First Name" variant="outlined" />
+                <TextField className ="textbox"  onChange = { (e) => {setLname(e.target.value)}} id="lname" label="Last Name" variant="outlined" />
                 <br/>
-                <TextField className ="textbox"  onChange = { (e) => {setEmail(e.target.value)}} id="email" label="Email" variant="outlined" defaultValue="Default email" />
-                <TextField className ="textbox"  onChange = { (e) => {setPhoneNumber(e.target.value)}}id="phoneNumber" label="Phone Number" variant="outlined" defaultValue="default phone"/>
+                <TextField className ="textbox"  onChange = { (e) => {setEmail(e.target.value)}} id="email" label="Email" variant="outlined"  />
+                <TextField className ="textbox"  onChange = { (e) => {setPhoneNumber(e.target.value)}}id="phoneNumber" label="Phone Number" variant="outlined"/>
                 <br/>
                 
                 <Button className ="uploadButton"variant="contained" component="label">

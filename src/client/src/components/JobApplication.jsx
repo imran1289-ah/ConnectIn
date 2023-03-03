@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/jobApplication.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -52,8 +52,14 @@ const fetchSession = async () => {
 
     const submitApplication = async () =>{
         const alreadyJobsApplied = await axios.get(`http://localhost:9000/users/${userID}/jobsApplied`)
-        
-        if(alreadyJobsApplied.data.includes(job.jobState.job_id)){
+
+        if(fname.trim().length === 0 || lname.trim().length === 0 || email.trim().length ===0 || phoneNumber.trim().length ===0){
+          swal("Please fill up all the fields!",{
+                
+          });
+
+        }
+        else if(alreadyJobsApplied.data.includes(job.jobState.job_id)){
             swal("You've already applied for this job!",{
                 
             });
@@ -79,6 +85,11 @@ const fetchSession = async () => {
         navigate("/jobs");
     }
 
+    const [fname, setFname] = useState("");
+    const [lname, setLname] = useState("");
+    const [email, setEmail] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    
     return(
 
         <div data-testid="JAPage"className="JAPContainer">
@@ -98,11 +109,11 @@ const fetchSession = async () => {
                 
             <form>
             
-                <TextField className ="textbox" id="fname" label="First Name" variant="outlined" defaultValue="Default fname"/>
-                <TextField className ="textbox" id="lname" label="Last Name" variant="outlined" defaultValue="Default lname"/>
+                <TextField className ="textbox" onChange = { (e) => {setFname(e.target.value)}} id="fname" label="First Name" variant="outlined" defaultValue="Default fname"/>
+                <TextField className ="textbox"  onChange = { (e) => {setLname(e.target.value)}} id="lname" label="Last Name" variant="outlined" defaultValue="Default lname"/>
                 <br/>
-                <TextField className ="textbox" id="email" label="Email" variant="outlined" defaultValue="Default email" />
-                <TextField className ="textbox" id="phoneNumber" label="Phone Number" variant="outlined" defaultValue="default phone"/>
+                <TextField className ="textbox"  onChange = { (e) => {setEmail(e.target.value)}} id="email" label="Email" variant="outlined" defaultValue="Default email" />
+                <TextField className ="textbox"  onChange = { (e) => {setPhoneNumber(e.target.value)}}id="phoneNumber" label="Phone Number" variant="outlined" defaultValue="default phone"/>
                 <br/>
                 
                 <Button className ="uploadButton"variant="contained" component="label">
@@ -114,7 +125,7 @@ const fetchSession = async () => {
             </form>
 
 
-                <Button className ="sendApplicationButton"onClick ={submitApplication} variant="contained" component="label">
+                <Button className ="sendApplicationButton" onClick ={submitApplication} variant="contained" component="label">
                     Send Application
 
                 </Button>

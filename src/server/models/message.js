@@ -6,6 +6,9 @@ const MessageSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    attachment:{
+        type:Buffer,
+    },
     users: Array,
     sender: {
         type: mongoose.Schema.Types.ObjectId,
@@ -15,7 +18,6 @@ const MessageSchema = mongoose.Schema({
 }, {
     timestamps: true,
 });
-// mongoose.Schema.Types.ObjectId
 
 const Messages = mongoose.model("Messages", MessageSchema);
 module.exports = Messages;

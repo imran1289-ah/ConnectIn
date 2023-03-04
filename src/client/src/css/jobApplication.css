@@ -1,72 +1,74 @@
 .JAPContainer{
     margin-top: 50px;
-    /* border:5px #19718d solid; */
     text-align: center;
-    border-radius: 5%;
-    width: 800px;
+    border-radius: 10%;
+    width: 95%;
     height: 500px;
     margin:auto;
+    margin-top: 30px;
     padding: auto;
-    
-    
+    border: 2px #19718d solid;
+    display: flex;
+    flex-direction: row;
+    align-content: space-evenly;
+
+}
+.JAPContainer .jobDetails {
+    border: 1px #19718d solid;
+    width: 500px;
+    border-radius: 10px;
+    height: 80%;
+    margin: 50px;
+    margin-left: 100px;
 }
 
-
+.JAPContainer .jobApplicationForm {
+    border-radius: 10px;
+    height: 80%;
+    margin: 50px;
+    
+}
 .JAPContainer button{
-    color: white;
-    border: #19718d;
-    background-color: #19718d;
-    width: 150px;
-    height: 50px;
-    border-radius: 10%;
-
-
+    width: 50px;
+    height: 10%;
+    margin:25px;
+    margin-right:0px
 }
 
-.JAPContainer button:hover{
-    color: black;
-    border: #19718d;
+
+.JAPContainer .uploadButton {
+
+    border-radius: 10px;
     background-color: #19718d;
-    width: 150px;
-    height: 50px;
-    border-radius: 10%;
-
-
+    font-size: 14px;
+    margin: 15px;
 }
 
-.JAPContainer .Textbox {
+.JAPContainer .uploadButton:hover {
+
+    border-radius: 10px;
+    background-color: #19718d;
+    font-size: 14px;
+    margin: 15px;
+}
+
+.JAPContainer .sendApplicationButton {
+
+    border-radius: 10px;
+    background-color: #19718d;
+    font-size: 14px;
+    margin: 15px;
+}
+.JAPContainer .sendApplicationButton:hover {
+
+    border-radius: 10px;
+    background-color: #19718d;
+    font-size: 14px;
+    margin: 15px;
+}
+
+.JAPContainer .textbox {
     margin: 35px;
-    border: 2px grey solid;
-    border-radius: 10px;
-    background-color: lightgrey;
-    color: black;
-    height: 25px;
-}
-
-.JAPContainer .cv {
-    margin: 10px;
-    border: 2px lightgrey solid;
-    border-radius: 10px;
-    height: 25px;
-    background-color: lightgrey;
-    
-}
-
-.JAPContainer .cv::file-selector-button {
-    margin: 10px;
-    border: 2px lightgrey solid;
-    border-radius: 10px;
-    display: none;
-    background-color: lightgrey;
-
-    
-}
-
-
-.JAPContainer input::placeholder {
-    
-    color: black;
-    height: 25px;
 }
 
 

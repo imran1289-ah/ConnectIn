@@ -4,22 +4,64 @@ import "../css/jobListing.css";
 import {useEffect, useState} from "react";
 import {Link} from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
-
+import Avatar from '@mui/material/Avatar'
+import Button from '@mui/material/Button'
+import { Alert, AlertTitle } from "@mui/material";
+import WorkIcon from '@mui/icons-material/Work';
+import PlaceIcon from '@mui/icons-material/Place';
+import BusinessIcon from '@mui/icons-material/Business';
+import { Context } from "../UserSession";
+import { useContext } from "react";
+import ArrowBack from "@mui/icons-material/ArrowBack";
 
 
 const JobListing = () =>{
-    const [jobs, setJobs] = useState([]);
 
+        //Global loginState
+    const [login, setLogin] = useContext(Context);
+
+    //Get id of logged in user
+    const userID = sessionStorage.getItem("userID");
+
+    useEffect(() => {
+    if (userID) {
+        fetchSession();
+    }
+    }, []);
+
+    //Having the loginState persist on all pages
+    const fetchSession = async () => {
+    try {
+        if (userID) {
+        setLogin({
+            isLoggedIn: true,
+        });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+    };
+
+    const [jobs, setJobs] = useState([]);
+    const [jobsApplied, setJobsApplied] = useState([]);
 
     const navigate = useNavigate();
     useEffect( () => {
-        fetchData()
+        fetchJobs();
+        fetchAppliedJob();
     }, [])
 
-    const fetchData = async () => {
+    const fetchJobs = async () => {
         const {data} = await axios.get("http://localhost:9000/jobs")
 
         setJobs(data)
+    }
+
+    const fetchAppliedJob = async () =>{
+        const {data} = await axios.get(`http://localhost:9000/users/${userID}/jobsApplied`)
+        
+       setJobsApplied(data)
+        
     }
 
 
@@ -40,47 +82,83 @@ const JobListing = () =>{
         });
       };
     
+    const navigateBackToSignIn = () =>{
+        navigate("/signin")
+    }
     return(
             
         <div className="jobPosts_Container">
             
+            {userID ? (
             
             <div data-testid = "jobPostsContainer" className="jobPosts">
                 <div className="heading">
                     <b>Job Posts</b>
                 </div>
-                
-                {jobs.map(job => (
+
+                <div class="jobs">
+                 {jobs.map(job => (
                 
                     <div key = {job._id} className="jobPost">
+
+                            <div className="logo">
+                            <Avatar alt="Logo" src="./logo/logo.png" sx={{ width: 75, height: 75 }}/>
+
+                            </div>
                         
-                        <p> Job id: {job.job_id}</p>
-                        <p>Title: {job.title}</p>
-                        <p>Description: {job.description}</p>
-                        <p>Salary: {job.salary}</p>
-                        <p>Company: {job.company}</p>
-                        <p>Category: {job.category}</p>
-                        <Link to = {`/jobs/${job.job_id}`} state = {{jobState:job}}>
-                            <button>Select</button>
-                        </Link>
-                        <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
+                        
+                        
+                            <div className="jobContent">
+
+                                
+                                <h3 className="jobTitle"><b>{job.title}</b></h3>
+                                
+                                <p><BusinessIcon></BusinessIcon>{job.company}</p>
+                                <p><PlaceIcon></PlaceIcon>{job.location}</p>
+
+                                <div className="Tags">
+                                    <h3 className="jobCategory"><WorkIcon/>{job.category}</h3>
+                                
+                                </div>
+                            
+                                
+                                    <Button className ="selectButton"variant="contained" component="label">
+                                                    <Link className="jobListLink"to = {`/jobs/${job.job_id}`} state = {{jobState:job}} >
+                                                        Select
+                                                </Link>
+                                    </Button>
+
+                            </div>
+                            {jobsApplied.includes(job.job_id) ? <Alert className ="AlertJobListing" severity='info' variant="outlined"><AlertTitle>You've already applied for this job.</AlertTitle></Alert>: <></> }
+
+                        
+                        {/* <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
                             <button class = "edit">Edit</button>
-                        </Link>
-                        <button class = "delete" onClick={(e) => deletePost(`${job.job_id}`,e)}>Delete</button>
+                        </Link> */}
+                        {/* <button class = "delete" onClick={(e) => deletePost(`${job.job_id}`,e)}>Delete</button> */}
 
                     </div>
-                ))}
+                    ))}
+                </div>
             </div>
 
-            <div className="preferences">
+            /* <div className="preferences">
                     <b>Preferences</b>
                     <div className="preference"> Software</div>
                     <div className="preference"> Full-time</div>
                     <div className="preference"> 120k or higher</div>
                     <button> Change</button>  
                     
-            </div>
+            </div> */
+            ): (<div className = "notLoggedInContent">
+                <h1>Please login to your account!</h1> 
+                <p>It looks like you are not logged in.</p>
+                <Button onClick={navigateBackToSignIn} className ="redirectSignIn" variant="contained" component="label">
+                         <ArrowBack></ArrowBack> Back to Signin
+                </Button>
             
+            
+            </div>)};
         </div>
     );
 }

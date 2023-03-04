@@ -89,7 +89,7 @@ const deleteAwaitingConnections = async(req, res) => {
         return res.status(404).json({
             message: "Error not found",
         });
-    }
+    }  
 };
 //Action of transferring a connection from awaiting connections list to connections list
 const updateConnections = async(req, res) => {
@@ -263,6 +263,29 @@ const addJobAppliedToUser = async(req, res) => {
     res.send(201);
 };
 
+
+//Action to add user's post to their account.
+const addTimelinePost = async(req, res) => {
+    const { _id, firstname, lastname, description} = req.body;
+    const user = await User.findByIdAndUpdate( _id , {
+        $addToSet: {
+            postsMade: { _id: _id, firstname:  firstname , lastname: lastname, description: description },
+        },
+    });
+    if (user) {
+        console.log("Succesfully updated awaiting connections");
+        res.status(200).json({ message: "Succesfully added user `${_id}`" });
+    } else {
+        return res.status(404).json({
+            message: "Error not found",
+        });
+    }
+    //return res.status(200).json({message:"sent request sucessfully"});
+};
+
+
+
+
 module.exports = {
     createUser,
     updateUser,
@@ -281,4 +304,6 @@ module.exports = {
     getUserJobsApplied,
     addJobAppliedToUser,
     getUser,
+
+    addTimelinePost,
 };

@@ -40,6 +40,7 @@ const UserSchema = new mongoose.Schema({
     contact: Number,
     waitingConnections: [],
     languages: [],
+    postsMade: [],
     role: {
         type: String,
         Enumerator: ["User","Recruiter","Administrator"],

@@ -47,9 +47,24 @@
 .parentUserIconContainer {
   margin-right: 20px;
 }
-
+/*To be changed later*/
 @media (min-width: 330px) and (max-width: 600px) {
   .searchArea {
+    display: none;
+  }
+
+  .userButtons {
+    display: none;
+  }
+}
+
+/*To be changed later*/
+@media (min-device-width: 768px) and (max-device-width: 1024px) {
+  .searchArea {
+    display: none;
+  }
+
+  .userButtons {
     display: none;
   }
 }

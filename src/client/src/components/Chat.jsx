@@ -1,16 +1,25 @@
 import { TextField } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, {useState, useContext, useEffect } from "react";
 import "../css/Chat.css";
 import styled from "@mui/material";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import { Context } from "../UserSession";
+import axios from "axios";
 
 
 
  
 const Chat = () => {
 
+  const [userConnections, setUserConnections] = useState(
+    {
+      _id: "",
+      firstname: "",
+      lastname: "",
+      connections: [],
+    }
+  );
    //Global loginState
    const [login, setLogin] = useContext(Context);
 
@@ -22,20 +31,50 @@ const Chat = () => {
        fetchSession();
      }
    }, []);
- 
+
+      //Having the loginState persist on all page
+      const fetchSession = async () => {
+        try {
+          if (userID) {
+            setLogin({
+              isLoggedIn: true,
+            });
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+        //Make the request only on the first render
+  useEffect(() => {
+    if (userID) {
+      fetchUserConnections();
+    }
+  }, []);
+
    
-   //Having the loginState persist on all page
-   const fetchSession = async () => {
-     try {
-       if (userID) {
-         setLogin({
-           isLoggedIn: true,
-         });
-       }
-     } catch (error) {
-       console.log(error);
-     }
-   };
+
+   const fetchUserConnections = async () => {
+
+    try{
+      if(userID){
+        const response = await axios.get(
+          `http://localhost:9000/users/profile/${userID}`
+        );
+
+        setUserConnections({
+          _id: response.data._id,
+          firstname: response.data.firstname,
+          lastname: response.data.lastname,
+          connections: response.data.connections,
+
+        });
+        // console.log(response.data);
+      }
+    }catch (error) {
+      console.log(error);
+   }
+  };
  
   return (
     <div className="conatiner">
@@ -63,43 +102,26 @@ const Chat = () => {
         </div>
       </div>
       <div className="contacts">
-        <h2 className="mycontact">My Contacts</h2>
-        <div>
-          <ul className="ul">
-            <l1 className="connectionsInfo">
-              <img
-                src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
-                alt="comapnyPic"
-                className="companyPic"
-              ></img>
-              <div>
-                <span className="connectionName">John Doe</span>
-              </div>
-            </l1>
-            <l1 className="connectionsInfo">
-              <img
-                src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
-                alt="comapnyPic"
-                className="companyPic"
-              ></img>
-              <div>
-                <span className="connectionName">Jane Doe</span>
-              </div>
-            </l1>
-            <l1 className="connectionsInfo">
-              <img
-                src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
-                alt="comapnyPic"
-                className="companyPic"
-              ></img>
-              <div>
-                <span className="connectionName">Jack Billionaire</span>
-              </div>
-            </l1>
-          </ul>
-        </div>
-      </div>
-    </div>
+      <h2 className="mycontact">My Contacts</h2>
+  <ul className="ul">
+    {userConnections.connections.map((name, index) => {
+      const [firstname, lastname] = name.split(' ');
+      return (
+        <li key={index} className="connectionsInfo">
+          <img
+            src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
+            alt="comapnyPic"
+            className="companyPic"
+          />
+          <div>
+            <span className="connectionName">{firstname} {lastname}</span>
+          </div>
+        </li>
+      );
+    })}
+  </ul>
+  </div>
+</div>
   );
 };
 

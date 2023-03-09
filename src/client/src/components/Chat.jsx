@@ -8,33 +8,35 @@ import { Context } from "../UserSession";
 
 
 
-  //Global loginState
-  const [login, setLogin] = useContext(Context);
-
-  //Get id of logged in user
-  const userID = sessionStorage.getItem("userID");
-
-  useEffect(() => {
-    if (userID) {
-      fetchSession();
-    }
-  }, []);
-
-  
-  //Having the loginState persist on all pages
-  const fetchSession = async () => {
-    try {
-      if (userID) {
-        setLogin({
-          isLoggedIn: true,
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+ 
 const Chat = () => {
+
+   //Global loginState
+   const [login, setLogin] = useContext(Context);
+
+   //Get id of logged in user
+   const userID = sessionStorage.getItem("userID");
+ 
+   useEffect(() => {
+     if (userID) {
+       fetchSession();
+     }
+   }, []);
+ 
+   
+   //Having the loginState persist on all page
+   const fetchSession = async () => {
+     try {
+       if (userID) {
+         setLogin({
+           isLoggedIn: true,
+         });
+       }
+     } catch (error) {
+       console.log(error);
+     }
+   };
+ 
   return (
     <div className="conatiner">
       <div className="chatbox">

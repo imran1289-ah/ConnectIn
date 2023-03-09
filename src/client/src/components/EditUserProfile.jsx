@@ -49,14 +49,38 @@ const EditUserProfile = () => {
     }
   };
 
+      const downloadResume = async () => {
+          const response = await fetch(`/resume/getResume/${userID}`);
+          const blob = await response.blob();
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `${userID}-resume.pdf`;
+          link.click();
+          URL.revokeObjectURL(url);
+        };
+
+        const downloadCoverLetter = async () => {
+          const response = await fetch(`/resume/getCoverLetter/${userID}`);
+          const blob = await response.blob();
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `${userID}-coverLetter.pdf`;
+          link.click();
+          URL.revokeObjectURL(url);
+        };
+
   const navigate = useNavigate();
 
   const submitEditProfile = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("resume", resume);
-    formData.append("coverLetter", coverLetter);
+    const resumeData = new FormData();
+    resumeData.append("resume", resume);
+    
+    const coverLetterData = new FormData();
+    coverLetterData.append("coverLetter", coverLetter);
     if (userID) {
       axios
         .patch(`http://localhost:9000/users/profile/${userID}`, {
@@ -71,18 +95,10 @@ const EditUserProfile = () => {
         })
         .then((response) => {
           console.log(response.data);
-          axios
-            .post(
-              `http://localhost:9000/resume/uploadResume/63f8efc91b1f68ef98ff0c56`,
-              formData
-            )
+          axios.post(`http://localhost:9000/resume/uploadResume/${userID}`, resumeData)
             .then((res) => console.log(res))
             .catch((error) => console.log(error));
-          axios
-            .post(
-              `http://localhost:9000/resume/uploadCoverLetter/63f8efc91b1f68ef98ff0c56`,
-              formData
-            )
+          axios.post(`http://localhost:9000/resume/uploadCoverLetter/${userID}`, coverLetterData)
             .then((res) => console.log(res))
             .catch((error) => console.log(error));
           navigate("/UserProfile");
@@ -237,7 +253,10 @@ const EditUserProfile = () => {
                   accept=".pdf"
                   onChange={handleResumeChange}
                 />
-              </label>
+              </label>      
+  <button type="button" onClick={downloadResume}>
+  Download Resume
+  </button>
               <br />
               <label>
                 Cover Letter
@@ -247,6 +266,7 @@ const EditUserProfile = () => {
                   onChange={handleCoverLetterChange}
                 />
               </label>
+              <button onClick={downloadCoverLetter}>Download CoverLetter</button>
             </div>
           </div>
           <div className="submit-button">

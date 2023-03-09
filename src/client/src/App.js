@@ -54,7 +54,7 @@ function App() {
             path="/UserProfile"
             element={
               <>
-                <Navbar /> <UserProfile /> <LoginFooter />
+                <Navbar /> <UserProfile /> <SignupFooter />
               </>
             }
           ></Route>
@@ -127,7 +127,7 @@ function App() {
             path="/userTimeline"
             element={
               <>
-                <Navbar /> <UserTimeline />
+                <Navbar /> <UserTimeline /> <SignupFooter />
               </>
             }
           ></Route>

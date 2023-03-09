@@ -13,7 +13,9 @@ const UserTimeline = () => {
   const [login, setLogin] = useContext(Context);
   const navigate = useNavigate();
 const [postData, setpostData] = useState({
-  description: ""
+  description: "",
+  attachment: null,
+  timestamp: new Date()
 });
 
   //fetch session once
@@ -47,7 +49,8 @@ const [postData, setpostData] = useState({
         _id: sessionStorage.getItem("userID"), 
         firstname: sessionStorage.getItem("firstname"),
         lastname: sessionStorage.getItem("lastname"), 
-        description: postData.description
+        description: postData.description,
+        timestamp: postData.timestamp
       })
       .then((response) => {
         console.log(response.data);
@@ -90,6 +93,7 @@ const [postData, setpostData] = useState({
                 }}
               ></img>
             </div>
+            
             <span className="userNameTimeline">
               {sessionStorage.getItem("firstname")}{" "}
               {sessionStorage.getItem("lastname")}
@@ -113,6 +117,11 @@ const [postData, setpostData] = useState({
                 value= {postData.description}
                 onChange={e => setpostData({ ...postData, description: e.target.value })}
               />
+              <div className="timestamp" value={Date.now()} 
+              onChange={e => setpostData({...postData, timestamp: e.target.value})} />
+                
+              {/* <input className="imageFile" type="file" accept=".png" name="image" 
+              onChange={e => setpostData({...postData, attachment: e.target.files[0]})}/> */}
             </div>
             {/* user's post in their timeline*/}
             <div>

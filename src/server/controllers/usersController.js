@@ -266,10 +266,10 @@ const addJobAppliedToUser = async(req, res) => {
 
 //Action to add user's post to their account.
 const addTimelinePost = async(req, res) => {
-    const { _id, firstname, lastname, description} = req.body;
+    const { _id, firstname, lastname, description, timestamp} = req.body;
     const user = await User.findByIdAndUpdate( _id , {
         $addToSet: {
-            postsMade: { _id: _id, firstname:  firstname , lastname: lastname, description: description },
+            postsMade: { _id: _id, firstname:  firstname , lastname: lastname, description: description, timestamp: timestamp },
         },
     });
     if (user) {

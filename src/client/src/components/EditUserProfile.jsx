@@ -255,7 +255,7 @@ const EditUserProfile = () => {
                 />
               </label>      
   <button type="button" onClick={downloadResume}>
-     Resume
+  Download Resume
   </button>
               <br />
               <label>
@@ -266,7 +266,7 @@ const EditUserProfile = () => {
                   onChange={handleCoverLetterChange}
                 />
               </label>
-              <button onClick={downloadCoverLetter}>CoverLetter</button>
+              <button onClick={downloadCoverLetter}>Download CoverLetter</button>
             </div>
           </div>
           <div className="submit-button">

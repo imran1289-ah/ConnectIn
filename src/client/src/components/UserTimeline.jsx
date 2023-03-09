@@ -12,11 +12,11 @@ const UserTimeline = () => {
   //Global state
   const [login, setLogin] = useContext(Context);
   const navigate = useNavigate();
-const [postData, setpostData] = useState({
-  description: "",
-  attachment: null,
-  timestamp: new Date()
-});
+  const [postData, setpostData] = useState({
+    description: "",
+    attachment: null,
+    timestamp: new Date()
+  });
 
   //fetch session once
   useEffect(() => {
@@ -69,7 +69,6 @@ const [postData, setpostData] = useState({
       });
   };
 
-
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
 
@@ -99,7 +98,7 @@ const [postData, setpostData] = useState({
               {sessionStorage.getItem("lastname")}
             </span>
             <br></br>
-            <span className="connectionsLinkTimeline">View Conenctions</span>
+            <span className="connectionsLinkTimeline">View Connections</span>
           </div>
 
           {/* User posts section*/}

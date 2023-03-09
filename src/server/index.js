@@ -5,14 +5,25 @@ const session = require("express-session");
 const cors = require("cors");
 const User = require("./models/user");
 const MongoDBStore = require("connect-mongodb-session")(session);
+const io = require('socket.io')
+
 
 const app = express();
 app.use(express.json());
 const port = 9000;
 dotenv.config();
 
+const socketApp = io(app, {
+    cors: {
+        origin: "http://localhost:3000",
+        credentials: true,
+    },
+});
+
 //Session length
 const session_length = 1000 * 60 * 60;
+
+
 
 //MongoDB seission store
 const mongoDBstore = new MongoDBStore({
@@ -76,4 +87,4 @@ const server = app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
 
-module.exports = server;
+module.exports = server; {}

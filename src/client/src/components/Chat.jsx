@@ -4,6 +4,35 @@ import "../css/Chat.css";
 import styled from "@mui/material";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
+import { Context } from "../UserSession";
+
+
+
+  //Global loginState
+  const [login, setLogin] = useContext(Context);
+
+  //Get id of logged in user
+  const userID = sessionStorage.getItem("userID");
+
+  useEffect(() => {
+    if (userID) {
+      fetchSession();
+    }
+  }, []);
+
+  
+  //Having the loginState persist on all pages
+  const fetchSession = async () => {
+    try {
+      if (userID) {
+        setLogin({
+          isLoggedIn: true,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 const Chat = () => {
   return (

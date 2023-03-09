@@ -11,6 +11,7 @@ import JobApplication from "./components/JobApplication";
 import JobListing from "./components/JobListing";
 import SearchUser from "./components/SearchUser";
 import PublicUserProfile from "./components/PublicUserProfile";
+import Chat from "./components/Chat";
 
 import WaitingConnections from "./components/waitingConnections";
 import EditJobPosting from "./components/EditJobPosting";
@@ -111,6 +112,14 @@ function App() {
             element={
               <>
                 <Navbar /> <EditJobPosting /> <SignupFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/chat"
+            element={
+              <>
+                <Navbar /> <Chat /> <LoginFooter />
               </>
             }
           ></Route>

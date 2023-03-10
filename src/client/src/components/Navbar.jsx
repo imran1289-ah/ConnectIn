@@ -46,6 +46,10 @@ const Navbar = () => {
     navigate("/userProfile");
   };
 
+  const redirectMessages = () => {
+    navigate("/chat");
+  }
+
   const redirectJobs = () => {
     navigate("/jobs")
   }
@@ -133,7 +137,7 @@ const Navbar = () => {
                 </Box>
               </IconButton>
 
-              <IconButton color="inherit">
+              <IconButton color="inherit" onClick={redirectMessages}>
                 <Box className="parentUserIconContainer">
                   <Typography className="userIconContainer">
                     <MessageIcon

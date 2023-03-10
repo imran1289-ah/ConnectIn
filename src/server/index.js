@@ -54,8 +54,8 @@ app.use(
 mongoose.set("strictQuery", true);
 
 //Database connection (MongoDB Atlas)
-const dbConnect = () => {
-    mongoose
+const dbConnect = async() => {
+    await mongoose
         .connect(process.env.DATABASE)
         .then(() => {
             console.log("Database Connected Successfully");
@@ -91,11 +91,23 @@ const socketApp = io(server, {
     },
 });
 
-socketApp.on("connection", () =>{
+socketApp.on("connection", (socket) => {
 
-    console.log("test")
-}
-    
+        socket.on("from_sendMessage", message => {
+            console.log(message);
+        })
+
+        socket.on("join_room", room =>{
+            socket.join(room);
+        })
+
+        
+
+        
+    }
+
 )
+
+
 
 module.exports = server;

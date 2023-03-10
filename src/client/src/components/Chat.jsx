@@ -6,6 +6,9 @@ import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import { Context } from "../UserSession";
 import axios from "axios";
+import io from "socket.io-client"
+
+const socket = io.connect("http://localhost:9000")
 
 
 

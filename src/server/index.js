@@ -91,4 +91,11 @@ const socketApp = io(server, {
     },
 });
 
+socketApp.on("connection", () =>{
+
+    console.log("test")
+}
+    
+)
+
 module.exports = server;

@@ -91,19 +91,18 @@ const socketApp = io(server, {
     },
 });
 
+
 socketApp.on("connection", (socket) => {
 
+        console.log(socket.id + " has connected")
         socket.on("from_sendMessage", message => {
             console.log(message);
         })
 
-        socket.on("join_room", room =>{
-            socket.join(room);
+        socket.on("disconnect", () =>{
+            console.log(socket.id + " has disconnected")
         })
 
-        
-
-        
     }
 
 )

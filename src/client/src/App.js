@@ -20,7 +20,12 @@ import EditUserProfile from "./components/EditUserProfile";
 import UserTimeline from "./components/UserTimeline";
 import UserSession from "./UserSession";
 
+import io from 'socket.io-client'
+
 function App() {
+
+  const socket = io.connect("http://localhost:9000");
+
   return (
     <UserSession>
       {/* Link to pages using React Router DOM */}
@@ -119,7 +124,7 @@ function App() {
             path="/chat"
             element={
               <>
-                <Navbar /> <Chat /> <LoginFooter />
+                <Navbar /> <Chat socket={socket}/> <LoginFooter />
               </>
             }
           ></Route>

@@ -12,11 +12,18 @@ const UserTimeline = () => {
   //Global state
   const [login, setLogin] = useContext(Context);
   const navigate = useNavigate();
-const [postData, setpostData] = useState({
-  description: "",
-  attachment: null,
-  timestamp: new Date()
-});
+  const [postData, setpostData] = useState({
+    description: "",
+    attachment: null,
+    timestamp: new Date()
+  });
+
+  const [postView, setPostView] = useState({
+    firstname: "",
+    lastname: "",
+    description: "",
+    attachment: null
+  });
 
   //fetch session once
   useEffect(() => {
@@ -69,7 +76,20 @@ const [postData, setpostData] = useState({
       });
   };
 
-
+  const getPosts = async () => {
+    axios
+      .get(`http://localhost:9000/users/:_id`, {
+        setPostView({ ...postView, firstname: sessionStorage.getItem("firstname")}),
+        setPostView({ ...postView, lastname: sessionStorage.getItem("lastname")}),
+        setPostView({ ...postView, description: sessionStorage.getItem("postsMade")})
+      })
+      .then((response) => {
+        console.log("You are looking at posts");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
 
@@ -99,7 +119,7 @@ const [postData, setpostData] = useState({
               {sessionStorage.getItem("lastname")}
             </span>
             <br></br>
-            <span className="connectionsLinkTimeline">View Conenctions</span>
+            <span className="connectionsLinkTimeline">View Connections</span>
           </div>
 
           {/* User posts section*/}
@@ -126,6 +146,14 @@ const [postData, setpostData] = useState({
             {/* user's post in their timeline*/}
             <div>
               {/* each div is a single post*/}
+              {sessionStorage.getItem("_id").map(user => (
+                <div className="userPostsTimeline">
+                  <span className="subTitleTimeline">{user._id}</span>
+                  <p className="postText">
+                    {user.getPosts}
+                  </p>
+                </div>
+              ))}
               <div className="userPostsTimeline">
                 <span className="subTitleTimeline">John Doe</span>
                 <p className="postText">

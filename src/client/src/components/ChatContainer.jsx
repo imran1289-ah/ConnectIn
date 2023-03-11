@@ -3,12 +3,39 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import ChatInput from "./ChatInput";
+import axios from "axios";
 
 
 const ChatContainer = ({ currentChat, socket }) => {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
+
+  //Get id of logged in user
+  const userID = sessionStorage.getItem("userID");
+
+  useEffect(() => {
+    fetchMessages()
+    },[currentChat]);
+
+  const fetchMessages = async () => {
+    try {
+      if (userID) {
+        const response = await axios.post(
+          `http://localhost:9000/messages`,
+          {
+            from: userID,
+            to: currentChat.userID
+          }
+        );
+        console.log(response.data)
+        setMessages(response.data)
+      }
+
+    }catch{
+
+    }
+  }
 
   const handleSendMsg = async (msg) => {
     // const data = await JSON.parse(
@@ -30,10 +57,11 @@ const ChatContainer = ({ currentChat, socket }) => {
     // setMessages(msgs);
   };
 
+
   return (
     <div className={ContainerCSS.container}>
       <div className={ContainerCSS.header}>
-        <h3>{currentChat}</h3>
+        <h3>{currentChat.firstname} {currentChat.lastname}</h3>
       </div>
       <div className={ContainerCSS.chatBox}>
         {messages.map((message) => {

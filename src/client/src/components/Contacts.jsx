@@ -24,8 +24,7 @@ const Contacts = ({connections, changeChat}) => {
              {connections && (connections.map((contact, index) => {
                return (
                 
-                 <div key={contact.userID} className={ContactCSS.connectionInfo} onClick={() => changeCurrentChat(index, contact)}>
-                    {console.log(connections)}
+                 <div key={contact._id} className={ContactCSS.connectionInfo} onClick={() => changeCurrentChat(index, contact)}>
                    {/* <img className={ContactCSS.contactImage}
                      src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
                      alt="comapnyPic"

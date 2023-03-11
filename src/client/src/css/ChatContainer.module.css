@@ -6,9 +6,14 @@
 .chatBox{
   height: 500px;
   border: 1px red solid;
+  overflow-y: auto;
 }
 
 .container{
     background: lightblue;
+}
+
+.input {
+ 
 }
 

@@ -113,7 +113,7 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      Waiting Connections
+                      Network
                     </Typography>
                   </Typography>
                 </Box>

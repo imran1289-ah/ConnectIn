@@ -19,7 +19,7 @@ const AddSelftoFriends = async(user_id) =>{
     lastname: sessionStorage.getItem("lastname"),
     userID :sessionStorage.getItem("userID") ,
     _id: user_id,
-    roomID: sessionStorage.getItem("userID") + user_id ,
+    //roomID:  user_id + sessionStorage.getItem("userID") ,
   })
 }
 
@@ -32,7 +32,7 @@ const AddSelftoFriends = async(user_id) =>{
           lastname: last,
           userID :user_id,
           _id: sessionStorage.getItem("userID"),
-          roomID: user_id +sessionStorage.getItem("userID"),
+         // roomID: user_id +sessionStorage.getItem("userID"),
         })
         .then((response) => {
           AddSelftoFriends(`${user_id}`) 

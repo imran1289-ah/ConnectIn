@@ -100,12 +100,17 @@ socketApp.on("connection", (socket) => {
             console.log(data);
         })
 
+        socket.on("joinRoom", (room)=>{
+            socket.join(room)
+            console.log( socket.id + " has joined " + room)
+        })
+
         socket.on("disconnect", () =>{
             console.log(socket.id + " has disconnected")
         })
 
     }
-    
+
 
 )
 

@@ -91,14 +91,27 @@ const Chat = () => {
     from: from,
     to: to,
     room: room,
-    value: new Date(Date.now()).getDate()
+    value: new Date(Date.now())
   }
   if(message.length !=0){
     socket.emit("sendMessage", data);
   }
-    
+    joinRoom();
     setMessage("");
  }
+
+ const joinRoom = () =>{
+
+  socket.emit("joinRoom", room);
+ }
+
+ useEffect(()=>{
+    socket.on("receiveMessage", (data)=>{
+      console.log(data.message)
+    })
+ }, [socket])
+
+ 
 
 //  const joinRoom = () =>{
 //   socket.emit("join_room", room);

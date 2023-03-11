@@ -4,13 +4,10 @@ import { Context } from "../UserSession";
 import axios from "axios";
 import io from "socket.io-client";
 import ChatCSS from "../css/Chat.module.css";
+import ContactCSS from "../css/Contacts.module.css";
 import { Container } from "@mui/system";
 import Contacts from "./Contacts";
-import styled from "@mui/material";
-import SendRoundedIcon from "@mui/icons-material/SendRounded";
-import AttachFileIcon from "@mui/icons-material/AttachFile";
 import ChatContainer from "./ChatContainer";
-import ScrollToBottom from "react-scroll-to-bottom";
 
 const socket = io.connect("http://localhost:9000")
 
@@ -133,15 +130,16 @@ const Chat = () => {
         <div>
           <Contacts connections={userConnections.connections} changeChat={handleChangeChat} />
         </div>
-        <div className={ChatCSS.chat_container}>
+        <hr className={ChatCSS.line} /> 
+        {/* <div className={ChatCSS.chat_container}> */}
         {currentChat === undefined ? (
-          <h1>Select a chat</h1>
+          <div className={ContactCSS.header}>Select a chat</div>
         ) : (
           <ChatContainer currentChat={currentChat} socket={socket}/>
         )}
         </div>
 
-      </div>
+      {/* </div> */}
     </Container>
     </>
   );

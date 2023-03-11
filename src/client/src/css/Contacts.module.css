@@ -1,24 +1,44 @@
 .connectionInfo {
-    border: solid;
-    border-color: black;
-    border-radius: 4px;
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-    min-width: 20vw;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 30px;
+    max-width: 20vw;
+    padding-left: 5px;
+    background: white;
+    transition: 0.3s;
+}
+
+.connectionInfo:hover {
+    background: #F4F4F4;
 }
 
 .contacts {
-    background-color: antiquewhite;
+    background-color: whitesmoke;
     height: 100%;
     overflow-y: auto;
-    justify-content: center;
+}
+
+.line {
+    color: #19718d;
+    background: #19718d;
+    height: 1px;
+    margin: 0;
+}
+
+.header {
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: x-large;
+    font-weight: bold;
 }
 
 .connectionName {
     font-family: sans-serif;
     font-size: 1.5em;
-    padding-left: 60px;
+    padding-left: 30px;
 }
 
 .contactImage {

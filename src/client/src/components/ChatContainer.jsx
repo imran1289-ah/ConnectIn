@@ -1,5 +1,4 @@
 import ContainerCSS from "../css/ChatContainer.module.css";
-import ScrollToBottom from "react-scroll-to-bottom";
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import ChatInput from "./ChatInput";
@@ -61,8 +60,9 @@ const ChatContainer = ({ currentChat, socket }) => {
   return (
     <div className={ContainerCSS.container}>
       <div className={ContainerCSS.header}>
-        <h3>{currentChat.firstname} {currentChat.lastname}</h3>
+        <span>{currentChat.firstname} {currentChat.lastname}</span>
       </div>
+      <hr className={ContainerCSS.line} />
       <div className={ContainerCSS.chatBox}>
         {messages.map((message) => {
           return (

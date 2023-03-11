@@ -6,8 +6,8 @@ const Contacts = ({connections, changeChat}) => {
   const [currentSelected, setCurrentSelected] = useState(undefined);
 
     const changeCurrentChat = (index, contact) => {
-      console.log(index);
-      console.log(contact);
+      // console.log(index);
+      // console.log(contact);
       setCurrentSelected(index)
       changeChat(contact)
     }
@@ -26,7 +26,7 @@ const Contacts = ({connections, changeChat}) => {
                return (
                 <>
                  <div key={contact.userID} className={ContactCSS.connectionInfo} onClick={() => changeCurrentChat(index, contact)}>
-                    {console.log(connections)}
+                    {/* {console.log(connections)} */}
                    {/* <img className={ContactCSS.contactImage}
                      src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
                      alt="comapnyPic"

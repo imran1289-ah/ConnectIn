@@ -27,7 +27,7 @@ const ChatContainer = ({ currentChat, socket }) => {
             to: currentChat.userID
           }
         );
-        console.log(response.data)
+        // console.log(response.data)
         setMessages(response.data)
       }
 

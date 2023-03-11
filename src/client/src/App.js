@@ -124,7 +124,7 @@ function App() {
             path="/chat"
             element={
               <>
-                <Navbar /> <Chat /> <LoginFooter />
+                <Navbar /> <Chat /> <SignupFooter />
               </>
             }
           ></Route>

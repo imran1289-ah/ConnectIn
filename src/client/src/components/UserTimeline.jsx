@@ -16,13 +16,6 @@ const UserTimeline = () => {
   const userID = sessionStorage.getItem("userID");
 
   const navigate = useNavigate();
-  const [postData, setpostData] = useState({
-    description: "",
-    attachment: null,
-    timestamp: new Date()
-  });
-
-  const [posts, setPosts] = useState([]);
 
   //fetch session once
   useEffect(() => {
@@ -47,6 +40,13 @@ const UserTimeline = () => {
     }
   };
 
+  const [postData, setpostData] = useState({
+    description: "",
+    attachment: null,
+    timestamp: new Date()
+  });
+
+  //HTTP Request to fetch posts and add posts ....
   const savePost = async () => {
     axios
       .post(`http://localhost:9000/users/post`, {
@@ -64,6 +64,11 @@ const UserTimeline = () => {
         });
         navigate("/userTimeline");
       })
+      .then((response) => {
+        setTimeout(function(){
+          window.location.reload();
+        }, 1200);
+      })
       .catch((error) => {
         console.log(error);
         swal("Failed", "Your post was not created, try again!", "error",{
@@ -73,11 +78,13 @@ const UserTimeline = () => {
       });
   };
 
+  const [posts, setPosts] = useState([]);
   const fetchPosts = async () => {
     await axios.get(`http://localhost:9000/users/${userID}/posts`)
     .then(response => {
       setPosts(response.data)
     })
+    
   }
 
   const allPosts = posts.map((post) => (
@@ -89,8 +96,9 @@ const UserTimeline = () => {
     </div>
   ))
 
-
-  //HTTP Request to fetch posts and add posts ....
+  const allSortedPosts = [...allPosts].sort((a,b) =>{
+    return a.timestamp > b.timestamp ? 1 : -1
+  })
 
   return (
     <div>
@@ -143,7 +151,7 @@ const UserTimeline = () => {
             {/* user's post in their timeline*/}
             <div>
               {/* each div is a single post*/}
-              {allPosts}
+              {allSortedPosts}
             </div>
           </div>
           {/* User Connections section  */}

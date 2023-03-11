@@ -6,6 +6,7 @@
     border-color: gray;
     height: 70vh;
     margin-top: 60px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
 
 .chat_container{
@@ -13,7 +14,7 @@
   flex-direction: column;
   flex-grow: 2;
   width: clamp(200px,50%, 400px);
-  background-color: lightslategray
+  background-color: lightslategray;
 }
 
 .line {

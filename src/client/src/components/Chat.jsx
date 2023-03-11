@@ -133,7 +133,7 @@ const Chat = () => {
         <hr className={ChatCSS.line} /> 
         {/* <div className={ChatCSS.chat_container}> */}
         {currentChat === undefined ? (
-          <div className={ContactCSS.header}>Select a chat</div>
+          <div className={ContactCSS.selectHeader}>Select a chat</div>
         ) : (
           <ChatContainer currentChat={currentChat} socket={socket}/>
         )}

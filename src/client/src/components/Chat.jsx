@@ -112,8 +112,17 @@ const Chat = () => {
     })
  }, [socket])
 
-  const handleChangeChat = (chat) => {
+  const handleChangeChat = async (chat) => {
     setCurrentChat(chat)
+    console.log(chat.userID)
+    console.log(userID);
+   await axios.post("http://localhost:9000/rooms",{
+      userID_1: sessionStorage.getItem("userID"),
+      userID_2: chat.userID
+    }).then((response) =>{
+      socket.emit("joinRoom", response.data)
+    })
+    
   }
  
 

@@ -36,6 +36,7 @@ router.route("/:id/jobsApplied").get(usersControllers.getUserJobsApplied);
 
 router.route("/:id/jobsApplied").post(usersControllers.addJobAppliedToUser);
 
+router.route("/post").post(usersControllers.addTimelinePost);
 
 
 

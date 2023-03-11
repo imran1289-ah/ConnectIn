@@ -158,7 +158,7 @@ const JobListing = () =>{
                 </Button>
             
             
-            </div>)};
+            </div>)}
         </div>
     );
 }

@@ -1,14 +1,22 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../UserSession";
 import axios from "axios";
 import "../css/userTimeline.css";
 import EditIcon from "@mui/icons-material/Edit";
 import { IconButton } from "@mui/material";
 import { TextField } from "@mui/material";
+import swal from 'sweetalert';
+import { useNavigate } from "react-router-dom";
 
 const UserTimeline = () => {
   //Global state
   const [login, setLogin] = useContext(Context);
+  const navigate = useNavigate();
+  const [postData, setpostData] = useState({
+    description: "",
+    attachment: null,
+    timestamp: new Date()
+  });
 
   //fetch session once
   useEffect(() => {
@@ -30,6 +38,35 @@ const UserTimeline = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const savePost = async () => {
+    console.log(sessionStorage.getItem("userID"));
+    console.log(sessionStorage.getItem("firstname"));
+    console.log(sessionStorage.getItem("lastname"));
+    axios
+      .post(`http://localhost:9000/users/post`, {
+        _id: sessionStorage.getItem("userID"), 
+        firstname: sessionStorage.getItem("firstname"),
+        lastname: sessionStorage.getItem("lastname"), 
+        description: postData.description,
+        timestamp: postData.timestamp
+      })
+      .then((response) => {
+        console.log(response.data);
+        swal("Congrats!", "You have successfully created a post!","success",{
+          button:false,
+          timer:1000
+        });
+        navigate("/userTimeline");
+      })
+      .catch((error) => {
+        console.log(error);
+        swal("Failed", "Your post was not created, try again!", "error",{
+          button:false,
+          timer:1000
+        })
+      });
   };
 
   //Get id of logged in user
@@ -55,12 +92,13 @@ const UserTimeline = () => {
                 }}
               ></img>
             </div>
+            
             <span className="userNameTimeline">
               {sessionStorage.getItem("firstname")}{" "}
               {sessionStorage.getItem("lastname")}
             </span>
             <br></br>
-            <span className="connectionsLinkTimeline">View Conenctions</span>
+            <span className="connectionsLinkTimeline">View Connections</span>
           </div>
 
           {/* User posts section*/}
@@ -68,14 +106,21 @@ const UserTimeline = () => {
             {/* Create a post section*/}
             <div className="userInformationTimeline">
               <IconButton>
-                <EditIcon fontSize="medium"></EditIcon>
+                <EditIcon onClick={savePost} fontSize="medium"></EditIcon>
               </IconButton>
               <TextField
                 id="outlined-basic"
                 label="Start A Post"
                 variant="standard"
                 className="postTextField"
+                value= {postData.description}
+                onChange={e => setpostData({ ...postData, description: e.target.value })}
               />
+              <div className="timestamp" value={Date.now()} 
+              onChange={e => setpostData({...postData, timestamp: e.target.value})} />
+                
+              {/* <input className="imageFile" type="file" accept=".png" name="image" 
+              onChange={e => setpostData({...postData, attachment: e.target.files[0]})}/> */}
             </div>
             {/* user's post in their timeline*/}
             <div>

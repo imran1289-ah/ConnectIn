@@ -24,7 +24,7 @@ import io from 'socket.io-client'
 
 function App() {
 
-  const socket = io.connect("http://localhost:9000");
+  //const socket = io.connect("http://localhost:9000");
 
   return (
     <UserSession>
@@ -124,7 +124,7 @@ function App() {
             path="/chat"
             element={
               <>
-                <Navbar /> <Chat socket={socket}/> <LoginFooter />
+                <Navbar /> <Chat /> <LoginFooter />
               </>
             }
           ></Route>

@@ -5,9 +5,10 @@ import axios from "axios";
 import io from "socket.io-client";
 
 
-const Chat = (socket) => {
+const Chat = () => {
   
-  // const socket = io.connect("http://localhost:9000")
+  const socket = io.connect("http://localhost:9000")
+  
 
   const [userConnections, setUserConnections] = useState(
     {
@@ -57,9 +58,9 @@ const Chat = (socket) => {
     }
   }, []);
 
-  useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [message]);
+  // useEffect(() => {
+  //   scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  // }, [message]);
    
    const fetchUserConnections = async () => {
 
@@ -84,13 +85,24 @@ const Chat = (socket) => {
   };
 
  const sendMessage = ()=>{
-    socket.emit("sendMessage", message);
+
+  const data = {
+    message: message,
+    from: from,
+    to: to,
+    room: room,
+    value: new Date(Date.now()).getDate()
+  }
+  if(message.length !=0){
+    socket.emit("sendMessage", data);
+  }
+    
     setMessage("");
  }
 
- const joinRoom = () =>{
-  socket.emit("join_room", room);
- }
+//  const joinRoom = () =>{
+//   socket.emit("join_room", room);
+//  }
 
 
   return (
@@ -113,42 +125,14 @@ const Chat = (socket) => {
               </div>
             </div>
           </div>
-          {/* {messages.map((message) => {
-            return (
-              <div ref={scrollRef}>
-                 <div
-                className={`message ${
-                  message.fromSelf ? "sended" : "recieved"
-                }`}
-              >
-                <div className="content ">
-                  <p>{message.message}</p>
-                </div>
-              </div>
-              </div>
-            )
-          })} */}
         </div>
           
         
-      {/* <div className="message-container">
-        <div className="emoji">
-          <BsEmojiSmileFill />
-        </div>
-      </div>
-      <form className="input-container" >
-        <input
-          type="text"
-          placeholder="type your message here"
-        />
-        <button type="submit">
-          <IoMdSend />
-        </button>
-      </form> */}
+     
 
         <div className="message-container">
           <input type="textbox" placeholder="Type your message here" name="message" onChange={(e) =>setMessage(e.target.value)}/>
-          <button onClick= {sendMessage}> Press here</button>
+          <button onClick={sendMessage}> Press here</button>
         </div>
 
       </div>

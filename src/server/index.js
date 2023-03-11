@@ -95,8 +95,9 @@ const socketApp = io(server, {
 socketApp.on("connection", (socket) => {
 
         console.log(socket.id + " has connected")
-        socket.on("from_sendMessage", message => {
-            console.log(message);
+
+        socket.on("sendMessage", data => {
+            console.log(data);
         })
 
         socket.on("disconnect", () =>{
@@ -104,6 +105,7 @@ socketApp.on("connection", (socket) => {
         })
 
     }
+    
 
 )
 

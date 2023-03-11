@@ -12,6 +12,17 @@ import { useNavigate } from "react-router-dom";
 
 const WaitingConnections = () => {
 
+const AddSelftoFriends = async(user_id) =>{
+  axios
+  .post(`http://localhost:9000/users/newConnection`, {
+    firstname: sessionStorage.getItem("firstname"),
+    lastname: sessionStorage.getItem("lastname"),
+    userID :sessionStorage.getItem("userID") ,
+    _id: user_id,
+    //roomID:  user_id + sessionStorage.getItem("userID") ,
+  })
+}
+
   const Acceptbutton = async (first, last, user_id) => {
     console.log(first);
     console.log(last);
@@ -20,9 +31,11 @@ const WaitingConnections = () => {
           firstname: first,
           lastname: last,
           userID :user_id,
-          _id: sessionStorage.getItem("userID") 
+          _id: sessionStorage.getItem("userID"),
+         // roomID: user_id +sessionStorage.getItem("userID"),
         })
         .then((response) => {
+          AddSelftoFriends(`${user_id}`) 
           DeleteWaitingConnection(`${first}`,`${last}`,`${user_id}`)
           })
           .catch((error) => {
@@ -102,7 +115,8 @@ const fetchSession = async () => {
 
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
-
+  const fName =console.log(sessionStorage.getItem("firstname"));
+  const lName =console.log(sessionStorage.getItem("lastname"));
   const fetchData = async () => {
     console.log(userID);
     await axios.post(`http://localhost:9000/users/waitingConnections`,{

@@ -85,7 +85,7 @@ const SearchUser = () => {
         lastname: sessionStorage.getItem("lastname"), 
       })
       .then((response) => {
-        swal("Congrats!", "You have successfully created a post!","success",{
+        swal("Congrats!", "You have successfully sent connection request!","success",{
           button:false,
           timer:1000
         });

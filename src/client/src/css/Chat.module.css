@@ -5,8 +5,9 @@
     border-width: 7px;
     display: flex;
     border-color: gray;
-    height: 70vh;
-    margin-top: 60px;
+    max-height: 75vh;
+    margin-top: 3.5vh;
+    margin-bottom: auto;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
 

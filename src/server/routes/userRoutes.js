@@ -13,7 +13,7 @@ router
 
 router
   .route("/:_id")
-  //.get(usersControllers.getUser)
+  .get(usersControllers.getUser)
   //.patch(usersControllers.updateUser)
   .delete(usersControllers.deleteUser);
 
@@ -37,6 +37,8 @@ router.route("/:id/jobsApplied").get(usersControllers.getUserJobsApplied);
 router.route("/:id/jobsApplied").post(usersControllers.addJobAppliedToUser);
 
 router.route("/post").post(usersControllers.addTimelinePost);
+
+router.route("/:id/posts").get(usersControllers.getUserPostsbyID);
 
 
 

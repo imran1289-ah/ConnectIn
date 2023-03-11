@@ -11,6 +11,10 @@ import { useNavigate } from "react-router-dom";
 const UserTimeline = () => {
   //Global state
   const [login, setLogin] = useContext(Context);
+  
+  //Get id of logged in user
+  const userID = sessionStorage.getItem("userID");
+
   const navigate = useNavigate();
   const [postData, setpostData] = useState({
     description: "",
@@ -18,16 +22,12 @@ const UserTimeline = () => {
     timestamp: new Date()
   });
 
-  const [postView, setPostView] = useState({
-    firstname: "",
-    lastname: "",
-    description: "",
-    attachment: null
-  });
+  const [posts, setPosts] = useState([]);
 
   //fetch session once
   useEffect(() => {
     fetchSession();
+    fetchPosts();
   }, []);
 
   //Fetch session information
@@ -48,9 +48,6 @@ const UserTimeline = () => {
   };
 
   const savePost = async () => {
-    console.log(sessionStorage.getItem("userID"));
-    console.log(sessionStorage.getItem("firstname"));
-    console.log(sessionStorage.getItem("lastname"));
     axios
       .post(`http://localhost:9000/users/post`, {
         _id: sessionStorage.getItem("userID"), 
@@ -76,22 +73,21 @@ const UserTimeline = () => {
       });
   };
 
-  const getPosts = async () => {
-    axios
-      .get(`http://localhost:9000/users/:_id`, {
-        setPostView({ ...postView, firstname: sessionStorage.getItem("firstname")}),
-        setPostView({ ...postView, lastname: sessionStorage.getItem("lastname")}),
-        setPostView({ ...postView, description: sessionStorage.getItem("postsMade")})
-      })
-      .then((response) => {
-        console.log("You are looking at posts");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const fetchPosts = async () => {
+    await axios.get(`http://localhost:9000/users/${userID}/posts`)
+    .then(response => {
+      setPosts(response.data)
+    })
   }
-  //Get id of logged in user
-  const userID = sessionStorage.getItem("userID");
+
+  const allPosts = posts.map((post) => (
+    <div className="userPostsTimeline">
+      <span className="subTitleTimeline">{post.firstname}{" "}{post.lastname}</span>
+      <p className="postText">
+        {post.description}
+      </p>
+    </div>
+  ))
 
   //HTTP Request to fetch posts and add posts ....
 
@@ -146,67 +142,7 @@ const UserTimeline = () => {
             {/* user's post in their timeline*/}
             <div>
               {/* each div is a single post*/}
-              {sessionStorage.getItem("_id").map(user => (
-                <div className="userPostsTimeline">
-                  <span className="subTitleTimeline">{user._id}</span>
-                  <p className="postText">
-                    {user.getPosts}
-                  </p>
-                </div>
-              ))}
-              <div className="userPostsTimeline">
-                <span className="subTitleTimeline">John Doe</span>
-                <p className="postText">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </p>
-              </div>
-
-              <div className="userPostsTimeline">
-                <span className="subTitleTimeline">John Doe</span>
-                <p className="postText">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-              </div>
-
-              <div className="userPostsTimeline">
-                <span className="subTitleTimeline">John Doe</span>
-                <p className="postText">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur.
-                </p>
-              </div>
-
-              <div className="userPostsTimeline">
-                <span className="subTitleTimeline">John Doe</span>
-                <p className="postText">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-              </div>
-
-              <div className="userPostsTimeline">
-                <span className="subTitleTimeline">John Doe</span>
-                <p className="postText">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-              </div>
+              {allPosts}
             </div>
           </div>
           {/* User Connections section  */}

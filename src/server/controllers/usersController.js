@@ -283,7 +283,14 @@ const addTimelinePost = async(req, res) => {
     //return res.status(200).json({message:"sent request sucessfully"});
 };
 
-
+const getUserPostsbyID = async(req, res) => {
+    try {
+        const user = await User.findOne({ _id: req.params.id });
+        return res.status(200).json(user.postsMade);
+    } catch (err) {
+        res.status(400).json({ message: "Unable to retrieve jobs applied." });
+    }
+};
 
 
 module.exports = {
@@ -306,4 +313,5 @@ module.exports = {
     getUser,
 
     addTimelinePost,
+    getUserPostsbyID,
 };

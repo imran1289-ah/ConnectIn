@@ -65,10 +65,10 @@ const ChatContainer = ({ currentChat, socket }) => {
       {messages.map((message) => {
         return(<div className={ContainerCSS.messagesContainer}>
           {message.fromSelf ? (<div className={ContainerCSS.sent}>
-            <span className={ContainerCSS.textSent}>{message.message}</span>
+            <div className={ContainerCSS.textSent}>{message.message}</div>
           </div>):
           (<div className={ContainerCSS.received}>
-            <span className={ContainerCSS.textReceived}>{message.message}</span>
+            <div className={ContainerCSS.textReceived}>{message.message}</div>
             </div>)}
           </div>
         )

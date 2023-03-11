@@ -1,5 +1,6 @@
 .container {
     border-radius: 10px;
+    display: inline-flex;
     border-style: ridge;
     border-width: 7px;
     display: flex;

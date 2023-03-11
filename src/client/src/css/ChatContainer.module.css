@@ -28,7 +28,7 @@
     background: white;
     flex-grow: 2;
     flex-direction: column;
-    display: flex;
+    display: grid;
 }
 
 .input {
@@ -39,38 +39,40 @@
 }
 
 .sent {
-  display: flex;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-right: 1em;
+  padding-left: 70%;
   /* border-style: solid; */
-  justify-content: flex-end; 
 }
 
 .received {
-  color: green;
+  overflow-wrap: break-word;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 1em;
-  display: flex;
-  justify-content: flex-start; 
+  padding-right: 70%;
+  justify-content: left;
 }
 
 .textSent {
   background: rgb(28, 137, 201);
+  width: auto;
+  text-align: right;
   color: white;
-  border-style: solid;
   border-radius: 15px 15px 2px 15px;
   padding: 10px;
-  max-width: 300px;
-  height: auto;
+  word-wrap: break-word;
 }
 
 .textReceived {
   background: rgb(204, 204, 204);
+  width: auto;
+  text-align: left;
   color: black;
   border-radius: 15px 15px 15px 2px;
   padding: 10px; 
+  word-wrap: break-word;
 }
 
 .messagesContainer {

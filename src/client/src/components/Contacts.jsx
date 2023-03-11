@@ -6,6 +6,8 @@ const Contacts = ({connections, changeChat}) => {
   const [currentSelected, setCurrentSelected] = useState(undefined);
 
     const changeCurrentChat = (index, contact) => {
+      console.log(index);
+      console.log(contact);
       setCurrentSelected(index)
       changeChat(contact)
     }
@@ -20,11 +22,10 @@ const Contacts = ({connections, changeChat}) => {
             <h2 className="mycontact">My Contacts</h2>
             <div className="ul">
              {connections && (connections.map((contact, index) => {
-               const [firstname, lastname] = contact.split(' ');
                return (
                 
-                 <div key={contact._id} className={ContactCSS.connectionInfo} onClick={() => changeCurrentChat(index, contact)}>
-{console.log(connections)}
+                 <div key={contact.userID} className={ContactCSS.connectionInfo} onClick={() => changeCurrentChat(index, contact)}>
+                    {console.log(connections)}
                    {/* <img className={ContactCSS.contactImage}
                      src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
                      alt="comapnyPic"
@@ -33,7 +34,7 @@ const Contacts = ({connections, changeChat}) => {
 
                    
 
-                    <span className={ContactCSS.connectionName}>{firstname} {lastname}</span>
+                    <span className={ContactCSS.connectionName}>{contact.firstname} {contact.lastname}</span>
 
                  </div>
                );

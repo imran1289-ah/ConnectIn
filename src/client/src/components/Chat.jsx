@@ -31,11 +31,8 @@ const Chat = () => {
    //Global loginState
    const [login, setLogin] = useContext(Context);
    const [message, setMessage] = useState("");
-  //  const [room, setRoom] = useState("");
    const scrollRef = useRef();
-   const from = "6402817b781fecbdadf6c992";
-   const to = "6402a4c6db0c6f36e8f531a8";
-   const room = "room1"
+   const [room, setRoom] = useState("");
 
   
    const [currentChat, setCurrentChat] = useState(undefined);
@@ -85,26 +82,21 @@ const Chat = () => {
    }
   };
 
- const sendMessage = ()=>{
+//  const sendMessage = ()=>{
 
-  const data = {
-    message: message,
-    from: from,
-    to: to,
-    room: room,
-    value: new Date(Date.now())
-  }
-  if(message.length !=0){
-    socket.emit("sendMessage", data);
-  }
-    joinRoom();
-    setMessage("");
- }
+//   const data = {
+//     message: message,
+//     from: from,
+//     to: to,
+//     room: room,
+//     value: new Date(Date.now())
+//   }
+//   if(message.length !=0){
+//     socket.emit("sendMessage", data);
+//   }
+//     setMessage("");
+//  }
 
- const joinRoom = () =>{
-
-  socket.emit("joinRoom", room);
- }
 
  useEffect(()=>{
     socket.on("receiveMessage", (data)=>{
@@ -114,20 +106,18 @@ const Chat = () => {
 
  const handleChangeChat = async (chat) => {
   setCurrentChat(chat)
-  console.log(chat.userID)
-  console.log(userID);
+  // console.log(chat.userID)
+  // console.log(userID);
  await axios.post("http://localhost:9000/rooms",{
     userID_1: sessionStorage.getItem("userID"),
     userID_2: chat.userID
   }).then((response) =>{
-    socket.emit("joinRoom", response.data)
+    setRoom(response.data);
+    socket.emit("joinRoom", room);
   })
 }
  
 
-//  const joinRoom = () =>{
-//   socket.emit("join_room", room);
-//  }
 
 
   return (
@@ -143,7 +133,7 @@ const Chat = () => {
         {currentChat === undefined ? (
           <div className={ContactCSS.selectHeader}>Select a chat</div>
         ) : (
-          <ChatContainer currentChat={currentChat} socket={socket}/>
+          <ChatContainer currentChat={currentChat} room={room} socket={socket}/>
         )}
         </div>
 

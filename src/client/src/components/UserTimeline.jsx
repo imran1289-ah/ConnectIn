@@ -20,6 +20,8 @@ const UserTimeline = () => {
   //fetch session once
   useEffect(() => {
     fetchSession();
+    fetchConnections();
+    //fetchConnectionPosts();
     fetchPosts();
   }, []);
 
@@ -78,16 +80,45 @@ const UserTimeline = () => {
       });
   };
 
+  const [connections, setConnections] = useState([]);
+  const fetchConnections = async () => {
+    await axios.get(`http://localhost:9000/users/${userID}/connections`)
+    .then(response => {
+      setConnections(response.data)
+    })
+  }
+
+  /*const [connectionsIDs, setConnectionsIDs] = useState([]);
+  setConnectionsIDs(connections.map((connection) => (
+    connection.userID
+  )))
+
+  const [connectionsPosts, setConnectionsPosts] = useState([]);
+  const fetchConnectionPosts = async () => {
+    await axios.get(`http://localhost:9000/users/${userID}/posts`)
+    .then(response => {
+      setConnectionsPosts(response.data)
+    })
+  }
+
+  const allConnectionsPosts = connectionsPosts.map((connectionsPost) => (
+    <div className="userPostsTimeline">
+      <span className="subTitleTimeline">{connectionsPost.firstname}{" "}{connectionsPost.lastname}</span>
+      <p className="postText">
+        {connectionsPost.description}
+      </p>
+    </div>
+  ))*/
+
   const [posts, setPosts] = useState([]);
   const fetchPosts = async () => {
     await axios.get(`http://localhost:9000/users/${userID}/posts`)
     .then(response => {
       setPosts(response.data)
     })
-    
   }
 
-  const allPosts = posts.map((post) => (
+  const userPosts = posts.map((post) => (
     <div className="userPostsTimeline">
       <span className="subTitleTimeline">{post.firstname}{" "}{post.lastname}</span>
       <p className="postText">
@@ -96,7 +127,8 @@ const UserTimeline = () => {
     </div>
   ))
 
-  const allSortedPosts = [...allPosts].sort((a,b) =>{
+  //const allPosts = [...allConnectionsPosts, ...userPosts]
+  const allSortedPosts = [...userPosts].sort((a,b) =>{
     return a.timestamp > b.timestamp ? 1 : -1
   })
 
@@ -154,7 +186,6 @@ const UserTimeline = () => {
               {allSortedPosts}
             </div>
           </div>
-          {/* User Connections section  */}
           <div className="right">
             <span className="subTitle">Contacts</span>
             <br></br>

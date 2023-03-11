@@ -94,9 +94,9 @@ const deleteAwaitingConnections = async(req, res) => {
 };
 //Action of transferring a connection from awaiting connections list to connections list
 const updateConnections = async(req, res) => {
-    const { firstname, lastname, userID, _id, roomID  } = req.body;
+    const { firstname, lastname, userID, _id} = req.body;
     //const _id = "63f41b0123e995b64434ece0";
-    const user = await User.findOneAndUpdate({ _id: _id }, { $addToSet: { connections: { firstname: firstname, lastname: lastname, userID:userID, roomID: roomID } } });
+    const user = await User.findOneAndUpdate({ _id: _id }, { $addToSet: { connections: { firstname: firstname, lastname: lastname, userID:userID} } });
     if (user) {
         console.log("Succesfully updated awaiting connections");
         res.status(200).json({ message: "Succesfully added user to connections" });
@@ -290,10 +290,18 @@ const getUserPostsbyID = async(req, res) => {
         const user = await User.findOne({ _id: req.params.id });
         return res.status(200).json(user.postsMade);
     } catch (err) {
-        res.status(400).json({ message: "Unable to retrieve jobs applied." });
+        res.status(400).json({ message: "Unable to retrieve posts made." });
     }
 };
 
+const getConnections = async(req, res) => {
+    try {
+        const user = await User.findOne({ _id: req.params.id });
+        return res.status(200).json(user.connections);
+    } catch (err) {
+        res.status(400).json({ message: "Unable to retrieve connections." });
+    }
+};
 
 module.exports = {
     createUser,
@@ -306,6 +314,7 @@ module.exports = {
     updateAwaitingConnections,
     getAwaitingConnections,
     deleteAwaitingConnections,
+    getConnections,
 
     //getUserByEmail
     editUserInfo,

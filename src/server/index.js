@@ -76,6 +76,8 @@ app.use("/search", require("./routes/searchRoute.js"));
 app.use("/jobs", require("./routes/jobsRoutes.js"));
 app.use("/session", require("./routes/sessionRoutes.js"));
 app.use("/messages", require("./routes/messageRoutes.js"))
+app.use('/messages/download', express.static('uploads'));
+
 
 //Running the server
 const server = app.listen(port, () => {
@@ -101,12 +103,12 @@ socketApp.on("connection", (socket) => {
             socket.emit("receiveMessage", data);
         })
 
-        socket.on("joinRoom", (room)=>{
+        socket.on("joinRoom", (room) => {
             socket.join(room)
-            console.log( socket.id + " has joined " + room)
+            console.log(socket.id + " has joined " + room)
         })
 
-        socket.on("disconnect", () =>{
+        socket.on("disconnect", () => {
             console.log(socket.id + " has disconnected")
         })
 

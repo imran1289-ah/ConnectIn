@@ -6,8 +6,13 @@ const MessageSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    attachment:{
-        type:Buffer,
+    attachment: {
+        url: {
+            type: String
+        },
+        filename: {
+            type: String
+        }
     },
     users: Array,
     sender: {

@@ -94,7 +94,7 @@ const deleteAwaitingConnections = async(req, res) => {
 };
 //Action of transferring a connection from awaiting connections list to connections list
 const updateConnections = async(req, res) => {
-    const { firstname, lastname, userID, _id} = req.body;
+    const { firstname, lastname, userID, _id } = req.body;
     //const _id = "63f41b0123e995b64434ece0";
     const user = await User.findOneAndUpdate({ _id: _id }, { $addToSet: { connections: { firstname: firstname, lastname: lastname, userID:userID} } });
     if (user) {

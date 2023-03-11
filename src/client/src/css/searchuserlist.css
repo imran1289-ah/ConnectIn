@@ -2,6 +2,7 @@
   display: flex;
   margin: 20px;
   font-family: "Inter", sans-serif;
+  flex-wrap: wrap;
 }
 
 img {
@@ -11,7 +12,7 @@ img {
 }
 
 .singleUser {
-  margin: 20px;
+  margin: 30px;
 }
 
 .userInfo {

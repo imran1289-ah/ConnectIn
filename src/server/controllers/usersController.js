@@ -73,10 +73,10 @@ const verifyUser = async(req, res) => {
 
 //This will be used to update the user's profile information
 const updateUser = async(req, res) => {};
+
 //Action of deleting  a user from awaiting connections list
 const deleteAwaitingConnections = async(req, res) => {
     const { firstname, lastname, _id, userID} = req.body;
-
     const user = await User.findOneAndUpdate({ _id: _id }, {
         $pull: {
             waitingConnections: { firstname: firstname, lastname: lastname, userID: userID},
@@ -89,13 +89,13 @@ const deleteAwaitingConnections = async(req, res) => {
         return res.status(404).json({
             message: "Error not found",
         });
-    }
+    }  
 };
 //Action of transferring a connection from awaiting connections list to connections list
 const updateConnections = async(req, res) => {
-    const { firstname, lastname, userID: userID } = req.body;
-    const _id = "63f41b0123e995b64434ece0";
-    const user = await User.findOneAndUpdate({ _id: _id }, { $addToSet: { connections: { firstname: firstname, lastname: lastname, userID: userID } } });
+    const { firstname, lastname, userID, _id } = req.body;
+    //const _id = "63f41b0123e995b64434ece0";
+    const user = await User.findOneAndUpdate({ _id: _id }, { $addToSet: { connections: { firstname: firstname, lastname: lastname, userID:userID } } });
     if (user) {
         console.log("Succesfully updated awaiting connections");
         res.status(200).json({ message: "Succesfully added user to connections" });
@@ -108,10 +108,10 @@ const updateConnections = async(req, res) => {
 
 //Action to add user's name and Id to another user's AwaitingConnections
 const updateAwaitingConnections = async(req, res) => {
-    const { _id } = req.body;
+    const { _id, userID, firstname, lastname } = req.body;
     const user = await User.findOneAndUpdate({ _id: _id }, {
         $addToSet: {
-            waitingConnections: { firstname: "Ittle", lastname: "doo" },
+            waitingConnections: { userID: userID, firstname: firstname, lastname: lastname},
         },
     });
     if (user) {
@@ -127,9 +127,10 @@ const updateAwaitingConnections = async(req, res) => {
 
 //Action to retrieve waiting connections
 const getAwaitingConnections = async(req, res) => {
-    const id = "63f41b0123e995b64434ece0";
-    const user = await User.findById(id)
-    if (user) {
+    const {user_id} = req.body;
+    //const id = "640a92a2a8662ce5531b1b84"  ;
+    const user = await User.findById(user_id);
+    if (user_id) {
         res.status(200).json(user.waitingConnections);
     } else {
         return res.status(404).json({
@@ -263,6 +264,29 @@ const addJobAppliedToUser = async(req, res) => {
     res.send(201);
 };
 
+
+//Action to add user's post to their account.
+const addTimelinePost = async(req, res) => {
+    const { _id, firstname, lastname, description, timestamp} = req.body;
+    const user = await User.findByIdAndUpdate( _id , {
+        $addToSet: {
+            postsMade: { _id: _id, firstname:  firstname , lastname: lastname, description: description, timestamp: timestamp },
+        },
+    });
+    if (user) {
+        console.log("Succesfully updated awaiting connections");
+        res.status(200).json({ message: "Succesfully added user `${_id}`" });
+    } else {
+        return res.status(404).json({
+            message: "Error not found",
+        });
+    }
+    //return res.status(200).json({message:"sent request sucessfully"});
+};
+
+
+
+
 module.exports = {
     createUser,
     updateUser,
@@ -281,4 +305,6 @@ module.exports = {
     getUserJobsApplied,
     addJobAppliedToUser,
     getUser,
+
+    addTimelinePost,
 };

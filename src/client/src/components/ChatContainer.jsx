@@ -4,7 +4,7 @@ import ChatInput from "./ChatInput";
 import axios from "axios";
 
 
-const ChatContainer = ({ currentChat, socket }) => {
+const ChatContainer = ({ currentChat, socket, room }) => {
   const [messages, setMessages] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
 
@@ -37,11 +37,18 @@ const ChatContainer = ({ currentChat, socket }) => {
   }
 
   const handleSendMsg = async (msg) => {
-    // socket.current.emit("send-msg", {
-    //   to: currentChat._id,
-    //   from: userID,
-    //   msg,
-    // });
+    const data = {
+      message: msg,
+      from: userID,
+      to: currentChat.userID,
+      room: room,
+      value: new Date(Date.now())
+    }
+    if(msg.length !=0){
+      socket.emit("sendMessage", data);
+    }
+    setMessages("");
+    socket.emit("sendMessage", data);
     await axios.post("http://localhost:9000/messages/addMessage", {
       from: userID,
       to: currentChat.userID,

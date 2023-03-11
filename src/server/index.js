@@ -98,6 +98,7 @@ socketApp.on("connection", (socket) => {
 
         socket.on("sendMessage", data => {
             console.log(data);
+            socket.emit("receiveMessage", data);
         })
 
         socket.on("joinRoom", (room)=>{

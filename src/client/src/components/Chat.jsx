@@ -3,12 +3,25 @@ import "../css/Chat.css";
 import { Context } from "../UserSession";
 import axios from "axios";
 import io from "socket.io-client";
+import ChatCSS from "../css/Chat.module.css";
+import { Container } from "@mui/system";
+import Contacts from "./Contacts";
+import styled from "@mui/material";
+import SendRoundedIcon from "@mui/icons-material/SendRounded";
+import AttachFileIcon from "@mui/icons-material/AttachFile";
+import ChatContainer from "./ChatContainer";
+import ScrollToBottom from "react-scroll-to-bottom";
 
+const socket = io.connect("http://localhost:9000")
 
 const Chat = () => {
   
   const socket = io.connect("http://localhost:9000")
   
+
+  // const sendMessage = () => {
+  //   socket.emit()
+  // };
 
   const [userConnections, setUserConnections] = useState(
     {
@@ -28,39 +41,30 @@ const Chat = () => {
    const room = "room1"
 
   
+   const [currentChat, setCurrentChat] = useState(undefined);
 
    //Get id of logged in user
    const userID = sessionStorage.getItem("userID");
  
-  //  useEffect(() => {
-  //    if (userID) {
-  //      fetchSession();
-  //    }
-  //  }, []);
+   useEffect(() => {
+     if (userID) {
+       fetchSession();
+       fetchUserConnections();
+     }
+   }, []);
 
-  //     //Having the loginState persist on all page
-  //     const fetchSession = async () => {
-  //       try {
-  //         if (userID) {
-  //           setLogin({
-  //             isLoggedIn: true,
-  //           });
-  //         }
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     };
-
-        //Make the request only on the first render
-  useEffect(() => {
-    if (userID) {
-      fetchUserConnections();
-    }
-  }, []);
-
-  // useEffect(() => {
-  //   scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  // }, [message]);
+      //Having the loginState persist on all page
+      const fetchSession = async () => {
+        try {
+          if (userID) {
+            setLogin({
+              isLoggedIn: true,
+            });
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
    
    const fetchUserConnections = async () => {
 
@@ -111,6 +115,9 @@ const Chat = () => {
     })
  }, [socket])
 
+  const handleChangeChat = (chat) => {
+    setCurrentChat(chat)
+  }
  
 
 //  const joinRoom = () =>{
@@ -119,57 +126,24 @@ const Chat = () => {
 
 
   return (
-    <div className="conatiner">
-      <div className="chatbox">
-        <div className="userpic">
-          <h2 className="username">Jane Doe</h2>
+    <>
+    <Container>
+      <div className={ChatCSS.container}>
+        {console.log(userConnections.connections)}
+        <div>
+          <Contacts connections={userConnections.connections} changeChat={handleChangeChat} />
         </div>
-        <div className="vl"></div>
-        <div className = "chat-messages">
-          <div ref={scrollRef}>
-            <div className={`message sended`}>
-              <div className="content ">
-                <p>Test</p>
-              </div>
-            </div>
-            <div className={`message received`}>
-              <div className="content ">
-                <p>Hello there.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-          
-        
-     
-
-        <div className="message-container">
-          <input type="textbox" placeholder="Type your message here" name="message" onChange={(e) =>setMessage(e.target.value)}/>
-          <button onClick={sendMessage}> Press here</button>
+        <div className={ChatCSS.chat_container}>
+        {currentChat === undefined ? (
+          <h1>Select a chat</h1>
+        ) : (
+          <ChatContainer currentChat={currentChat} socket={socket}/>
+        )}
         </div>
 
       </div>
-      <div className="contacts">
-      <h2 className="mycontact">My Contacts</h2>
-  <ul className="ul">
-    {userConnections.connections.map((name, index) => {
-      const [firstname, lastname] = name.split(' ');
-      return (
-        <li key={index} className="connectionsInfo">
-          <img
-            src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
-            alt="comapnyPic"
-            className="companyPic"
-          />
-          <div>
-            <span className="connectionName">{firstname} {lastname}</span>
-          </div>
-        </li>
-      );
-    })}
-  </ul>
-  </div>
-</div>
+    </Container>
+    </>
   );
 };
 

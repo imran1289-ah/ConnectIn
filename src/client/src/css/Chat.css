@@ -1,4 +1,4 @@
-.conatainer {
+/* .conatainer {
   display: flex;
   flex-direction: row;
 }
@@ -13,10 +13,10 @@
   border-radius: 7%;
   display: flex;
   justify-content: flex-start;
-  /*@media screen {
+  @media screen {
     min-width: 720px;
     max-width: 1080px;
-  }*/
+  }
 }
 
 .contacts {
@@ -173,4 +173,4 @@
   display: flex;
   left: 330px;
   position: relative;
-}
+} */

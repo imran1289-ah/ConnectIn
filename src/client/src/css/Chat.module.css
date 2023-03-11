@@ -1,0 +1,13 @@
+.container {
+    padding: 2em;
+    display: flex;
+    border: dotted;
+    border-color: red;
+    height: 70vh;
+    margin-top: 20px;
+}
+
+.chat_container{
+  flex-grow: 3;
+  background-color: lightslategray
+}

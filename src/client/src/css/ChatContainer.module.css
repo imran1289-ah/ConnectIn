@@ -1,0 +1,14 @@
+.header{
+    /* padding-left: 40px; */
+    margin: 0px;
+}
+
+.chatBox{
+  height: 500px;
+  border: 1px red solid;
+}
+
+.container{
+    background: lightblue;
+}
+

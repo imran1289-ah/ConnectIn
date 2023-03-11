@@ -54,6 +54,10 @@ const Navbar = () => {
     navigate("/userTimeline");
   };
 
+  const redirectWaitingConnections = () =>{
+    navigate("/waitingConnections")
+  }
+
   return (
     //Material UI navbar
     <Box sx={{ flexGrow: 1 }}>
@@ -97,7 +101,7 @@ const Navbar = () => {
                 </Box>
               </IconButton>
 
-              <IconButton color="inherit">
+              <IconButton color="inherit" onClick={redirectWaitingConnections}>
                 <Box className="parentUserIconContainer">
                   <Typography className="userIconContainer">
                     <GroupIcon

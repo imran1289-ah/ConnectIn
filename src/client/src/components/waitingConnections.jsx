@@ -1,77 +1,167 @@
 import { margin } from "@mui/system";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../css/waitingConnections.css";
 import axios from "axios";
-
-const Clickme = async (first, last) => {
-  console.log(first);
-  console.log(last);
-    axios
-      .post(`http://localhost:9000/users/newConnection`, {
-        firstname: first,
-        lastname: last
-      })
-      .then((response) => {
-        Clickmetoo(`${first}`,`${last}`)
-        console.log(response.data);
-        alert("Succesfully added user " + " " + " to connections!");
-      })
-    .catch((error) => {
-      console.log(error);
-      //alert("Cannot connect");
-    });
-}
-const Clickmetoo = async (first, last) => {
-  console.log(first);
-  console.log(last);
-    axios
-      .patch(`http://localhost:9000/users/deleteAwaiting`, {
-        firstname: first,
-        lastname: last
-      })
-      .then((response) => {
-        console.log(response.data);
-        alert("Succesfully removed " + first+"  "+ last + " in awaiting connections!");
-      })
-    .catch((error) => {
-      console.log(error);
-      //alert("Cannot connect");
-    });
-}
+//import logo from "./images/acceptButton";
+import swal from "sweetalert";
+import { Context } from "../UserSession";
+import { Link, Navigate } from "react-router-dom";
+import { Select, MenuItem } from "@mui/material"; 
+import { useNavigate } from "react-router-dom";
 
 
 const WaitingConnections = () => {
 
-  const [userRequests, setUserRequests] = useState([]);
+const AddSelftoFriends = async(user_id) =>{
+  axios
+  .post(`http://localhost:9000/users/newConnection`, {
+    firstname: sessionStorage.getItem("firstname"),
+    lastname: sessionStorage.getItem("lastname"),
+    userID :sessionStorage.getItem("userID") ,
+    _id: user_id,
+    //roomID:  user_id + sessionStorage.getItem("userID") ,
+  })
+}
 
-  useEffect( () => {
-      fetchData()
-  }, [])
-
-  const fetchData = async () => {
-      const {data} = await axios.get(`http://localhost:9000/users/waitingConnections`,{
-        _id: "63ec4acc2bb05555a5b97c46"
-      })
-
-      setUserRequests(data)
+  const Acceptbutton = async (first, last, user_id) => {
+    console.log(first);
+    console.log(last);
+      axios
+        .post(`http://localhost:9000/users/newConnection`, {
+          firstname: first,
+          lastname: last,
+          userID :user_id,
+          _id: sessionStorage.getItem("userID"),
+         // roomID: user_id +sessionStorage.getItem("userID"),
+        })
+        .then((response) => {
+          AddSelftoFriends(`${user_id}`) 
+          DeleteWaitingConnection(`${first}`,`${last}`,`${user_id}`)
+          })
+          .catch((error) => {
+            console.log(error);
+            swal("Failed!","Failed to add user to connections!","error",{
+              button:false,
+              timer:2000
+            });
+          });
+  }
+  
+  const DeleteWaitingConnection = async (first, last, user_id) => {
+    console.log(first);
+    console.log(last);
+      axios
+        .patch(`http://localhost:9000/users/deleteAwaiting`, {
+          firstname: first,
+          lastname: last,
+          userID :user_id,
+          _id: sessionStorage.getItem("userID") 
+        })
+        .then((response) => {
+          swal("Success!","Updated waiting connections!","success",{
+            button:false,
+            timer:2000
+          });
+          //window.location.reload();
+        })
+        .then((response) => {
+          setTimeout(function(){
+            window.location.reload();
+          }, 2000);
+        })
+        .catch((error) => {
+          console.log(error);
+          swal("Failed!","Failed to add user to connections!","error",{
+            button:false,
+            timer:2000
+          });
+        });
   }
 
+  const navigate = useNavigate();
+
+  //Global state
+  const [login, setLogin] = useContext(Context);
+
+  useEffect(() => {
+    if (userID) {
+      fetchSession();
+      fetchData();
+    }
+  },[]);
+
+//Having the loginState persist on all pages
+const fetchSession = async () => {
+  try {
+    if (userID) {
+      setLogin({
+        isLoggedIn: true,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+  const [userRequests, setUserRequests] = useState([]);
+
+  //Get id of logged in user
+  const userID = sessionStorage.getItem("userID");
+  const fName =console.log(sessionStorage.getItem("firstname"));
+  const lName =console.log(sessionStorage.getItem("lastname"));
+  const fetchData = async () => {
+    console.log(userID);
+    await axios.post(`http://localhost:9000/users/waitingConnections`,{
+      user_id: userID
+    }).then(response => {
+      setUserRequests(response.data)
+    })
+  }
+  
   return (
  //Connection request acceptance or denial page
-<div className="background" >
-  <h1>Pending connections requests</h1>
-  {userRequests.map((object) => (
-  <div className="userWaitingConnection">
-    <div className="connectionDisplay ">
-        <div>
-            <h3 position={"center"}>{object.firstname} {object.lastname}</h3>
-            <button className="acceptButton" onClick={() => Clickme(`${object.firstname}`,`${object.lastname}`)}>Accept</button>
-            <button className="rejectButton" onClick={() => Clickmetoo(`${object.firstname}`,`${object.lastname}`)}>Reject</button>
+ <div>
+      {userID && login ? (
+    <div className="background" >
+      <h1>Pending connections requests</h1>
+      {userRequests.map((object) => (
+      <div className="userWaitingConnection">
+        <div className="connectionDisplay ">
+            <div>
+              <table>
+                <tr>
+                  <td>
+                  <img
+                  margin="20px"
+                    src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
+                    alt="comapnyPic"
+                    className="companyPic"
+                  ></img>
+                  </td>
+                  <td>
+                <h3 position={"center"}>{object.firstname} {object.lastname}</h3>
+                </td>
+                <td>
+                  {/* <img src = './images/acceptButton' alt= "bad"
+                  >
+                    
+                  </img>  */}
+                <button className="acceptButton" onClick={() => Acceptbutton(`${object.firstname}`,`${object.lastname}`,`${object.userID}`)}>Accept</button>
+                </td>
+                <td>
+                <button className="rejectButton" onClick={() => DeleteWaitingConnection(`${object.firstname}`,`${object.lastname}`,`${object.userID}`)}>Reject</button>
+            </td>
+            </tr>
+            </table>
+            </div>
         </div>
+      </div>
+      ))}
     </div>
+    ) : (
+      <h1 style={{ textAlign: "center" }}>Please login to your account</h1>
+    )}
   </div>
-  ))}
-</div>
 
   );
 };

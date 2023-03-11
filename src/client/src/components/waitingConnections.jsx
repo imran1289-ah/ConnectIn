@@ -32,6 +32,14 @@ const WaitingConnections = () => {
               timer:2000
             });
           });
+
+         await axios.post('http://localhost:9000/rooms/addRoom',{
+            userID_1: user_id,
+            userID_2: sessionStorage.getItem("userID")
+          }).then((response) =>{
+            console.log(response)
+          })
+          
   }
   
   const DeleteWaitingConnection = async (first, last, user_id) => {

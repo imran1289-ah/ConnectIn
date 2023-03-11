@@ -4,6 +4,11 @@ import axios from "axios";
 import "../css/publicuserprofile.css";
 import { Context } from "../UserSession";
 
+import swal from "sweetalert";
+import { Link, Navigate } from "react-router-dom";
+import { Select, MenuItem } from "@mui/material"; 
+import { useNavigate } from "react-router-dom";
+
 const PublicUserProfile = () => {
   //States
   const [publicUser, setPublicUser] = useState([
@@ -61,10 +66,15 @@ const PublicUserProfile = () => {
     axios
       .post(`http://localhost:9000/users/searchuserlist`, {
         _id: userid,
+        firstname: sessionStorage.getItem("firstname"),
+        lastname: sessionStorage.getItem("lastname"),
+        userID :sessionStorage.getItem("userID"),
       })
       .then((response) => {
-        console.log(response.data);
-        alert("Succesfully added user " + userid + " in awaiting connections!");
+        swal("Congrats!", "You have successfully sent connection request!","success",{
+          button:false,
+          timer:1000
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -102,7 +112,7 @@ const PublicUserProfile = () => {
           {/* User Information Component */}
           <div className="left">
             <div className="userInformation">
-              <div className="userContainer">
+              <div className="userContainerProfile">
                 <img
                   src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
                   alt="default pic"

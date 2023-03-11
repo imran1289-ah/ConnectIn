@@ -26,7 +26,7 @@ router.route("/profile/:id")
 
 router.route("/searchuserlist").post(usersControllers.updateAwaitingConnections);
 
-router.route("/waitingConnections").get(usersControllers.getAwaitingConnections);
+router.route("/waitingConnections").post(usersControllers.getAwaitingConnections);
 
 router.route("/newConnection").post(usersControllers.updateConnections);
 

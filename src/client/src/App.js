@@ -11,6 +11,7 @@ import JobApplication from "./components/JobApplication";
 import JobListing from "./components/JobListing";
 import SearchUser from "./components/SearchUser";
 import PublicUserProfile from "./components/PublicUserProfile";
+import Chat from "./components/Chat";
 
 import WaitingConnections from "./components/waitingConnections";
 import EditJobPosting from "./components/EditJobPosting";
@@ -19,7 +20,12 @@ import EditUserProfile from "./components/EditUserProfile";
 import UserTimeline from "./components/UserTimeline";
 import UserSession from "./UserSession";
 
+import io from 'socket.io-client'
+
 function App() {
+
+  //const socket = io.connect("http://localhost:9000");
+
   return (
     <UserSession>
       {/* Link to pages using React Router DOM */}
@@ -111,6 +117,14 @@ function App() {
             element={
               <>
                 <Navbar /> <EditJobPosting /> <SignupFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/chat"
+            element={
+              <>
+                <Navbar /> <Chat /> <SignupFooter />
               </>
             }
           ></Route>

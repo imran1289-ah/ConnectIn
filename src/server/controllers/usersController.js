@@ -38,7 +38,7 @@ const createUser = asyncHandler(async(req, res) => {
 const getUserByEmail = async(req, res) => {
     const user = await User.findOne({ email: req.body.email }).then((user) => {
         if (user) {
-            console.log(`Found user ${user.email}`);
+            // console.log(`Found user ${user.email}`);
             res.status(200).json(user);
         } else {
             return res.status(400).json({ message: "No user found" });
@@ -64,7 +64,7 @@ const verifyUser = async(req, res) => {
             role: user.role
         };
         req.session.user = userSession;
-        console.log(`Found user ${user.email}`);
+        // console.log(`Found user ${user.email}`);
         res.status(200).json({ message: "login succesfull", userSession });
     } else {
         return res.status(401).json({ message: "Incorrect password" });
@@ -77,7 +77,6 @@ const updateUser = async(req, res) => {};
 //Action of deleting  a user from awaiting connections list
 const deleteAwaitingConnections = async(req, res) => {
     const { firstname, lastname, _id, userID} = req.body;
-    //const _id = "63f41b0123e995b64434ece0";
     const user = await User.findOneAndUpdate({ _id: _id }, {
         $pull: {
             waitingConnections: { firstname: firstname, lastname: lastname, userID: userID},
@@ -178,7 +177,7 @@ const deleteUser = async(req, res) => {};
 const getUserInfo = async(req, res) => {
     const user = await User.findById(req.params.id).then((user) => {
         if (user) {
-            console.log(`Found user ${user}`);
+            // console.log(`Found user ${user}`);
             res.status(200).json(user);
         } else {
             return res.status(400).json({ message: "No user found" });

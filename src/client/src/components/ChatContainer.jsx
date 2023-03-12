@@ -7,6 +7,7 @@ import axios from "axios";
 const ChatContainer = ({ currentChat, socket, room }) => {
   const [messages, setMessages] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
+  const scrollRef = useRef();
 
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
@@ -14,6 +15,10 @@ const ChatContainer = ({ currentChat, socket, room }) => {
   useEffect(() => {
     fetchMessages()
     },[currentChat]);
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
   
   
 
@@ -47,7 +52,6 @@ const ChatContainer = ({ currentChat, socket, room }) => {
     if(msg.length !=0){
       socket.emit("sendMessage", data);
     }
-    setMessages("");
     socket.emit("sendMessage", data);
     await axios.post("http://localhost:9000/messages/addMessage", {
       from: userID,
@@ -70,7 +74,7 @@ const ChatContainer = ({ currentChat, socket, room }) => {
       <div className={ContainerCSS.chatBox}>
         
       {messages.map((message) => {
-        return(<div className={ContainerCSS.messagesContainer}>
+        return(<div className={ContainerCSS.messagesContainer} ref={scrollRef}>
           {message.fromSelf ? (<div className={ContainerCSS.sent}>
             <div className={ContainerCSS.textSent}>{message.message}</div>
           </div>):

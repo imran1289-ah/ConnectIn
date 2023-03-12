@@ -34,11 +34,23 @@ const Chat = () => {
  
    useEffect(() => {
      if (userID) {
-      //  fetchSession();
+        fetchSession();
        fetchUserConnections();
        socket.current = io.connect("http://localhost:9000")
      }
    }, []);
+
+   const fetchSession = async () => {
+    try {
+      if (userID) {
+        setLogin({
+          isLoggedIn: true,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
    
    const fetchUserConnections = async () => {
 

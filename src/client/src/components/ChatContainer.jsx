@@ -57,7 +57,7 @@ const ChatContainer = ({ currentChat, socket, room }) => {
       file: file,
     };
     if (msg.length !== 0 || file) {
-      socket.emit("sendMessage", data);
+      socket.current.emit("sendMessage", data);
       await axios.post("http://localhost:9000/messages/addMessage", data);
       let messageText = msg;
       if (file && file.downloadLink) {
@@ -73,12 +73,11 @@ const ChatContainer = ({ currentChat, socket, room }) => {
     
   useEffect(() => {
     console.log("222222")
-    socket.on("receiveMessage", (data) => {
+    socket.current.on("receiveMessage", (data) => {
       console.log("!!!!!!")
-      
       setMessages((list) => [...list, data]);
     });
-  }, [socket]);
+  }, []);
   
   return (
     <div className={ContainerCSS.container}>

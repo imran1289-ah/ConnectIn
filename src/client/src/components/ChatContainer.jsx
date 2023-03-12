@@ -42,28 +42,35 @@ const ChatContainer = ({ currentChat, socket, room }) => {
   }
 
   const handleSendMsg = async (msg) => {
-    const data = {
+    if(msg.length !=0){
+      const data = {
       message: msg,
       from: userID,
       to: currentChat.userID,
-      room: room,
-      value: new Date(Date.now())
+      room: room
     }
-    if(msg.length !=0){
       socket.emit("sendMessage", data);
-    }
-    socket.emit("sendMessage", data);
     await axios.post("http://localhost:9000/messages/addMessage", {
       from: userID,
       to: currentChat.userID,
       message: msg,
     });
+  }
 
     const msgs = [...messages];
     msgs.push({ fromSelf: true, message: msg });
     console.log(msgs);
     setMessages(msgs);
   };
+
+  useEffect(() => {
+    
+    socket.on("receiveMessage", (data) => {
+      console.log("!!!!!!")
+      
+      setMessages((list) => [...list, data]);
+    });
+  }, [socket]);
 
   return (
     <div className={ContainerCSS.container}>

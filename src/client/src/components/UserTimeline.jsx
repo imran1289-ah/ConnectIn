@@ -88,28 +88,6 @@ const UserTimeline = () => {
     })
   }
 
-  /*const [connectionsIDs, setConnectionsIDs] = useState([]);
-  setConnectionsIDs(connections.map((connection) => (
-    connection.userID
-  )))
-
-  const [connectionsPosts, setConnectionsPosts] = useState([]);
-  const fetchConnectionPosts = async () => {
-    await axios.get(`http://localhost:9000/users/${userID}/posts`)
-    .then(response => {
-      setConnectionsPosts(response.data)
-    })
-  }
-
-  const allConnectionsPosts = connectionsPosts.map((connectionsPost) => (
-    <div className="userPostsTimeline">
-      <span className="subTitleTimeline">{connectionsPost.firstname}{" "}{connectionsPost.lastname}</span>
-      <p className="postText">
-        {connectionsPost.description}
-      </p>
-    </div>
-  ))*/
-
   const [posts, setPosts] = useState([]);
   const fetchPosts = async () => {
     await axios.get(`http://localhost:9000/users/${userID}/posts`)

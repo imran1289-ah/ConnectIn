@@ -20,6 +20,7 @@ const AddSelftoFriends = async(user_id) =>{
     userID :sessionStorage.getItem("userID") ,
     _id: user_id,
     //roomID:  user_id + sessionStorage.getItem("userID") ,
+
   })
 }
 

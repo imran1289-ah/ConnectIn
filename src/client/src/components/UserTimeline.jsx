@@ -11,20 +11,11 @@ import { useNavigate } from "react-router-dom";
 const UserTimeline = () => {
   //Global state
   const [login, setLogin] = useContext(Context);
+  
+  //Get id of logged in user
+  const userID = sessionStorage.getItem("userID");
+
   const navigate = useNavigate();
-  const [userConnections, setUserConnections] = useState(
-    {
-      _id: "",
-      firstname: "",
-      lastname: "",
-      connections: [],
-    }
-  );
-  const [postData, setpostData] = useState({
-    description: "",
-    attachment: null,
-    timestamp: new Date()
-  });
 
   const fetchUserConnections = async () => {
     try{
@@ -47,7 +38,9 @@ const UserTimeline = () => {
   //fetch session once
   useEffect(() => {
     fetchSession();
-    fetchUserConnections();
+    fetchConnections();
+    //fetchConnectionPosts();
+    fetchPosts();
   }, []);
 
   //Fetch session information
@@ -67,10 +60,14 @@ const UserTimeline = () => {
     }
   };
 
+  const [postData, setpostData] = useState({
+    description: "",
+    attachment: null,
+    timestamp: new Date()
+  });
+
+  //HTTP Request to fetch posts and add posts ....
   const savePost = async () => {
-    console.log(sessionStorage.getItem("userID"));
-    console.log(sessionStorage.getItem("firstname"));
-    console.log(sessionStorage.getItem("lastname"));
     axios
       .post(`http://localhost:9000/users/post`, {
         _id: sessionStorage.getItem("userID"), 
@@ -87,6 +84,11 @@ const UserTimeline = () => {
         });
         navigate("/userTimeline");
       })
+      .then((response) => {
+        setTimeout(function(){
+          window.location.reload();
+        }, 1200);
+      })
       .catch((error) => {
         console.log(error);
         swal("Failed", "Your post was not created, try again!", "error",{
@@ -96,10 +98,35 @@ const UserTimeline = () => {
       });
   };
 
-  //Get id of logged in user
-  const userID = sessionStorage.getItem("userID");
+  const [connections, setConnections] = useState([]);
+  const fetchConnections = async () => {
+    await axios.get(`http://localhost:9000/users/${userID}/connections`)
+    .then(response => {
+      setConnections(response.data)
+    })
+  }
 
-  //HTTP Request to fetch posts and add posts ....
+  const [posts, setPosts] = useState([]);
+  const fetchPosts = async () => {
+    await axios.get(`http://localhost:9000/users/${userID}/posts`)
+    .then(response => {
+      setPosts(response.data)
+    })
+  }
+
+  const userPosts = posts.map((post) => (
+    <div className="userPostsTimeline">
+      <span className="subTitleTimeline">{post.firstname}{" "}{post.lastname}</span>
+      <p className="postText">
+        {post.description}
+      </p>
+    </div>
+  ))
+
+  //const allPosts = [...allConnectionsPosts, ...userPosts]
+  const allSortedPosts = [...userPosts].sort((a,b) =>{
+    return a.timestamp > b.timestamp ? 1 : -1
+  })
 
   return (
     <div>
@@ -152,62 +179,9 @@ const UserTimeline = () => {
             {/* user's post in their timeline*/}
             <div>
               {/* each div is a single post*/}
-              <div className="userPostsTimeline">
-                <span className="subTitleTimeline">John Doe</span>
-                <p className="postText">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </p>
-              </div>
-
-              <div className="userPostsTimeline">
-                <span className="subTitleTimeline">John Doe</span>
-                <p className="postText">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-              </div>
-
-              <div className="userPostsTimeline">
-                <span className="subTitleTimeline">John Doe</span>
-                <p className="postText">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur.
-                </p>
-              </div>
-
-              <div className="userPostsTimeline">
-                <span className="subTitleTimeline">John Doe</span>
-                <p className="postText">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-              </div>
-
-              <div className="userPostsTimeline">
-                <span className="subTitleTimeline">John Doe</span>
-                <p className="postText">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-              </div>
+              {allSortedPosts}
             </div>
           </div>
-          {/* User Connections section  */}
           <div className="right">
             <span className="subTitle">Contacts</span>
             <br></br>

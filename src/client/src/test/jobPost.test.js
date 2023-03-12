@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import JobPosting from "../components/JobPosting";
 import axios from "axios";
 import React from "react";
+import UserSession from "../UserSession";
 
 jest.mock("axios");
 
@@ -10,7 +11,7 @@ describe("JobPosting", () => {
     axios.post.mockImplementation(() =>
       Promise.resolve({ data: { message: "Job created" } })
     );
-    render(<JobPosting />);
+    render(<UserSession><BrowserRouter><JobPosting /></BrowserRouter></UserSession>);
     const titleInput = screen.getByLabelText("Job Title");
     fireEvent.change(titleInput, { target: { value: "Software Engineer" } });
     const companyInput = screen.getByLabelText("Company");

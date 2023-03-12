@@ -11,17 +11,23 @@ import JobApplication from "./components/JobApplication";
 import JobListing from "./components/JobListing";
 import SearchUser from "./components/SearchUser";
 import PublicUserProfile from "./components/PublicUserProfile";
+import Chat from "./components/Chat";
 
 import WaitingConnections from "./components/waitingConnections";
 import EditJobPosting from "./components/EditJobPosting";
 
-
 import EditUserProfile from "./components/EditUserProfile";
+import UserTimeline from "./components/UserTimeline";
+import UserSession from "./UserSession";
 
+import io from 'socket.io-client'
 
 function App() {
+
+  //const socket = io.connect("http://localhost:9000");
+
   return (
-    <div>
+    <UserSession>
       {/* Link to pages using React Router DOM */}
       <BrowserRouter>
         <Routes>
@@ -53,7 +59,7 @@ function App() {
             path="/UserProfile"
             element={
               <>
-                <Navbar /> <UserProfile /> <LoginFooter />
+                <Navbar /> <UserProfile /> <SignupFooter />
               </>
             }
           ></Route>
@@ -74,21 +80,19 @@ function App() {
             }
           ></Route>
           <Route
-
             path="/waitingConnections"
             element={
               <>
                 <Navbar /> <WaitingConnections /> <LoginFooter />
-             </>
-             }
-             ></Route>
+              </>
+            }
+          ></Route>
 
-            <Route
+          <Route
             path="/editUserProfile"
             element={
               <>
                 <Navbar /> <EditUserProfile /> <LoginFooter />
-
               </>
             }
           ></Route>
@@ -116,9 +120,25 @@ function App() {
               </>
             }
           ></Route>
+          <Route
+            path="/chat"
+            element={
+              <>
+                <Navbar /> <Chat /> <SignupFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/userTimeline"
+            element={
+              <>
+                <Navbar /> <UserTimeline /> <SignupFooter />
+              </>
+            }
+          ></Route>
         </Routes>
       </BrowserRouter>
-    </div>
+    </UserSession>
   );
 }
 

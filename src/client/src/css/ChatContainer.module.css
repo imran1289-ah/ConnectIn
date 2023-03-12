@@ -1,0 +1,82 @@
+.header{
+    margin: 0px;
+}
+
+.chatBox{
+  height: auto;
+  overflow-y: auto;
+}
+
+.header {
+  text-align: left;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.line {
+  color: #19718d;
+  background: #19718d;
+  height: 1px;
+  margin: 0;
+}
+
+.container{
+    background: white;
+    flex-grow: 2;
+    flex-direction: column;
+    display: grid;
+}
+
+.input {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.sent {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 1em;
+  padding-left: 70%;
+  /* border-style: solid; */
+}
+
+.received {
+  overflow-wrap: break-word;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 1em;
+  padding-right: 70%;
+  justify-content: left;
+}
+
+.textSent {
+  background: rgb(28, 137, 201);
+  width: auto;
+  text-align: right;
+  color: white;
+  border-radius: 15px 15px 2px 15px;
+  padding: 10px;
+  word-wrap: break-word;
+}
+
+.textReceived {
+  background: rgb(204, 204, 204);
+  width: auto;
+  text-align: left;
+  color: black;
+  border-radius: 15px 15px 15px 2px;
+  padding: 10px; 
+  word-wrap: break-word;
+}
+
+.messagesContainer {
+  overflow-y: auto;
+}

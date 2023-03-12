@@ -6,6 +6,12 @@
   font-family: "Inter", sans-serif;
 }
 
+.userContainerProfile {
+  display: flex;
+  margin: 20px;
+  font-family: "Inter", sans-serif;
+}
+
 .userInformation {
   min-height: 220px;
   width: 700px;
@@ -82,6 +88,7 @@
   width: 300px;
   margin-top: 10px;
   margin-bottom: 10px;
+  padding-left: 20px;
 }
 
 .connectionName {

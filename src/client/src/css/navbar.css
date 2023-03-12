@@ -18,7 +18,7 @@
 .searchArea {
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 40%;
 }
 
 .searchInput {
@@ -28,14 +28,43 @@
   border-radius: 4px;
 }
 
-.searchButton {
+.IconButton {
   background-color: transparent;
   border: none;
   margin: 5px;
 }
 
+.userButtons {
+  display: flex;
+}
+
+.userIconContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.parentUserIconContainer {
+  margin-right: 20px;
+}
+/*To be changed later*/
 @media (min-width: 330px) and (max-width: 600px) {
   .searchArea {
+    display: none;
+  }
+
+  .userButtons {
+    display: none;
+  }
+}
+
+/*To be changed later*/
+@media (min-device-width: 768px) and (max-device-width: 1024px) {
+  .searchArea {
+    display: none;
+  }
+
+  .userButtons {
     display: none;
   }
 }

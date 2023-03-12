@@ -1,3 +1,7 @@
 .env
 node_modules
 .history
+src/server/node_modules/.package-lock.json
+src/server/package-lock.json
+src/server/node_modules/.package-lock.json
+src/client/package-lock.json

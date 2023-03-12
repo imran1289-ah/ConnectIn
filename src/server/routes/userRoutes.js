@@ -13,7 +13,7 @@ router
 
 router
   .route("/:_id")
-  //.get(usersControllers.getUser)
+  .get(usersControllers.getUser)
   //.patch(usersControllers.updateUser)
   .delete(usersControllers.deleteUser);
 
@@ -26,7 +26,7 @@ router.route("/profile/:id")
 
 router.route("/searchuserlist").post(usersControllers.updateAwaitingConnections);
 
-router.route("/waitingConnections").get(usersControllers.getAwaitingConnections);
+router.route("/waitingConnections").post(usersControllers.getAwaitingConnections);
 
 router.route("/newConnection").post(usersControllers.updateConnections);
 
@@ -36,7 +36,10 @@ router.route("/:id/jobsApplied").get(usersControllers.getUserJobsApplied);
 
 router.route("/:id/jobsApplied").post(usersControllers.addJobAppliedToUser);
 
+router.route("/post").post(usersControllers.addTimelinePost);
 
+router.route("/:id/posts").get(usersControllers.getUserPostsbyID);
+router.route("/:id/connections").get(usersControllers.getConnections);
 
 
 module.exports = router;

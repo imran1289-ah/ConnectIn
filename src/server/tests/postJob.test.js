@@ -8,8 +8,6 @@ describe("Jobs", () => {
     afterAll(async() => {
         // Remove the test job from the database
         await Jobs.findByIdAndDelete(jobId);
-
-
     });
 
     afterAll((done) => {

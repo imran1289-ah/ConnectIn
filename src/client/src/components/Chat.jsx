@@ -13,6 +13,8 @@ import ChatContainer from "./ChatContainer";
 
 const Chat = () => {
   
+  
+  
   const socket = io.connect("http://localhost:9000")
   
 
@@ -98,11 +100,11 @@ const Chat = () => {
 //  }
 
 
- useEffect(()=>{
-    socket.on("receiveMessage", (data)=>{
-      console.log(data.message)
-    })
- }, [socket])
+//  useEffect(()=>{
+//     socket.on("receiveMessage", (data)=>{
+//       // console.log(data.message)
+//     })
+//  }, [socket])
 
  const handleChangeChat = async (chat) => {
   setCurrentChat(chat)

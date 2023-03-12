@@ -71,6 +71,15 @@ const ChatContainer = ({ currentChat, socket, room }) => {
     }
   };
     
+  useEffect(() => {
+    console.log("222222")
+    socket.on("receiveMessage", (data) => {
+      console.log("!!!!!!")
+      
+      setMessages((list) => [...list, data]);
+    });
+  }, [socket]);
+  
   return (
     <div className={ContainerCSS.container}>
       <div className={ContainerCSS.header}>

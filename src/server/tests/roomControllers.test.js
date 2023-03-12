@@ -7,18 +7,18 @@ const User = require('../models/user');
 
 
 // Connects to the DB
-beforeAll(async () => {
+beforeAll(async() => {
     mongoose.connect(process.env.DATABASE);
 
     mongoose.connect(process.env.DATABASE);
-        // const user1 = await User.create({ firstname: 'Alice', role: 'user' });
-        // const user2 = await User.create({ firstname: 'Bob', role: 'user' });
+    // const user1 = await User.create({ firstname: 'Alice', role: 'user' });
+    // const user2 = await User.create({ firstname: 'Bob', role: 'user' });
 
-        // userID1 = user1._id;
-        // userID2 = user2._id;
+    // userID1 = user1._id;
+    // userID2 = user2._id;
 
-        // fromUser = user1._id.toString();
-        // toUser = user2._id.toString();
+    // fromUser = user1._id.toString();
+    // toUser = user2._id.toString();
 })
 
 // Closing the DB connection allows Jest to exit successfully.
@@ -35,32 +35,32 @@ afterAll((done) => {
 //     await User.findByIdAndDelete(userID1);
 //     await User.findByIdAndDelete(userID2);
 
-    
+
 
 
 
 // });
 
-it("Get room using POST Request", async()=>{
+it("Get room using POST Request", async() => {
 
     const getRoom = await request(app)
-    .post("/rooms")
-    .send({
-        userID_1: "640ca51d53a323fd12630f84",
-        userID_2: "640ca56053a323fd12630f89"
-    })
-    .expect(201)
+        .post("/rooms")
+        .send({
+            userID_1: "640d40d6efc5d0167295f2ea",
+            userID_2: "640d411640fea78f40b4a4f0"
+        })
+        .expect(201)
 
 })
 
 
-it("Create room using POST Request", async()=>{
+it("Create room using POST Request", async() => {
 
     const createRoom = await request(app)
-    .post("/rooms/addRoom")
-    .send({
-        userID_1: "640ca51d53a323fd12630f84",
-        userID_2: "640ca56053a323fd12630f89"
-    })
-    .expect(200)
+        .post("/rooms/addRoom")
+        .send({
+            userID_1: "640d40d6efc5d0167295f2ea",
+            userID_2: "640d411640fea78f40b4a4f0"
+        })
+        .expect(200)
 })

@@ -16,6 +16,14 @@ const UserTimeline = () => {
   const userID = sessionStorage.getItem("userID");
 
   const navigate = useNavigate();
+  const [userConnections, setUserConnections] = useState(
+    {
+      _id: "",
+      firstname: "",
+      lastname: "",
+      connections: [],
+    }
+  );
 
   const fetchUserConnections = async () => {
     try{
@@ -38,6 +46,7 @@ const UserTimeline = () => {
   //fetch session once
   useEffect(() => {
     fetchSession();
+    fetchUserConnections();
     fetchConnections();
     //fetchConnectionPosts();
     fetchPosts();

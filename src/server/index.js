@@ -100,8 +100,9 @@ socketApp.on("connection", (socket) => {
         console.log(socket.id + " has connected")
 
         socket.on("sendMessage", data => {
-            console.log(data);
-            socket.emit("receiveMessage", data);
+            console.log(data.room);
+            socket.to(data.room).emit("receiveMessage", data);
+            //socket.emit("receiveMessage", data);
         })
 
         socket.on("joinRoom", (room) => {

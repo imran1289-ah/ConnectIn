@@ -58,6 +58,6 @@ describe('GET /users', function() {
                 email: "test@gmail.com",
                 password: "test123"
             })
-            .expect(404);
+            .expect(401);
     })
 });

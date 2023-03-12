@@ -7,6 +7,12 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
 
+// Closing the DB connection allows Jest to exit successfully.
+afterAll((done) => {
+    mongoose.disconnect();
+    done();
+    app.close();
+});
 
 describe('getMessages', () => {
     let fromUser, toUser, messageId, messageText;

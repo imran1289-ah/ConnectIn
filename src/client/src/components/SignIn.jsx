@@ -22,6 +22,7 @@ const SignIn = () => {
       })
       .then((response) => {
         console.log(response.data);
+        sessionStorage.setItem("userID", response.data.userSession.user_id);
         MessageRef.current.style.color = "#66FF00";
         MessageRef.current.innerHTML = "Login Sucess. Welcome Back";
         setLogin({

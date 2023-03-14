@@ -3,18 +3,17 @@ import { useState, useEffect, useRef } from "react";
 import ChatInput from "./ChatInput";
 import axios from "axios";
 
-
 const ChatContainer = ({ currentChat, socket, room }) => {
   const [messages, setMessages] = useState([]);
-  const [arrivalMessage, setArrivalMessage] = useState(null);
+  const [arrivalMessage, setArrivalMessage] = useState([]);
   const messagesEndRef = useRef(null);
 
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
 
   useEffect(() => {
-    fetchMessages()
-  },[currentChat]);
+    fetchMessages();
+  }, [currentChat]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -27,57 +26,101 @@ const ChatContainer = ({ currentChat, socket, room }) => {
           `http://localhost:9000/messages`,
           {
             from: userID,
-            to: currentChat.userID
+            to: currentChat.userID,
           }
         );
         const processedMessages = response.data.map((message) => {
-          if (message.downloadLink !=="http://localhost:9000/messages/download/null") {
+          if (
+            message.downloadLink &&
+            message.downloadLink !==
+              "http://localhost:9000/messages/download/null"
+          ) {
             message.message = (
               <a href={message.downloadLink} target="_blank" rel="noreferrer">
-                {message.message}
+                {message.message }
               </a>
             );
           }
           return message;
         });
-        setMessages(processedMessages)
+        setMessages(processedMessages);
       }
     } catch (error) {
       console.log(error);
-    }    
+    }
   };
 
   const handleSendMsg = async (msg, file) => {
-    const data = {
-      message: msg,
-      from: userID,
-      to: currentChat.userID,
-      room: room,
-      value: new Date(Date.now()),
-      file: file,
-    };
-    if (msg.length !== 0 || file) {
-      socket.current.emit("sendMessage", data);
-      await axios.post("http://localhost:9000/messages/addMessage", data);
-      let messageText = msg;
-      if (file && file.downloadLink) {
-        messageText = (
-          <a href={file.downloadLink} target="_blank" rel="noreferrer">
-            {msg}
-          </a>
+    const data = new FormData();
+    data.append("message", msg.trim());
+    data.append("from", userID);
+    data.append("to", currentChat.userID);
+    data.append("room", room);
+    data.append("value", new Date(Date.now()));
+    data.append("file", file);
+  
+    if (msg.trim().length !== 0 || file) {
+      // emit message to server using socket connection
+      socket.current.emit("sendMessage", {
+        message: msg.trim(),
+        from: userID,
+        to: currentChat.userID,
+        room: room,
+        value: new Date(Date.now()),
+        file: file,
+      });
+  
+      try {
+        const response = await axios.post(
+          "http://localhost:9000/messages/addMessage",
+          data
         );
+  
+        let messageObject = {
+          fromSelf: true,
+          message: msg.trim(),
+          file: response.data,
+        };
+  
+        if (response.data.downloadLink) {
+          messageObject = {
+            fromSelf: true,
+            message: (
+              <a
+                href={response.data.downloadLink}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {response.data.filename}
+              </a>
+            ),
+            file: response.data,
+          };
+        }
+  
+        setMessages(prevMessages => [...prevMessages, messageObject]);
+      } catch (error) {
+        console.log(error);
       }
-      setMessages([...messages, { fromSelf: true, message: messageText, file: file }]);
     }
   };
-    
+
   useEffect(() => {
-    console.log("222222")
-    socket.current.on("receiveMessage", (data) => {
-      console.log("!!!!!!")
-      setMessages((list) => [...list, data]);
+    socket.current.on("receiveMessage", (message) => {
+      setArrivalMessage({
+        fromSelf: false,
+        message: message.message,
+        file: message.file,
+      });
     });
-  }, []);
+  }, [socket]);
+
+  useEffect(() => {
+    if (arrivalMessage) {
+      setMessages((prevMessages) => [...prevMessages, arrivalMessage]);
+      setArrivalMessage(null);
+    }
+  }, [arrivalMessage]);
   
   return (
     <div className={ContainerCSS.container}>

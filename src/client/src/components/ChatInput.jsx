@@ -1,7 +1,5 @@
 import { useState } from "react";
 import ChatInputCSS from "../css/ChatInput.module.css";
-import axios from "axios";
-
 
 const ChatInput = ({ handleSendMsg, from, to }) => {
   const [message, setMessage] = useState("");
@@ -16,31 +14,14 @@ const ChatInput = ({ handleSendMsg, from, to }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (message.trim() || file) {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("message", message.trim());
-      formData.append("from", from); 
-      formData.append("to", to); 
-
-      axios
-        .post("http://localhost:9000/messages/addMessage", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then(() => {
-          handleSendMsg(message.trim());
-          setMessage("");
-          setFile(null);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      handleSendMsg(message.trim(), file);
+      setMessage("");
+      setFile(null);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} encType="multipart/form-data">
+    <form onSubmit={handleSubmit}>
       <input
         className={ChatInputCSS.chatbox}
         type="text"
@@ -49,9 +30,11 @@ const ChatInput = ({ handleSendMsg, from, to }) => {
         onChange={(event) => setMessage(event.target.value)}
       />
       <label>
-        <input  type="file" onChange={handleChange} />
+        <input type="file" onChange={handleChange} />
       </label>
-      <input className={ChatInputCSS.button} value="SEND" type="submit"></input>
+      <button type="submit" className={ChatInputCSS.button}>
+        SEND
+      </button>
     </form>
   );
 };

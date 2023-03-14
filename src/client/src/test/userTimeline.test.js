@@ -8,6 +8,13 @@ import axios from "axios";
 import UserSession from "../UserSession";
 import { IconButton } from "@mui/material";
 
+beforeAll(() => {
+  sessionStorage.setItem("userID", '6410a8bd165eca75f68ba375');
+  sessionStorage.setItem("firstname", 'John');
+  sessionStorage.setItem("lastname", 'Doe');
+  sessionStorage.setItem("role", 'User');
+})
+
 test("render components", () => {
   render(
     <UserSession>
@@ -38,5 +45,8 @@ test("it should return user info", () => {
 });
 
 afterAll(() => {
-  sessionStorage.removeItem("data");
+  sessionStorage.removeItem('userID');
+  sessionStorage.removeItem('firstName');
+  sessionStorage.removeItem('lastName');
+  sessionStorage.removeItem('role');
 });

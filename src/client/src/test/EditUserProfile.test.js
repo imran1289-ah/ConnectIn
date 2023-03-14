@@ -5,14 +5,20 @@ import "@testing-library/jest-dom";
 import EditUserProfile from "../components/EditUserProfile";
 import UserSession from "../UserSession";
 
+beforeAll(() => {
+  sessionStorage.setItem("userID", '6410a8bd165eca75f68ba375');
+  sessionStorage.setItem("firstname", 'John');
+  sessionStorage.setItem("lastname", 'Doe');
+  sessionStorage.setItem("role", 'Administrator');
+})
+
 //Test to check if user profile page is being rendered correctly
 test("test if text is rendered correctly in the user profile page", () => {
   render(
     <UserSession>
       <BrowserRouter>
-      <EditUserProfile>
-      </EditUserProfile>
-    </BrowserRouter>
+        <EditUserProfile />
+      </BrowserRouter>
     </UserSession>
     
   );
@@ -32,4 +38,11 @@ test("test if text is rendered correctly in the user profile page", () => {
   expect(subTitleLanguages).toBeInTheDocument();
   expect(subTitleVolunteering).toBeInTheDocument();
   expect(buttonElement[0]).toBeInTheDocument();
+});
+
+afterAll(() => {
+  sessionStorage.removeItem('userID');
+  sessionStorage.removeItem('firstName');
+  sessionStorage.removeItem('lastName');
+  sessionStorage.removeItem('role');
 });

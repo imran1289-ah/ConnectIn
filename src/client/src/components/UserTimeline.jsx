@@ -214,7 +214,7 @@ const UserTimeline = () => {
             <span className="subTitle">Contacts</span>
             <br></br>
             <div>
-              {userConnections && userConnections.length > 0 ? (
+              {userConnections && userConnections.connections.length > 0 ? (
                 userConnections.connections.map((connection) => {
                   return (
                     <ul>

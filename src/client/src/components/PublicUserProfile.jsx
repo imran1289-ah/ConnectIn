@@ -278,25 +278,23 @@ const PublicUserProfile = () => {
               userConnections.connections.length > 0 ? (
                 userConnections.connections.map((contact) => {
                   return (
-                    <ul>
-                      <l1 className="connectionsInfo">
-                        <img
-                          src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
-                          alt="comapnyPic"
-                          className="companyPic"
-                        ></img>
-                        <div>
-                          <Link
-                            to={`/users/search/${contact.userID}`}
-                            style={{ textDecoration: "none", color: "black" }}
-                          >
-                            <span className="connectionName">
-                              {contact.firstname} {contact.lastname}
-                            </span>
-                          </Link>
-                        </div>
-                      </l1>
-                    </ul>
+                    <l1 className="connectionsInfo">
+                      <img
+                        src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
+                        alt="comapnyPic"
+                        className="companyPic"
+                      ></img>
+                      <div>
+                        <Link
+                          to={`/users/search/${contact.userID}`}
+                          style={{ textDecoration: "none", color: "black" }}
+                        >
+                          <span className="connectionName">
+                            {contact.firstname} {contact.lastname}
+                          </span>
+                        </Link>
+                      </div>
+                    </l1>
                   );
                 })
               ) : (

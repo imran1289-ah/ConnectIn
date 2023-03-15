@@ -217,25 +217,23 @@ const UserTimeline = () => {
               {userConnections && userConnections.connections.length > 0 ? (
                 userConnections.connections.map((connection) => {
                   return (
-                    <ul>
-                      <l1 className="connectionsInfo">
-                        <img
-                          src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
-                          alt="comapnyPic"
-                          className="companyPic"
-                        ></img>
-                        <div>
-                          <span className="connectionName">
-                            <Link
-                              to={`/users/search/${connection.userID}`}
-                              style={{ textDecoration: "none", color: "black" }}
-                            >
-                              {connection.firstname} {connection.lastname}
-                            </Link>
-                          </span>
-                        </div>
-                      </l1>
-                    </ul>
+                    <l1 className="connectionsInfo">
+                      <img
+                        src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
+                        alt="comapnyPic"
+                        className="companyPic"
+                      ></img>
+                      <div>
+                        <span className="connectionName">
+                          <Link
+                            to={`/users/search/${connection.userID}`}
+                            style={{ textDecoration: "none", color: "black" }}
+                          >
+                            {connection.firstname} {connection.lastname}
+                          </Link>
+                        </span>
+                      </div>
+                    </l1>
                   );
                 })
               ) : (

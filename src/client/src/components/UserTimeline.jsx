@@ -172,7 +172,10 @@ const UserTimeline = () => {
           {/* User posts section*/}
           <div className="middleTimeline">
             {/* Create a post section*/}
-
+            <br></br>
+            <div style={{ fontWeight: "bold", textAlign: "center" }}>
+              Welcome to your timeline{" "}
+            </div>
             <div className="userInformationTimeline">
               <IconButton style={{ marginTop: "10px" }}>
                 <SendIcon onClick={savePost} fontSize="medium"></SendIcon>
@@ -203,6 +206,7 @@ const UserTimeline = () => {
             {/* user's post in their timeline*/}
             <div>
               {/* each div is a single post*/}
+
               {allSortedPosts}
             </div>
           </div>
@@ -210,7 +214,7 @@ const UserTimeline = () => {
             <span className="subTitle">Contacts</span>
             <br></br>
             <div>
-              {userConnections &&
+              {userConnections && userConnections.length > 0 ? (
                 userConnections.connections.map((connection) => {
                   return (
                     <ul>
@@ -233,7 +237,10 @@ const UserTimeline = () => {
                       </l1>
                     </ul>
                   );
-                })}
+                })
+              ) : (
+                <p className="userBio">You do not have any connection</p>
+              )}
             </div>
           </div>
         </div>

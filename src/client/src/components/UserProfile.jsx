@@ -139,12 +139,16 @@ const UserProfile = () => {
             </div>
             <div className="userInformation">
               <span className="subTitle">Bio</span>
-              <p className="userBio">{publicUser.bio}</p>
+              <p className="userBio">
+                {publicUser.bio
+                  ? publicUser.bio
+                  : "You do not have any biography"}
+              </p>
             </div>
             <div className="userJobInformation">
               <span className="subTitle">Work Experience</span>
               <ul className="elementList">
-                {publicUser.workExp &&
+                {publicUser.workExp && publicUser.workExp.length > 0 ? (
                   publicUser.workExp.map((workExperience) => (
                     <li key={workExperience} className="jobInfo">
                       <img
@@ -156,13 +160,16 @@ const UserProfile = () => {
                         <span>{workExperience}</span>
                       </div>
                     </li>
-                  ))}
+                  ))
+                ) : (
+                  <p className="userBio">You do not have any Work Experience</p>
+                )}
               </ul>
             </div>
             <div className="userJobInformation">
               <span className="subTitle">Education</span>
               <ul className="elementList">
-                {publicUser.education &&
+                {publicUser.education && publicUser.education.length > 0 ? (
                   publicUser.education.map((education) => (
                     <li key={education} className="jobInfo">
                       <img
@@ -174,43 +181,60 @@ const UserProfile = () => {
                         <span>{education}</span>
                       </div>
                     </li>
-                  ))}
+                  ))
+                ) : (
+                  <p className="userBio">
+                    You do not have any education history
+                  </p>
+                )}
               </ul>
             </div>
             <div className="userKnowledgeInformation">
               <span className="subTitle">Skills</span>
               <ul className="elementList">
-                {publicUser.skills &&
+                {publicUser.skills && publicUser.skills.length > 0 ? (
                   publicUser.skills.map((skill) => (
                     <li key={skill} className="jobInfo">
                       <p className="element">{skill}</p>
                     </li>
-                  ))}{" "}
+                  ))
+                ) : (
+                  <p className="userBio">You do not have any skills history</p>
+                )}{" "}
               </ul>
             </div>
             <div className="userKnowledgeInformation">
               <span className="subTitle">Languages</span>
               <ul className="elementList">
-                {publicUser.languages &&
+                {publicUser.languages && publicUser.languages.length > 0 ? (
                   publicUser.languages.map((language) => (
                     <li key={language} className="jobInfo">
                       <p className="element">{language}</p>
                     </li>
-                  ))}
+                  ))
+                ) : (
+                  <p className="userBio">
+                    You do not have any language history
+                  </p>
+                )}
               </ul>
             </div>
             <div className="userKnowledgeInformation">
               <span className="subTitle">Volunteering</span>
 
               <ul className="elementList">
-                <li className="jobInfo">
-                  {publicUser.volunteering &&
-                    publicUser.volunteering.map((volunteeringExp) => (
-                      <li key={volunteeringExp} className="jobInfo">
-                        <p className="element">{volunteeringExp}</p>
-                      </li>
-                    ))}{" "}
-                </li>
+                {publicUser.volunteering &&
+                publicUser.volunteering.length > 0 ? (
+                  publicUser.volunteering.map((volunteeringExp) => (
+                    <li key={volunteeringExp} className="jobInfo">
+                      <p className="element">{volunteeringExp}</p>
+                    </li>
+                  ))
+                ) : (
+                  <p className="userBio">
+                    You do not have any volunteering experience
+                  </p>
+                )}{" "}
               </ul>
             </div>
           </div>
@@ -220,57 +244,33 @@ const UserProfile = () => {
             <br></br>
             <div>
               {userConnections.connections &&
+              userConnections.connections.length > 0 ? (
                 userConnections.connections.map((contact) => {
                   return (
-                    <l1 className="connectionsInfo">
-                      <img
-                        src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
-                        alt="comapnyPic"
-                        className="companyPic"
-                      ></img>
-                      <div>
-                        <Link
-                          to={`/users/search/${contact.userID}`}
-                          style={{ textDecoration: "none", color: "black" }}
-                        >
-                          <span className="connectionName">
-                            {contact.firstname} {contact.lastname}
-                          </span>
-                        </Link>
-                      </div>
-                    </l1>
+                    <ul>
+                      <l1 className="connectionsInfo">
+                        <img
+                          src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
+                          alt="comapnyPic"
+                          className="companyPic"
+                        ></img>
+                        <div>
+                          <Link
+                            to={`/users/search/${contact.userID}`}
+                            style={{ textDecoration: "none", color: "black" }}
+                          >
+                            <span className="connectionName">
+                              {contact.firstname} {contact.lastname}
+                            </span>
+                          </Link>
+                        </div>
+                      </l1>
+                    </ul>
                   );
-                })}
-              {/* <l1 className="connectionsInfo">
-                  <img
-                    src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
-                    alt="comapnyPic"
-                    className="companyPic"
-                  ></img>
-                  <div>
-                    <span className="connectionName">John Doe</span>
-                  </div>
-                </l1>
-                <l1 className="connectionsInfo">
-                  <img
-                    src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
-                    alt="comapnyPic"
-                    className="companyPic"
-                  ></img>
-                  <div>
-                    <span className="connectionName">John Doe</span>
-                  </div>
-                </l1>
-                <l1 className="connectionsInfo">
-                  <img
-                    src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
-                    alt="comapnyPic"
-                    className="companyPic"
-                  ></img>
-                  <div>
-                    <span className="connectionName">John Doe</span>
-                  </div>
-                </l1> */}
+                })
+              ) : (
+                <p className="userBio">You do not have any connections</p>
+              )}
             </div>
           </div>
         </div>

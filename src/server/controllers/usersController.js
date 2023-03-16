@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Job = require("../models/Job")
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
 const { db } = require("../models/user");
@@ -249,11 +250,32 @@ const getUserJobsApplied = async(req, res) => {
     }
 };
 
+const getUserJobsObjectApplied = async(req, res) => {
+    try {
+        const user = await User.findOne({ _id: req.params.id });
+        return res.status(200).json(user.jobsAppliedObject);
+    } catch (err) {
+        res.status(400).json({ message: "Unable to retrieve jobs object applied." });
+    }
+};
+
 const addJobAppliedToUser = async(req, res) => {
-    User.findById(req.body.userId).then((user) => {
+
+    let jobObject;
+    
+
+    await Job.findOne({job_id:req.body.jobId}).then((job =>{
+        jobObject = job;
+    }))
+
+
+    await User.findById(req.body.userId).then((user) => {
         const array = user.jobsApplied;
+        const jobObjectArray = user.jobsAppliedObject;
         array.push(req.body.jobId);
         user.jobsApplied = array;
+        jobObjectArray.push(jobObject);
+        user.jobsAppliedObject = jobObjectArray;
         user
             .save()
             .then(() => {
@@ -261,7 +283,7 @@ const addJobAppliedToUser = async(req, res) => {
             })
             .catch((err) => console.log(err));
     });
-    res.send(201);
+    res.sendStatus(201);
 };
 
 
@@ -319,6 +341,7 @@ module.exports = {
     editUserInfo,
 
     getUserJobsApplied,
+    getUserJobsObjectApplied,
     addJobAppliedToUser,
     getUser,
 

@@ -3,6 +3,7 @@ import "../css/UserProfile.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Context } from "../UserSession";
+import Avatar from '@mui/material/Avatar';
 
 const UserProfile = () => {
   //States
@@ -20,6 +21,15 @@ const UserProfile = () => {
       education: [],
     },
   ]);
+
+  const [userConnections, setUserConnections] = useState(
+    {
+      _id: "",
+      firstname: "",
+      lastname: "",
+      connections: [],
+    }
+  );
 
   //Global loginState
   const [login, setLogin] = useContext(Context);
@@ -51,6 +61,7 @@ const UserProfile = () => {
   useEffect(() => {
     if (userID) {
       fetchProfile();
+      fetchUserConnections();
     }
   }, []);
 
@@ -78,6 +89,28 @@ const UserProfile = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const fetchUserConnections = async () => {
+
+    try{
+      if(userID){
+        const response = await axios.get(
+          `http://localhost:9000/users/profile/${userID}`
+        );
+
+        setUserConnections({
+          _id: response.data._id,
+          firstname: response.data.firstname,
+          lastname: response.data.lastname,
+          connections: response.data.connections,
+
+        });
+        // console.log(response.data);
+      }
+    }catch (error) {
+      console.log(error);
+   }
   };
 
   return (
@@ -190,8 +223,22 @@ const UserProfile = () => {
             <span className="subTitle">Contacts</span>
             <br></br>
             <div>
-              <ul>
-                <l1 className="connectionsInfo">
+              
+                {userConnections.connections && (userConnections.connections.map((contact) => {
+                    return (
+                      <l1 className="connectionsInfo">
+                      <img
+                        src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
+                        alt="comapnyPic"
+                        className="companyPic"
+                      ></img>
+                      <div>
+                        <span className="connectionName">{contact.firstname} {contact.lastname}</span>
+                      </div>
+                      </l1>
+                    )
+                }))}
+                {/* <l1 className="connectionsInfo">
                   <img
                     src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
                     alt="comapnyPic"
@@ -220,8 +267,8 @@ const UserProfile = () => {
                   <div>
                     <span className="connectionName">John Doe</span>
                   </div>
-                </l1>
-              </ul>
+                </l1> */}
+              
             </div>
           </div>
         </div>

@@ -29,8 +29,11 @@ afterAll(async() => {
     // Delete the user from the database after running all the tests
     await User.findByIdAndDelete(userId);
 
-    // Closing the DB connection allows Jest to exit successfully.
+});
+
+afterAll((done) => {
     mongoose.disconnect();
+    done();
     app.close();
 });
 
@@ -58,6 +61,6 @@ describe('GET /users', function() {
                 email: "test@gmail.com",
                 password: "test123"
             })
-            .expect(404);
+            .expect(401);
     })
 });

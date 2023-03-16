@@ -1,7 +1,16 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import JobPosting from "../components/JobPosting";
 import axios from "axios";
+import { BrowserRouter } from "react-router-dom";
 import React from "react";
+import UserSession from "../UserSession";
+
+beforeAll(() => {
+  sessionStorage.setItem("userID", '6410a8bd165eca75f68ba375');
+  sessionStorage.setItem("firstname", 'Tim');
+  sessionStorage.setItem("lastname", 'Cook');
+  sessionStorage.setItem("role", 'Recruiter');
+})
 
 jest.mock("axios");
 
@@ -10,7 +19,7 @@ describe("JobPosting", () => {
     axios.post.mockImplementation(() =>
       Promise.resolve({ data: { message: "Job created" } })
     );
-    render(<JobPosting />);
+    render(<UserSession><BrowserRouter><JobPosting /></BrowserRouter></UserSession>);
     const titleInput = screen.getByLabelText("Job Title");
     fireEvent.change(titleInput, { target: { value: "Software Engineer" } });
     const companyInput = screen.getByLabelText("Company");
@@ -40,4 +49,11 @@ describe("JobPosting", () => {
       }
     );
   });
+});
+
+afterAll(() => {
+  sessionStorage.removeItem('userID');
+  sessionStorage.removeItem('firstName');
+  sessionStorage.removeItem('lastName');
+  sessionStorage.removeItem('role');
 });

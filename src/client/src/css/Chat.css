@@ -1,0 +1,176 @@
+/* .conatainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.chatbox {
+  height: 85vh;
+  width: 68vw;
+  background-color: #e0e0e099;
+  margin-bottom: 80px;
+  margin-top: 20px;
+  margin-left: 20px;
+  border-radius: 7%;
+  display: flex;
+  justify-content: flex-start;
+  @media screen {
+    min-width: 720px;
+    max-width: 1080px;
+  }
+}
+
+.contacts {
+  height: 85vh;
+  width: 45vh;
+  background-color: #07bae054;
+  right: 25px;
+  position: absolute;
+  top: 100px;
+  margin-bottom: 80px;
+  border-radius: 7%;
+}
+
+.userpic {
+  width: 160px;
+  height: 160px;
+  border-radius: 80px;
+  background-color: pink;
+  margin: inherit;
+}
+
+.username {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 175px;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.vl {
+  border-left: 2px solid #00000012;
+  height: 625px;
+  position: absolute;
+  left: 220px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.mycontact {
+  display: flex;
+  justify-content: center;
+  margin: 60px;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.connectionsInfo {
+  display: flex;
+  border-radius: 30px;
+  background-color: aliceblue;
+  width: 300px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.connectionName {
+  margin-left: 40px;
+  font-size: larger;
+}
+
+.ul {
+  display: flex;
+  flex-direction: column;
+  padding-inline-start: 40px;
+}
+
+.message-container {
+  max-width: max-content;
+  display: flex;
+  align-items: flex-end;
+  left: 15px;
+  position: relative;
+}
+
+.message {
+  margin-bottom: 30px;
+  height: 45px;
+  width: 640px;
+  border: none;
+  border-radius: 20px;
+  margin-left: 35px;
+  background: #0000001f;
+  outline: none;
+  padding-left: 10px;
+}
+
+.sendicon {
+  margin-bottom: 45px;
+  color: rgba(0, 0, 0, 0.651);
+  margin-left: 10px;
+}
+
+.attachicon {
+  margin-bottom: 45px;
+  color: rgba(0, 0, 0, 0.651);
+  margin-left: 6px;
+}
+
+.sender-userpic {
+  height: 40px;
+  width: 40px;
+  background-color: pink;
+  border-radius: 20px;
+  top: 454px;
+  left: 35px;
+  position: absolute;
+}
+
+.sender-text {
+  height: max-content;
+  width: max-content;
+  background-color: #0000001f;
+  border-radius: 20px;
+  position: absolute;
+  top: 454px;
+  left: 35px;
+  padding: 10px;
+  margin-left: 50px;
+  display: inline-block;
+}
+
+.sender-message {
+  display: flex;
+  left: 10px;
+  position: relative;
+}
+
+.user-userpic {
+  height: 40px;
+  width: 40px;
+  background-color: lightslategray;
+  border-radius: 20px;
+  top: 540px;
+  left: 394px;
+  position: absolute;
+}
+
+.user-text {
+  height: max-content;
+  width: max-content;
+  background-color: #0000001f;
+  border-radius: 20px;
+  position: absolute;
+  top: 540px;
+  left: 88px;
+  padding: 10px;
+  display: inline-block;
+}
+
+.user-message {
+  display: flex;
+  left: 330px;
+  position: relative;
+} */

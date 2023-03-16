@@ -16,10 +16,37 @@ const UserTimeline = () => {
   const userID = sessionStorage.getItem("userID");
 
   const navigate = useNavigate();
+  const [userConnections, setUserConnections] = useState(
+    {
+      _id: "",
+      firstname: "",
+      lastname: "",
+      connections: [],
+    }
+  );
+
+  const fetchUserConnections = async () => {
+    try{
+      if(userID){
+        const response = await axios.get(
+          `http://localhost:9000/users/profile/${userID}`
+        );
+        setUserConnections({
+          _id: response.data._id,
+          firstname: response.data.firstname,
+          lastname: response.data.lastname,
+          connections: response.data.connections,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+   }
+  };
 
   //fetch session once
   useEffect(() => {
     fetchSession();
+    fetchUserConnections();
     fetchConnections();
     //fetchConnectionPosts();
     fetchPosts();
@@ -169,36 +196,21 @@ const UserTimeline = () => {
             <br></br>
             <div>
               <ul>
-                <l1 className="connectionsInfo">
-                  <img
-                    src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
-                    alt="comapnyPic"
-                    className="companyPic"
-                  ></img>
-                  <div>
-                    <span className="connectionName">John Doe</span>
-                  </div>
-                </l1>
-                <l1 className="connectionsInfo">
-                  <img
-                    src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
-                    alt="comapnyPic"
-                    className="companyPic"
-                  ></img>
-                  <div>
-                    <span className="connectionName">John Doe</span>
-                  </div>
-                </l1>
-                <l1 className="connectionsInfo">
-                  <img
-                    src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
-                    alt="comapnyPic"
-                    className="companyPic"
-                  ></img>
-                  <div>
-                    <span className="connectionName">John Doe</span>
-                  </div>
-                </l1>
+                {userConnections && (userConnections.connections.map((connection) => {
+                  return (
+                    <>
+                    <l1 className="connectionsInfo">
+                      <img
+                      src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
+                      alt="comapnyPic"
+                      className="companyPic"></img>
+                      <div>
+                        <span className="connectionName">{connection.firstname} {connection.lastname}</span>
+                      </div>
+                      </l1>
+                    </>
+                  );
+                }))}
               </ul>
             </div>
           </div>

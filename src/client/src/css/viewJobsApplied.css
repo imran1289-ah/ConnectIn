@@ -1,0 +1,40 @@
+
+
+
+
+
+
+
+
+.notLoggedInContent .redirectSignIn{
+
+    border-radius: 10;
+    background-color: #19718d;
+    font-size: 14px;
+    width:250px;
+    text-align: center;
+    margin-bottom: 10px;
+    
+    
+  }
+  .notLoggedInContent .redirectSignIn:hover{
+  
+    border-radius: 10;
+    background-color: #19718d;
+    font-size: 14px;
+    width:250px;
+    text-align: center;
+    margin-bottom: 10px;
+    
+  }
+  
+  .notLoggedInContent{
+    /* border: 1px #19718d solid; */
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin: 200px;
+    margin-left: 400px;
+    width: 600px;
+  }

@@ -25,48 +25,79 @@ const ViewJobsApplied = () => {
     fetchAppliedJob();
   }, []);
 
-  const fetchJobDetails = async () => {
-    jobsApplied.map();
+
+  const [login, setLogin] = useContext(Context);
+
+
+
+  //Having the loginState persist on all pages
+  useEffect(() => {
+    if (userID) {
+      fetchSession();
+    }
+  }, []);
+
+  //Having the loginState persist on all pages
+  const fetchSession = async () => {
+    try {
+      if (userID) {
+        setLogin({
+          isLoggedIn: true,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
+
   const fetchAppliedJob = async () => {
-    const { data } = await axios.get(`http://localhost:9000/users/${userID}/jobsApplied`);
+    const { data } = await axios.get(`http://localhost:9000/users/${userID}/jobsObjectApplied`);
 
     setJobsApplied(data);
   };
 
+  const navigateBackToSignIn = () =>{
+    navigate("/signin")
+}
+
+
   return (
     <div className="jobsApplied">
+
+    {userID ? (
+    <div>
       <h1>Jobs Applied Summary</h1>
 
-      <table className="">
+      <table>
         <tr>
           <th>Job ID</th>
-          <th>Product</th>
-          <th>Quantity</th>
-          <th>Image</th>
+          <th>Title</th>
+          <th>Company</th>
+          <th>Location</th>
         </tr>
-        {jobsApplied.map(id => (
-          <div key={id} className="jobPost">
-            <div className="logo">
-              
-            </div>
+        {jobsApplied.map(job => (
+          <div key={job.job_id}>
             <tr>
-              <th>{id}</th>
-              <th> Job Description</th>
-              <th> Salary</th>
-              <th>Satus</th>
+              <th>{job.job_id}</th>
+              
+              <th> {job.title}</th>
+              <th> {job.company}</th>
+              <th>{job.location}</th>
             </tr>
           </div>
         ))}
-        {/* {jobsApplied.map(id =>(
-                    
-                    <tr>
-                        <th>{id}</th>
-                    </tr>
-                ))}
-               */}
       </table>
+      </div>
+      ) : (<div className = "notLoggedInContent">
+      <h1>Please login to your account!</h1> 
+      <p>It looks like you are not logged in.</p>
+      <Button onClick={navigateBackToSignIn} className ="redirectSignIn" variant="contained" component="label">
+               <ArrowBack></ArrowBack> Back to Signin
+      </Button>
+  
+  
+  </div>)}
     </div>
   );
 };

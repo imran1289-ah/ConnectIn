@@ -49,10 +49,13 @@ const ViewJobsApplied = () => {
         {jobsApplied.map(id => (
           <div key={id} className="jobPost">
             <div className="logo">
-              <Avatar alt="Logo" src="./logo/logo.png" sx={{ width: 75, height: 75 }} />
+              
             </div>
             <tr>
               <th>{id}</th>
+              <th> Job Description</th>
+              <th> Salary</th>
+              <th>Satus</th>
             </tr>
           </div>
         ))}

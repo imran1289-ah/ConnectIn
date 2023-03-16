@@ -32,6 +32,7 @@ const UserSchema = new mongoose.Schema({
         type: Number,
     },
     jobsApplied: [],
+    jobsAppliedObject:[],
     volunteering: [],
     connections: [],
     education: [],

@@ -143,7 +143,57 @@
   }
 
   .postTextField {
-    width: 650px;
+    width: 92%;
+    height: 50px;
+  }
+
+  .userPostsTimeline {
+    width: auto;
+  }
+
+  .userInformationTimeline {
+    min-height: 80px;
+    width: auto;
+  }
+}
+
+@media (min-device-width: 600px) and (max-device-width: 768px) {
+  .userTimelineContainer {
+    display: block;
+  }
+
+  .rightTimeline {
+    width: auto;
+    margin: 20px;
+  }
+
+  .postTextField {
+    width: 92%;
+    height: 50px;
+  }
+
+  .userPostsTimeline {
+    width: auto;
+  }
+
+  .userInformationTimeline {
+    min-height: 80px;
+    width: auto;
+  }
+}
+
+@media (min-device-width: 1025px) and (max-device-width: 1320px) {
+  .userTimelineContainer {
+    display: block;
+  }
+
+  .rightTimeline {
+    width: auto;
+    margin: 20px;
+  }
+
+  .postTextField {
+    width: 92%;
     height: 50px;
   }
 

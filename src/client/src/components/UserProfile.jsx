@@ -129,9 +129,7 @@ const UserProfile = () => {
                   <p>{publicUser.headLine}</p>
                   <div className="connectButtonSection">
                     <Link to={`/EditUserProfile`}>
-                      <button className="connectButton">
-                        Edit Profile Page
-                      </button>
+                      <button className="editButton">Edit Profile Page</button>
                     </Link>
                   </div>
                 </div>

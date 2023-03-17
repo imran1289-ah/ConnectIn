@@ -205,3 +205,55 @@
     width: auto;
   }
 }
+
+@media (min-device-width: 600px) and (max-device-width: 768px) {
+  .userProfileContainer {
+    display: block;
+  }
+
+  .right {
+    width: auto;
+    margin: 20px;
+  }
+
+  .userInformation {
+    min-height: 140px;
+    width: auto;
+  }
+
+  .userJobInformation {
+    min-height: 130px;
+    width: auto;
+  }
+
+  .userKnowledgeInformation {
+    min-height: 100px;
+    width: auto;
+  }
+}
+
+@media (min-device-width: 1025px) and (max-device-width: 1320px) {
+  .userProfileContainer {
+    display: block;
+  }
+
+  .right {
+    width: auto;
+    margin: 20px;
+  }
+
+  .userInformation {
+    min-height: 140px;
+    width: auto;
+  }
+
+  .userJobInformation {
+    min-height: 130px;
+    width: auto;
+  }
+
+  .userKnowledgeInformation {
+    min-height: 100px;
+    width: auto;
+  }
+}

@@ -62,6 +62,12 @@ const Navbar = () => {
     navigate("/waitingConnections")
   }
 
+  const redirectJobApplications = () =>{
+
+    navigate("/jobsapplied")
+
+  }
+
   return (
     //Material UI navbar
     <Box sx={{ flexGrow: 1 }}>
@@ -136,6 +142,24 @@ const Navbar = () => {
                       variant="subtitle2"
                     >
                       Jobs
+                    </Typography>
+                  </Typography>
+                </Box>
+              </IconButton>
+
+              <IconButton color="inherit" onClick={redirectJobApplications}>
+                <Box className="parentUserIconContainer">
+                  <Typography className="userIconContainer">
+                    <WorkIcon
+                      className="publicUserIcon"
+                      fontSize="large"
+                    ></WorkIcon>
+                    <Typography
+                      fontSize={10}
+                      className="userSubtitle"
+                      variant="subtitle2"
+                    >
+                      Job Applications
                     </Typography>
                   </Typography>
                 </Box>

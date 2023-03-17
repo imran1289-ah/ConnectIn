@@ -142,7 +142,7 @@ const UserProfile = () => {
               <p className="userBio">
                 {publicUser.bio
                   ? publicUser.bio
-                  : "You do not have any biography"}
+                  : "You have not added any biography"}
               </p>
             </div>
             <div className="userJobInformation">
@@ -162,7 +162,9 @@ const UserProfile = () => {
                     </li>
                   ))
                 ) : (
-                  <p className="userBio">You do not have any Work Experience</p>
+                  <p className="userBio">
+                    You have not added any work experience
+                  </p>
                 )}
               </ul>
             </div>
@@ -183,9 +185,7 @@ const UserProfile = () => {
                     </li>
                   ))
                 ) : (
-                  <p className="userBio">
-                    You do not have any education history
-                  </p>
+                  <p className="userBio">You have not added any education</p>
                 )}
               </ul>
             </div>
@@ -199,7 +199,7 @@ const UserProfile = () => {
                     </li>
                   ))
                 ) : (
-                  <p className="userBio">You do not have any skills history</p>
+                  <p className="userBio">You have not added any skills</p>
                 )}{" "}
               </ul>
             </div>
@@ -213,9 +213,7 @@ const UserProfile = () => {
                     </li>
                   ))
                 ) : (
-                  <p className="userBio">
-                    You do not have any language history
-                  </p>
+                  <p className="userBio">You have not added any languages</p>
                 )}
               </ul>
             </div>
@@ -231,9 +229,7 @@ const UserProfile = () => {
                     </li>
                   ))
                 ) : (
-                  <p className="userBio">
-                    You do not have any volunteering experience
-                  </p>
+                  <p className="userBio">You have not added any volunteering</p>
                 )}{" "}
               </ul>
             </div>

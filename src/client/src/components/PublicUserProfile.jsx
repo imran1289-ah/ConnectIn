@@ -172,7 +172,9 @@ const PublicUserProfile = () => {
             <div className="userInformation">
               <span className="subTitle">Bio</span>
               <p className="userBio">
-                {publicUser.bio ? publicUser.bio : "The user has no biography"}
+                {publicUser.bio
+                  ? publicUser.bio
+                  : "The user did not add a biogragphy"}
               </p>
             </div>
             <div className="userJobInformation">
@@ -193,7 +195,7 @@ const PublicUserProfile = () => {
                   ))
                 ) : (
                   <p className="userBio">
-                    The user does not have any work experience
+                    The user did not add any work experience
                   </p>
                 )}
               </ul>
@@ -215,9 +217,7 @@ const PublicUserProfile = () => {
                     </li>
                   ))
                 ) : (
-                  <p className="userBio">
-                    The user does not have any education history
-                  </p>
+                  <p className="userBio">The user did not add any education</p>
                 )}
               </ul>
             </div>
@@ -231,7 +231,7 @@ const PublicUserProfile = () => {
                     </li>
                   ))
                 ) : (
-                  <p className="userBio">The user does not have any skills</p>
+                  <p className="userBio">The user did not add any skills</p>
                 )}{" "}
               </ul>
             </div>
@@ -245,7 +245,7 @@ const PublicUserProfile = () => {
                     </li>
                   ))
                 ) : (
-                  <p className="userBio">The user does not have any language</p>
+                  <p className="userBio">The user did not add any language</p>
                 )}
               </ul>
             </div>
@@ -263,7 +263,7 @@ const PublicUserProfile = () => {
                 ) : (
                   <p className="userBio">
                     {" "}
-                    The user does not have any volunterring experience
+                    The user did not add any volunterring experience
                   </p>
                 )}{" "}
               </ul>

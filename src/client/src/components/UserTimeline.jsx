@@ -177,10 +177,6 @@ const UserTimeline = () => {
               Welcome to your timeline{" "}
             </div>
             <div className="userInformationTimeline">
-              <IconButton style={{ marginTop: "10px" }}>
-                <SendIcon onClick={savePost} fontSize="medium"></SendIcon>
-              </IconButton>
-
               <TextField
                 id="outlined-basic"
                 label="Start A Post"
@@ -190,8 +186,11 @@ const UserTimeline = () => {
                 onChange={(e) =>
                   setpostData({ ...postData, description: e.target.value })
                 }
+                style={{ marginLeft: "10px" }}
               />
-
+              <IconButton style={{ marginTop: "10px" }}>
+                <SendIcon onClick={savePost} fontSize="small"></SendIcon>
+              </IconButton>
               <div
                 className="timestamp"
                 value={Date.now()}

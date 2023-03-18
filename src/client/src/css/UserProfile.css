@@ -116,7 +116,7 @@
   font-weight: 400;
 }
 
-.connectButton {
+.editButton {
   background-color: #19718d;
   width: 300px;
   height: 40px;
@@ -175,14 +175,67 @@
     height: 90px;
   }
 
-  .connectButton {
+  .editButton {
     width: 150px;
     height: 35px;
+    font-size: 15px;
   }
 }
 
 /*Media queries for ipad*/
 @media (min-device-width: 768px) and (max-device-width: 1024px) {
+  .userProfileContainer {
+    display: block;
+  }
+
+  .right {
+    width: auto;
+    margin: 20px;
+  }
+
+  .userInformation {
+    min-height: 140px;
+    width: auto;
+  }
+
+  .userJobInformation {
+    min-height: 130px;
+    width: auto;
+  }
+
+  .userKnowledgeInformation {
+    min-height: 100px;
+    width: auto;
+  }
+}
+
+@media (min-device-width: 600px) and (max-device-width: 768px) {
+  .userProfileContainer {
+    display: block;
+  }
+
+  .right {
+    width: auto;
+    margin: 20px;
+  }
+
+  .userInformation {
+    min-height: 140px;
+    width: auto;
+  }
+
+  .userJobInformation {
+    min-height: 130px;
+    width: auto;
+  }
+
+  .userKnowledgeInformation {
+    min-height: 100px;
+    width: auto;
+  }
+}
+
+@media (min-device-width: 1025px) and (max-device-width: 1320px) {
   .userProfileContainer {
     display: block;
   }

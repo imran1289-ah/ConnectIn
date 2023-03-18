@@ -14,7 +14,7 @@
 }
 
 .userInformationTimeline {
-  min-height: 80px;
+  min-height: 70px;
   width: 700px;
   border-radius: 15px;
   margin: 20px;
@@ -24,10 +24,11 @@
 }
 
 .userPostsTimeline {
-  min-height: 130px;
+  min-height: 100px;
   width: 700px;
   border-radius: 15px;
   margin: 20px;
+  margin-bottom: 50px;
   height: auto;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -82,6 +83,7 @@
   font-size: 20px;
   font-weight: 500;
   margin-left: 20px;
+  font-weight: bold;
 }
 
 .body {
@@ -105,7 +107,7 @@
   }
 
   .postTextField {
-    width: 300px;
+    width: 85%;
     height: 50px;
   }
 
@@ -116,7 +118,7 @@
 
   .connectionNameTimeline {
     margin-left: 40px;
-    font-size: 20px;
+    font-size: 26px;
   }
 
   .userPostsTimeline {
@@ -141,7 +143,57 @@
   }
 
   .postTextField {
-    width: 650px;
+    width: 92%;
+    height: 50px;
+  }
+
+  .userPostsTimeline {
+    width: auto;
+  }
+
+  .userInformationTimeline {
+    min-height: 80px;
+    width: auto;
+  }
+}
+
+@media (min-device-width: 600px) and (max-device-width: 768px) {
+  .userTimelineContainer {
+    display: block;
+  }
+
+  .rightTimeline {
+    width: auto;
+    margin: 20px;
+  }
+
+  .postTextField {
+    width: 92%;
+    height: 50px;
+  }
+
+  .userPostsTimeline {
+    width: auto;
+  }
+
+  .userInformationTimeline {
+    min-height: 80px;
+    width: auto;
+  }
+}
+
+@media (min-device-width: 1025px) and (max-device-width: 1320px) {
+  .userTimelineContainer {
+    display: block;
+  }
+
+  .rightTimeline {
+    width: auto;
+    margin: 20px;
+  }
+
+  .postTextField {
+    width: 92%;
     height: 50px;
   }
 

@@ -17,6 +17,7 @@ const jobsSchema = new mongoose.Schema({
     },
     category: {
         type: String,
+        required:true
     },
     title: {
         type: String,
@@ -24,7 +25,11 @@ const jobsSchema = new mongoose.Schema({
     },
     location: {
         type: String,
+        required: true
     },
+    onSite:{
+        type: String,
+    }
 });
 
 const Jobs = mongoose.model("Jobs", jobsSchema);

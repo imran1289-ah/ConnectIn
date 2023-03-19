@@ -44,6 +44,13 @@ const JobListing = () =>{
 
     const [jobs, setJobs] = useState([]);
     const [jobsApplied, setJobsApplied] = useState([]);
+    const [jobsWithFilter, setJobsWithFilter] = useState([]);
+    const [preferences, setPreferences] = useState({
+        category: null,
+        location: null,
+    });
+
+    // "category:full-time,location:montreal"
 
     const navigate = useNavigate();
     useEffect( () => {
@@ -51,17 +58,24 @@ const JobListing = () =>{
         fetchAppliedJob();
     }, [])
 
-    const fetchJobs = async () => {
-        const {data} = await axios.get("http://localhost:9000/jobs")
+    useEffect( () =>{
+        fetchJobsWithFilter();
+    }, [preferences])
 
+   
+    const fetchJobs = async () =>{
+        const {data} = await axios.get('http://localhost:9000/jobs')
         setJobs(data)
     }
+    const fetchJobsWithFilter = async () => {
+        const {data} = await axios.post('http://localhost:9000/jobs', preferences)
+        setJobs(data)
+    }
+  
 
     const fetchAppliedJob = async () =>{
         const {data} = await axios.get(`http://localhost:9000/users/${userID}/jobsApplied`)
-        
-       setJobsApplied(data)
-        
+       setJobsApplied(data);
     }
 
 

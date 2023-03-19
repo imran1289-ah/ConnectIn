@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const asyncHandler = require('express-async-handler')
 
 const getAllJobs = async (req, res) => {
+
     try{
         const jobs = await Job.find();
         res.status(200).json(jobs);
@@ -11,6 +12,22 @@ const getAllJobs = async (req, res) => {
           console.log(err);
       }
 }
+
+const getAllJobsWithFilter = async (req,res) =>{
+
+    // console.log(req.body.category)
+    // const {category, location} = req.preferences;
+    try{
+        const jobs = await Job.find({category:req.body.category, location: req.body.location});
+        res.status(200).json(jobs);
+      }catch(err){
+          res.status(500).json( {message: "Unable to retrieve all jobs."});
+          console.log(err);
+      }
+    
+
+}
+
 
 const getJobDetails = async(req, res) => {
     try{
@@ -84,6 +101,7 @@ const updateJobData = asyncHandler(async(req, res) => {
 
 module.exports = {
     getAllJobs,
+    getAllJobsWithFilter,
     getJobDetails,
     updateJobData,
     createJob,

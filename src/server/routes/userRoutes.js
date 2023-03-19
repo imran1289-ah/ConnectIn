@@ -33,7 +33,6 @@ router.route("/newConnection").post(usersControllers.updateConnections);
 router.route("/deleteAwaiting").patch(usersControllers.deleteAwaitingConnections);
 //router to check if 
 router.route("/:id/jobsApplied").get(usersControllers.getUserJobsApplied);
-router.route("/:id/jobsObjectApplied").get(usersControllers.getUserJobsObjectApplied)
 
 router.route("/:id/jobsApplied").post(usersControllers.addJobAppliedToUser);
 

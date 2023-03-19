@@ -8,6 +8,7 @@ import swal from "sweetalert";
 import { useNavigate, Link } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 const UserTimeline = () => {
   //Global state
@@ -17,6 +18,8 @@ const UserTimeline = () => {
   const userID = sessionStorage.getItem("userID");
 
   const navigate = useNavigate();
+
+  //user connection state
   const [userConnections, setUserConnections] = useState({
     _id: "",
     firstname: "",
@@ -24,6 +27,7 @@ const UserTimeline = () => {
     connections: [],
   });
 
+  //http request to fetch user
   const fetchUserConnections = async () => {
     try {
       if (userID) {
@@ -68,13 +72,14 @@ const UserTimeline = () => {
     }
   };
 
+  //Post state
   const [postData, setpostData] = useState({
     description: "",
     attachment: null,
     timestamp: new Date(),
   });
 
-  //HTTP Request to fetch posts and add posts ....
+  //HTTP Request to fetch to add post
   const savePost = async () => {
     axios
       .post(`http://localhost:9000/users/post`, {
@@ -115,6 +120,7 @@ const UserTimeline = () => {
       });
   };
 
+  //http request to fetch posts
   const [posts, setPosts] = useState([]);
   const fetchPosts = async () => {
     await axios
@@ -124,6 +130,7 @@ const UserTimeline = () => {
       });
   };
 
+  //display post
   const userPosts = posts.map((post) => (
     <div className="userPostsTimeline">
       <span className="subTitleTimeline">
@@ -133,10 +140,34 @@ const UserTimeline = () => {
     </div>
   ));
 
+  //sort posts based on timestamp
   //const allPosts = [...allConnectionsPosts, ...userPosts]
   const allSortedPosts = [...userPosts].sort((a, b) => {
     return a.timestamp > b.timestamp ? 1 : -1;
   });
+
+  //http request to remove connection
+  const removeConnection = async (
+    connectionUserID,
+    connectionFirstName,
+    connectionLastName
+  ) => {
+    swal({
+      title: `Are you sure you want to remove ${connectionFirstName} ${connectionLastName} from your connection ?`,
+      text: "Once the user is deleted, the user will be removed from your connections",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        swal(`${connectionFirstName} ${connectionLastName} has been removed`, {
+          icon: "success",
+        });
+      } else {
+        swal(`${connectionFirstName} ${connectionLastName} was not removed`);
+      }
+    });
+  };
 
   return (
     <div>
@@ -230,6 +261,17 @@ const UserTimeline = () => {
                           >
                             {connection.firstname} {connection.lastname}
                           </Link>
+                          <IconButton
+                            onClick={() =>
+                              removeConnection(
+                                `${connection.userID}`,
+                                `${connection.firstname}`,
+                                `${connection.lastname}`
+                              )
+                            }
+                          >
+                            <HighlightOffIcon></HighlightOffIcon>
+                          </IconButton>
                         </span>
                       </div>
                     </l1>

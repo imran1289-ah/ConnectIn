@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Context } from "../UserSession";
 import Avatar from "@mui/material/Avatar";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import swal from "sweetalert";
+import { IconButton } from "@mui/material";
 
 const UserProfile = () => {
   //States
@@ -89,6 +92,7 @@ const UserProfile = () => {
     }
   };
 
+  //http request to fetch connection
   const fetchUserConnections = async () => {
     try {
       if (userID) {
@@ -107,6 +111,29 @@ const UserProfile = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  //http request to remove connection
+  const removeConnection = async (
+    connectionUserID,
+    connectionFirstName,
+    connectionLastName
+  ) => {
+    swal({
+      title: `Are you sure you want to remove ${connectionFirstName} ${connectionLastName} from your connection ?`,
+      text: "Once the user is deleted, the user will be removed from your connections",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        swal(`${connectionFirstName} ${connectionLastName} has been removed`, {
+          icon: "success",
+        });
+      } else {
+        swal(`${connectionFirstName} ${connectionLastName} was not removed`);
+      }
+    });
   };
 
   return (
@@ -256,6 +283,17 @@ const UserProfile = () => {
                             {contact.firstname} {contact.lastname}
                           </span>
                         </Link>
+                        <IconButton
+                          onClick={() =>
+                            removeConnection(
+                              `${contact.userID}`,
+                              `${contact.firstname}`,
+                              `${contact.lastname}`
+                            )
+                          }
+                        >
+                          <HighlightOffIcon></HighlightOffIcon>
+                        </IconButton>
                       </div>
                     </l1>
                   );

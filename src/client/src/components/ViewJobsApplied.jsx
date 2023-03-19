@@ -51,7 +51,7 @@ const ViewJobsApplied = () => {
   };
 
   const fetchAppliedJob = async () => {
-    const { data } = await axios.get(`http://localhost:9000/users/${userID}/jobsObjectApplied`);
+    const { data } = await axios.get(`http://localhost:9000/users/${userID}/jobsApplied`);
 
     setJobsApplied(data);
   };

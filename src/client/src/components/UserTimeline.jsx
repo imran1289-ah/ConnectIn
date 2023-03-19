@@ -160,9 +160,25 @@ const UserTimeline = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        swal(`${connectionFirstName} ${connectionLastName} has been removed`, {
-          icon: "success",
-        });
+        axios
+          .delete(
+            `http://localhost:9000/users/removeConnection/${userID}/connections/${connectionUserID}`
+          )
+          .then((response) => {
+            swal(
+              `${connectionFirstName} ${connectionLastName} has been removed`,
+              {
+                icon: "success",
+              }
+            );
+            setTimeout(function () {
+              window.location.reload();
+            }, 1200);
+          })
+
+          .catch((error) => {
+            console.log(error);
+          });
       } else {
         swal(`${connectionFirstName} ${connectionLastName} was not removed`);
       }

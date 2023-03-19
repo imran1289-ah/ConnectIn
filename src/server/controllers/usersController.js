@@ -250,14 +250,14 @@ const getUserJobsApplied = async(req, res) => {
     }
 };
 
-const getUserJobsObjectApplied = async(req, res) => {
-    try {
-        const user = await User.findOne({ _id: req.params.id });
-        return res.status(200).json(user.jobsAppliedObject);
-    } catch (err) {
-        res.status(400).json({ message: "Unable to retrieve jobs object applied." });
-    }
-};
+// const getUserJobsObjectApplied = async(req, res) => {
+//     try {
+//         const user = await User.findOne({ _id: req.params.id });
+//         return res.status(200).json(user.jobsAppliedObject);
+//     } catch (err) {
+//         res.status(400).json({ message: "Unable to retrieve jobs object applied." });
+//     }
+// };
 
 const addJobAppliedToUser = async(req, res) => {
 
@@ -271,11 +271,11 @@ const addJobAppliedToUser = async(req, res) => {
 
     await User.findById(req.body.userId).then((user) => {
         const array = user.jobsApplied;
-        const jobObjectArray = user.jobsAppliedObject;
-        array.push(req.body.jobId);
+        // const jobObjectArray = user.jobsAppliedObject;
+        array.push(jobObject);
         user.jobsApplied = array;
-        jobObjectArray.push(jobObject);
-        user.jobsAppliedObject = jobObjectArray;
+        // jobObjectArray.push(jobObject);
+        // user.jobsAppliedObject = jobObjectArray;
         user
             .save()
             .then(() => {
@@ -341,7 +341,6 @@ module.exports = {
     editUserInfo,
 
     getUserJobsApplied,
-    getUserJobsObjectApplied,
     addJobAppliedToUser,
     getUser,
 

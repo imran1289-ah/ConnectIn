@@ -85,6 +85,7 @@ const JobListing = () =>{
     const navigateBackToSignIn = () =>{
         navigate("/signin")
     }
+
     return(
             
         <div className="jobPosts_Container">
@@ -129,8 +130,8 @@ const JobListing = () =>{
                                     </Button>
 
                             </div>
-                            {jobsApplied.includes(job.job_id) ? <Alert className ="AlertJobListing" severity='info' variant="outlined"><AlertTitle>You've already applied for this job.</AlertTitle></Alert>: <></> }
-
+                            
+                            {jobsApplied.find(object => object.job_id == job.job_id) != undefined ? <Alert className ="AlertJobListing" severity='info' variant="outlined"><AlertTitle>You've already applied for this job.</AlertTitle></Alert>: <></>}
                         
                         {/* <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
                             <button class = "edit">Edit</button>

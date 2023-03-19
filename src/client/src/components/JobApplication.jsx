@@ -59,7 +59,9 @@ const fetchSession = async () => {
           });
 
         }
-        else if(alreadyJobsApplied.data.includes(job.jobState.job_id)){
+        // jobsApplied.find(object => object.job_id == job.job_id) != undefined
+        else if(alreadyJobsApplied.data.find(object => object.job_id == job.jobState.job_id) != undefined){
+        // else if(alreadyJobsApplied.data.includes(job.jobState.job_id)){
             swal("You've already applied for this job!",{
                 
             });

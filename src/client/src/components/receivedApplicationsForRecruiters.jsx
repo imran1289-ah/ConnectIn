@@ -69,7 +69,8 @@ const ReceivedApplications = () => {
             <div class="jobs">
               <Thead>
                 <Tr>
-                  <Th> {""} </Th>
+                  <Th> Job ID</Th>
+                  <Th>Job Title</Th>
                   <Th>First Name</Th>
                   <Th>Last Name</Th>
                   <Th>Email</Th>

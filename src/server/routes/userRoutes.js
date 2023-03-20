@@ -36,6 +36,10 @@ router.route("/:id/jobsApplied").get(usersControllers.getUserJobsApplied);
 
 router.route("/:id/jobsApplied").post(usersControllers.addJobAppliedToUser);
 
+
+router.route("/:recruiterID/receivedApplications").get(usersControllers.getAllReceivedApplications)
+router.route("/:recruiterID/receivedApplications").post(usersControllers.sendReceivedApplications)
+
 router.route("/post").post(usersControllers.addTimelinePost);
 
 router.route("/:id/posts").get(usersControllers.getUserPostsbyID);

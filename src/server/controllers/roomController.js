@@ -1,3 +1,4 @@
+const res = require('express/lib/response');
 const Room = require('../models/Room')
 
 
@@ -41,8 +42,29 @@ try{
     
 }
 
+const deleteRoom = async (req, res) =>{
+
+    const {userID_1, userID_2} = req.body;
+    
+    try{
+
+    let room = await Room.findOne({userID_1:userID_1, userID_2:userID_2});
+        if(!room){
+            room = await Room.findOne({userID_1: userID_2, userID_2:userID_1});
+        }
+        await Room.findByIdAndDelete({_id: room._id});
+        res.json({message: "Successfully removed room."});
+
+    } catch(err){
+        console.log(err);
+        res.json({message: "Unable to remove room."})
+    }
+    
+}
+
 
 module.exports = {
     getRoom,
-    createRoom
+    createRoom,
+    deleteRoom
 }

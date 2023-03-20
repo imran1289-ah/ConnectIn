@@ -44,19 +44,18 @@ try{
 
 const deleteRoom = async (req, res) =>{
 
-    const {userID_1, userID_2} = req.body;
+    
     
     try{
 
-    let room = await Room.findOne({userID_1:userID_1, userID_2:userID_2});
+    let room = await Room.findOne({userID_1:req.params.userID_1, userID_2:req.params.userID_2});
         if(!room){
-            room = await Room.findOne({userID_1: userID_2, userID_2:userID_1});
+            room = await Room.findOne({userID_1: req.params.userID_2, userID_2:req.params.userID_1});
         }
         await Room.findByIdAndDelete({_id: room._id});
         res.json({message: "Successfully removed room."});
 
     } catch(err){
-        console.log(err);
         res.json({message: "Unable to remove room."})
     }
     

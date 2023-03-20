@@ -179,6 +179,15 @@ const UserTimeline = () => {
           .catch((error) => {
             console.log(error);
           });
+
+          axios.delete('http://localhost:9000/rooms/deleteRoom', {
+
+            userID_1: userID,
+            userID_2: connectionUserID
+          })
+          .catch((err) =>{
+            console.log(err);
+          })
       } else {
         swal(`${connectionFirstName} ${connectionLastName} was not removed`);
       }

@@ -40,6 +40,16 @@ const fetchSession = async () => {
 
     const location = useLocation();
     const job = location.state;
+    const [resume, setResume] = useState(null);
+    const [coverLetter, setCoverLetter] = useState(null);
+
+    const handleResumeChange = (e) => {
+      setResume(e.target.files[0]);
+    };
+  
+    const handleCoverLetterChange = (e) => {
+      setCoverLetter(e.target.files[0]);
+    };
 
     //User id hard coded for now until we get user session fixed. 
     // const userId = "63f41b0123e995b64434ece0";
@@ -51,6 +61,13 @@ const fetchSession = async () => {
       );
 
     const submitApplication = async () =>{
+
+      const resumeData = new FormData();
+      resumeData.append("resume", resume);
+      
+      const coverLetterData = new FormData();
+      coverLetterData.append("coverLetter", coverLetter);
+
         const alreadyJobsApplied = await axios.get(`http://localhost:9000/users/${userID}/jobsApplied`)
 
         if(fname.trim().length === 0 || lname.trim().length === 0 || email.trim().length ===0 || phoneNumber.trim().length ===0){
@@ -73,7 +90,14 @@ const fetchSession = async () => {
             axios.post(`http://localhost:9000/users/${userID}/jobsApplied`, {
                 userId: userID,
                 jobId: job.jobState.job_id
-            })
+            }).then((response) => {
+              console.log(response.data);
+              axios.post(`http://localhost:9000/resume/uploadResume/${userID}`, resumeData)
+                .then((res) => console.log(res))
+                .catch((error) => console.log(error));
+              axios.post(`http://localhost:9000/resume/uploadCoverLetter/${userID}`, coverLetterData)
+                .then((res) => console.log(res))
+                .catch((error) => console.log(error))});
             swal("You've successfully applied for this job!",{
                 confirm: true,
                 
@@ -105,6 +129,7 @@ const fetchSession = async () => {
             <p> Description: {job.jobState.description}</p>
             <p>Salary: ${job.jobState.salary}</p>
             <p>Category: {job.jobState.category}</p>
+            <p>Location: {job.jobState.location}</p>
             </div>
             
             <div className="jobApplicationForm">
@@ -118,10 +143,23 @@ const fetchSession = async () => {
                 <TextField className ="textbox"  onChange = { (e) => {setPhoneNumber(e.target.value)}}id="phoneNumber" label="Phone Number" variant="outlined"/>
                 <br/>
                 
-                <Button className ="uploadButton"variant="contained" component="label">
-                    Upload CV
-                    <input hidden accept="image/*" multiple type="file" />
-                </Button>
+                <label>
+                Resume
+                <input
+                  type="file"
+                  accept=".pdf"
+                  onChange={handleResumeChange}
+                />
+              </label>   
+              <br />
+              <label>
+                Cover Letter
+                <input
+                  type="file"
+                  accept=".pdf"
+                  onChange={handleCoverLetterChange}
+                />
+              </label>
         
 
             </form>

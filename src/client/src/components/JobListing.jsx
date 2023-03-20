@@ -134,7 +134,7 @@ const JobListing = () =>{
                         </select>
                     </label>
                     <br />
-                    <button type="submit">Apply Filters</button>
+                    {/* <button type="submit">Apply Filters</button> */}
                 </form>
                 </div><div data-testid="jobPostsContainer" className="jobPosts">
                         <div className="heading">

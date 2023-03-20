@@ -46,8 +46,9 @@ const JobListing = () =>{
     const [jobsApplied, setJobsApplied] = useState([]);
     const [jobsWithFilter, setJobsWithFilter] = useState([]);
     const [preferences, setPreferences] = useState({
-        category: null,
-        location: null,
+        category: "",
+        location: "",
+        work_type: ""
     });
 
     // "category:full-time,location:montreal"
@@ -101,61 +102,90 @@ const JobListing = () =>{
     }
 
     return(
+
+        
             
         <div className="jobPosts_Container">
             
             {userID ? (
-            
-            <div data-testid = "jobPostsContainer" className="jobPosts">
-                <div className="heading">
-                    <b>Job Posts</b>
-                </div>
 
-                <div class="jobs">
-                 {jobs.map(job => (
-                
-                    <div key = {job._id} className="jobPost">
+                <><div className="jobFilter"><form>
+                    <label>
+                        Category:
+                        <select name="category" onChange={(e) => setPreferences({ ...preferences, category: e.target.value })}>
+                            <option value="">Select a category</option>
+                            <option value="Full-Time">Full-Time</option>
+                            <option value="Part-Time">Part-Time</option>
+                        </select>
+                    </label>
+                    <br />
+                    <label>
+            Location:
+            <input type="text" name="location" value={preferences.location} onChange={(e) => setPreferences({ ...preferences, location: e.target.value })} placeholder="Enter a location" />
+        </label>
+                    <br />
+                    <label>
+                        Onsite/Hybrid/Remote:
+                        <select name="work_type" onChange={(e) => setPreferences({ ...preferences, work_type: e.target.value })}>
+                            <option value="">Select a work type</option>
+                            <option value="onsite">Onsite</option>
+                            <option value="hybrid">Hybrid</option>
+                            <option value="remote">Remote</option>
+                        </select>
+                    </label>
+                    <br />
+                    <button type="submit">Apply Filters</button>
+                </form>
+                </div><div data-testid="jobPostsContainer" className="jobPosts">
+                        <div className="heading">
+                            <b>Job Posts</b>
+                        </div>
 
-                            <div className="logo">
-                            <Avatar alt="Logo" src="./logo/logo.png" sx={{ width: 75, height: 75 }}/>
+                        <div class="jobs">
+                            {jobs.map(job => (
 
-                            </div>
-                        
-                        
-                        
-                            <div className="jobContent">
+                                <div key={job._id} className="jobPost">
 
-                                
-                                <h3 className="jobTitle"><b>{job.title}</b></h3>
-                                
-                                <p><BusinessIcon></BusinessIcon>{job.company}</p>
-                                <p><PlaceIcon></PlaceIcon>{job.location}</p>
+                                    <div className="logo">
+                                        <Avatar alt="Logo" src="./logo/logo.png" sx={{ width: 75, height: 75 }} />
 
-                                <div className="Tags">
-                                    <h3 className="jobCategory"><WorkIcon/>{job.category}</h3>
-                                
+                                    </div>
+
+
+
+                                    <div className="jobContent">
+
+
+                                        <h3 className="jobTitle"><b>{job.title}</b></h3>
+
+                                        <p><BusinessIcon></BusinessIcon>{job.company}</p>
+                                        <p><PlaceIcon></PlaceIcon>{job.location}</p>
+
+                                        <div className="Tags">
+                                            <h3 className="jobCategory"><WorkIcon />{job.category}</h3>
+
+                                        </div>
+
+
+                                        <Button className="selectButton" variant="contained" component="label">
+                                            <Link className="jobListLink" to={`/jobs/${job.job_id}`} state={{ jobState: job }}>
+                                                Select
+                                            </Link>
+                                        </Button>
+
+                                    </div>
+
+                                    {jobsApplied.find(object => object.job_id == job.job_id) != undefined ? <Alert className="AlertJobListing" severity='info' variant="outlined"><AlertTitle>You've already applied for this job.</AlertTitle></Alert> : <></>}
+
+                                    {/* <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
+<button class = "edit">Edit</button>
+</Link> */}
+                                    {/* <button class = "delete" onClick={(e) => deletePost(`${job.job_id}`,e)}>Delete</button> */}
+
                                 </div>
-                            
-                                
-                                    <Button className ="selectButton"variant="contained" component="label">
-                                                    <Link className="jobListLink"to = {`/jobs/${job.job_id}`} state = {{jobState:job}} >
-                                                        Select
-                                                </Link>
-                                    </Button>
-
-                            </div>
-                            
-                            {jobsApplied.find(object => object.job_id == job.job_id) != undefined ? <Alert className ="AlertJobListing" severity='info' variant="outlined"><AlertTitle>You've already applied for this job.</AlertTitle></Alert>: <></>}
-                        
-                        {/* <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
-                            <button class = "edit">Edit</button>
-                        </Link> */}
-                        {/* <button class = "delete" onClick={(e) => deletePost(`${job.job_id}`,e)}>Delete</button> */}
-
-                    </div>
-                    ))}
-                </div>
-            </div>
+                            ))}
+                        </div>
+                    </div></>
 
             /* <div className="preferences">
                     <b>Preferences</b>

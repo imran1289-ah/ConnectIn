@@ -34,7 +34,7 @@ try{
     const {userID_1, userID_2} = req.body;
     const room = {userID_1, userID_2}
     const newRoom = await Room.create(room);
-    res.status(200).json("Room sucessfully created!" + newRoom)
+    res.status(200).json("Room sucessfully created!")
 
 }catch(err){
     console.log(err)

@@ -5,6 +5,10 @@ const jobsSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    recruiter_id:{
+        type: String,
+        required: true,
+    },
     description: {
         type: String,
     },
@@ -25,6 +29,10 @@ const jobsSchema = new mongoose.Schema({
     location: {
         type: String,
     },
+    work_type:{
+        type: String,
+        required: true,
+    }
 });
 
 const Jobs = mongoose.model("Jobs", jobsSchema);

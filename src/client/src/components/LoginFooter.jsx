@@ -1,11 +1,11 @@
 import React from "react";
-import "../css/loginfooter.css";
+import LoginFooterCSS from "../css/loginfooter.module.css";
 
 const Footer = () => {
   return (
     // Footer of the page
-    <div className="FooterLine">
-      <div className="Info">
+    <div className={LoginFooterCSS.FooterLine}>
+      <div className={LoginFooterCSS.Info}>
         Home | About | Languages
         <br></br>
         ConnectIn @2023

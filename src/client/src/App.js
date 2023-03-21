@@ -43,7 +43,7 @@ function App() {
             path="/signin"
             element={
               <>
-                <Navbar /> <SignIn /> <LoginFooter />
+                <SignIn />
               </>
             }
           ></Route>

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../css/signin.css";
+import SignInCSS from "../css/signin.module.css";
+import LoginFooter from "../components/LoginFooter";
 import axios from "axios";
 import { Context } from "../UserSession";
 
@@ -42,48 +43,50 @@ const SignIn = () => {
 
   return (
     //Signin page
-    <div className="Wrapper">
-      <div className="Form">
-        <p className="LoginMessage" ref={MessageRef}>
+    <body className={SignInCSS.body}>
+      <div className={SignInCSS.Wrapper}>
+        <div className={SignInCSS.Card}>
+          <p className={SignInCSS.LoginMessage} ref={MessageRef}>
+          ConnectIn
+          <br />
           Log in to your account{" "}
         </p>
         <form>
-          <div className="Form">
-            <label className="Placeholder">
+          <div className={SignInCSS.Form}>
+            <div className={SignInCSS.formLabel}>
               Email or Username
-              <br></br>
-              <input
-                className="LoginInput"
-                placeholder="Enter your email or username"
-                onChange={(e) => setUser(e.target.value)}
-              ></input>
-            </label>
+            </div>
+            <input
+              className={SignInCSS.LoginInput}
+              placeholder="Enter your email or username"
+              onChange={(e) => setUser(e.target.value)}
+            ></input>
             <br></br>
             <br></br>
-            <label className="Placeholder">
+            <div className={SignInCSS.formLabel}>
               Password
-              <br></br>
-              <input
-                className="LoginInput"
-                placeholder="Enter your password"
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-              ></input>
-            </label>
+            </div>
+            <input
+              className={SignInCSS.LoginInput}
+              placeholder="Enter your password"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            ></input>
             <br></br>
             <br></br>
-            <div className="Link">
-              Dont Have an account ? <Link to={`/signup`}> Sign Up</Link>
+            <div className={SignInCSS.Link}>
+              Dont have an account? <Link to={`/signup`}>Sign Up Now!</Link>
             </div>
           </div>
           <br></br>
-          <br></br>
-          <button className="LoginButton" onClick={submitLogin}>
+          <button className={SignInCSS.LoginButton} onClick={submitLogin}>
             Log In
           </button>
         </form>
       </div>
     </div>
+    <LoginFooter />
+    </body>
   );
 };
 

@@ -67,6 +67,10 @@
     border: 1px #19718d solid;
 }
 
+.jobPosts .jobs .jobPost .AlertJobListing ::-webkit-scrollbar {
+    display: none;
+}
+
 .jobPosts .jobs .jobPost .jobContent .jobTitle:hover {
     text-decoration: underline;
 }
@@ -196,6 +200,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    margin-top: 10px;
     padding: 20px;
     background-color: #f0f0f0;
 }
@@ -209,19 +214,7 @@
 
 .jobFilter label {
     margin-right: 10px;
-}
-
-.jobFilter button[type="submit"] {
-    background-color: #19718d;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.jobFilter button[type="submit"]:hover {
-    background-color: #3e8e41;
+    font-size: large;
 }
 
 @media all and (max-width: 690px) {

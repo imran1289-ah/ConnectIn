@@ -13,6 +13,7 @@ import BusinessIcon from '@mui/icons-material/Business';
 import { Context } from "../UserSession";
 import { useContext } from "react";
 import ArrowBack from "@mui/icons-material/ArrowBack";
+import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 
 
 const JobListing = () =>{
@@ -125,7 +126,7 @@ const JobListing = () =>{
         </label>
                     <br />
                     <label>
-                        Onsite/Hybrid/Remote:
+                        Work Type: 
                         <select name="work_type" onChange={(e) => setPreferences({ ...preferences, work_type: e.target.value })}>
                             <option value="">Select a work type</option>
                             <option value="onsite">Onsite</option>
@@ -136,7 +137,8 @@ const JobListing = () =>{
                     <br />
                     {/* <button type="submit">Apply Filters</button> */}
                 </form>
-                </div><div data-testid="jobPostsContainer" className="jobPosts">
+                </div>
+                <div data-testid="jobPostsContainer" className="jobPosts">
                         <div className="heading">
                             <b>Job Posts</b>
                         </div>
@@ -160,18 +162,20 @@ const JobListing = () =>{
 
                                         <p><BusinessIcon></BusinessIcon>{job.company}</p>
                                         <p><PlaceIcon></PlaceIcon>{job.location}</p>
+                                        <p><MapsHomeWorkIcon></MapsHomeWorkIcon>{job.work_type}</p>
 
                                         <div className="Tags">
                                             <h3 className="jobCategory"><WorkIcon />{job.category}</h3>
 
                                         </div>
 
-
+                                       
                                         <Button className="selectButton" variant="contained" component="label">
                                             <Link className="jobListLink" to={`/jobs/${job.job_id}`} state={{ jobState: job }}>
-                                                Select
+                                                Apply
                                             </Link>
                                         </Button>
+                                      
 
                                     </div>
 

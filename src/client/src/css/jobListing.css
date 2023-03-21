@@ -11,6 +11,8 @@
     border-radius: 15px;
     margin: 20px;
     display: inline-block;
+    margin-left: 120px;
+    margin-right: 120px;
 }
 
 .jobPosts .heading {

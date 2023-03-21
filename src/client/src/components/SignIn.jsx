@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../css/signin.css";
 import axios from "axios";
 import { Context } from "../UserSession";
+import { useTranslation } from "react-i18next";
 
 const SignIn = () => {
   //State for each input
@@ -11,6 +12,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const MessageRef = useRef(null);
   const [login, setLogin] = useContext(Context);
+  const { t, i18n } = useTranslation();
 
   //HTTP Request to autenticate user
   const submitLogin = async (e) => {
@@ -24,7 +26,7 @@ const SignIn = () => {
         console.log(response.data);
         sessionStorage.setItem("userID", response.data.userSession.user_id);
         MessageRef.current.style.color = "#66FF00";
-        MessageRef.current.innerHTML = "Login Sucess. Welcome Back";
+        MessageRef.current.innerHTML = t("Login Sucess. Welcome Back");
         setLogin({
           isLoggedIn: true,
         });
@@ -36,7 +38,9 @@ const SignIn = () => {
       .catch((error) => {
         console.log(error);
         MessageRef.current.style.color = "red";
-        MessageRef.current.innerHTML = "Incorrect Credentials Please try again";
+        MessageRef.current.innerHTML = t(
+          "Incorrect Credentials Please try again"
+        );
       });
   };
 
@@ -45,12 +49,12 @@ const SignIn = () => {
     <div className="Wrapper">
       <div className="Form">
         <p className="LoginMessage" ref={MessageRef}>
-          Log in to your account{" "}
+          {t("Log in to your account")}{" "}
         </p>
         <form>
           <div className="Form">
             <label className="Placeholder">
-              Email or Username
+              {t("Email")}
               <br></br>
               <input
                 className="LoginInput"
@@ -61,7 +65,7 @@ const SignIn = () => {
             <br></br>
             <br></br>
             <label className="Placeholder">
-              Password
+              {t("password")}
               <br></br>
               <input
                 className="LoginInput"
@@ -73,13 +77,13 @@ const SignIn = () => {
             <br></br>
             <br></br>
             <div className="Link">
-              Dont Have an account ? <Link to={`/signup`}> Sign Up</Link>
+              {t("donthave")} <Link to={`/signup`}> {t("Sign Up")}</Link>
             </div>
           </div>
           <br></br>
           <br></br>
           <button className="LoginButton" onClick={submitLogin}>
-            Log In
+            {t("Sign Up")}
           </button>
         </form>
       </div>

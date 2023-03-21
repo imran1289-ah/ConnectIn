@@ -1,26 +1,16 @@
 import React from "react";
 import "../css/loginfooter.css";
-
+import { useTranslation } from "react-i18next";
 const Footer = () => {
-  const [language, setLanguage] = React.useState("");
-
-  const handleChange = (event) => {
-    setLanguage(event.target.value);
-  };
+  const { t, i18n } = useTranslation();
 
   return (
     // Footer of the page
     <div className="FooterLine">
       <div className="Info">
-        Home | About |
-        <select>
-          <option value="en" onChange={handleChange}>
-            English
-          </option>
-          <option value="fr" onChange={handleChange}>
-            French
-          </option>
-        </select>
+        {t("home")} | {t("about")} |
+        <button onClick={() => i18n.changeLanguage("en")}>English</button>
+        <button onClick={() => i18n.changeLanguage("fr")}>French</button>
         <br></br>
         ConnectIn @2023
       </div>

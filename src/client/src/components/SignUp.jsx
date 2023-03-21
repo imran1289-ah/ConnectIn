@@ -7,8 +7,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import swal from "sweetalert";
 import axios from "axios";
-import { Select, MenuItem } from "@mui/material"; 
+import { Select, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function SignUp() {
   const [userData, setUserData] = useState({
@@ -18,6 +19,8 @@ function SignUp() {
     password: "",
     role: "",
   });
+
+  const { t, i18n } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -29,13 +32,13 @@ function SignUp() {
         lastname: userData.lastName,
         email: userData.email,
         password: userData.password,
-        role: userData.role
+        role: userData.role,
       })
       .then((response) => {
         console.log(response.data);
-        swal("Success!","Successfully created an account!","success",{
-          button:false,
-          timer:2000
+        swal("Success!", t("Successfully created an account!"), "success", {
+          button: false,
+          timer: 2000,
         });
         //sets field to blank after form submission
         setUserData({ firstName: "", lastName: "", email: "", password: "" });
@@ -43,9 +46,9 @@ function SignUp() {
       })
       .catch((error) => {
         console.log(error);
-        swal("Failed!","Failed to create an account!","error",{
-          button:false,
-          timer:2000
+        swal("Failed!", t("Failed to create an account!"), "error", {
+          button: false,
+          timer: 2000,
         });
       });
   };
@@ -58,16 +61,17 @@ function SignUp() {
           <Col md={6}>
             <div className="WrapperSignup">
               <div className="FormSignup">
-                <h3 className="Title"> Create your account today! </h3>
+                <h3 className="Title"> {t("Create your account today!")} </h3>
                 <form onSubmit={submitSignup}>
                   <div className="FormSignup">
                     <label className="PlaceholderSignup">
-                      First Name
+                      {t("First Name")}
                       <br></br>
-                      <input required
+                      <input
+                        required
                         aria-label="firstname"
                         className="Input"
-                        placeholder="Enter Your First Name"
+                        placeholder={t("Enter Your First Name")}
                         name="firstname"
                         value={userData.firstName}
                         onChange={(e) =>
@@ -82,11 +86,12 @@ function SignUp() {
                     <br></br>
 
                     <label className="PlaceholderSignup">
-                      Last Name
+                      {t("Last Name")}
                       <br></br>
-                      <input required
+                      <input
+                        required
                         className="Input"
-                        placeholder="Enter Your Last Name"
+                        placeholder={t("Enter Your Last Name")}
                         name="lastname"
                         value={userData.lastName}
                         onChange={(e) =>
@@ -98,11 +103,12 @@ function SignUp() {
                     <br></br>
 
                     <label className="PlaceholderSignup">
-                      Email
+                      {t("Email")}
                       <br></br>
-                      <input required
+                      <input
+                        required
                         className="Input"
-                        placeholder="Enter Your Email"
+                        placeholder={t("Enter Your Email")}
                         name="email"
                         value={userData.email}
                         onChange={(e) =>
@@ -113,11 +119,12 @@ function SignUp() {
                     <br></br>
                     <br></br>
                     <label className="PlaceholderSignup">
-                      Password
+                      {t("password")}
                       <br></br>
-                      <input required
+                      <input
+                        required
                         className="Input"
-                        placeholder="Enter your password"
+                        placeholder={t("Enter your password")}
                         name="password"
                         type="password"
                         value={userData.password}
@@ -128,31 +135,45 @@ function SignUp() {
                     </label>
                     <br></br>
                     <br></br>
-                    <label className="PlaceholderSignup">Account Type
-                    <br />
-                    <Select required id="select" value={userData.role} 
-                    sx={{width: 250, height: 40, backgroundColor: "#a3c5d0",borderColor: "white"}}
-                    onChange={(e) =>
-                      setUserData({ ...userData, role: e.target.value })
-                    }>
-                      <MenuItem value={"User"}>User</MenuItem>
-                      <MenuItem value={"Recruiter"}>Recruiter</MenuItem>
-                      <MenuItem value={"Administrator"}>Administrator</MenuItem>
-                    </Select>
+                    <label className="PlaceholderSignup">
+                      {t("Account Type")}
+                      <br />
+                      <Select
+                        required
+                        id="select"
+                        value={userData.role}
+                        sx={{
+                          width: 250,
+                          height: 40,
+                          backgroundColor: "#a3c5d0",
+                          borderColor: "white",
+                        }}
+                        onChange={(e) =>
+                          setUserData({ ...userData, role: e.target.value })
+                        }
+                      >
+                        <MenuItem value={"User"}>{t("User")}</MenuItem>
+                        <MenuItem value={"Recruiter"}>
+                          {t("Recruiter")}
+                        </MenuItem>
+                        <MenuItem value={"Administrator"}>
+                          {t("Administrator")}
+                        </MenuItem>
+                      </Select>
                     </label>
                     <br />
                     <br />
                     <div className="LinkSignup">
                       {" "}
                       <strong>
-                        Already have an account ?{" "}
-                        <Link to={`/signin`}> Log In</Link>
+                        {t("Already have an account ?")}{" "}
+                        <Link to={`/signin`}>{t("logIn")}</Link>
                       </strong>
                     </div>
                   </div>
                   <br></br>
                   <br></br>
-                  <button className="SignupButton">Sign Up</button>
+                  <button className="SignupButton">{t("Sign Up")}</button>
                   <br></br>
                   <br></br>
                 </form>
@@ -162,26 +183,18 @@ function SignUp() {
           <Col md={6}>
             <div className="WelcomeText">
               <h1>
-                <p>
-                  {" "}
-                  Sign up today to connect with your boss, your colleagues, and
-                  your friends!{" "}
-                </p>
+                <p> {t("signuptext1")} </p>
               </h1>
               <h3>
                 <p>
                   {" "}
-                  We are the leading platform for networking and sharing your
-                  professional activities.
+                  {t("signuptext2")}
                   <br></br>
-                  Our mission is to help you to become more productive in your
-                  life.
+                  {t("signuptext3")}
                   <br></br>
-                  Social networking has never been easier with the help of our
-                  dedicated team of developers.
+                  {t("signuptext4")}
                   <br></br>
-                  Join us today and you won't regret it. We are like LinkedIn,
-                  but better!{" "}
+                  {t("signuptext5")}{" "}
                 </p>
               </h3>
             </div>

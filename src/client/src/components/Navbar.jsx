@@ -159,7 +159,7 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      Job Applications
+                      Jobs Applied
                     </Typography>
                   </Typography>
                 </Box>

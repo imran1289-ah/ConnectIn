@@ -48,6 +48,11 @@ i18next.use(initReactI18next).init({
         "You do not have any connection": "You do not have any connection",
         "Please login to your account": "Please login to your account",
         "Start A Post": "Start A Post",
+        Network: "Network",
+        Jobs: "Jobs",
+        "Job Applications": "Job Applications",
+        Profile: "Profile",
+        "Sign Out": "Sign Out",
       },
     },
     fr: {
@@ -97,6 +102,11 @@ i18next.use(initReactI18next).init({
         "Please login to your account":
           "Veuillez vous connecter à votre compte",
         "Start A Post": "Commencer un article",
+        Network: "Réseau",
+        Jobs: "Emplois",
+        "Job Applications": "Emplois appliqués",
+        Profile: "Profil",
+        "Sign Out": "Déconnecter",
       },
     },
   },

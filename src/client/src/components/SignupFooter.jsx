@@ -10,8 +10,27 @@ const Footer = () => {
     <div className="FooterSignup">
       <div className="Info">
         {t("home")} | {t("about")} |{" "}
-        <button onClick={() => i18n.changeLanguage("en")}>English</button>
-        <button onClick={() => i18n.changeLanguage("fr")}>French</button>
+        <button
+          style={{
+            backgroundColor: "transparent",
+            color: "white",
+            border: "none",
+          }}
+          onClick={() => i18n.changeLanguage("en")}
+        >
+          English
+        </button>
+        |
+        <button
+          style={{
+            backgroundColor: "transparent",
+            color: "white",
+            border: "none",
+          }}
+          onClick={() => i18n.changeLanguage("fr")}
+        >
+          French
+        </button>
         <br></br>
         ConnectIn @2023
       </div>

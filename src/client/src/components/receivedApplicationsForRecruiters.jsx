@@ -5,14 +5,15 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import WorkIcon from "@mui/icons-material/Work";
-import PlaceIcon from "@mui/icons-material/Place";
-import BusinessIcon from "@mui/icons-material/Business";
 import { Context } from "../UserSession";
 import { useContext } from "react";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
+import DownloadIcon from '@mui/icons-material/Download';
+import { Link } from "react-router-dom";
+
+
 
 const ReceivedApplications = () => {
   const userID = sessionStorage.getItem("userID");
@@ -49,13 +50,45 @@ const ReceivedApplications = () => {
 
   const fetchReceivedApplications = async () => {
     const { data } = await axios.get(`http://localhost:9000/users/${userID}/receivedApplications`);
-    console.log(data);
 
     setReceivedApplications(data);
   };
 
   const navigateBackToSignIn = () => {
     navigate("/signin");
+  };
+    
+const styles = {
+
+  largeIcon: {
+    width: 10,
+    height: 10,
+  },
+
+}
+
+  
+
+  const downloadResume = async (user_id) => {
+    const response = await fetch(`/resume/getResume/${user_id}`);
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${user_id}-resume.pdf`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const downloadCoverLetter = async (user_id) => {
+    const response = await fetch(`/resume/getCoverLetter/${user_id}`);
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${user_id}-coverLetter.pdf`;
+    link.click();
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -77,6 +110,7 @@ const ReceivedApplications = () => {
                   <Th>Email</Th>
                   <Th>Phone Number</Th>
                   <Th>CV</Th>
+                  <Th>Cover Letter</Th>
                 </Tr>
               </Thead>
               {receivedApplications.map(receivedApplication => (
@@ -94,8 +128,9 @@ const ReceivedApplications = () => {
                         <Th>
                           
                           <p>
+                            <Link 
+                             to={`/users/search/${receivedApplication.userID}`} style={{ textDecoration: "none", color: "#19718d" }}><p>{receivedApplication.fname}</p></Link>
                             
-                            {receivedApplication.fname}
                           </p>
                         </Th>
                         <Th>
@@ -119,9 +154,25 @@ const ReceivedApplications = () => {
                         <Th>
                           
                               
-                              {receivedApplication.cv}
+                        <button onClick={() => downloadResume(receivedApplication.userID)}>
+                        <DownloadIcon/></button>
+
+
                             
                         </Th>
+                        <Th>
+                          
+                              
+                          <button onClick={() => downloadCoverLetter(receivedApplication.userID)}>
+                          <DownloadIcon>
+                         
+                           </DownloadIcon >
+                        
+                           </button>
+  
+  
+                              
+                          </Th>
                       </div>
                     </Tr>
                   </Tbody>

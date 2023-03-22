@@ -77,10 +77,10 @@ const updateUser = async(req, res) => {};
 
 //Action of deleting  a user from awaiting connections list
 const deleteAwaitingConnections = async(req, res) => {
-    const { firstname, lastname, _id, userID} = req.body;
+    const { firstname, lastname, _id, userID } = req.body;
     const user = await User.findOneAndUpdate({ _id: _id }, {
         $pull: {
-            waitingConnections: { firstname: firstname, lastname: lastname, userID: userID},
+            waitingConnections: { firstname: firstname, lastname: lastname, userID: userID },
         },
     });
     if (user) {
@@ -90,13 +90,13 @@ const deleteAwaitingConnections = async(req, res) => {
         return res.status(404).json({
             message: "Error not found",
         });
-    }  
+    }
 };
 //Action of transferring a connection from awaiting connections list to connections list
 const updateConnections = async(req, res) => {
     const { firstname, lastname, userID, _id } = req.body;
     //const _id = "63f41b0123e995b64434ece0";
-    const user = await User.findOneAndUpdate({ _id: _id }, { $addToSet: { connections: { firstname: firstname, lastname: lastname, userID:userID} } });
+    const user = await User.findOneAndUpdate({ _id: _id }, { $addToSet: { connections: { firstname: firstname, lastname: lastname, userID: userID } } });
     if (user) {
         console.log("Succesfully updated awaiting connections");
         res.status(200).json({ message: "Succesfully added user to connections" });
@@ -109,10 +109,10 @@ const updateConnections = async(req, res) => {
 
 //Action to add user's name and Id to another user's AwaitingConnections
 const updateAwaitingConnections = async(req, res) => {
-    const { _id, userID, firstname, lastname} = req.body;
+    const { _id, userID, firstname, lastname } = req.body;
     const user = await User.findOneAndUpdate({ _id: _id }, {
         $addToSet: {
-            waitingConnections: { userID: userID, firstname: firstname, lastname: lastname},
+            waitingConnections: { userID: userID, firstname: firstname, lastname: lastname },
         },
     });
     if (user) {
@@ -128,7 +128,7 @@ const updateAwaitingConnections = async(req, res) => {
 
 //Action to retrieve waiting connections
 const getAwaitingConnections = async(req, res) => {
-    const {user_id} = req.body;
+    const { user_id } = req.body;
     //const id = "640a92a2a8662ce5531b1b84"  ;
     const user = await User.findById(user_id);
     if (user_id) {
@@ -262,9 +262,9 @@ const getUserJobsApplied = async(req, res) => {
 const addJobAppliedToUser = async(req, res) => {
 
     let jobObject;
-    
 
-    await Job.findOne({job_id:req.body.jobId}).then((job =>{
+
+    await Job.findOne({ job_id: req.body.jobId }).then((job => {
         jobObject = job;
     }))
 
@@ -289,10 +289,10 @@ const addJobAppliedToUser = async(req, res) => {
 
 //Action to add user's post to their account.
 const addTimelinePost = async(req, res) => {
-    const { _id, firstname, lastname, description, timestamp} = req.body;
-    const user = await User.findByIdAndUpdate( _id , {
+    const { _id, firstname, lastname, description, timestamp } = req.body;
+    const user = await User.findByIdAndUpdate(_id, {
         $addToSet: {
-            postsMade: { _id: _id, firstname:  firstname , lastname: lastname, description: description, timestamp: timestamp },
+            postsMade: { _id: _id, firstname: firstname, lastname: lastname, description: description, timestamp: timestamp },
         },
     });
     if (user) {
@@ -324,43 +324,43 @@ const getConnections = async(req, res) => {
     }
 };
 
-const sendReceivedApplications = async (req, res) => {
+const sendReceivedApplications = async(req, res) => {
 
     const recruiter_id = req.params.recruiterID;
-    const {applicationDetails} = req.body;
-    
-    let array;
-    try{
+    const { applicationDetails } = req.body;
 
-        const user = await User.findOne({_id: recruiter_id})
-        .then( (user) =>{
+    let array;
+    try {
+
+        const user = await User.findOne({ _id: recruiter_id })
+            .then((user) => {
                 array = user.receivedApplications;
                 array.push(applicationDetails);
                 user.receivedApplications = array;
                 user.save()
-        })
-        res.status(201).json({message: "Recruiter successfully received an application"})
+            })
+        res.status(201).json({ message: "Recruiter successfully received an application" })
 
-    } catch(err) {
-        res.json({message: "Unable to send a received application to recruiter."});
+    } catch (err) {
+        res.json({ message: "Unable to send a received application to recruiter." });
     }
 }
 
-const getAllReceivedApplications = async (req, res) =>{
+const getAllReceivedApplications = async(req, res) => {
 
     const recruiter_id = req.params.recruiterID;
-    try{
+    try {
 
-        const user = await User.findOne({_id: recruiter_id});
+        const user = await User.findOne({ _id: recruiter_id });
 
-        
+
         return res.status(200).json(user.receivedApplications)
-        
+
         // console.log(user.receivedApplications)
         // return res.status(200).json(user.receivedApplications)
 
-    }catch(err) {
-        return res.status(400).json({message: 'Unable to retrieve received applications from recruiter.'})
+    } catch (err) {
+        return res.status(400).json({ message: 'Unable to retrieve received applications from recruiter.' })
     }
 }
 

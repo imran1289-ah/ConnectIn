@@ -1,9 +1,11 @@
 import { useState } from "react";
 import ChatInputCSS from "../css/ChatInput.module.css";
+import { useTranslation } from "react-i18next";
 
 const ChatInput = ({ handleSendMsg, from, to }) => {
   const [message, setMessage] = useState("");
   const [file, setFile] = useState(null);
+  const { t, i18n } = useTranslation();
 
   const handleChange = (event) => {
     if (event.target.files[0]) {
@@ -33,7 +35,7 @@ const ChatInput = ({ handleSendMsg, from, to }) => {
         <input type="file" onChange={handleChange} />
       </label>
       <button type="submit" className={ChatInputCSS.button}>
-        SEND
+        {t("SEND")}
       </button>
     </form>
   );

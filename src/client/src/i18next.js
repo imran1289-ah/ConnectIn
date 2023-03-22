@@ -53,6 +53,20 @@ i18next.use(initReactI18next).init({
         "Job Applications": "Job Applications",
         Profile: "Profile",
         "Sign Out": "Sign Out",
+        "Edit Profile Page": "Edit Profile Page",
+        "Work Experience": "Work Experience",
+        "You have not added any work experience":
+          "You have not added any work experience",
+        Education: "Education",
+        "You have not added any education": "You have not added any education",
+        Skills: "Skills",
+        "You have not added any skills": "You have not added any skills",
+        Languages: "Languages",
+        "You have not added any languages": "You have not added any languages",
+        Volunteering: "Volunteering",
+        "You have not added any volunteering":
+          "You have not added any volunteering",
+        "You have not added any biography": "You have not added any biography",
       },
     },
     fr: {
@@ -107,6 +121,22 @@ i18next.use(initReactI18next).init({
         "Job Applications": "Emplois appliqués",
         Profile: "Profil",
         "Sign Out": "Déconnecter",
+        "Edit Profile Page": "Modifier page de profil",
+        "Work Experience": "Expérience professionnelle",
+        "You have not added any work experience":
+          "Vous n'avez ajouté aucune expérience de travail",
+        Education: "Éducation",
+        "You have not added any education":
+          "Vous n'avez ajouté aucune formation",
+        Skills: "Compétences",
+        "You have not added any skills": "Vous n'avez ajouté aucune compétence",
+        Languages: "Langues",
+        "You have not added any languages": "Vous n'avez ajouté aucune langue",
+        Volunteering: "Bénévolat",
+        "You have not added any volunteering":
+          "Vous n'avez ajouté aucun bénévolat",
+        "You have not added any biography":
+          "Vous n'avez ajouté aucune biographie",
       },
     },
   },

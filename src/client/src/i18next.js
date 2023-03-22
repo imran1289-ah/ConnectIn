@@ -67,6 +67,21 @@ i18next.use(initReactI18next).init({
         "You have not added any volunteering":
           "You have not added any volunteering",
         "You have not added any biography": "You have not added any biography",
+        "The user did not add a biogragphy":
+          "The user did not add a biogragphy",
+        "The user did not add any work experience":
+          "The user did not add any work experience",
+        "The user did not add any education":
+          "The user did not add any education",
+        "The user did not add any skills": "The user did not add any skills",
+        "The user did not add any language":
+          "The user did not add any language",
+        "The user did not add any volunterring experience":
+          "The user did not add any volunterring experience",
+        "The user does not have any connections":
+          "The user does not have any connections",
+        "You have successfully sent connection request!":
+          "You have successfully sent connection request!",
       },
     },
     fr: {
@@ -137,6 +152,22 @@ i18next.use(initReactI18next).init({
           "Vous n'avez ajouté aucun bénévolat",
         "You have not added any biography":
           "Vous n'avez ajouté aucune biographie",
+        "The user did not add a biogragphy":
+          "L'utilisateur n'a pas ajouté de biographie",
+        "The user did not add any work experience":
+          "L'utilisateur n'a ajouté aucune expérience professionnelle",
+        "The user did not add any education":
+          "L'utilisateur n'a ajouté aucune formation",
+        "The user did not add any skills":
+          "L'utilisateur n'a ajouté aucune compétence",
+        "The user did not add any language":
+          "L'utilisateur n'a ajouté aucune langue",
+        "The user did not add any volunterring experience":
+          "L'utilisateur n'a ajouté aucune expérience de bénévolat",
+        "The user does not have any connections":
+          "L'utilisateur n'a aucune connexion",
+        "You have successfully sent connection request!":
+          "Vous avez envoyé avec succès la demande de connexion !",
       },
     },
   },

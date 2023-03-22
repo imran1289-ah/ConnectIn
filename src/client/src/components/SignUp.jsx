@@ -108,7 +108,7 @@ function SignUp() {
                       <input
                         required
                         className="Input"
-                        placeholder={t("Enter Your Email")}
+                        placeholder={t("enteremail")}
                         name="email"
                         value={userData.email}
                         onChange={(e) =>
@@ -124,7 +124,7 @@ function SignUp() {
                       <input
                         required
                         className="Input"
-                        placeholder={t("Enter your password")}
+                        placeholder={t("enterpassword")}
                         name="password"
                         type="password"
                         value={userData.password}

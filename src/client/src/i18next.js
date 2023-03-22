@@ -41,6 +41,13 @@ i18next.use(initReactI18next).init({
           "Join us today and you won't regret it. We are like LinkedIn, but better!",
         "Successfully created an account!": "Successfully created an account!",
         "Failed to create an account!": "Failed to create an account!",
+        "Congrats!": "Congrats!",
+        "You have successfully created a post!":
+          "You have successfully created a post!",
+        "Welcome to your timeline": "Welcome to your timeline",
+        "You do not have any connection": "You do not have any connection",
+        "Please login to your account": "Please login to your account",
+        "Start A Post": "Start A Post",
       },
     },
     fr: {
@@ -82,6 +89,14 @@ i18next.use(initReactI18next).init({
         "Successfully created an account!":
           "Un compte a été créé avec succès !",
         "Failed to create an account!": "Impossible de créer un compte !",
+        "Congrats!": "Félicitations !",
+        "You have successfully created a post!":
+          "Vous avez créé un message avec succès",
+        "Welcome to your timeline": "Bienvenue a votre chronologie",
+        "You do not have any connection": "Vous n'avez aucun lien",
+        "Please login to your account":
+          "Veuillez vous connecter à votre compte",
+        "Start A Post": "Commencer un article",
       },
     },
   },

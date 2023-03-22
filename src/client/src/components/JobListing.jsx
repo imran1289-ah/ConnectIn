@@ -117,6 +117,7 @@ const JobListing = () =>{
                             <option value="">Select a category</option>
                             <option value="Full-Time">Full-Time</option>
                             <option value="Part-Time">Part-Time</option>
+                            <option value="Internship">Internship</option>
                         </select>
                     </label>
                     <br />

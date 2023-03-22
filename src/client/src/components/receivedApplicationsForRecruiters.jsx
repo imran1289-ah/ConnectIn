@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 
 const ReceivedApplications = () => {
   const userID = sessionStorage.getItem("userID");
+  const userRole = sessionStorage.getItem("role");
 
   const [receivedApplications, setReceivedApplications] = useState([]);
 
@@ -90,10 +91,11 @@ const styles = {
     link.click();
     URL.revokeObjectURL(url);
   };
-
+  
   return (
-    <div className="jobsApplied">
-      {userID ? (
+    <div>
+      {userID && (userRole === "Recruiter" || userRole === "Administrator") ? (
+        <div className="jobsApplied">
         <div>
           <div className="heading">
             <h1>Applicants Summary</h1>
@@ -181,13 +183,15 @@ const styles = {
             </div>
           </Table>
         </div>
+        </div>
       ) : (
-        <div className="notLoggedInContent">
-          <h1>Please login to your account!</h1>
-          <p>It looks like you are not logged in.</p>
-          <Button onClick={navigateBackToSignIn} className="redirectSignIn" variant="contained" component="label">
-            <ArrowBack></ArrowBack> Back to Signin
-          </Button>
+        <div>
+          
+          <h1 style={{ textAlign: "center" }}>
+          You need to be a recruiter or an administrator to access this page!
+          </h1>
+          
+          
         </div>
       )}
     </div>

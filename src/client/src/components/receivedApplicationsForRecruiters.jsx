@@ -48,9 +48,10 @@ const ReceivedApplications = () => {
   };
 
   const fetchReceivedApplications = async () => {
-    // const { data } = await axios.get(`http://localhost:9000/users/${userID}/jobsApplied`);
+    const { data } = await axios.get(`http://localhost:9000/users/${userID}/receivedApplications`);
+    console.log(data);
 
-    // setReceivedApplications(data);
+    setReceivedApplications(data);
   };
 
   const navigateBackToSignIn = () => {
@@ -83,37 +84,43 @@ const ReceivedApplications = () => {
                   <Tbody>
                     <Tr>
                       <div className="jobContent">
-                        <Th>
-                          <div className="logo">
-                            <Avatar alt="Logo" src="./logo/logo.png" sx={{ width: 75, height: 75 }} />
-                          </div>
-                        </Th>
+                        
                         <Th>{receivedApplication.job_id}</Th>
 
                         <Th>
-                          {" "}
-                          <h3 className="jobTitle">{receivedApplication.title}</h3>
+                          
+                          {receivedApplication.job_title}
                         </Th>
                         <Th>
-                          {" "}
+                          
                           <p>
-                            <BusinessIcon></BusinessIcon>
-                            {receivedApplication.company}
+                            
+                            {receivedApplication.fname}
                           </p>
                         </Th>
                         <Th>
                           <p>
-                            <PlaceIcon></PlaceIcon>
-                            {receivedApplication.location}
+                            
+                            {receivedApplication.lname}
                           </p>
                         </Th>
                         <Th>
-                          <div className="Tags">
-                            <h3 className="jobCategory">
-                              <WorkIcon />
-                              {receivedApplication.category}
-                            </h3>
-                          </div>
+                          
+                              
+                              {receivedApplication.email}
+                           
+                        </Th>
+                        <Th>
+                          
+                              
+                              {receivedApplication.phoneNumber}
+                            
+                        </Th>
+                        <Th>
+                          
+                              
+                              {receivedApplication.cv}
+                            
                         </Th>
                       </div>
                     </Tr>

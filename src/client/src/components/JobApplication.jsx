@@ -70,7 +70,22 @@ const fetchSession = async () => {
         }
         else{
 
-            axios.post(`http://localhost:9000/users/${userID}/jobsApplied`, {
+            await axios.post(`http://localhost:9000/users/${job.jobState.recruiter_id}/receivedApplications`, {
+              applicationDetails:{
+
+                job_id: job.jobState.job_id,
+                job_title: job.jobState.title,
+                userID: userID,
+                fname: fname,
+                lname: lname,
+                email: email,
+                phoneNumber: phoneNumber,
+                cv: cv
+
+              }
+            })
+            
+            await axios.post(`http://localhost:9000/users/${userID}/jobsApplied`, {
                 userId: userID,
                 jobId: job.jobState.job_id
             })
@@ -91,6 +106,7 @@ const fetchSession = async () => {
     const [lname, setLname] = useState("");
     const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
+    const [cv, setCV] = useState();
     
     return(
 

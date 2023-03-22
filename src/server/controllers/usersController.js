@@ -326,7 +326,9 @@ const getConnections = async(req, res) => {
 
 const sendReceivedApplications = async (req, res) => {
 
-    const {recruiter_id, applicationDetails} = req.body;
+    const recruiter_id = req.params.recruiterID;
+    const {applicationDetails} = req.body;
+    
     let array;
     try{
 

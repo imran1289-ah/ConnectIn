@@ -9,6 +9,12 @@
   margin-bottom: 80px;
 }
 
+.titleofpage {
+  display: flex;
+  justify-content: center;
+  margin-top: 0%;
+}
+
 .title {
   align-items: center;
   display: flex;
@@ -50,8 +56,13 @@
   display: flex;
   justify-content: space-around;
   margin: 5px auto;
-  margin-left: 0%;
-  margin-right: -18%;
+}
+
+.work_type {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 5px auto;
 }
 
 .location {
@@ -69,7 +80,8 @@
   display: flex;
   justify-content: center;
   width: 5cm;
-  margin-left: 3cm;
+  margin: auto;
+  border-radius: 10px;
 }
 
 #job_title {
@@ -102,4 +114,28 @@
 #company_name {
   width: 10cm;
   max-width: none;
+}
+
+#work_type {
+  width: 10cm;
+  max-width: none;
+}
+
+.selection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#category {
+  padding: 5px;
+  width: max-content;
+  height: max-content;
+}
+
+#work_type {
+  padding: 5px;
+  width: max-content;
+  height: max-content;
 }

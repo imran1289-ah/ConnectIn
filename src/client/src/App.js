@@ -4,6 +4,7 @@ import LoginFooter from "./components/LoginFooter";
 import SignupFooter from "./components/SignupFooter";
 import JobPosting from "./components/JobPosting";
 import ViewJobsApplied from "./components/ViewJobsApplied";
+import ReceivedApplications from "./components/receivedApplicationsForRecruiters";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
@@ -141,6 +142,14 @@ function App() {
             element={
               <>
                 <Navbar /> <ViewJobsApplied /> <SignupFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/receivedApplications"
+            element={
+              <>
+                <Navbar /> <ReceivedApplications/> <SignupFooter />
               </>
             }
           ></Route>

@@ -324,6 +324,46 @@ const getConnections = async(req, res) => {
     }
 };
 
+const sendReceivedApplications = async (req, res) => {
+
+    const recruiter_id = req.params.recruiterID;
+    const {applicationDetails} = req.body;
+    
+    let array;
+    try{
+
+        const user = await User.findOne({_id: recruiter_id})
+        .then( (user) =>{
+                array = user.receivedApplications;
+                array.push(applicationDetails);
+                user.receivedApplications = array;
+                user.save()
+        })
+        res.status(201).json({message: "Recruiter successfully received an application"})
+
+    } catch(err) {
+        res.json({message: "Unable to send a received application to recruiter."});
+    }
+}
+
+const getAllReceivedApplications = async (req, res) =>{
+
+    const recruiter_id = req.params.recruiterID;
+    try{
+
+        const user = await User.findOne({_id: recruiter_id});
+
+        
+        return res.status(200).json(user.receivedApplications)
+        
+        // console.log(user.receivedApplications)
+        // return res.status(200).json(user.receivedApplications)
+
+    }catch(err) {
+        return res.status(400).json({message: 'Unable to retrieve received applications from recruiter.'})
+    }
+}
+
 module.exports = {
     createUser,
     updateUser,
@@ -342,6 +382,8 @@ module.exports = {
 
     getUserJobsApplied,
     addJobAppliedToUser,
+    sendReceivedApplications,
+    getAllReceivedApplications,
     getUser,
 
     addTimelinePost,

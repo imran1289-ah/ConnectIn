@@ -113,6 +113,7 @@ const JobListing = () =>{
 
                                 
                                 <h3 className="jobTitle"><b>{job.title}</b></h3>
+                                <p> Recruiter_id :{job.recruiter_id}</p>
                                 
                                 <p><BusinessIcon></BusinessIcon>{job.company}</p>
                                 <p><PlaceIcon></PlaceIcon>{job.location}</p>

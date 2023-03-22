@@ -1,40 +1,44 @@
 import { TextField } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../UserSession";
 import { FaRegEdit } from "react-icons/fa";
 import "../css/JobPosting.css";
 import axios from "axios";
+import swal from "sweetalert";
 
 const JobPosting = () => {
-    //Global loginState
-    const [login, setLogin] = useContext(Context);
+  //Global loginState
+  const [login, setLogin] = useContext(Context);
 
-    //Get id of logged in user
-    const userID = sessionStorage.getItem("userID");
-    const userRole = sessionStorage.getItem("role");
-  
-    useEffect(() => {
+  //Get id of logged in user
+  const userID = sessionStorage.getItem("userID");
+  const userRole = sessionStorage.getItem("role");
+
+  useEffect(() => {
+    if (userID) {
+      fetchSession();
+    }
+  }, []);
+
+  //Having the loginState persist on all pages
+  const fetchSession = async () => {
+    try {
       if (userID) {
-        fetchSession();
+        setLogin({
+          isLoggedIn: true,
+        });
       }
-    }, []);
-  
-    //Having the loginState persist on all pages
-    const fetchSession = async () => {
-      try {
-        if (userID) {
-          setLogin({
-            isLoggedIn: true,
-          });
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  if (userID && (userRole === "Recruiter" || userRole === 'Administrator')) {
+  const [selects, setSelects] = useState();
+
+  if (userID && (userRole === "Recruiter" || userRole === "Administrator")) {
     return (
       <div className="Jobpostingform">
+        <h1 className="titleofpage">Job Posting Page</h1>
         <div className="title">
           <TextField id="job_title" label="Job Title" variant="outlined" />
           <FaRegEdit />
@@ -65,12 +69,6 @@ const JobPosting = () => {
         </div>
         <br />
         <br />
-        <div className="category">
-          <TextField id="category" label="Category" variant="outlined" />
-          <FaRegEdit />
-        </div>
-        <br />
-        <br />
         <div className="location">
           <TextField
             id="location"
@@ -83,6 +81,26 @@ const JobPosting = () => {
         </div>
         <br />
         <br />
+        <div className="selection">
+          <div className="category">
+            <select id="category" onChange={(e) => setSelects(e.target.value)}>
+              <option label="Category..."></option>
+              <option value="Full-Time">Full-Time</option>
+              <option value="Part-Time">Part-Time</option>
+              <option value="Internship">Internship</option>
+            </select>
+          </div>
+          <div className="work_type">
+            <select id="work_type" onChange={(e) => setSelects(e.target.value)}>
+              <option label="Worktype..."></option>
+              <option value="onSite">On-Site</option>
+              <option value="Remote">Remote</option>
+              <option value="Hybrid">Hybrid</option>
+            </select>
+          </div>
+        </div>
+        <br />
+        <br />
         <button className="button" onClick={() => createJob()}>
           Post/Save
         </button>
@@ -91,12 +109,12 @@ const JobPosting = () => {
   } else {
     return (
       <div className="Jobpostingform">
-        <h1 style={{ textAlign: "center" }}>You need to be a recruiter
-        or an administrator to post jobs!</h1>
+        <h1 style={{ textAlign: "center" }}>
+          You need to be a recruiter or an administrator to post jobs!
+        </h1>
       </div>
     );
   }
-    
 };
 
 export default JobPosting;
@@ -105,16 +123,18 @@ const createJob = async () => {
   try {
     const jobData = {
       job_id: Math.floor(Math.random() * 1000000), // generate a random job_id for testing
+      recruiter_id: sessionStorage.getItem("userID"),
       title: document.getElementById("job_title").value,
       company: document.getElementById("company_name").value,
       description: document.getElementById("job_description").value,
       salary: document.getElementById("salary").value,
       category: document.getElementById("category").value,
       location: document.getElementById("location").value,
+      work_type: document.getElementById("work_type").value,
     };
     const response = await axios
       .post(`http://localhost:9000/jobs/create`, jobData)
-      .then(alert("Job posting created successfully!"));
+      .then(swal("Job posting created successfully!"));
     console.log(response.data);
   } catch (error) {
     console.log(error);

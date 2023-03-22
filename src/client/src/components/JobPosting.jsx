@@ -1,5 +1,5 @@
 import { TextField } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../UserSession";
 import { FaRegEdit } from "react-icons/fa";
 import "../css/JobPosting.css";
@@ -32,9 +32,12 @@ const JobPosting = () => {
     }
   };
 
+  const [selects, setSelects] = useState();
+
   if (userID && (userRole === "Recruiter" || userRole === "Administrator")) {
     return (
       <div className="Jobpostingform">
+        <h1 className="titleofpage">Job Posting Page</h1>
         <div className="title">
           <TextField id="job_title" label="Job Title" variant="outlined" />
           <FaRegEdit />
@@ -65,12 +68,6 @@ const JobPosting = () => {
         </div>
         <br />
         <br />
-        <div className="category">
-          <TextField id="category" label="Category" variant="outlined" />
-          <FaRegEdit />
-        </div>
-        <br />
-        <br />
         <div className="location">
           <TextField
             id="location"
@@ -83,14 +80,29 @@ const JobPosting = () => {
         </div>
         <br />
         <br />
-        <div className="work_type">
-          <TextField
-            id="work_type"
-            label="worktype"
-            placeholder="Placeholder"
-            variant="outlined"
-          />
-          <FaRegEdit />
+        <div className="selection">
+          <div className="category">
+            <select
+              className="category_select"
+              onChange={(e) => setSelects(e.target.value)}
+            >
+              <option label="Category..."></option>
+              <option value="Full-Time">Full-Time</option>
+              <option value="Part-Time">Part-Time</option>
+              <option value="Internship">Internship</option>
+            </select>
+          </div>
+          <div className="work_type">
+            <select
+              className="work_type_select"
+              onChange={(e) => setSelects(e.target.value)}
+            >
+              <option label="Worktype..."></option>
+              <option value="onSite">On-Site</option>
+              <option value="Remote">Remote</option>
+              <option value="Hybrid">Hybrid</option>
+            </select>
+          </div>
         </div>
         <br />
         <br />

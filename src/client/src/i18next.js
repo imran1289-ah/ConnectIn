@@ -82,6 +82,11 @@ i18next.use(initReactI18next).init({
           "The user does not have any connections",
         "You have successfully sent connection request!":
           "You have successfully sent connection request!",
+        "Pending connections requests": "Pending connections requests",
+        Accept: "Accept",
+        Reject: "Reject",
+        "Success!": "Success!",
+        "Updated waiting connections!": "Updated waiting connections!",
       },
     },
     fr: {
@@ -168,6 +173,12 @@ i18next.use(initReactI18next).init({
           "L'utilisateur n'a aucune connexion",
         "You have successfully sent connection request!":
           "Vous avez envoyé avec succès la demande de connexion !",
+        "Pending connections requests": "Demandes de connexions en attente",
+        Accept: "Accepter",
+        Reject: "Rejeter",
+        "Success!": "Succès!",
+        "Updated waiting connections!":
+          "Mise à jour des connexions en attente !",
       },
     },
   },

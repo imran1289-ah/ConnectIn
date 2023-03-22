@@ -128,13 +128,13 @@
   align-items: center;
 }
 
-.category_select {
+#category {
   padding: 5px;
   width: max-content;
   height: max-content;
 }
 
-.work_type_select {
+#work_type {
   padding: 5px;
   width: max-content;
   height: max-content;

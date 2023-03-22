@@ -4,6 +4,7 @@ import { Context } from "../UserSession";
 import { FaRegEdit } from "react-icons/fa";
 import "../css/JobPosting.css";
 import axios from "axios";
+import swal from "sweetalert";
 
 const JobPosting = () => {
   //Global loginState
@@ -82,10 +83,7 @@ const JobPosting = () => {
         <br />
         <div className="selection">
           <div className="category">
-            <select
-              className="category_select"
-              onChange={(e) => setSelects(e.target.value)}
-            >
+            <select id="category" onChange={(e) => setSelects(e.target.value)}>
               <option label="Category..."></option>
               <option value="Full-Time">Full-Time</option>
               <option value="Part-Time">Part-Time</option>
@@ -93,10 +91,7 @@ const JobPosting = () => {
             </select>
           </div>
           <div className="work_type">
-            <select
-              className="work_type_select"
-              onChange={(e) => setSelects(e.target.value)}
-            >
+            <select id="work_type" onChange={(e) => setSelects(e.target.value)}>
               <option label="Worktype..."></option>
               <option value="onSite">On-Site</option>
               <option value="Remote">Remote</option>
@@ -139,7 +134,7 @@ const createJob = async () => {
     };
     const response = await axios
       .post(`http://localhost:9000/jobs/create`, jobData)
-      .then(alert("Job posting created successfully!"));
+      .then(swal("Job posting created successfully!"));
     console.log(response.data);
   } catch (error) {
     console.log(error);

@@ -87,6 +87,11 @@ i18next.use(initReactI18next).init({
         Reject: "Reject",
         "Success!": "Success!",
         "Updated waiting connections!": "Updated waiting connections!",
+        Add: "Add",
+        "Download Resume": "Download Resume",
+        "Download CoverLetter": "Download CoverLetter",
+        "Cover Letter": "Cover Letter",
+        "Save changes": "Save changes",
       },
     },
     fr: {
@@ -179,6 +184,11 @@ i18next.use(initReactI18next).init({
         "Success!": "Succès!",
         "Updated waiting connections!":
           "Mise à jour des connexions en attente !",
+        Add: "Ajouter",
+        "Download Resume": "Enregister Resume",
+        "Download CoverLetter": "Enregister Lettre de motivation",
+        "Cover Letter": "Lettre de motivation",
+        "Save changes": "Enregister",
       },
     },
   },

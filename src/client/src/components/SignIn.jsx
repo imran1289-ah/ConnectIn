@@ -83,7 +83,7 @@ const SignIn = () => {
           <br></br>
           <br></br>
           <button className="LoginButton" onClick={submitLogin}>
-            {t("Sign Up")}
+            {t("logIn")}
           </button>
         </form>
       </div>

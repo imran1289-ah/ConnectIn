@@ -5,6 +5,11 @@ import { useTranslation } from "react-i18next";
 const Footer = () => {
   const { t, i18n } = useTranslation();
 
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem("lng", lng);
+  };
+
   return (
     // Footer of the page
     <div className="FooterSignup">
@@ -16,7 +21,7 @@ const Footer = () => {
             color: "white",
             border: "none",
           }}
-          onClick={() => i18n.changeLanguage("en")}
+          onClick={() => changeLanguage("en")}
         >
           English
         </button>
@@ -27,7 +32,7 @@ const Footer = () => {
             color: "white",
             border: "none",
           }}
-          onClick={() => i18n.changeLanguage("fr")}
+          onClick={() => changeLanguage("fr")}
         >
           French
         </button>

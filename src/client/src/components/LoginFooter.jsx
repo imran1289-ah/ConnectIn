@@ -19,6 +19,7 @@ const Footer = () => {
         >
           English
         </button>
+        |
         <button
           style={{
             backgroundColor: "transparent",

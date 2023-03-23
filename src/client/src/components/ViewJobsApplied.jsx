@@ -111,10 +111,10 @@ const ViewJobsApplied = () => {
                         </Th>
                         <Th>
                           <div className="Tags">
-                            <h3 className="jobCategory">
-                              <WorkIcon />
+                            {/* <h3 className="jobCategory"> */}
+                              {/* <WorkIcon /> */}
                               {job.category}
-                            </h3>
+                            {/* </h3> */}
                           </div>
                         </Th>
                       </div>

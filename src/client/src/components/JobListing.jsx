@@ -130,9 +130,9 @@ const JobListing = () =>{
                         Work Type: 
                         <select name="work_type" onChange={(e) => setPreferences({ ...preferences, work_type: e.target.value })}>
                             <option value="">Select a work type</option>
-                            <option value="onsite">Onsite</option>
-                            <option value="hybrid">Hybrid</option>
-                            <option value="remote">Remote</option>
+                            <option value="onSite">Onsite</option>
+                            <option value="Hybrid">Hybrid</option>
+                            <option value="Remote">Remote</option>
                         </select>
                     </label>
                     <br />
@@ -152,19 +152,6 @@ const JobListing = () =>{
                                     <div className="logo">
                                         <Avatar alt="Logo" src="./logo/logo.png" sx={{ width: 75, height: 75 }} />
 
-<<<<<<< HEAD
-                                
-                                <h3 className="jobTitle"><b>{job.title}</b></h3>
-                                
-                                <p><BusinessIcon></BusinessIcon>{job.company}</p>
-                                <p><PlaceIcon></PlaceIcon>{job.location}</p>
-                                
-
-                                <div className="Tags">
-                                    <h3 className="jobCategory"><WorkIcon/>{job.category}</h3>
-                                    <h3 className="jobCategory"><WorkIcon/>{job.work_type}</h3>
-                                
-=======
                                     </div>
 
 
@@ -200,7 +187,6 @@ const JobListing = () =>{
 </Link> */}
                                     {/* <button class = "delete" onClick={(e) => deletePost(`${job.job_id}`,e)}>Delete</button> */}
 
->>>>>>> Rohan_Kunal_Job_Preferences
                                 </div>
                             ))}
                         </div>

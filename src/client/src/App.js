@@ -35,7 +35,7 @@ function App() {
             path="/signup"
             element={
               <>
-                <Navbar /> <SignUp /> <SignupFooter />
+                <SignUp />
               </>
             }
           ></Route>

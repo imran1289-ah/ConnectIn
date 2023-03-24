@@ -5,7 +5,7 @@ const jobsSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    recruiter_id:{
+    recruiter_id: {
         type: String,
         required: true,
     },
@@ -31,14 +31,9 @@ const jobsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-<<<<<<< HEAD
-    work_type:{
+    work_type: {
         type: String,
         required: true,
-=======
-    work_type: {
-        type: String, //onsite/remote/hybrid
->>>>>>> Rohan_Kunal_Job_Preferences
     }
 });
 

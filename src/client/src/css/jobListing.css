@@ -81,22 +81,11 @@
 }
 
 .jobPosts .jobs .jobPost .jobContent .jobCategory {
-<<<<<<< HEAD
-
-  border: 1px solid grey;
-  background-color: lightgrey;
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  margin-right: 20px;
-
-=======
     border: 1px solid grey;
     background-color: lightgrey;
     padding: 10px;
     display: flex;
     flex-direction: row;
->>>>>>> Rohan_Kunal_Job_Preferences
 }
 
 .jobPosts .jobs .jobPost .jobContent .jobListLink {

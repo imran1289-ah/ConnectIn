@@ -2,6 +2,7 @@ import React, { useState, useRef, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SignInCSS from "../css/signin.module.css";
 import LoginFooter from "../components/LoginFooter";
+import Navbar from "../components/Navbar";
 import axios from "axios";
 import { Context } from "../UserSession";
 
@@ -43,7 +44,8 @@ const SignIn = () => {
 
   return (
     //Signin page
-    <body className={SignInCSS.body}>
+    <div className={SignInCSS.body}>
+      <Navbar />
       <div className={SignInCSS.Wrapper}>
         <div className={SignInCSS.Card}>
           <p className={SignInCSS.LoginMessage} ref={MessageRef}>
@@ -54,11 +56,11 @@ const SignIn = () => {
         <form>
           <div className={SignInCSS.Form}>
             <div className={SignInCSS.formLabel}>
-              Email or Username
+              Email
             </div>
             <input
               className={SignInCSS.LoginInput}
-              placeholder="Enter your email or username"
+              placeholder="Enter your email"
               onChange={(e) => setUser(e.target.value)}
             ></input>
             <br></br>
@@ -75,7 +77,7 @@ const SignIn = () => {
             <br></br>
             <br></br>
             <div className={SignInCSS.Link}>
-              Dont have an account? <Link to={`/signup`}>Sign Up Now!</Link>
+              Don't have an account? <Link to={`/signup`}>Sign Up Now!</Link>
             </div>
           </div>
           <br></br>
@@ -86,7 +88,7 @@ const SignIn = () => {
       </div>
     </div>
     <LoginFooter />
-    </body>
+    </div>
   );
 };
 

@@ -9,7 +9,6 @@ router
   .patch(usersControllers.updateUser)
 
   .delete(usersControllers.deleteUser);
-  
 
 router
   .route("/:_id")
@@ -20,18 +19,25 @@ router
 router.route("/signin").post(usersControllers.verifyUser);
 
 //router to fetch user info for profile page
-router.route("/profile/:id")
-    .get(usersControllers.getUserInfo)
-    .patch(usersControllers.editUserInfo)
+router
+  .route("/profile/:id")
+  .get(usersControllers.getUserInfo)
+  .patch(usersControllers.editUserInfo);
 
-router.route("/searchuserlist").post(usersControllers.updateAwaitingConnections);
+router
+  .route("/searchuserlist")
+  .post(usersControllers.updateAwaitingConnections);
 
-router.route("/waitingConnections").post(usersControllers.getAwaitingConnections);
+router
+  .route("/waitingConnections")
+  .post(usersControllers.getAwaitingConnections);
 
 router.route("/newConnection").post(usersControllers.updateConnections);
 
-router.route("/deleteAwaiting").patch(usersControllers.deleteAwaitingConnections);
-//router to check if 
+router
+  .route("/deleteAwaiting")
+  .patch(usersControllers.deleteAwaitingConnections);
+//router to check if
 router.route("/:id/jobsApplied").get(usersControllers.getUserJobsApplied);
 
 router.route("/:id/jobsApplied").post(usersControllers.addJobAppliedToUser);
@@ -45,5 +51,9 @@ router.route("/post").post(usersControllers.addTimelinePost);
 router.route("/:id/posts").get(usersControllers.getUserPostsbyID);
 router.route("/:id/connections").get(usersControllers.getConnections);
 
+//router to remove connection
+router
+  .route("/removeConnection/:id/connections/:connectionid")
+  .delete(usersControllers.removeConnection);
 
 module.exports = router;

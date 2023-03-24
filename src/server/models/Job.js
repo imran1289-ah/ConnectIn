@@ -21,6 +21,7 @@ const jobsSchema = new mongoose.Schema({
     },
     category: {
         type: String,
+        required: true
     },
     title: {
         type: String,
@@ -28,10 +29,16 @@ const jobsSchema = new mongoose.Schema({
     },
     location: {
         type: String,
+        required: true
     },
+<<<<<<< HEAD
     work_type:{
         type: String,
         required: true,
+=======
+    work_type: {
+        type: String, //onsite/remote/hybrid
+>>>>>>> Rohan_Kunal_Job_Preferences
     }
 });
 
@@ -39,4 +46,3 @@ const Jobs = mongoose.model("Jobs", jobsSchema);
 
 
 module.exports = Jobs;
-

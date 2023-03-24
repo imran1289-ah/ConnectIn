@@ -13,6 +13,7 @@ import BusinessIcon from '@mui/icons-material/Business';
 import { Context } from "../UserSession";
 import { useContext } from "react";
 import ArrowBack from "@mui/icons-material/ArrowBack";
+import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 
 
 const JobListing = () =>{
@@ -44,6 +45,14 @@ const JobListing = () =>{
 
     const [jobs, setJobs] = useState([]);
     const [jobsApplied, setJobsApplied] = useState([]);
+    const [jobsWithFilter, setJobsWithFilter] = useState([]);
+    const [preferences, setPreferences] = useState({
+        category: "",
+        location: "",
+        work_type: ""
+    });
+
+    // "category:full-time,location:montreal"
 
     const navigate = useNavigate();
     useEffect( () => {
@@ -51,17 +60,24 @@ const JobListing = () =>{
         fetchAppliedJob();
     }, [])
 
-    const fetchJobs = async () => {
-        const {data} = await axios.get("http://localhost:9000/jobs")
+    useEffect( () =>{
+        fetchJobsWithFilter();
+    }, [preferences])
 
+   
+    const fetchJobs = async () =>{
+        const {data} = await axios.get('http://localhost:9000/jobs')
         setJobs(data)
     }
+    const fetchJobsWithFilter = async () => {
+        const {data} = await axios.post('http://localhost:9000/jobs', preferences)
+        setJobs(data)
+    }
+  
 
     const fetchAppliedJob = async () =>{
         const {data} = await axios.get(`http://localhost:9000/users/${userID}/jobsApplied`)
-        
-       setJobsApplied(data)
-        
+       setJobsApplied(data);
     }
 
 
@@ -87,30 +103,56 @@ const JobListing = () =>{
     }
 
     return(
+
+        
             
         <div className="jobPosts_Container">
             
             {userID ? (
-            
-            <div data-testid = "jobPostsContainer" className="jobPosts">
-                <div className="heading">
-                    <b>Job Posts</b>
+
+                <><div className="jobFilter"><form>
+                    <label>
+                        Category:
+                        <select name="category" onChange={(e) => setPreferences({ ...preferences, category: e.target.value })}>
+                            <option value="">Select a category</option>
+                            <option value="Full-Time">Full-Time</option>
+                            <option value="Part-Time">Part-Time</option>
+                            <option value="Internship">Internship</option>
+                        </select>
+                    </label>
+                    <br />
+                    <label>
+            Location:
+            <input type="text" name="location" value={preferences.location} onChange={(e) => setPreferences({ ...preferences, location: e.target.value })} placeholder="Enter a location" />
+        </label>
+                    <br />
+                    <label>
+                        Work Type: 
+                        <select name="work_type" onChange={(e) => setPreferences({ ...preferences, work_type: e.target.value })}>
+                            <option value="">Select a work type</option>
+                            <option value="onsite">Onsite</option>
+                            <option value="hybrid">Hybrid</option>
+                            <option value="remote">Remote</option>
+                        </select>
+                    </label>
+                    <br />
+                    {/* <button type="submit">Apply Filters</button> */}
+                </form>
                 </div>
+                <div data-testid="jobPostsContainer" className="jobPosts">
+                        <div className="heading">
+                            <b>Job Posts</b>
+                        </div>
 
-                <div class="jobs">
-                 {jobs.map(job => (
-                
-                    <div key = {job._id} className="jobPost">
+                        <div class="jobs">
+                            {jobs.map(job => (
 
-                            <div className="logo">
-                            <Avatar alt="Logo" src="./logo/logo.png" sx={{ width: 75, height: 75 }}/>
+                                <div key={job._id} className="jobPost">
 
-                            </div>
-                        
-                        
-                        
-                            <div className="jobContent">
+                                    <div className="logo">
+                                        <Avatar alt="Logo" src="./logo/logo.png" sx={{ width: 75, height: 75 }} />
 
+<<<<<<< HEAD
                                 
                                 <h3 className="jobTitle"><b>{job.title}</b></h3>
                                 
@@ -122,28 +164,47 @@ const JobListing = () =>{
                                     <h3 className="jobCategory"><WorkIcon/>{job.category}</h3>
                                     <h3 className="jobCategory"><WorkIcon/>{job.work_type}</h3>
                                 
+=======
+                                    </div>
+
+
+
+                                    <div className="jobContent">
+
+
+                                        <h3 className="jobTitle"><b>{job.title}</b></h3>
+
+                                        <p><BusinessIcon></BusinessIcon>{job.company}</p>
+                                        <p><PlaceIcon></PlaceIcon>{job.location}</p>
+                                        <p><MapsHomeWorkIcon></MapsHomeWorkIcon>{job.work_type}</p>
+
+                                        <div className="Tags">
+                                            <h3 className="jobCategory"><WorkIcon />{job.category}</h3>
+
+                                        </div>
+
+                                       
+                                        <Button className="selectButton" variant="contained" component="label">
+                                            <Link className="jobListLink" to={`/jobs/${job.job_id}`} state={{ jobState: job }}>
+                                                Apply
+                                            </Link>
+                                        </Button>
+                                      
+
+                                    </div>
+
+                                    {jobsApplied.find(object => object.job_id == job.job_id) != undefined ? <Alert className="AlertJobListing" severity='info' variant="outlined"><AlertTitle>You've already applied for this job.</AlertTitle></Alert> : <></>}
+
+                                    {/* <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
+<button class = "edit">Edit</button>
+</Link> */}
+                                    {/* <button class = "delete" onClick={(e) => deletePost(`${job.job_id}`,e)}>Delete</button> */}
+
+>>>>>>> Rohan_Kunal_Job_Preferences
                                 </div>
-                            
-                                
-                                    <Button className ="selectButton"variant="contained" component="label">
-                                                    <Link className="jobListLink"to = {`/jobs/${job.job_id}`} state = {{jobState:job}} >
-                                                        Select
-                                                </Link>
-                                    </Button>
-
-                            </div>
-                            
-                            {jobsApplied.find(object => object.job_id == job.job_id) != undefined ? <Alert className ="AlertJobListing" severity='info' variant="outlined"><AlertTitle>You've already applied for this job.</AlertTitle></Alert>: <></>}
-                        
-                        {/* <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
-                            <button class = "edit">Edit</button>
-                        </Link> */}
-                        {/* <button class = "delete" onClick={(e) => deletePost(`${job.job_id}`,e)}>Delete</button> */}
-
-                    </div>
-                    ))}
-                </div>
-            </div>
+                            ))}
+                        </div>
+                    </div></>
 
             /* <div className="preferences">
                     <b>Preferences</b>

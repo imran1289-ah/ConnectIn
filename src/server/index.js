@@ -70,7 +70,7 @@ app.get("/", (req, res) => {
 });
 
 //Routes for our API endpoints
-app.use("/users", require("./routes/userRoutes.js"));
+app.use("/api/users", require("./routes/userRoutes.js"));
 app.use("/resume", require("./routes/uploadResumeCL.js"));
 app.use("/search", require("./routes/searchRoute.js"));
 app.use("/jobs", require("./routes/jobsRoutes.js"));

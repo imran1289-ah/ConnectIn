@@ -36,7 +36,7 @@ const Chat = () => {
      if (userID) {
         fetchSession();
        fetchUserConnections();
-       socket.current = io.connect("http://localhost:9000")
+       socket.current = io.connect("")
      }
    }, []);
 
@@ -57,7 +57,7 @@ const Chat = () => {
     try{
       if(userID){
         const response = await axios.get(
-          `http://localhost:9000/users/profile/${userID}`
+          `/users/profile/${userID}`
         );
 
         setUserConnections({
@@ -77,7 +77,7 @@ const Chat = () => {
   setCurrentChat(chat)
   // console.log(chat.userID)
   // console.log(userID);
-  await axios.post("http://localhost:9000/rooms",{
+  await axios.post("/rooms",{
     userID_1: sessionStorage.getItem("userID"),
     userID_2: chat.userID
   }).then((response) =>{

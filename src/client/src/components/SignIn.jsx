@@ -16,7 +16,7 @@ const SignIn = () => {
   const submitLogin = async (e) => {
     e.preventDefault();
     axios
-      .post("users/signin", {
+      .post("/users/signin", {
         email: user,
         password: password,
       })

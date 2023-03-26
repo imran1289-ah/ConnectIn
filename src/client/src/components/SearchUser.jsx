@@ -61,7 +61,7 @@ const SearchUser = () => {
     const searchUser = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:9000/search${locationURL}`
+          `/search${locationURL}`
         );
         setSearch(response.data);
       } catch (error) {
@@ -77,7 +77,7 @@ const SearchUser = () => {
     console.log(sessionStorage.getItem("firstname"));
     console.log(sessionStorage.getItem("lastname"));
     axios
-      .post(`http://localhost:9000/users/searchuserlist${locationURL}`, {
+      .post(`/users/searchuserlist${locationURL}`, {
         _id: userid,
         userID: sessionStorage.getItem("userID"),
         firstname: sessionStorage.getItem("firstname"),

@@ -51,7 +51,7 @@ const fetchSession = async () => {
       );
 
     const submitApplication = async () =>{
-        const alreadyJobsApplied = await axios.get(`http://localhost:9000/users/${userID}/jobsApplied`)
+        const alreadyJobsApplied = await axios.get(`/users/${userID}/jobsApplied`)
 
         if(fname.trim().length === 0 || lname.trim().length === 0 || email.trim().length ===0 || phoneNumber.trim().length ===0){
           swal("Please fill up all the fields!",{
@@ -70,7 +70,7 @@ const fetchSession = async () => {
         }
         else{
 
-            axios.post(`http://localhost:9000/users/${userID}/jobsApplied`, {
+            axios.post(`/users/${userID}/jobsApplied`, {
                 userId: userID,
                 jobId: job.jobState.job_id
             })

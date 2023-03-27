@@ -184,7 +184,7 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      Received Applications
+                      Applicants
                     </Typography>
                   </Typography>
                 </Box>

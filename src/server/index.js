@@ -78,6 +78,7 @@ app.use("/session", require("./routes/sessionRoutes.js"));
 app.use("/messages", require("./routes/messageRoutes.js"))
 app.use('/messages/download', express.static('uploads'));
 app.use("/rooms", require("./routes/roomRoutes.js"))
+app.use("/reports", require("./routes/reportsRoute.js"));
 
 
 //Running the server

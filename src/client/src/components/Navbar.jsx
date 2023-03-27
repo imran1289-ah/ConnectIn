@@ -159,7 +159,7 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      {t("Job Applications")}
+                      {t("Jobs Applied")}
                     </Typography>
                   </Typography>
                 </Box>

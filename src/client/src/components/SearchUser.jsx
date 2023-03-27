@@ -5,6 +5,7 @@ import "../css/searchuserlist.css";
 import { Context } from "../UserSession";
 
 import swal from "sweetalert";
+import { useTranslation } from "react-i18next";
 
 const SearchUser = () => {
   //States
@@ -15,6 +16,7 @@ const SearchUser = () => {
 
   //Global loginState
   const [login, setLogin] = useContext(Context);
+  const { t, i18n } = useTranslation();
 
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
@@ -85,8 +87,8 @@ const SearchUser = () => {
       })
       .then((response) => {
         swal(
-          "Congrats!",
-          "You have successfully sent connection request!",
+          t("Congrats!"),
+          t("You have successfully sent connection request!"),
           "success",
           {
             button: false,
@@ -130,7 +132,9 @@ const SearchUser = () => {
           )}
         </div>
       ) : (
-        <h1 style={{ textAlign: "center" }}>Please login to your account</h1>
+        <h1 style={{ textAlign: "center" }}>
+          {t("Please login to your account")}
+        </h1>
       )}
     </div>
   );

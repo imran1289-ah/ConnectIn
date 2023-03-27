@@ -59,7 +59,7 @@ function App() {
             path="/UserProfile"
             element={
               <>
-                <Navbar /> <UserProfile />
+                <Navbar /> <UserProfile /> <LoginFooter />
               </>
             }
           ></Route>
@@ -75,7 +75,7 @@ function App() {
             path="/users/search/:id"
             element={
               <>
-                <Navbar /> <PublicUserProfile />
+                <Navbar /> <PublicUserProfile /> <LoginFooter />
               </>
             }
           ></Route>

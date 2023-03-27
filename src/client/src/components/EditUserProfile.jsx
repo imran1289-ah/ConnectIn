@@ -3,6 +3,7 @@ import "../css/EditUserProfile.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../UserSession";
+import { useTranslation } from "react-i18next";
 
 const EditUserProfile = () => {
   const [languages, setLanguages] = useState([]);
@@ -26,6 +27,7 @@ const EditUserProfile = () => {
 
   //Global loginState
   const [login, setLogin] = useContext(Context);
+  const { t, i18n } = useTranslation();
 
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
@@ -49,27 +51,27 @@ const EditUserProfile = () => {
     }
   };
 
-      const downloadResume = async () => {
-          const response = await fetch(`/resume/getResume/${userID}`);
-          const blob = await response.blob();
-          const url = URL.createObjectURL(blob);
-          const link = document.createElement('a');
-          link.href = url;
-          link.download = `${userID}-resume.pdf`;
-          link.click();
-          URL.revokeObjectURL(url);
-        };
+  const downloadResume = async () => {
+    const response = await fetch(`/resume/getResume/${userID}`);
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${userID}-resume.pdf`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
 
-        const downloadCoverLetter = async () => {
-          const response = await fetch(`/resume/getCoverLetter/${userID}`);
-          const blob = await response.blob();
-          const url = URL.createObjectURL(blob);
-          const link = document.createElement('a');
-          link.href = url;
-          link.download = `${userID}-coverLetter.pdf`;
-          link.click();
-          URL.revokeObjectURL(url);
-        };
+  const downloadCoverLetter = async () => {
+    const response = await fetch(`/resume/getCoverLetter/${userID}`);
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${userID}-coverLetter.pdf`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
 
   const navigate = useNavigate();
 
@@ -78,7 +80,7 @@ const EditUserProfile = () => {
 
     const resumeData = new FormData();
     resumeData.append("resume", resume);
-    
+
     const coverLetterData = new FormData();
     coverLetterData.append("coverLetter", coverLetter);
     if (userID) {
@@ -95,10 +97,18 @@ const EditUserProfile = () => {
         })
         .then((response) => {
           console.log(response.data);
-          axios.post(`http://localhost:9000/resume/uploadResume/${userID}`, resumeData)
+          axios
+            .post(
+              `http://localhost:9000/resume/uploadResume/${userID}`,
+              resumeData
+            )
             .then((res) => console.log(res))
             .catch((error) => console.log(error));
-          axios.post(`http://localhost:9000/resume/uploadCoverLetter/${userID}`, coverLetterData)
+          axios
+            .post(
+              `http://localhost:9000/resume/uploadCoverLetter/${userID}`,
+              coverLetterData
+            )
             .then((res) => console.log(res))
             .catch((error) => console.log(error));
           navigate("/UserProfile");
@@ -149,11 +159,11 @@ const EditUserProfile = () => {
     <div className="EditUserProfileContainer">
       {userID && userData ? (
         <form className="userProfileForm" onSubmit={submitEditProfile}>
-          <h1 className="edit-profile-title">Edit your profile</h1>
+          <h1 className="edit-profile-title">{t("Edit Profile Page")}</h1>
           <div className="EditUserForm-Container">
             <div className="edit-right-side">
               <label>
-                Email
+                {t("Email")}
                 <input
                   type="email"
                   value={userData.email}
@@ -176,11 +186,11 @@ const EditUserProfile = () => {
               <br />
               <div className="list-button">
                 <button type="button" onClick={workExpChange}>
-                  Add
+                  {t("Add")}
                 </button>
               </div>
               <label>
-                Work Experience
+                {t("Work Experience")}
                 <input
                   type="text"
                   value={workExp}
@@ -190,11 +200,11 @@ const EditUserProfile = () => {
               <br />
               <div className="list-button">
                 <button type="button" onClick={educationChange}>
-                  Add
+                  {t("Add")}
                 </button>
               </div>
               <label>
-                Education
+                {t("Education")}
                 <input
                   type="text"
                   value={education}
@@ -206,11 +216,11 @@ const EditUserProfile = () => {
             <div className="edit-left-side">
               <div className="list-button">
                 <button type="button" onClick={skillsChange}>
-                  Add
+                  {t("Add")}
                 </button>
               </div>
               <label>
-                Skills
+                {t("Skills")}
                 <input
                   type="text"
                   value={skills}
@@ -220,11 +230,11 @@ const EditUserProfile = () => {
               <br />
               <div className="list-button">
                 <button type="button" onClick={languagesChange}>
-                  Add
+                  {t("Add")}
                 </button>
               </div>
               <label>
-                Languages
+                {t("Languages")}
                 <input
                   type="text"
                   value={languages}
@@ -234,11 +244,11 @@ const EditUserProfile = () => {
               <br />
               <div className="list-button">
                 <button type="button" onClick={volunteeringChange}>
-                  Add
+                  {t("Add")}
                 </button>
               </div>
               <label>
-                Volunteering
+                {t("Volunteering")}
                 <textarea
                   rows="3"
                   value={volunteering}
@@ -253,24 +263,26 @@ const EditUserProfile = () => {
                   accept=".pdf"
                   onChange={handleResumeChange}
                 />
-              </label>      
-  <button type="button" onClick={downloadResume}>
-  Download Resume
-  </button>
+              </label>
+              <button type="button" onClick={downloadResume}>
+                {t("Download Resume")}
+              </button>
               <br />
               <label>
-                Cover Letter
+                {t("Cover Letter")}
                 <input
                   type="file"
                   accept=".pdf"
                   onChange={handleCoverLetterChange}
                 />
               </label>
-              <button onClick={downloadCoverLetter}>Download CoverLetter</button>
+              <button onClick={downloadCoverLetter}>
+                {t("Download CoverLetter")}
+              </button>
             </div>
           </div>
           <div className="submit-button">
-            <button type="submit">Save changes</button>
+            <button type="submit">{t("Save changes")}</button>
           </div>
         </form>
       ) : (

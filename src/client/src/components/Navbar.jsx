@@ -16,11 +16,13 @@ import { IconButton } from "@mui/material";
 import { fontSize } from "@mui/system";
 import { Context } from "../UserSession";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const [login, setLogin] = useContext(Context);
+  const { t, i18n } = useTranslation();
 
   const HandleSearch = () => {
     console.log(query);
@@ -48,25 +50,23 @@ const Navbar = () => {
 
   const redirectMessages = () => {
     navigate("/chat");
-  }
+  };
 
   const redirectJobs = () => {
-    navigate("/jobs")
-  }
+    navigate("/jobs");
+  };
 
   const redirectHome = () => {
     navigate("/userTimeline");
   };
 
-  const redirectWaitingConnections = () =>{
-    navigate("/waitingConnections")
-  }
+  const redirectWaitingConnections = () => {
+    navigate("/waitingConnections");
+  };
 
-  const redirectJobApplications = () =>{
-
-    navigate("/jobsapplied")
-
-  }
+  const redirectJobApplications = () => {
+    navigate("/jobsapplied");
+  };
 
   return (
     //Material UI navbar
@@ -105,7 +105,7 @@ const Navbar = () => {
                     ></HomeIcon>
 
                     <Typography fontSize={10} variant="subtitle2">
-                      Home
+                      {t("home")}
                     </Typography>
                   </Typography>
                 </Box>
@@ -123,7 +123,7 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      Network
+                      {t("Network")}
                     </Typography>
                   </Typography>
                 </Box>
@@ -141,7 +141,7 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      Jobs
+                      {t("Jobs")}
                     </Typography>
                   </Typography>
                 </Box>
@@ -159,7 +159,7 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      Job Applications
+                      {t("Jobs Applied")}
                     </Typography>
                   </Typography>
                 </Box>
@@ -195,7 +195,7 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      Profile
+                      {t("Profile")}
                     </Typography>
                   </Typography>
                 </Box>
@@ -213,7 +213,7 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      Sign Out
+                      {t("Sign Out")}
                     </Typography>
                   </Typography>
                 </Box>

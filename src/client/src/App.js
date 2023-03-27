@@ -20,6 +20,7 @@ import EditJobPosting from "./components/EditJobPosting";
 import EditUserProfile from "./components/EditUserProfile";
 import UserTimeline from "./components/UserTimeline";
 import UserSession from "./UserSession";
+import DMReport from "./components/DMReport";
 
 import io from "socket.io-client";
 
@@ -141,6 +142,14 @@ function App() {
             element={
               <>
                 <Navbar /> <ViewJobsApplied /> <SignupFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/dmReports"
+            element={
+              <>
+                <Navbar /> <DMReport /> <SignupFooter />
               </>
             }
           ></Route>

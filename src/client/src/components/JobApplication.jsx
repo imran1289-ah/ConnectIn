@@ -70,8 +70,8 @@ const fetchSession = async () => {
 
         const alreadyJobsApplied = await axios.get(`http://localhost:9000/users/${userID}/jobsApplied`)
 
-        if(fname.trim().length === 0 || lname.trim().length === 0 || email.trim().length ===0 || phoneNumber.trim().length ===0){
-          swal("Please fill up all the fields!",{
+        if(fname.trim().length === 0 || lname.trim().length === 0 || email.trim().length ===0 || phoneNumber.trim().length ===0 || !resume || !coverLetter){
+          swal("Please fill up all the fields and upload all required documents !",{
                 
           });
 

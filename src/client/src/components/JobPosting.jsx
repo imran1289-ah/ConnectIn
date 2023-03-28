@@ -113,7 +113,7 @@ const createJob = async () => {
       location: document.getElementById("location").value,
     };
     const response = await axios
-      .post(`/jobs/create`, jobData)
+      .post(`https://connectin-api.onrender.com/jobs/create`, jobData)
       .then(alert("Job posting created successfully!"));
     console.log(response.data);
   } catch (error) {
@@ -123,7 +123,7 @@ const createJob = async () => {
 
 const getJobs = async () => {
   try {
-    const response = await axios.get("/jobs");
+    const response = await axios.get("https://connectin-api.onrender.com/jobs");
     console.log(response.data);
   } catch (error) {
     console.log(error);

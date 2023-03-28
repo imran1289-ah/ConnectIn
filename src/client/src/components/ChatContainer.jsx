@@ -23,7 +23,7 @@ const ChatContainer = ({ currentChat, socket, room }) => {
     try {
       if (userID) {
         const response = await axios.post(
-          `/messages`,
+          `https://connectin-api.onrender.com/messages`,
           {
             from: userID,
             to: currentChat.userID,
@@ -72,7 +72,7 @@ const ChatContainer = ({ currentChat, socket, room }) => {
   
       try {
         const response = await axios.post(
-          "/messages/addMessage",
+          "https://connectin-api.onrender.com/messages/addMessage",
           data
         );
   

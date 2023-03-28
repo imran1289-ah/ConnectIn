@@ -51,7 +51,7 @@ const ViewJobsApplied = () => {
   };
 
   const fetchAppliedJob = async () => {
-    const { data } = await axios.get(`/users/${userID}/jobsApplied`);
+    const { data } = await axios.get(`https://connectin-api.onrender.com/users/${userID}/jobsApplied`);
 
     setJobsApplied(data);
   };

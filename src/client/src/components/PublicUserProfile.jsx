@@ -72,7 +72,7 @@ const PublicUserProfile = () => {
   const Clickme = async (userid) => {
     console.log(userid);
     axios
-      .post(`/users/searchuserlist`, {
+      .post(`https://connectin-api.onrender.com/users/searchuserlist`, {
         _id: userid,
         firstname: sessionStorage.getItem("firstname"),
         lastname: sessionStorage.getItem("lastname"),
@@ -98,7 +98,7 @@ const PublicUserProfile = () => {
   const fetchProfile = async () => {
     try {
       const response = await axios.get(
-        `/users/profile/${profileId}`
+        `https://connectin-api.onrender.com/users/profile/${profileId}`
       );
       setPublicUser({
         _id: response.data._id,
@@ -123,7 +123,7 @@ const PublicUserProfile = () => {
     try {
       if (userID) {
         const response = await axios.get(
-          `/users/profile/${profileId}`
+          `https://connectin-api.onrender.com/users/profile/${profileId}`
         );
 
         setUserConnections({

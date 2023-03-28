@@ -52,13 +52,13 @@ const JobListing = () =>{
     }, [])
 
     const fetchJobs = async () => {
-        const {data} = await axios.get("/jobs")
+        const {data} = await axios.get("https://connectin-api.onrender.com/jobs")
 
         setJobs(data)
     }
 
     const fetchAppliedJob = async () =>{
-        const {data} = await axios.get(`/users/${userID}/jobsApplied`)
+        const {data} = await axios.get(`https://connectin-api.onrender.com/users/${userID}/jobsApplied`)
         
        setJobsApplied(data)
         
@@ -68,7 +68,7 @@ const JobListing = () =>{
     const deletePost = async (jobId,e) => {
         e.preventDefault();
         console.log(jobId);
-        axios.post(`/jobs/delete/${jobId}`, {
+        axios.post(`https://connectin-api.onrender.com/jobs/delete/${jobId}`, {
           jobId: jobId,
         })
         .then(response => {

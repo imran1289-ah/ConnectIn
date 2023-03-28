@@ -57,7 +57,7 @@ const Chat = () => {
     try{
       if(userID){
         const response = await axios.get(
-          `/users/profile/${userID}`
+          `https://connectin-api.onrender.com/users/profile/${userID}`
         );
 
         setUserConnections({
@@ -77,7 +77,7 @@ const Chat = () => {
   setCurrentChat(chat)
   // console.log(chat.userID)
   // console.log(userID);
-  await axios.post("/rooms",{
+  await axios.post("https://connectin-api.onrender.com/rooms",{
     userID_1: sessionStorage.getItem("userID"),
     userID_2: chat.userID
   }).then((response) =>{

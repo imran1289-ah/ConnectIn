@@ -24,7 +24,7 @@ function SignUp() {
   const submitSignup = async (e) => {
     e.preventDefault();
     axios
-      .post("/users", {
+      .post("https://connectin-api.onrender.com/users", {
         firstname: userData.firstName,
         lastname: userData.lastName,
         email: userData.email,

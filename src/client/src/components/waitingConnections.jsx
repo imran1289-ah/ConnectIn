@@ -14,7 +14,7 @@ const WaitingConnections = () => {
 
 const AddSelftoFriends = async(user_id) =>{
   axios
-  .post(`/users/newConnection`, {
+  .post(`https://connectin-api.onrender.com/users/newConnection`, {
     firstname: sessionStorage.getItem("firstname"),
     lastname: sessionStorage.getItem("lastname"),
     userID :sessionStorage.getItem("userID") ,
@@ -28,7 +28,7 @@ const AddSelftoFriends = async(user_id) =>{
     console.log(first);
     console.log(last);
       axios
-        .post(`/users/newConnection`, {
+        .post(`https://connectin-api.onrender.com/users/newConnection`, {
           firstname: first,
           lastname: last,
           userID :user_id,
@@ -47,7 +47,7 @@ const AddSelftoFriends = async(user_id) =>{
             });
           });
 
-         await axios.post('/rooms/addRoom',{
+         await axios.post('https://connectin-api.onrender.com/rooms/addRoom',{
             userID_1: user_id,
             userID_2: sessionStorage.getItem("userID")
           }).then((response) =>{
@@ -60,7 +60,7 @@ const AddSelftoFriends = async(user_id) =>{
     console.log(first);
     console.log(last);
       axios
-        .patch(`/users/deleteAwaiting`, {
+        .patch(`https://connectin-api.onrender.com/users/deleteAwaiting`, {
           firstname: first,
           lastname: last,
           userID :user_id,
@@ -120,7 +120,7 @@ const fetchSession = async () => {
   const lName =console.log(sessionStorage.getItem("lastname"));
   const fetchData = async () => {
     console.log(userID);
-    await axios.post(`/users/waitingConnections`,{
+    await axios.post(`https://connectin-api.onrender.com/users/waitingConnections`,{
       user_id: userID
     }).then(response => {
       setUserRequests(response.data)

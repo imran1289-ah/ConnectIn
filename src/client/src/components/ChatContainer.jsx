@@ -10,12 +10,16 @@ const ChatContainer = ({ currentChat, socket, room }) => {
   const [arrivalMessage, setArrivalMessage] = useState([]);
   const messagesEndRef = useRef(null);
 
+  const [reportMsg, setReportMsg] = useState("");
   const [openModal, setOpenModal] = useState(false);
 
-
   const openReportModal = (e) => {
-    console.log(e);
+    setReportMsg(e);
     setOpenModal(true);
+  }
+
+  const callbackModal = () => {
+    setOpenModal(false);
   }
 
   //Get id of logged in user
@@ -155,7 +159,7 @@ const ChatContainer = ({ currentChat, socket, room }) => {
                     onClick={() => openReportModal(message.message)}>
                   <FlagIcon />
                 </button>
-                <ChatReportModal open={openModal} onClose={() => setOpenModal(false)} />
+                <ChatReportModal callbackModal = {callbackModal} receiver={userID} sender={currentChat.userID} open={openModal} onClose={() => setOpenModal(false)} message={reportMsg} />
               </div>
             )}
             {isLastMessage && <div ref={messagesEndRef} />}

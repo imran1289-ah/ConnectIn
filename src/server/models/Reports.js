@@ -9,7 +9,7 @@ const ReportSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    reportedMessage: {
+    reportedDM: {
         type: String,
         required: true
     },

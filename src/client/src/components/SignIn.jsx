@@ -11,6 +11,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const MessageRef = useRef(null);
   const [login, setLogin] = useContext(Context);
+  
 
   //HTTP Request to autenticate user
   const submitLogin = async (e) => {
@@ -23,6 +24,9 @@ const SignIn = () => {
       .then((response) => {
         console.log(response.data);
         sessionStorage.setItem("userID", response.data.userSession.user_id);
+        sessionStorage.setItem("firstname", response.data.userSession.firstname);
+        sessionStorage.setItem("lastname", response.data.userSession.lastname);
+        sessionStorage.setItem("role", response.data.userSession.role);
         MessageRef.current.style.color = "#66FF00";
         MessageRef.current.innerHTML = "Login Sucess. Welcome Back";
         setLogin({

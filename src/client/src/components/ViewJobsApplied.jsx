@@ -16,6 +16,7 @@ import ArrowBack from "@mui/icons-material/ArrowBack";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import Container from "react-bootstrap/Container";
+import { useTranslation } from "react-i18next";
 
 const ViewJobsApplied = () => {
   const userID = sessionStorage.getItem("userID");
@@ -60,12 +61,14 @@ const ViewJobsApplied = () => {
     navigate("/signin");
   };
 
+  const { t, i18n } = useTranslation();
+
   return (
     <div className="jobsApplied">
       {userID ? (
         <div>
           <div className="heading">
-            <h1>Jobs Applied Summary</h1>
+            <h1>{t("Jobs Applied Summary")}</h1>
           </div>
 
           <Table>
@@ -73,11 +76,11 @@ const ViewJobsApplied = () => {
               <Thead>
                 <Tr>
                   <Th> {""} </Th>
-                  <Th>Job ID</Th>
-                  <Th>Title</Th>
-                  <Th>Company</Th>
-                  <Th>Location</Th>
-                  <Th>Category</Th>
+                  <Th>{t("Job ID")}</Th>
+                  <Th>{t("Title")}</Th>
+                  <Th>{t("Company")}</Th>
+                  <Th>{t("Location")}</Th>
+                  <Th>{t("Category")}</Th>
                 </Tr>
               </Thead>
               {jobsApplied.map(job => (

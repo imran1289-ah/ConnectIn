@@ -1,0 +1,69 @@
+.dm-reports-container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px #19718d solid;
+  width: 500px;
+  min-height: 250px;
+  height: 500px;
+  border-radius: 15px;
+  margin: auto;
+  display: inline-block;
+  overflow: auto;
+}
+
+.dm-reports {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.dm-reports-container .heading {
+  background-color: #19718d;
+  height: 50px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.report {
+  border: 2px #02242f solid;
+  border-radius: 15px;
+  width: 75%;
+  margin:15px;
+  padding-left: 10px;
+}
+
+.report-button-bundle {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  justify-content: space-evenly
+}
+
+.report-button-accept {
+  background-color: green;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 30%;
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.report-button-reject {
+  background-color: red;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 30%;
+  height: 30px;
+  margin-bottom: 5px;
+}

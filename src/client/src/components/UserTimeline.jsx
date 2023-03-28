@@ -58,7 +58,7 @@ const UserTimeline = () => {
   //Fetch session information
   const fetchSession = async () => {
     try {
-      const response = await axios.get(`https://connectin-api.onrender.com/session`);
+      const response = await axios.get(`/session`);
       setLogin({
         isLoggedIn: true,
       });

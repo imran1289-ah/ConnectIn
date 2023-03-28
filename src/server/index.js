@@ -45,7 +45,7 @@ app.use(
 //Cors middleware to accept request from client
 app.use(
     cors({
-        origin: ["http://localhost:3000","https://connectin.vercel.app"],
+        origin: "https://connectin.vercel.app",
         credentials: true,
     })
 );

@@ -44,12 +44,16 @@ const UserSchema = new mongoose.Schema({
     postsMade: [],
     role: {
         type: String,
-        Enumerator: ["User","Recruiter","Administrator"],
+        Enumerator: ["User", "Recruiter", "Administrator"],
         required: true
+    },
+    preferences: {
+        category: String,
+        location: String,
+        work_type: String
     },
 });
 
 const User = mongoose.model("Users", UserSchema);
 
 module.exports = User;
- 

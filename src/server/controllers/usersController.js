@@ -418,6 +418,24 @@ const getAllReceivedApplications = async(req, res) => {
     }
 }
 
+const savePreferences = async(req, res) => {
+    const { category, location, work_type } = req.body;
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id, {
+            preferences: {
+                category: category,
+                location: location,
+                work_type: work_type
+            }
+
+        }, { new: true });
+        // console.log(preferences);
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 module.exports = {
     createUser,
     updateUser,
@@ -443,4 +461,5 @@ module.exports = {
 
     addTimelinePost,
     getUserPostsbyID,
+    savePreferences
 };

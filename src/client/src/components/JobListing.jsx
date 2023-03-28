@@ -14,6 +14,7 @@ import { Context } from "../UserSession";
 import { useContext } from "react";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
+import swal from "sweetalert";
 
 
 const JobListing = () =>{
@@ -102,6 +103,20 @@ const JobListing = () =>{
         navigate("/signin")
     }
 
+    const savePreferences = async () => {
+        if (preferences.category && preferences.location && preferences.work_type) {
+          await axios.post(
+            `http://localhost:9000/users/${userID}/preferences`,
+            preferences
+          );
+        //   console.log(preferences);
+        } else {
+          swal("Please fill in all fields before saving preferences.");
+        }
+      };
+      
+      
+
     return(
 
         
@@ -136,7 +151,7 @@ const JobListing = () =>{
                         </select>
                     </label>
                     <br />
-                    {/* <button type="submit">Apply Filters</button> */}
+                    <button type="button" onClick={savePreferences}>Save Preferences </button>
                 </form>
                 </div>
                 <div data-testid="jobPostsContainer" className="jobPosts">

@@ -16,7 +16,7 @@ const SignIn = () => {
   const submitLogin = async (e) => {
     e.preventDefault();
     axios
-      .post("https://connectin.vercel.app/users/signin", {
+      .post("https://connectin-api.onrender.com/users/signin", {
         email: user,
         password: password,
       })

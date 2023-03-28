@@ -36,7 +36,7 @@ const Chat = () => {
      if (userID) {
         fetchSession();
        fetchUserConnections();
-       socket.current = io.connect("")
+       socket.current = io.connect("https://connectin-api.onrender.com")
      }
    }, []);
 

@@ -89,7 +89,7 @@ const server = app.listen(port, () => {
 
 const socketApp = io(server, {
     cors: {
-        origin: ["http://localhost:3000", "https://connectin.vercel.app"],
+        origin: "https://connectin.vercel.app",
         credentials: true,
     },
 });

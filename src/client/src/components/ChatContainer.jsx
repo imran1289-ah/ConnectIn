@@ -33,7 +33,7 @@ const ChatContainer = ({ currentChat, socket, room }) => {
           if (
             message.downloadLink &&
             message.downloadLink !==
-              "/messages/download/null"
+              "https://connectin-api.onrender.com/messages/download/null"
           ) {
             message.message = (
               <a href={message.downloadLink} target="_blank" rel="noreferrer">

@@ -68,6 +68,13 @@ const Navbar = () => {
     navigate("/jobsapplied");
   };
 
+  const redirectReceivedApplications =() =>{
+    navigate("/receivedApplications")
+  }
+  const redirectJobPosting = () =>{
+      navigate("/jobposting")
+  }
+
   return (
     //Material UI navbar
     <Box sx={{ flexGrow: 1 }}>
@@ -159,7 +166,44 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
+                      
                       {t("Jobs Applied")}
+                    </Typography>
+                  </Typography>
+                </Box>
+              </IconButton>
+
+              <IconButton color="inherit" onClick={redirectReceivedApplications}>
+                <Box className="parentUserIconContainer">
+                  <Typography className="userIconContainer">
+                    <WorkIcon
+                      className="publicUserIcon"
+                      fontSize="large"
+                    ></WorkIcon>
+                    <Typography
+                      fontSize={10}
+                      className="userSubtitle"
+                      variant="subtitle2"
+                    >
+                      Applicants
+                    </Typography>
+                  </Typography>
+                </Box>
+              </IconButton>
+
+              <IconButton color="inherit" onClick={redirectJobPosting}>
+                <Box className="parentUserIconContainer">
+                  <Typography className="userIconContainer">
+                    <WorkIcon
+                      className="publicUserIcon"
+                      fontSize="large"
+                    ></WorkIcon>
+                    <Typography
+                      fontSize={10}
+                      className="userSubtitle"
+                      variant="subtitle2"
+                    >
+                      Post Job
                     </Typography>
                   </Typography>
                 </Box>

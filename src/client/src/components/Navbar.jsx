@@ -29,7 +29,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     navigate("/signin");
-    await axios.post("/session/logout").then((response) => {
+    await axios.post("https://connectin.vercel.app/session/logout").then((response) => {
       console.log(response.data);
 
       setLogin({

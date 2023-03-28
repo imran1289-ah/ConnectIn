@@ -83,7 +83,7 @@ const EditUserProfile = () => {
     coverLetterData.append("coverLetter", coverLetter);
     if (userID) {
       axios
-        .patch(`http://localhost:9000/users/profile/${userID}`, {
+        .patch(`/users/profile/${userID}`, {
           bio: userData.bio,
           headLine: userData.headLine,
           languages: userData.languages,
@@ -95,10 +95,10 @@ const EditUserProfile = () => {
         })
         .then((response) => {
           console.log(response.data);
-          axios.post(`http://localhost:9000/resume/uploadResume/${userID}`, resumeData)
+          axios.post(`/resume/uploadResume/${userID}`, resumeData)
             .then((res) => console.log(res))
             .catch((error) => console.log(error));
-          axios.post(`http://localhost:9000/resume/uploadCoverLetter/${userID}`, coverLetterData)
+          axios.post(`/resume/uploadCoverLetter/${userID}`, coverLetterData)
             .then((res) => console.log(res))
             .catch((error) => console.log(error));
           navigate("/UserProfile");

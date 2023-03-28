@@ -4,8 +4,7 @@ import axios from "axios";
 import "../css/searchuserlist.css";
 import { Context } from "../UserSession";
 
-import swal from 'sweetalert';
-
+import swal from "sweetalert";
 
 const SearchUser = () => {
   //States
@@ -23,22 +22,23 @@ const SearchUser = () => {
   //Having the loginState persist on all pages
   useEffect(() => {
     if (userID) {
+      navbarPersit();
       fetchSession();
     }
   }, []);
 
-  // //Having the loginState persist on all pages
-  // const fetchSession = async () => {
-  //   try {
-  //     if (userID) {
-  //       setLogin({
-  //         isLoggedIn: true,
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  //Having the loginState persist on all pages
+  const navbarPersit = async () => {
+    try {
+      if (userID) {
+        setLogin({
+          isLoggedIn: true,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const fetchSession = async () => {
     try {
@@ -56,13 +56,12 @@ const SearchUser = () => {
     }
   };
 
-
   //HTTP request to backend to fetch searched users
   useEffect(() => {
     const searchUser = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:9000/search${locationURL}`
+          `/search${locationURL}`
         );
         setSearch(response.data);
       } catch (error) {
@@ -78,17 +77,22 @@ const SearchUser = () => {
     console.log(sessionStorage.getItem("firstname"));
     console.log(sessionStorage.getItem("lastname"));
     axios
-      .post(`http://localhost:9000/users/searchuserlist${locationURL}`, {
+      .post(`/users/searchuserlist${locationURL}`, {
         _id: userid,
-        userID: sessionStorage.getItem("userID"), 
+        userID: sessionStorage.getItem("userID"),
         firstname: sessionStorage.getItem("firstname"),
-        lastname: sessionStorage.getItem("lastname"), 
+        lastname: sessionStorage.getItem("lastname"),
       })
       .then((response) => {
-        swal("Congrats!", "You have successfully sent connection request!","success",{
-          button:false,
-          timer:1000
-        });
+        swal(
+          "Congrats!",
+          "You have successfully sent connection request!",
+          "success",
+          {
+            button: false,
+            timer: 1000,
+          }
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -100,28 +104,30 @@ const SearchUser = () => {
     <div>
       {userID && search ? (
         <div className="userContainer">
-          {search.map((user) => (
-            <div className="singleUser">
-              <Link to={`${user._id}`}>
-                <img
-                  src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
-                  alt="default pic"
-                ></img>
-              </Link>
-              <div className="userInfo">
-                {user.firstname} {user.lastname}
+          {search.map((user) =>
+            user._id === userID ? null : (
+              <div className="singleUser">
+                <Link to={`${user._id}`}>
+                  <img
+                    src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
+                    alt="default pic"
+                  ></img>
+                </Link>
+                <div className="userInfo">
+                  {user.firstname} {user.lastname}
+                </div>
+                <br></br>
+                <div className="buttonSection">
+                  <button
+                    className="searchConnectButton"
+                    onClick={() => Clickme(`${user._id}`)}
+                  >
+                    Connect
+                  </button>
+                </div>
               </div>
-              <br></br>
-              <div className="buttonSection">
-                <button
-                  className="searchConnectButton"
-                  onClick={() => Clickme(`${user._id}`)}
-                >
-                  Connect
-                </button>
-              </div>
-            </div>
-          ))}
+            )
+          )}
         </div>
       ) : (
         <h1 style={{ textAlign: "center" }}>Please login to your account</h1>

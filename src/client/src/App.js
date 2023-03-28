@@ -3,6 +3,7 @@ import SignIn from "./components/SignIn";
 import LoginFooter from "./components/LoginFooter";
 import SignupFooter from "./components/SignupFooter";
 import JobPosting from "./components/JobPosting";
+import ViewJobsApplied from "./components/ViewJobsApplied";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
@@ -20,10 +21,9 @@ import EditUserProfile from "./components/EditUserProfile";
 import UserTimeline from "./components/UserTimeline";
 import UserSession from "./UserSession";
 
-import io from 'socket.io-client'
+import io from "socket.io-client";
 
 function App() {
-
   //const socket = io.connect("http://localhost:9000");
 
   return (
@@ -59,7 +59,7 @@ function App() {
             path="/UserProfile"
             element={
               <>
-                <Navbar /> <UserProfile /> <SignupFooter />
+                <Navbar /> <UserProfile />
               </>
             }
           ></Route>
@@ -133,6 +133,14 @@ function App() {
             element={
               <>
                 <Navbar /> <UserTimeline /> <SignupFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/jobsApplied"
+            element={
+              <>
+                <Navbar /> <ViewJobsApplied /> <SignupFooter />
               </>
             }
           ></Route>

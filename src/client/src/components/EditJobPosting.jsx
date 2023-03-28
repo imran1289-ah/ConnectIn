@@ -47,14 +47,14 @@ function EditJobPosting() {
   };
 
   const fetchData = async () => {
-    axios.get(`http://localhost:9000/jobs/edit/${jobId}`).then(response => {
+    axios.get(`/jobs/edit/${jobId}`).then(response => {
       setjobData(response.data);
     });
   }
 
   const savePost = async e => {
     e.preventDefault();
-    axios.post(`http://localhost:9000/jobs/edit/${jobId}`, {
+    axios.post(`/jobs/edit/${jobId}`, {
       job_id: jobData.job_id,
       title: jobData.title,
       description: jobData.description,

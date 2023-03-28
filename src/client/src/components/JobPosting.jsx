@@ -113,7 +113,7 @@ const createJob = async () => {
       location: document.getElementById("location").value,
     };
     const response = await axios
-      .post(`http://localhost:9000/jobs/create`, jobData)
+      .post(`/jobs/create`, jobData)
       .then(alert("Job posting created successfully!"));
     console.log(response.data);
   } catch (error) {

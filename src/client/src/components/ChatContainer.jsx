@@ -23,7 +23,7 @@ const ChatContainer = ({ currentChat, socket, room }) => {
     try {
       if (userID) {
         const response = await axios.post(
-          `http://localhost:9000/messages`,
+          `/messages`,
           {
             from: userID,
             to: currentChat.userID,
@@ -33,7 +33,7 @@ const ChatContainer = ({ currentChat, socket, room }) => {
           if (
             message.downloadLink &&
             message.downloadLink !==
-              "http://localhost:9000/messages/download/null"
+              "https://connectin-api.onrender.com/messages/download/null"
           ) {
             message.message = (
               <a href={message.downloadLink} target="_blank" rel="noreferrer">
@@ -72,7 +72,7 @@ const ChatContainer = ({ currentChat, socket, room }) => {
   
       try {
         const response = await axios.post(
-          "http://localhost:9000/messages/addMessage",
+          "/messages/addMessage",
           data
         );
   

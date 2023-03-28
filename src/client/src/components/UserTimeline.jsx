@@ -2,34 +2,37 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../UserSession";
 import axios from "axios";
 import "../css/userTimeline.css";
-import EditIcon from "@mui/icons-material/Edit";
 import { IconButton } from "@mui/material";
 import { TextField } from "@mui/material";
-import swal from 'sweetalert';
-import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
+import { useNavigate, Link } from "react-router-dom";
+import SendIcon from "@mui/icons-material/Send";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 const UserTimeline = () => {
   //Global state
   const [login, setLogin] = useContext(Context);
-  
+
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
 
   const navigate = useNavigate();
-  const [userConnections, setUserConnections] = useState(
-    {
-      _id: "",
-      firstname: "",
-      lastname: "",
-      connections: [],
-    }
-  );
 
+  //user connection state
+  const [userConnections, setUserConnections] = useState({
+    _id: "",
+    firstname: "",
+    lastname: "",
+    connections: [],
+  });
+
+  //http request to fetch user
   const fetchUserConnections = async () => {
-    try{
-      if(userID){
+    try {
+      if (userID) {
         const response = await axios.get(
-          `http://localhost:9000/users/profile/${userID}`
+          `/users/profile/${userID}`
         );
         setUserConnections({
           _id: response.data._id,
@@ -40,7 +43,7 @@ const UserTimeline = () => {
       }
     } catch (error) {
       console.log(error);
-   }
+    }
   };
 
   //fetch session once
@@ -55,7 +58,7 @@ const UserTimeline = () => {
   //Fetch session information
   const fetchSession = async () => {
     try {
-      const response = await axios.get(`session`);
+      const response = await axios.get(`/session`);
       setLogin({
         isLoggedIn: true,
       });
@@ -69,73 +72,125 @@ const UserTimeline = () => {
     }
   };
 
+  //Post state
   const [postData, setpostData] = useState({
     description: "",
     attachment: null,
-    timestamp: new Date()
+    timestamp: new Date(),
   });
 
-  //HTTP Request to fetch posts and add posts ....
+  //HTTP Request to fetch to add post
   const savePost = async () => {
     axios
-      .post(`http://localhost:9000/users/post`, {
-        _id: sessionStorage.getItem("userID"), 
+      .post(`/users/post`, {
+        _id: sessionStorage.getItem("userID"),
         firstname: sessionStorage.getItem("firstname"),
-        lastname: sessionStorage.getItem("lastname"), 
+        lastname: sessionStorage.getItem("lastname"),
         description: postData.description,
-        timestamp: postData.timestamp
+        timestamp: postData.timestamp,
       })
       .then((response) => {
         console.log(response.data);
-        swal("Congrats!", "You have successfully created a post!","success",{
-          button:false,
-          timer:1000
+        swal("Congrats!", "You have successfully created a post!", "success", {
+          button: false,
+          timer: 1000,
         });
         navigate("/userTimeline");
       })
       .then((response) => {
-        setTimeout(function(){
+        setTimeout(function () {
           window.location.reload();
         }, 1200);
       })
       .catch((error) => {
         console.log(error);
-        swal("Failed", "Your post was not created, try again!", "error",{
-          button:false,
-          timer:1000
-        })
+        swal("Failed", "Your post was not created, try again!", "error", {
+          button: false,
+          timer: 1000,
+        });
       });
   };
 
   const [connections, setConnections] = useState([]);
   const fetchConnections = async () => {
-    await axios.get(`http://localhost:9000/users/${userID}/connections`)
-    .then(response => {
-      setConnections(response.data)
-    })
-  }
+    await axios
+      .get(`/users/${userID}/connections`)
+      .then((response) => {
+        setConnections(response.data);
+      });
+  };
 
+  //http request to fetch posts
   const [posts, setPosts] = useState([]);
   const fetchPosts = async () => {
-    await axios.get(`http://localhost:9000/users/${userID}/posts`)
-    .then(response => {
-      setPosts(response.data)
-    })
-  }
+    await axios
+      .get(`/users/${userID}/posts`)
+      .then((response) => {
+        setPosts(response.data);
+      });
+  };
 
+  //display post
   const userPosts = posts.map((post) => (
     <div className="userPostsTimeline">
-      <span className="subTitleTimeline">{post.firstname}{" "}{post.lastname}</span>
-      <p className="postText">
-        {post.description}
-      </p>
+      <span className="subTitleTimeline">
+        {post.firstname} {post.lastname}
+      </span>
+      <p className="postText">{post.description}</p>
     </div>
-  ))
+  ));
 
+  //sort posts based on timestamp
   //const allPosts = [...allConnectionsPosts, ...userPosts]
-  const allSortedPosts = [...userPosts].sort((a,b) =>{
-    return a.timestamp > b.timestamp ? 1 : -1
-  })
+  const allSortedPosts = [...userPosts].sort((a, b) => {
+    return a.timestamp > b.timestamp ? 1 : -1;
+  });
+
+  //http request to remove connection
+  const removeConnection = async (
+    connectionUserID,
+    connectionFirstName,
+    connectionLastName
+  ) => {
+    swal({
+      title: `Are you sure you want to remove ${connectionFirstName} ${connectionLastName} from your connection ?`,
+      text: "Once the user is deleted, the user will be removed from your connections",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        console.log(userID, connectionUserID);
+        axios
+          .delete(`/rooms/deleteRoom/${userID}/${connectionUserID}`)
+          .catch((err) =>{
+            console.log(err);
+          })
+        axios
+          .delete(
+            `/users/removeConnection/${userID}/connections/${connectionUserID}`
+          )
+          .then((response) => {
+            swal(
+              `${connectionFirstName} ${connectionLastName} has been removed`,
+              {
+                icon: "success",
+              }
+            );
+            setTimeout(function () {
+              window.location.reload();
+            }, 1200);
+          })
+
+          .catch((error) => {
+            console.log(error);
+          });
+          
+      } else {
+        swal(`${connectionFirstName} ${connectionLastName} was not removed`);
+      }
+    });
+  };
 
   return (
     <div>
@@ -155,39 +210,56 @@ const UserTimeline = () => {
                 }}
               ></img>
             </div>
-            
+
             <span className="userNameTimeline">
               {sessionStorage.getItem("firstname")}{" "}
               {sessionStorage.getItem("lastname")}
             </span>
             <br></br>
-            <span className="connectionsLinkTimeline">View Connections</span>
+            <span className="userNameTimeline">
+              <IconButton>
+                <NotificationsNoneIcon></NotificationsNoneIcon>
+              </IconButton>
+            </span>
           </div>
 
           {/* User posts section*/}
           <div className="middleTimeline">
             {/* Create a post section*/}
+            <br></br>
+            <div style={{ fontWeight: "bold", textAlign: "center" }}>
+              Welcome to your timeline{" "}
+            </div>
             <div className="userInformationTimeline">
-              <IconButton>
-                <EditIcon onClick={savePost} fontSize="medium"></EditIcon>
-              </IconButton>
               <TextField
                 id="outlined-basic"
                 label="Start A Post"
                 variant="standard"
                 className="postTextField"
-                value= {postData.description}
-                onChange={e => setpostData({ ...postData, description: e.target.value })}
+                value={postData.description}
+                onChange={(e) =>
+                  setpostData({ ...postData, description: e.target.value })
+                }
+                style={{ marginLeft: "10px" }}
               />
-              <div className="timestamp" value={Date.now()} 
-              onChange={e => setpostData({...postData, timestamp: e.target.value})} />
-                
+              <IconButton style={{ marginTop: "10px" }}>
+                <SendIcon onClick={savePost} fontSize="small"></SendIcon>
+              </IconButton>
+              <div
+                className="timestamp"
+                value={Date.now()}
+                onChange={(e) =>
+                  setpostData({ ...postData, timestamp: e.target.value })
+                }
+              />
+
               {/* <input className="imageFile" type="file" accept=".png" name="image" 
               onChange={e => setpostData({...postData, attachment: e.target.files[0]})}/> */}
             </div>
             {/* user's post in their timeline*/}
             <div>
               {/* each div is a single post*/}
+
               {allSortedPosts}
             </div>
           </div>
@@ -195,23 +267,42 @@ const UserTimeline = () => {
             <span className="subTitle">Contacts</span>
             <br></br>
             <div>
-              <ul>
-                {userConnections && (userConnections.connections.map((connection) => {
+              {userConnections && userConnections.connections.length > 0 ? (
+                userConnections.connections.map((connection) => {
                   return (
-                    <>
                     <l1 className="connectionsInfo">
                       <img
-                      src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
-                      alt="comapnyPic"
-                      className="companyPic"></img>
+                        src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
+                        alt="comapnyPic"
+                        className="companyPic"
+                      ></img>
                       <div>
-                        <span className="connectionName">{connection.firstname} {connection.lastname}</span>
+                        <span className="connectionName">
+                          <Link
+                            to={`/users/search/${connection.userID}`}
+                            style={{ textDecoration: "none", color: "black" }}
+                          >
+                            {connection.firstname} {connection.lastname}
+                          </Link>
+                          <IconButton
+                            onClick={() =>
+                              removeConnection(
+                                `${connection.userID}`,
+                                `${connection.firstname}`,
+                                `${connection.lastname}`
+                              )
+                            }
+                          >
+                            <HighlightOffIcon></HighlightOffIcon>
+                          </IconButton>
+                        </span>
                       </div>
-                      </l1>
-                    </>
+                    </l1>
                   );
-                }))}
-              </ul>
+                })
+              ) : (
+                <p className="userBio">You do not have any connection</p>
+              )}
             </div>
           </div>
         </div>

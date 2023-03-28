@@ -45,7 +45,7 @@ app.use(
 //Cors middleware to accept request from client
 app.use(
     cors({
-        origin: "http://localhost:3000",
+        origin: ["http://localhost:3000","https://connectin.vercel.app"],
         credentials: true,
     })
 );
@@ -89,7 +89,7 @@ const server = app.listen(port, () => {
 
 const socketApp = io(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: ["http://localhost:3000", "https://connectin.vercel.app"],
         credentials: true,
     },
 });

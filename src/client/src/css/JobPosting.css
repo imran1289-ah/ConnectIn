@@ -8,6 +8,15 @@
   overflow-y: scroll;
   margin-bottom: 80px;
 }
+.jobAd {
+  font-size: larger;
+  font-weight: bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.Jobpostingform .checkbox {
+  margin-left: 8%;
+}
 
 .titleofpage {
   display: flex;

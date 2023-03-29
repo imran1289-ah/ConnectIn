@@ -25,7 +25,7 @@ const JobPosting = () => {
     try {
       if (userID) {
         setLogin({
-          isLoggedIn: true,
+          isLoggedIn: true
         });
       }
     } catch (error) {
@@ -33,6 +33,7 @@ const JobPosting = () => {
     }
   };
 
+  const [checked, setChecked] = useState(false);
   const [selects, setSelects] = useState();
 
   if (userID && (userRole === "Recruiter" || userRole === "Administrator")) {
@@ -52,13 +53,7 @@ const JobPosting = () => {
         <br />
         <br />
         <div className="description">
-          <TextField
-            id="job_description"
-            label="Job Description"
-            placeholder="Placeholder"
-            multiline
-            variant="outlined"
-          />
+          <TextField id="job_description" label="Job Description" placeholder="Placeholder" multiline variant="outlined" />
           <FaRegEdit />
         </div>
         <br />
@@ -70,20 +65,14 @@ const JobPosting = () => {
         <br />
         <br />
         <div className="location">
-          <TextField
-            id="location"
-            label="Location"
-            placeholder="Placeholder"
-            multiline
-            variant="outlined"
-          />
+          <TextField id="location" label="Location" placeholder="Placeholder" multiline variant="outlined" />
           <FaRegEdit />
         </div>
         <br />
         <br />
         <div className="selection">
           <div className="category">
-            <select id="category" onChange={(e) => setSelects(e.target.value)}>
+            <select id="category" onChange={e => setSelects(e.target.value)}>
               <option label="Category..."></option>
               <option value="Full-Time">Full-Time</option>
               <option value="Part-Time">Part-Time</option>
@@ -91,13 +80,32 @@ const JobPosting = () => {
             </select>
           </div>
           <div className="work_type">
-            <select id="work_type" onChange={(e) => setSelects(e.target.value)}>
+            <select id="work_type" onChange={e => setSelects(e.target.value)}>
               <option label="Worktype..."></option>
               <option value="onSite">On-Site</option>
               <option value="Remote">Remote</option>
               <option value="Hybrid">Hybrid</option>
             </select>
           </div>
+        </div>
+        <br />
+        <div className="checkbox">
+          <label>
+            <input
+              type="checkbox"
+              id="checkbox"
+              checked={checked}
+              value={checked}
+              onChange={() => {
+                setChecked(!checked);
+              }}
+            />
+            Advertise jobs to third party platform
+          </label>
+        </div>
+        <div className="jobAd">
+          <br />
+          {checked ? "Your job will be advertised on a third party platform!" : ""}
         </div>
         <br />
         <br />
@@ -109,9 +117,7 @@ const JobPosting = () => {
   } else {
     return (
       <div className="Jobpostingform">
-        <h1 style={{ textAlign: "center" }}>
-          You need to be a recruiter or an administrator to post jobs!
-        </h1>
+        <h1 style={{ textAlign: "center" }}>You need to be a recruiter or an administrator to post jobs!</h1>
       </div>
     );
   }
@@ -131,10 +137,9 @@ const createJob = async () => {
       category: document.getElementById("category").value,
       location: document.getElementById("location").value,
       work_type: document.getElementById("work_type").value,
+      thirdParty: document.getElementById("checkbox").value
     };
-    const response = await axios
-      .post(`http://localhost:9000/jobs/create`, jobData)
-      .then(swal("Job posting created successfully!"));
+    const response = await axios.post(`http://localhost:9000/jobs/create`, jobData).then(swal("Job posting created successfully!"));
     console.log(response.data);
   } catch (error) {
     console.log(error);

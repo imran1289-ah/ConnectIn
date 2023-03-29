@@ -15,6 +15,9 @@ import { useContext } from "react";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import MapsHomeWorkIcon from "@mui/icons-material/MapsHomeWork";
 import swal from "sweetalert";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const JobListing = () => {
   //Global loginState
@@ -109,113 +112,119 @@ const JobListing = () => {
   };
 
   return (
-    <div className="jobPosts_Container">
-      {userID ? (
-        <>
-          <div className="jobFilter">
-            <form>
-              <label>
-                Category:
-                <select name="category" onChange={e => setPreferences({ ...preferences, category: e.target.value })}>
-                  <option value="">Select a category</option>
-                  <option value="Full-Time">Full-Time</option>
-                  <option value="Part-Time">Part-Time</option>
-                  <option value="Internship">Internship</option>
-                </select>
-              </label>
-              <br />
-              <label>
-                Location:
-                <input type="text" name="location" value={preferences.location} onChange={e => setPreferences({ ...preferences, location: e.target.value })} placeholder="Enter a location" />
-              </label>
-              <br />
-              <label>
-                Work Type:
-                <select name="work_type" onChange={e => setPreferences({ ...preferences, work_type: e.target.value })}>
-                  <option value="">Select a work type</option>
-                  <option value="onSite">Onsite</option>
-                  <option value="Hybrid">Hybrid</option>
-                  <option value="Remote">Remote</option>
-                </select>
-              </label>
-              <br />
-              <button type="button" onClick={savePreferences}>
-                Save Preferences{" "}
-              </button>
-            </form>
-          </div>
-          <div data-testid="jobPostsContainer" className="jobPosts">
-            <div className="heading">
-              <b>Job Posts</b>
+    <Container>
+      <div className="jobPosts_Container">
+        {userID ? (
+          <>
+            <div className="jobFilter">
+              <form>
+                <label>
+                  Category:
+                  <select name="category" onChange={e => setPreferences({ ...preferences, category: e.target.value })}>
+                    <option value="">Select a category</option>
+                    <option value="Full-Time">Full-Time</option>
+                    <option value="Part-Time">Part-Time</option>
+                    <option value="Internship">Internship</option>
+                  </select>
+                </label>
+                <br />
+                <label>
+                  Location:
+                  <input type="text" name="location" value={preferences.location} onChange={e => setPreferences({ ...preferences, location: e.target.value })} placeholder="Enter a location" />
+                </label>
+                <br />
+                <label>
+                  Work Type:
+                  <select name="work_type" onChange={e => setPreferences({ ...preferences, work_type: e.target.value })}>
+                    <option value="">Select a work type</option>
+                    <option value="onSite">Onsite</option>
+                    <option value="Hybrid">Hybrid</option>
+                    <option value="Remote">Remote</option>
+                  </select>
+                </label>
+                <br />
+                <button type="button" onClick={savePreferences}>
+                  Save Preferences{" "}
+                </button>
+              </form>
             </div>
+            <div data-testid="jobPostsContainer" className="jobPosts">
+              <div className="heading">
+                <b>Job Posts</b>
+              </div>
 
-            <div class="jobs">
-              {jobs.map(job => (
-                <div key={job._id} className="jobPost">
-                  <div className="logo">
-                    <Avatar alt="Logo" src="./logo/logo.png" sx={{ width: 75, height: 75 }} />
-                  </div>
+              <div class="jobs">
+                {jobs.map(job => (
+                  <Row>
+                    <div key={job._id} className="jobPost">
+                      <Col>
+                        <div className="logo">
+                          <Avatar alt="Logo" src="./logo/logo.png" sx={{ width: 75, height: 75 }} />
+                        </div>
+                      </Col>
+                      <Col>
+                        <div className="jobContent">
+                          <h3 className="jobTitle">
+                            <b>{job.title}</b>
+                          </h3>
 
-                  <div className="jobContent">
-                    <h3 className="jobTitle">
-                      <b>{job.title}</b>
-                    </h3>
+                          <p>
+                            <BusinessIcon></BusinessIcon>
+                            {job.company}
+                          </p>
+                          <p>
+                            <PlaceIcon></PlaceIcon>
+                            {job.location}
+                          </p>
+                          <p>
+                            <MapsHomeWorkIcon></MapsHomeWorkIcon>
+                            {job.work_type}
+                          </p>
 
-                    <p>
-                      <BusinessIcon></BusinessIcon>
-                      {job.company}
-                    </p>
-                    <p>
-                      <PlaceIcon></PlaceIcon>
-                      {job.location}
-                    </p>
-                    <p>
-                      <MapsHomeWorkIcon></MapsHomeWorkIcon>
-                      {job.work_type}
-                    </p>
+                          <div className="Tags">
+                            <h3 className="jobCategory">
+                              <WorkIcon />
+                              {job.category}
+                            </h3>
+                          </div>
+                        </div>
+                      </Col>
+                      <Col>
+                        {jobsApplied.find(object => object.job_id == job.job_id) != undefined ? (
+                          <Alert className="AlertJobListing" severity="info" variant="outlined">
+                            <AlertTitle>You've already applied for this job.</AlertTitle>
+                          </Alert>
+                        ) : (
+                          <></>
+                        )}
+                        <Button className="selectButton" variant="contained" component="label">
+                          <Link className="jobListLink" to={`/jobs/${job.job_id}`} state={{ jobState: job }}>
+                            Apply
+                          </Link>
+                        </Button>
+                        {job.thirdParty == true ? (
+                          <Button className="linkButton" variant="contained" component="label">
+                            <Link className="jobListLink" to={{ pathname: "https://careers.ansys.com/job/Montreal-Software-Developer-II-Queb-H3A3G4/1001554800/?rx_c=international--tier-1&rx_campaign=indeed16&rx_ch=jobp4p&rx_group=160387&rx_job=11910&rx_r=none&rx_source=Indeed&rx_ts=20230327T200004Z&rx_vp=cpc" }}>
+                              Go To Job Website
+                            </Link>
+                          </Button>
+                        ) : (
+                          " "
+                        )}
+                      </Col>
 
-                    <div className="Tags">
-                      <h3 className="jobCategory">
-                        <WorkIcon />
-                        {job.category}
-                      </h3>
-                    </div>
-                    {job.thirdParty == true ? (
-                      <Button className="linkButton" variant="contained" component="label">
-                        <Link className="jobListLink" to={{ pathname: "https://careers.ansys.com/job/Montreal-Software-Developer-II-Queb-H3A3G4/1001554800/?rx_c=international--tier-1&rx_campaign=indeed16&rx_ch=jobp4p&rx_group=160387&rx_job=11910&rx_r=none&rx_source=Indeed&rx_ts=20230327T200004Z&rx_vp=cpc" }}>
-                          Go To Job Website
-                        </Link>
-                      </Button>
-                    ) : (
-                      " "
-                    )}
-
-                    <Button className="selectButton" variant="contained" component="label">
-                      <Link className="jobListLink" to={`/jobs/${job.job_id}`} state={{ jobState: job }}>
-                        Apply
-                      </Link>
-                    </Button>
-                  </div>
-
-                  {jobsApplied.find(object => object.job_id == job.job_id) != undefined ? (
-                    <Alert className="AlertJobListing" severity="info" variant="outlined">
-                      <AlertTitle>You've already applied for this job.</AlertTitle>
-                    </Alert>
-                  ) : (
-                    <></>
-                  )}
-
-                  {/* <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
+                      {/* <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
 <button class = "edit">Edit</button>
 </Link> */}
-                  {/* <button class = "delete" onClick={(e) => deletePost(`${job.job_id}`,e)}>Delete</button> */}
-                </div>
-              ))}
+                      {/* <button class = "delete" onClick={(e) => deletePost(`${job.job_id}`,e)}>Delete</button> */}
+                    </div>
+                  </Row>
+                ))}
+              </div>
             </div>
-          </div>
-        </>
-      ) : (
-        /* <div className="preferences">
+          </>
+        ) : (
+          /* <div className="preferences">
                     <b>Preferences</b>
                     <div className="preference"> Software</div>
                     <div className="preference"> Full-time</div>
@@ -223,15 +232,16 @@ const JobListing = () => {
                     <button> Change</button>  
                     
             </div> */
-        <div className="notLoggedInContent">
-          <h1>Please login to your account!</h1>
-          <p>It looks like you are not logged in.</p>
-          <Button onClick={navigateBackToSignIn} className="redirectSignIn" variant="contained" component="label">
-            <ArrowBack></ArrowBack> Back to Signin
-          </Button>
-        </div>
-      )}
-    </div>
+          <div className="notLoggedInContent">
+            <h1>Please login to your account!</h1>
+            <p>It looks like you are not logged in.</p>
+            <Button onClick={navigateBackToSignIn} className="redirectSignIn" variant="contained" component="label">
+              <ArrowBack></ArrowBack> Back to Signin
+            </Button>
+          </div>
+        )}
+      </div>
+    </Container>
   );
 };
 

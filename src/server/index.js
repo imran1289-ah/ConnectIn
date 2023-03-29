@@ -19,6 +19,9 @@ dotenv.config();
 //Session length
 const session_length = 1000 * 60 * 60;
 
+//Set proxy
+app.set("trust proxy", 1);
+
 
 
 //MongoDB seission store
@@ -35,7 +38,7 @@ app.use(
         cookie: {
             maxAge: session_length,
             sameSite: false,
-            secure: false,
+            secure: true,
         },
         resave: true,
         saveUninitialized: false,

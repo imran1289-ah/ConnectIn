@@ -189,7 +189,7 @@ const JobListing = () => {
                           </div>
                         </div>
                       </Col>
-                      <Col>
+                      <Col md={6}>
                         {jobsApplied.find(object => object.job_id == job.job_id) != undefined ? (
                           <Alert className="AlertJobListing" severity="info" variant="outlined">
                             <AlertTitle>You've already applied for this job.</AlertTitle>

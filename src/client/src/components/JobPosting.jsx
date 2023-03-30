@@ -121,20 +121,54 @@ export default JobPosting;
 
 const createJob = async () => {
   try {
+    const title = document.getElementById("job_title").value;
+    const company = document.getElementById("company_name").value;
+    const description = document.getElementById("job_description").value;
+    const salary = document.getElementById("salary").value;
+    const category = document.getElementById("category").value;
+    const location = document.getElementById("location").value;
+    const workType = document.getElementById("work_type").value;
+
+    if (
+      !title ||
+      !company ||
+      !description ||
+      !salary ||
+      isNaN(salary) || // check if salary is not a number
+      !category ||
+      !location ||
+      !workType
+    ) {
+      swal(
+        isNaN(salary)
+          ? "Please enter numbers in salary"
+          : "Please fill all required fields"
+      );
+      return;
+    }
+
     const jobData = {
-      job_id: Math.floor(Math.random() * 1000000), // generate a random job_id for testing
+      job_id: Math.floor(Math.random() * 1000000), // generate a random job_id
       recruiter_id: sessionStorage.getItem("userID"),
-      title: document.getElementById("job_title").value,
-      company: document.getElementById("company_name").value,
-      description: document.getElementById("job_description").value,
-      salary: document.getElementById("salary").value,
-      category: document.getElementById("category").value,
-      location: document.getElementById("location").value,
-      work_type: document.getElementById("work_type").value,
+      title,
+      company,
+      description,
+      salary,
+      category,
+      location,
+      work_type: workType,
     };
-    const response = await axios
-      .post(`http://localhost:9000/jobs/create`, jobData)
-      .then(swal("Job posting created successfully!"));
+
+    const response = await axios.post(
+      `http://localhost:9000/jobs/create`,
+      jobData
+    );
+    swal({
+      title: "Job posting created successfully!",
+      icon: "success",
+    }).then(() => {
+      window.location.href = "/jobs"; // Redirect to Jobs
+    });
     console.log(response.data);
   } catch (error) {
     console.log(error);

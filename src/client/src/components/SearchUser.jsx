@@ -101,6 +101,24 @@ const SearchUser = () => {
         //alert("Cannot connect");
       });
   };
+
+  const Friends = async (ownUserId, friendUserid, fname, lname) => {
+    // console.log(ownUserId)
+    // console.log(friendUserid)
+
+    axios
+      .post(`http://localhost:9000/users/searchfriendslist`, {
+          userID: ownUserId,
+          friendUserid: friendUserid,
+          firstname:fname,
+          lastname:lname,
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log("we f'd up");
+      });
+  };
+  
   return (
     // Display searched users
     <div>
@@ -120,12 +138,18 @@ const SearchUser = () => {
                 </div>
                 <br></br>
                 <div className="buttonSection">
-                  <button
+                {!Friends(userID, `${user._id}`,`${user.firstname}`, `${user.lastname}`) ? 
+                  (<button
                     className="searchConnectButton"
                     onClick={() => Clickme(`${user._id}`)}
                   >
                     Connect
-                  </button>
+                  </button>)
+                  : (<button
+                    className="searchConnectButton"
+                  >
+                    Already connected
+                  </button>)}
                 </div>
               </div>
             )

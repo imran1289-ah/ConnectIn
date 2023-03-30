@@ -138,7 +138,7 @@ const SearchUser = () => {
                 </div>
                 <br></br>
                 <div className="buttonSection">
-                {!Friends(userID, `${user._id}`,`${user.firstname}`, `${user.lastname}`) ? 
+                {Friends(userID, `${user._id}`,`${user.firstname}`, `${user.lastname}`) ? 
                   (<button
                     className="searchConnectButton"
                     onClick={() => Clickme(`${user._id}`)}

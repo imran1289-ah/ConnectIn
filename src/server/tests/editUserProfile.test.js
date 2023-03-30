@@ -47,7 +47,8 @@ describe("PATCH profile", function() {
                 workExp: ["QA"],
                 languages: ["English"],
                 education: ["McGill"],
-                volunteering: ["Grocery bagger"]
+                volunteering: ["Grocery bagger"],
+                role: "User"
             })
             .expect(200);
     });

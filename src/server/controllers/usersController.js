@@ -438,14 +438,21 @@ const savePreferences = async(req, res) => {
 
 const verifyConnections = async(req, res) => {
     const { ownUserID, friendUserid, firstname, lastname } = req.body;
+    // console.log(ownUserID);
+    // console.log(friendUserid);
+    // console.log(firstname);
+    // console.log(lastname);
     const user = User.findOne({ _id: ownUserID });
-    const friend=await user.findOne( {connections: {
+    const friend = await user.findOne( {connections: {
         firstname: firstname,
         lastname: lastname,
         userID: friendUserid,
     }}).then((friend) => {
         if (friend) {
             console.log("found user");
+                 console.log(firstname);
+                 console.log(lastname);
+            
             return res.status(200).json(true);
         } else {
             console.log("401 not found or error");

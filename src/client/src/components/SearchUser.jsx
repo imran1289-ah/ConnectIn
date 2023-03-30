@@ -102,20 +102,23 @@ const SearchUser = () => {
       });
   };
 
-  const Friends = async (ownUserId, friendUserid, fname, lname) => {
+  const Friends = async (friendUserid, fname, lname) => {
     // console.log(ownUserId)
     // console.log(friendUserid)
 
     axios
       .post(`http://localhost:9000/users/searchfriendslist`, {
-          userID: ownUserId,
+          ownUserID: sessionStorage.getItem("userID"),
           friendUserid: friendUserid,
           firstname:fname,
           lastname:lname,
+      }).then((response) => {
+        var friend = response.data;
+        console.log(response.data);
+        return friend;
       })
       .catch((error) => {
         console.log(error);
-        console.log("we f'd up");
       });
   };
   
@@ -138,19 +141,21 @@ const SearchUser = () => {
                 </div>
                 <br></br>
                 <div className="buttonSection">
-                {!Friends(userID, `${user._id}`,`${user.firstname}`, `${user.lastname}`) ? 
+                  {console.log(Friends(`${user._id}`,`${user.firstname}`, `${user.lastname}`))}
+                {Friends(`${user._id}`,`${user.firstname}`, `${user.lastname}`)===false ? 
+                
                   (<button
-                    className="searchConnectButton"
-                    onClick={() => Clickme(`${user._id}`)}
-                  >
-                    Connect
-                  </button>)
-                  : (<button
-                    className="searchConnectButton"
-                  >
-                    Already connected
-                  </button>)}
-                </div>
+                      className="searchConnectButton"
+                    >
+                      Already connected
+                    </button>) :
+                  (<button
+                      className="searchConnectButton"
+                      onClick={() => Clickme(`${user._id}`)}
+                    >
+                      Connect
+                    </button>)}
+                  </div>
               </div>
             )
           )}

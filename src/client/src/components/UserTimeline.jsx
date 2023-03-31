@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../UserSession";
 import axios from "axios";
-import "../css/userTimeline.css";
+import TimelineCSS from "../css/userTimeline.module.css";
 import { IconButton } from "@mui/material";
 import { TextField } from "@mui/material";
+import Navbar from "./Navbar";
+import LoginFooter from "./LoginFooter";
 import swal from "sweetalert";
 import { useNavigate, Link } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
@@ -125,11 +127,11 @@ const UserTimeline = () => {
   };
 
   const userPosts = posts.map((post) => (
-    <div className="userPostsTimeline">
-      <span className="subTitleTimeline">
+    <div className={TimelineCSS.userPostsTimeline}>
+      <span className={TimelineCSS.subTitleTimeline}>
         {post.firstname} {post.lastname}
       </span>
-      <p className="postText">{post.description}</p>
+      <p className={TimelineCSS.postText}>{post.description}</p>
     </div>
   ));
 
@@ -139,12 +141,13 @@ const UserTimeline = () => {
   });
 
   return (
-    <div>
+    <div className={TimelineCSS.body}>
+      <Navbar /> 
       {userID && login ? (
-        <div className="userTimelineContainer">
+        <div className={TimelineCSS.userTimelineContainer}>
           {/* User Information Component */}
-          <div className="leftTimeline">
-            <div className="userContainerTimeline">
+          <div className={TimelineCSS.leftTimeline}>
+            <div className={TimelineCSS.userContainerTimeline}>
               <img
                 src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
                 alt="default pic"
@@ -157,12 +160,12 @@ const UserTimeline = () => {
               ></img>
             </div>
 
-            <span className="userNameTimeline">
+            <span className={TimelineCSS.userNameTimeline}>
               {sessionStorage.getItem("firstname")}{" "}
               {sessionStorage.getItem("lastname")}
             </span>
             <br></br>
-            <span className="userNameTimeline">
+            <span className={TimelineCSS.userNameTimeline}>
               <IconButton>
                 <NotificationsNoneIcon></NotificationsNoneIcon>
               </IconButton>
@@ -170,18 +173,18 @@ const UserTimeline = () => {
           </div>
 
           {/* User posts section*/}
-          <div className="middleTimeline">
+          <div className={TimelineCSS.middleTimeline}>
             {/* Create a post section*/}
             <br></br>
             <div style={{ fontWeight: "bold", textAlign: "center" }}>
               Welcome to your timeline{" "}
             </div>
-            <div className="userInformationTimeline">
+            <div className={TimelineCSS.writePost}>
               <TextField
                 id="outlined-basic"
                 label="Start A Post"
                 variant="standard"
-                className="postTextField"
+                className={TimelineCSS.postTextField}
                 value={postData.description}
                 onChange={(e) =>
                   setpostData({ ...postData, description: e.target.value })
@@ -192,7 +195,7 @@ const UserTimeline = () => {
                 <SendIcon onClick={savePost} fontSize="small"></SendIcon>
               </IconButton>
               <div
-                className="timestamp"
+                className={TimelineCSS.timestamp}
                 value={Date.now()}
                 onChange={(e) =>
                   setpostData({ ...postData, timestamp: e.target.value })
@@ -203,27 +206,26 @@ const UserTimeline = () => {
               onChange={e => setpostData({...postData, attachment: e.target.files[0]})}/> */}
             </div>
             {/* user's post in their timeline*/}
-            <div>
+
               {/* each div is a single post*/}
 
-              {allSortedPosts}
-            </div>
+            {allSortedPosts}
           </div>
-          <div className="right">
-            <span className="subTitle">Contacts</span>
+          <div className={TimelineCSS.contacts}>
+            <span className={TimelineCSS.subTitle}>Contacts</span>
             <br></br>
             <div>
               {userConnections && userConnections.connections.length > 0 ? (
                 userConnections.connections.map((connection) => {
                   return (
-                    <l1 className="connectionsInfo">
+                    <l1 className={TimelineCSS.connectionsInfo}>
                       <img
                         src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
                         alt="comapnyPic"
-                        className="companyPic"
+                        className={TimelineCSS.companyPic}
                       ></img>
                       <div>
-                        <span className="connectionName">
+                        <span className={TimelineCSS.connectionName}>
                           <Link
                             to={`/users/search/${connection.userID}`}
                             style={{ textDecoration: "none", color: "black" }}
@@ -236,7 +238,7 @@ const UserTimeline = () => {
                   );
                 })
               ) : (
-                <p className="userBio">You do not have any connection</p>
+                <p className={TimelineCSS.userBio}>You do not have any connection</p>
               )}
             </div>
           </div>
@@ -244,6 +246,7 @@ const UserTimeline = () => {
       ) : (
         <h1 style={{ textAlign: "center" }}>Please login to your account</h1>
       )}
+      <LoginFooter />
     </div>
   );
 };

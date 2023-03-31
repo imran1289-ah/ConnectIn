@@ -132,7 +132,7 @@ function App() {
             path="/userTimeline"
             element={
               <>
-                <Navbar /> <UserTimeline /> <SignupFooter />
+                <UserTimeline />
               </>
             }
           ></Route>

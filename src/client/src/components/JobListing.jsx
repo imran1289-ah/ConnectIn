@@ -204,8 +204,8 @@ const JobListing = () => {
                         </Button>
                         {job.thirdParty == true && job.jobLink != null ? (
                           <Button className="linkButton" variant="contained" component="label">
-                            <Link className="jobListLink" to={{ pathname: job.jobLink }}>
-                              Go To Job Website
+                            <Link className="jobListLink" to={{ pathname: job.jobLink }} target="_blank">
+                              Apply on company site
                             </Link>
                           </Button>
                         ) : (

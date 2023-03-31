@@ -202,9 +202,9 @@ const JobListing = () => {
                             Apply
                           </Link>
                         </Button>
-                        {job.thirdParty == true ? (
+                        {job.thirdParty == true && job.jobLink != null ? (
                           <Button className="linkButton" variant="contained" component="label">
-                            <Link className="jobListLink" to={{ pathname: "https://careers.ansys.com/job/Montreal-Software-Developer-II-Queb-H3A3G4/1001554800/?rx_c=international--tier-1&rx_campaign=indeed16&rx_ch=jobp4p&rx_group=160387&rx_job=11910&rx_r=none&rx_source=Indeed&rx_ts=20230327T200004Z&rx_vp=cpc" }}>
+                            <Link className="jobListLink" to={{ pathname: job.jobLink }}>
                               Go To Job Website
                             </Link>
                           </Button>

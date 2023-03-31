@@ -34,7 +34,30 @@ const JobPosting = () => {
   };
 
   const [checked, setChecked] = useState(false);
+  const [link, setLink] = useState();
   const [selects, setSelects] = useState();
+
+  const createJob = async () => {
+    try {
+      const jobData = {
+        job_id: Math.floor(Math.random() * 1000000), // generate a random job_id for testing
+        recruiter_id: sessionStorage.getItem("userID"),
+        title: document.getElementById("job_title").value,
+        company: document.getElementById("company_name").value,
+        description: document.getElementById("job_description").value,
+        salary: document.getElementById("salary").value,
+        category: document.getElementById("category").value,
+        location: document.getElementById("location").value,
+        work_type: document.getElementById("work_type").value,
+        thirdParty: document.getElementById("checkbox").value,
+        jobLink: link
+      };
+      const response = await axios.post(`http://localhost:9000/jobs/create`, jobData).then(swal("Job posting created successfully!"));
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (userID && (userRole === "Recruiter" || userRole === "Administrator")) {
     return (
@@ -68,6 +91,12 @@ const JobPosting = () => {
           <TextField id="location" label="Location" placeholder="Placeholder" multiline variant="outlined" />
           <FaRegEdit />
         </div>
+        {/* <br />
+        <br />
+        <div className="jobLink">
+          <TextField id="job_link" label="Job Link" variant="outlined" onChange={e => setLink(e.target.value)} />
+          <FaRegEdit />
+        </div> */}
         <br />
         <br />
         <div className="selection">
@@ -105,6 +134,15 @@ const JobPosting = () => {
         </div>
         <div className="jobAd">
           <br />
+          {checked ? (
+            <div className="jobLink">
+              <TextField id="job_link" label="Job Link" variant="outlined" onChange={e => setLink(e.target.value)} />
+              <FaRegEdit />
+            </div>
+          ) : (
+            ""
+          )}
+          {checked ? <br /> : ""}
           {checked ? "Your job will be advertised on a third party platform!" : ""}
         </div>
         <br />
@@ -124,27 +162,6 @@ const JobPosting = () => {
 };
 
 export default JobPosting;
-
-const createJob = async () => {
-  try {
-    const jobData = {
-      job_id: Math.floor(Math.random() * 1000000), // generate a random job_id for testing
-      recruiter_id: sessionStorage.getItem("userID"),
-      title: document.getElementById("job_title").value,
-      company: document.getElementById("company_name").value,
-      description: document.getElementById("job_description").value,
-      salary: document.getElementById("salary").value,
-      category: document.getElementById("category").value,
-      location: document.getElementById("location").value,
-      work_type: document.getElementById("work_type").value,
-      thirdParty: document.getElementById("checkbox").value
-    };
-    const response = await axios.post(`http://localhost:9000/jobs/create`, jobData).then(swal("Job posting created successfully!"));
-    console.log(response.data);
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 const getJobs = async () => {
   try {

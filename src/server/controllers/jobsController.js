@@ -46,7 +46,7 @@ const getJobDetails = async (req, res) => {
 
 const createJob = async (req, res) => {
   try {
-    const { job_id, recruiter_id, description, salary, company, category, title, location, work_type, thirdParty } = req.body;
+    const { job_id, recruiter_id, description, salary, company, category, title, location, work_type, thirdParty, jobLink } = req.body;
     const newJob = new Job({
       job_id,
       recruiter_id,
@@ -57,7 +57,8 @@ const createJob = async (req, res) => {
       title,
       location,
       work_type,
-      thirdParty
+      thirdParty,
+      jobLink
     });
     const savedJob = await newJob.save();
     res.status(200).json(savedJob);

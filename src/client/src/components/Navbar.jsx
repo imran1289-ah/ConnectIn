@@ -23,6 +23,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [login, setLogin] = useContext(Context);
   const { t, i18n } = useTranslation();
+  const userRole = sessionStorage.getItem("role");
 
   const HandleSearch = () => {
     console.log(query);
@@ -172,7 +173,7 @@ const Navbar = () => {
                   </Typography>
                 </Box>
               </IconButton>
-
+            {userRole === 'Recruiter' || userRole === 'Administrator' ? (
               <IconButton color="inherit" onClick={redirectReceivedApplications}>
                 <Box className="parentUserIconContainer">
                   <Typography className="userIconContainer">
@@ -189,8 +190,9 @@ const Navbar = () => {
                     </Typography>
                   </Typography>
                 </Box>
-              </IconButton>
-
+              </IconButton>) : (<></>)
+        }
+             {userRole === 'Recruiter' || userRole === 'Administrator' ? (
               <IconButton color="inherit" onClick={redirectJobPosting}>
                 <Box className="parentUserIconContainer">
                   <Typography className="userIconContainer">
@@ -207,7 +209,8 @@ const Navbar = () => {
                     </Typography>
                   </Typography>
                 </Box>
-              </IconButton>
+              </IconButton>) : (<></>)
+              }
 
               <IconButton color="inherit" onClick={redirectMessages}>
                 <Box className="parentUserIconContainer">

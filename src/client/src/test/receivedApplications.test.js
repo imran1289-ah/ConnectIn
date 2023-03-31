@@ -1,3 +1,8 @@
+import React from "react";
+import ReceivedApplications from "../components/receivedApplicationsForRecruiters";
+import { screen, render } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
+import "@testing-library/jest-dom";
 import UserSession from "../UserSession";
 beforeAll(() => {
     sessionStorage.setItem("userID", '6410a8bd165eca75f68ba375');

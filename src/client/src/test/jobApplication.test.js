@@ -12,20 +12,6 @@ beforeAll(() => {
     sessionStorage.setItem("role", 'User');
   })
 
-
-//  const jobState=  {
-//     "_id": "641b3aaef44663964076dec6",
-//     "job_id": 640681,
-//     "recruiter_id": "641b3966f44663964076dec0",
-//     "description": "aa",
-//     "salary": 21,
-//     "company": "aaa",
-//     "category": "Full-Time",
-//     "title": "aa",
-//     "location": "aa",
-//     "work_type": "onSite",
-//     "__v": 0
-// }
 test("jobApplication page renders properly", ()=>{
     render(<UserSession>
             <MemoryRouter initialEntries={['/jobs/54321']}>

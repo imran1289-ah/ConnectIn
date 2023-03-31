@@ -1,12 +1,21 @@
 import React from "react";
 import axios from "axios";
-import "../css/viewJobsApplied.css"
+import "../css/viewJobsApplied.css";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import { Alert, AlertTitle } from "@mui/material";
+import WorkIcon from "@mui/icons-material/Work";
+import PlaceIcon from "@mui/icons-material/Place";
+import BusinessIcon from "@mui/icons-material/Business";
 import { Context } from "../UserSession";
 import { useContext } from "react";
 import ArrowBack from "@mui/icons-material/ArrowBack";
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
+import Container from "react-bootstrap/Container";
 import { useTranslation } from "react-i18next";
 
 const ViewJobsApplied = () => {
@@ -55,49 +64,70 @@ const ViewJobsApplied = () => {
   const { t, i18n } = useTranslation();
 
   return (
-    <div data-testid="jobsApplied-test"className="viewjobsApplied">
+    <div className="jobsApplied">
       {userID ? (
-
-        
-      
-      <div>
-        <table class="table">
-            <thead>
-              <tr>
-                <th>Job ID</th>
-                <th>Job Title</th>
-                <th>Job Company</th>
-                <th>Job Location</th>
-                <th>Job Category</th>
-                <th>Job Work Type</th>
-              </tr>
-            </thead>
-    <tbody>
-
-      <tr>
-      {jobsApplied.map(job =>{
         <div>
-      
-      
-        
-            <td data-label="Job ID">{job.job_id}</td>
-            <td data-label="Job Title">{job.title}</td>
-            <td data-label="Job Company">{job.company}</td>
-            <td data-label="Job Location">{job.job_id}</td>
-            <td data-label="Job Category">{job.job_id}</td>
-            <td data-label="Job Worktype">{job.job_id}</td>
-        
-        </div>
-      
+          <div className="heading">
+            <h1>{t("Jobs Applied Summary")}</h1>
+          </div>
 
-      })}
-      </tr>
-     </tbody>
-   </table>
-          
-          
-</div>
-        
+          <Table>
+            <div class="jobs">
+              <Thead>
+                <Tr>
+                  <Th> {""} </Th>
+                  <Th>{t("Job ID")}</Th>
+                  <Th>{t("Title")}</Th>
+                  <Th>{t("Company")}</Th>
+                  <Th>{t("Location")}</Th>
+                  <Th>{t("Category")}</Th>
+                </Tr>
+              </Thead>
+              {jobsApplied.map(job => (
+                <div key={job.job_id} className="jobPost">
+                  <Tbody>
+                    <Tr>
+                      <div className="jobContent">
+                        <Th>
+                          <div className="logo">
+                            <Avatar alt="Logo" src="./logo/logo.png" sx={{ width: 75, height: 75 }} />
+                          </div>
+                        </Th>
+                        <Th>{job.job_id}</Th>
+
+                        <Th>
+                          {" "}
+                          <h3 className="jobTitle">{job.title}</h3>
+                        </Th>
+                        <Th>
+                          {" "}
+                          <p>
+                            <BusinessIcon></BusinessIcon>
+                            {job.company}
+                          </p>
+                        </Th>
+                        <Th>
+                          <p>
+                            <PlaceIcon></PlaceIcon>
+                            {job.location}
+                          </p>
+                        </Th>
+                        <Th>
+                          <div className="Tags">
+                            {/* <h3 className="jobCategory"> */}
+                              {/* <WorkIcon /> */}
+                              {job.category}
+                            {/* </h3> */}
+                          </div>
+                        </Th>
+                      </div>
+                    </Tr>
+                  </Tbody>
+                </div>
+              ))}
+            </div>
+          </Table>
+        </div>
       ) : (
         <div className="notLoggedInContent">
           <h1>Please login to your account!</h1>

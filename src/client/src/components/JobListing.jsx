@@ -159,7 +159,7 @@ const JobListing = () =>{
                             <b>Job Posts</b>
                         </div>
 
-                        <div className="jobs">
+                        <div class="jobs">
                             {jobs.map(job => (
 
                                 <div key={job._id} className="jobPost">

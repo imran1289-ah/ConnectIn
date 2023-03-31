@@ -93,7 +93,7 @@ const styles = {
   };
   
   return (
-    <div>
+    <div data-testid="receivedApplications-test">
       {userID && (userRole === "Recruiter" || userRole === "Administrator") ? (
         <div className="jobsApplied">
         <div>

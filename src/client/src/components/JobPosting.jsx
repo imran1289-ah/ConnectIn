@@ -177,17 +177,6 @@ const createJob = async () => {
       window.location.href = "/jobs"; // Redirect to Jobs
     });
 
-      title: document.getElementById("job_title").value,
-      company: document.getElementById("company_name").value,
-      description: document.getElementById("job_description").value,
-      salary: document.getElementById("salary").value,
-      category: document.getElementById("category").value,
-      location: document.getElementById("location").value,
-      work_type: document.getElementById("work_type").value,
-      thirdParty: document.getElementById("checkbox").value
-    };
-    const response = await axios.post(`http://localhost:9000/jobs/create`, jobData).then(swal("Job posting created successfully!"));
-
     console.log(response.data);
   } catch (error) {
     console.log(error);

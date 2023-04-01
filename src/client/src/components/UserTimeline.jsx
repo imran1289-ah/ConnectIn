@@ -9,6 +9,9 @@ import { useNavigate, Link } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { useTranslation } from "react-i18next";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UserTimeline = () => {
   //Global state
@@ -18,6 +21,7 @@ const UserTimeline = () => {
   const userID = sessionStorage.getItem("userID");
 
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   //user connection state
   const [userConnections, setUserConnections] = useState({
@@ -46,6 +50,24 @@ const UserTimeline = () => {
     }
   };
 
+  const [job, setJob] = useState();
+
+  const fetchNotificationForRecentJob = async () =>{
+    try {
+      if (userID) {
+        const notificationInfo = await axios.get(`http://localhost:9000/users/notifications/${userID}`);
+        
+        setJob(notificationInfo.data.latestJob)
+        console.log(job)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    
+  
+  }
+
+
   //fetch session once
   useEffect(() => {
     fetchSession();
@@ -53,6 +75,7 @@ const UserTimeline = () => {
     fetchConnections();
     //fetchConnectionPosts();
     fetchPosts();
+    fetchNotificationForRecentJob();
   }, []);
 
   //Fetch session information
@@ -91,10 +114,15 @@ const UserTimeline = () => {
       })
       .then((response) => {
         console.log(response.data);
-        swal("Congrats!", "You have successfully created a post!", "success", {
-          button: false,
-          timer: 1000,
-        });
+        swal(
+          t("Congrats!"),
+          t("You have successfully created a post!"),
+          "success",
+          {
+            button: false,
+            timer: 1000,
+          }
+        );
         navigate("/userTimeline");
       })
       .then((response) => {
@@ -162,10 +190,12 @@ const UserTimeline = () => {
       if (willDelete) {
         console.log(userID, connectionUserID);
         axios
-          .delete(`http://localhost:9000/rooms/deleteRoom/${userID}/${connectionUserID}`)
-          .catch((err) =>{
+          .delete(
+            `http://localhost:9000/rooms/deleteRoom/${userID}/${connectionUserID}`
+          )
+          .catch((err) => {
             console.log(err);
-          })
+          });
         axios
           .delete(
             `http://localhost:9000/users/removeConnection/${userID}/connections/${connectionUserID}`
@@ -185,12 +215,12 @@ const UserTimeline = () => {
           .catch((error) => {
             console.log(error);
           });
-          
       } else {
         swal(`${connectionFirstName} ${connectionLastName} was not removed`);
       }
     });
   };
+  const notify = () => toast(t('New Job Alert Posted: ') + job.title);
 
   return (
     <div>
@@ -217,8 +247,9 @@ const UserTimeline = () => {
             </span>
             <br></br>
             <span className="userNameTimeline">
-              <IconButton>
+              <IconButton onClick={notify}>
                 <NotificationsNoneIcon></NotificationsNoneIcon>
+                <ToastContainer />
               </IconButton>
             </span>
           </div>
@@ -228,12 +259,12 @@ const UserTimeline = () => {
             {/* Create a post section*/}
             <br></br>
             <div style={{ fontWeight: "bold", textAlign: "center" }}>
-              Welcome to your timeline{" "}
+              {t("Welcome to your timeline")}{" "}
             </div>
             <div className="userInformationTimeline">
               <TextField
                 id="outlined-basic"
-                label="Start A Post"
+                label={t("Start A Post")}
                 variant="standard"
                 className="postTextField"
                 value={postData.description}
@@ -301,13 +332,15 @@ const UserTimeline = () => {
                   );
                 })
               ) : (
-                <p className="userBio">You do not have any connection</p>
+                <p className="userBio">{t("You do not have any connection")}</p>
               )}
             </div>
           </div>
         </div>
       ) : (
-        <h1 style={{ textAlign: "center" }}>Please login to your account</h1>
+        <h1 style={{ textAlign: "center" }}>
+          {t("Please login to your account")}
+        </h1>
       )}
     </div>
   );

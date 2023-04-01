@@ -35,17 +35,6 @@ const getAllJobsWithFilter = async (req, res) => {
   }
 };
 
-const getJobsByRecruiter = async (req, res) => {
-  try {
-    const recruiterId = req.params.recruiter_id;
-    const jobs = await Job.find({ recruiter_id: recruiterId });
-    res.status(200).json(jobs);
-  } catch (err) {
-    res.status(500).json({ message: "Unable to retrieve jobs for this recruiter." });
-    console.log(err);
-  }
-};
-
 const getJobDetails = async (req, res) => {
   try {
     const job = await Job.findOne({ job_id: req.params.jobId });
@@ -81,7 +70,7 @@ const createJob = async (req, res) => {
 
 const deleteJob = async (req, res) => {
   try {
-    const jobId = req.params.jobId;
+    const jobId = req.body.jobId;
     await Job.find({ job_id: jobId }).remove().exec();
     res.status(200).json({ message: `Successfully removed job id ${jobId}` });
   } catch (error) {
@@ -127,6 +116,5 @@ module.exports = {
   getJobDetails,
   updateJobData,
   createJob,
-  deleteJob,
-  getJobsByRecruiter
+  deleteJob
 };

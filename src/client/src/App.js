@@ -23,7 +23,6 @@ import UserTimeline from "./components/UserTimeline";
 import UserSession from "./UserSession";
 
 import io from "socket.io-client";
-import JobList from "./components/JobList";
 
 function App() {
   //const socket = io.connect("http://localhost:9000");
@@ -62,14 +61,6 @@ function App() {
             element={
               <>
                 <Navbar /> <UserProfile /> <LoginFooter />
-              </>
-            }
-          ></Route>
-          <Route
-            path="/JobList"
-            element={
-              <>
-                <Navbar /> <JobList /> <LoginFooter />
               </>
             }
           ></Route>
@@ -158,7 +149,7 @@ function App() {
             path="/receivedApplications"
             element={
               <>
-                <Navbar /> <ReceivedApplications /> <SignupFooter />
+                <Navbar /> <ReceivedApplications/> <SignupFooter />
               </>
             }
           ></Route>

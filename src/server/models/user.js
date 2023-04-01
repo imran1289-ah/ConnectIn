@@ -48,16 +48,9 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     preferences: {
-        category: {
-            type: String,
-            required:true
-        },
-        location: {
-            type: String, required:true
-        },
-        work_type: {
-            type: String, required:true
-        }
+        category: String,
+        location: String,
+        work_type: String
     },
 });
 

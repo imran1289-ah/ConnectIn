@@ -24,13 +24,13 @@ const createUser = asyncHandler(async(req, res) => {
     // Hashing passwords to encrypt user data
     const saltRounds = 10;
     const hashPwd = await bcrypt.hash(password, saltRounds);
-    const userDocument = { firstname, lastname, email, password: hashPwd, role, preferences: {category:" ", location:" ", work_type:" "} };
+    const userDocument = { firstname, lastname, email, password: hashPwd, role };
     const newUser = await User.create(userDocument);
 
     if (newUser) {
         res
             .status(201)
-            .json({ message: "User successfully created!", id: newUser._id});
+            .json({ message: "User successfully created!", id: newUser._id });
     } else {
         res.status(400).json({ message: "User unsuccessfully created." });
     }

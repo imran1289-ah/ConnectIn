@@ -10,8 +10,6 @@ import SendIcon from "@mui/icons-material/Send";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useTranslation } from "react-i18next";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const UserTimeline = () => {
   //Global state
@@ -50,24 +48,6 @@ const UserTimeline = () => {
     }
   };
 
-  const [job, setJob] = useState();
-
-  const fetchNotificationForRecentJob = async () =>{
-    try {
-      if (userID) {
-        const notificationInfo = await axios.get(`http://localhost:9000/users/notifications/${userID}`);
-        
-        setJob(notificationInfo.data.latestJob)
-        console.log(job)
-      }
-    } catch (error) {
-      console.log(error);
-    }
-    
-  
-  }
-
-
   //fetch session once
   useEffect(() => {
     fetchSession();
@@ -75,7 +55,6 @@ const UserTimeline = () => {
     fetchConnections();
     //fetchConnectionPosts();
     fetchPosts();
-    fetchNotificationForRecentJob();
   }, []);
 
   //Fetch session information
@@ -220,7 +199,6 @@ const UserTimeline = () => {
       }
     });
   };
-  const notify = () => toast(t('New Job Alert Posted: ') + job.title);
 
   return (
     <div>
@@ -247,9 +225,8 @@ const UserTimeline = () => {
             </span>
             <br></br>
             <span className="userNameTimeline">
-              <IconButton onClick={notify}>
+              <IconButton>
                 <NotificationsNoneIcon></NotificationsNoneIcon>
-                <ToastContainer />
               </IconButton>
             </span>
           </div>

@@ -5,6 +5,7 @@ import Modal from '@mui/material/Modal';
 import { Select, MenuItem, FormControl, Button } from "@mui/material";
 import axios from "axios";
 import swal from "sweetalert";
+import { useTranslation } from "react-i18next";
 
 const style = {
   position: 'absolute',
@@ -19,6 +20,8 @@ const style = {
 };
 
 export default function BasicModal({ sender, receiver, open, onClose, message, callbackModal }) {
+
+  const { t, i18n } = useTranslation();
 
   const [reportData, setReportData] = useState({
     sender: sender,
@@ -47,7 +50,7 @@ export default function BasicModal({ sender, receiver, open, onClose, message, c
       })
       .then((response) => {
         console.log(response.data);
-        swal("Success!","Successfully Submitted a Report!","success",{
+        swal(t("Success!"),t("Successfully Submitted a Report!"),"success",{
           button:false,
           timer:2000
         });
@@ -55,7 +58,7 @@ export default function BasicModal({ sender, receiver, open, onClose, message, c
       })
       .catch((error) => {
         console.log(error);
-        swal("Failed!","Failed to Submit a Report!","error",{
+        swal(t("Failed!"),t("Failed to Submit a Report!"),"error",{
           button:false,
           timer:2000
         });
@@ -71,23 +74,23 @@ export default function BasicModal({ sender, receiver, open, onClose, message, c
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Chat Report
+            {t("Chat Report")}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            You're about to report this user for saying: {message}
+            {t("You're about to report this user for saying:")} {message}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            What's wrong with this message?
+            {t("What's wrong with this message?")}
           </Typography>
           <FormControl fullWidth sx={{paddingTop: "10px", marginBottom: "20px"}}>
             <Select data-testid="select" onChange={(selected) => setReportData({...reportData, justification: selected.target.value})}>
-              <MenuItem value="Hate Speech">Hate Speech</MenuItem>
-              <MenuItem value="Scam/Fraud">Scam or Fraud</MenuItem>
-              <MenuItem value="Bullying/Harassment">Bullying or Harrasment</MenuItem>
-              <MenuItem value="Spam">Spam</MenuItem>
+              <MenuItem value="Hate Speech">{t("Hate Speech")}</MenuItem>
+              <MenuItem value="Scam/Fraud">{t("Scam or Fraud")}</MenuItem>
+              <MenuItem value="Bullying/Harassment">{t("Bullying or Harrassment")}</MenuItem>
+              <MenuItem value="Spam">{t("Spam")}</MenuItem>
             </Select>
           </FormControl>
-          <Button onClick={handleSendReport} variant="contained" fullWidth color="error">Send Report</Button>
+          <Button onClick={handleSendReport} variant="contained" fullWidth color="error">{t("Send Report")}</Button>
         </Box>
       </Modal>
   );

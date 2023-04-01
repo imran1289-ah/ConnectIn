@@ -95,7 +95,7 @@ const Chat = () => {
         <hr className={ChatCSS.line} /> 
         {/* <div className={ChatCSS.chat_container}> */}
         {currentChat === undefined ? (
-          <div className={ContactCSS.selectHeader}>Select a chat</div>
+          <div className={ContactCSS.selectHeader}>{t("Select a chat")}</div>
         ) : (
           <ChatContainer currentChat={currentChat} room={room} socket={socket}/>
         )}

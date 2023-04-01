@@ -3,12 +3,15 @@ import axios from "axios";
 import { Context } from "../UserSession";
 import "../css/dmReports.css";
 import swal from "sweetalert";
+import { useTranslation } from "react-i18next";
+
 
 const DMReport = () => {
 
   const [reports, setReports] = useState([]);
   const userID = sessionStorage.getItem("userID");
   const [login, setLogin] = useContext(Context);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     fetchReports();
@@ -42,7 +45,7 @@ const DMReport = () => {
     })
     .then(response => {
       console.log(response.data);
-      swal("Congrats!", "You have successfully resolved a report!", "success", {
+      swal(t("Congrats!"), t("You have successfully resolved the report!"), "success", {
         button: false,
         timer: 1000,
       })
@@ -54,7 +57,10 @@ const DMReport = () => {
     })
     .catch(err => {
       console.log(err);
-      alert("Failed report removal");
+      swal(t("Error"), t("Failed to resolve the report"), "error", {
+        button: false,
+        timer: 1000,
+      })
     })
   }
 
@@ -62,18 +68,18 @@ const DMReport = () => {
     <div>
       <div className="dm-reports-container">
         <div className="heading">
-          <b>DM Reports</b>
+          <b>{t("DM Reports")}</b>
         </div>
         <div className="dm-reports">
         {reports.map(report => (
           <div key={report._id} className="report">
-            <p><span style={{fontWeight: "bold"}}>Sender: </span>{report.sender}</p>
-            <p><span style={{fontWeight: "bold"}}>Receiver: </span>{report.receiver}</p>
-            <p><span style={{fontWeight: "bold"}}>Message: </span>{report.reportedDM}</p>
-            <p><span style={{fontWeight: "bold"}}>Justification: </span>{report.justification}</p>
+            <p><span style={{fontWeight: "bold"}}>{t("Sender")}: </span>{report.sender}</p>
+            <p><span style={{fontWeight: "bold"}}>{t("Receiver")}: </span>{report.receiver}</p>
+            <p><span style={{fontWeight: "bold"}}>{t("Message")}: </span>{report.reportedDM}</p>
+            <p><span style={{fontWeight: "bold"}}>{t("Justification")}: </span>{report.justification}</p>
             <div className="report-button-bundle">
-              <button className="report-button-accept" type="button">Accept</button>
-              <button className="report-button-reject" onClick={() => deleteReport(`${report._id}`)}>Reject</button>
+              <button className="report-button-accept" type="button">{t("Accept")}</button>
+              <button className="report-button-reject" onClick={() => deleteReport(`${report._id}`)}>{t("Reject")}</button>
             </div>
           </div>
         ))}

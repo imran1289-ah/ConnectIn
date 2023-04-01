@@ -103,6 +103,7 @@ i18next.use(initReactI18next).init({
         "Category":"Category",
         "Already connected":"Already connected",
         "Connect":"Connect",
+        "You are already connected":"You are already connected",
       },
     },
     fr: {
@@ -211,6 +212,7 @@ i18next.use(initReactI18next).init({
         "Category":"Catégorie",
         "Already connected":"Déjà connecté",
         "Connect":"Connecter",
+        "You are already connected":"Vous êtes déjà connecté"
       },
     },
   },

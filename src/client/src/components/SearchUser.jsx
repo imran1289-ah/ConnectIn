@@ -117,6 +117,18 @@ const SearchUser = () => {
       }).then((response) => {
         var friend = response.data;
         //console.log(response.data);
+        if(friend){ swal(
+          t("Congrats!"),
+          t("You are already connected"),
+          "error",
+          {
+            button: false,
+            timer: 1000,
+          }
+        );}
+        else{Clickme(`${friendUserid}`)}
+
+
         resolve(friend);
       })
       .catch((error) => {
@@ -146,37 +158,12 @@ const SearchUser = () => {
                 </div>
                 <br></br>
                 <div className="buttonSection">
-                {/* {(async () => {
-                  let friend = await Friends(`${user._id}`,`${user.firstname}`, `${user.lastname}`);
-
-                  if (friend === true) {
-                    return (<button
-                    className="searchConnectButton"
-                  >
-                    Already connected
-                  </button>)}
-                  else{
-                    return (<button
+                    <button
                       className="searchConnectButton"
-                      onClick={() => Clickme(`${user._id}`)}
-                    >
-                      Connect
-                    </button>)
-                  }
-
-                })} */}
-                {((Friends(`${user._id}`,`${user.firstname}`, `${user.lastname}`).then(console.log))== "true"? 
-                  (<button
-                      className="searchConnectButton"
-                    >
-                      {t("Already connected")}
-                    </button>) :
-                  (<button
-                      className="searchConnectButton"
-                      onClick={() => Clickme(`${user._id}`)}
+                      onClick={() => Friends(`${user._id}`,`${user.firstname}`, `${user.lastname}`)}
                     >
                       {t("Connect")}
-                    </button>))}
+                    </button>
                   </div>
               </div>
             )

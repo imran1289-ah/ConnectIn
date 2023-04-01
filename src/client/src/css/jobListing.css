@@ -72,6 +72,17 @@
   float: right;
 }
 
+.jobPosts .jobs .jobPost .YetAppliedJobs {
+  border-radius: 10px;
+  width: 55%;
+  border: 1px solid #19718d;
+  margin: 10px;
+  color: #19718d;
+  height: 40px;
+  border: 1px #19718d solid;
+  float: right;
+}
+
 .jobPosts .jobs .jobPost .AlertJobListing ::-webkit-scrollbar {
   display: none;
 }

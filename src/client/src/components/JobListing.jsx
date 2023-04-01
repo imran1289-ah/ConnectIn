@@ -191,11 +191,13 @@ const JobListing = () => {
                       </Col>
                       <Col md={6}>
                         {jobsApplied.find(object => object.job_id == job.job_id) != undefined ? (
-                          <Alert className="AlertJobListing" severity="info" variant="outlined">
+                          <Alert className="AlertJobListing" variant="outlined">
                             <AlertTitle>You've already applied for this job.</AlertTitle>
                           </Alert>
                         ) : (
-                          <></>
+                          <Alert className="YetAppliedJobs" severity="info" variant="outlined">
+                            <AlertTitle>You have yet to apply for this job.</AlertTitle>
+                          </Alert>
                         )}
                         <Button className="selectButton" variant="contained" component="label">
                           <Link className="jobListLink" to={`/jobs/${job.job_id}`} state={{ jobState: job }}>

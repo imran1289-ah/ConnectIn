@@ -24,28 +24,28 @@ const createUser = asyncHandler(async(req, res) => {
     // Hashing passwords to encrypt user data
     const saltRounds = 10;
     const hashPwd = await bcrypt.hash(password, saltRounds);
-    const userDocument = { firstname, lastname, email, password: hashPwd, role, preferences: {category:" ", location:" ", work_type:" "} };
+    const userDocument = { firstname, lastname, email, password: hashPwd, role, preferences: { category: " ", location: " ", work_type: " " } };
     const newUser = await User.create(userDocument);
 
     if (newUser) {
         res
             .status(201)
-            .json({ message: "User successfully created!", id: newUser._id});
+            .json({ message: "User successfully created!", id: newUser._id });
     } else {
         res.status(400).json({ message: "User unsuccessfully created." });
     }
 });
 
-const getUserByEmail = async(req, res) => {
-    const user = await User.findOne({ email: req.body.email }).then((user) => {
-        if (user) {
-            // console.log(`Found user ${user.email}`);
-            res.status(200).json(user);
-        } else {
-            return res.status(400).json({ message: "No user found" });
-        }
-    });
-};
+// const getUserByEmail = async(req, res) => {
+//     const user = await User.findOne({ email: req.body.email }).then((user) => {
+//         if (user) {
+//             // console.log(`Found user ${user.email}`);
+//             res.status(200).json(user);
+//         } else {
+//             return res.status(400).json({ message: "No user found" });
+//         }
+//     });
+// };
 
 // This action is to verify the credentials of the user when logging in
 const verifyUser = async(req, res) => {
@@ -185,19 +185,19 @@ const getUser = (req, res, next) => {
 //const updateUser = async (req, res) => {};
 
 //Action to return list user's based on the firstname
-const search = async(req, res) => {
-    const firstname = req.query.term;
+// const search = async(req, res) => {
+//     const firstname = req.query.term;
 
-    const users = await User.find({
-        firstname: { $regex: firstname, $options: "i" },
-    }).then((users) => {
-        if (users) {
-            res.status(200).json(users);
-        } else {
-            return res.status(400).json({ message: "No user exists with this name" });
-        }
-    });
-};
+//     const users = await User.find({
+//         firstname: { $regex: firstname, $options: "i" },
+//     }).then((users) => {
+//         if (users) {
+//             res.status(200).json(users);
+//         } else {
+//             return res.status(400).json({ message: "No user exists with this name" });
+//         }
+//     });
+// };
 const deleteUser = async(req, res) => {};
 
 //Action to return public user info

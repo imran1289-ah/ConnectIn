@@ -46,8 +46,8 @@ describe('GET /users', function() {
             .send({
                 email: "johndoe@example.com",
                 password: "password",
-                passwordHash: user.password,
-                passwordMatch: passwordMatch
+                // passwordHash: user.password,
+                // passwordMatch: passwordMatch
             })
             .expect(200);
     })

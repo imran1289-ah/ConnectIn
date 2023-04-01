@@ -13,26 +13,26 @@ beforeAll(() => {
 
 
 afterAll(async() => {
-    
-    
+
+
     mongoose.disconnect();
     app.close();
-   
+
 });
 
 
-it("should send a notification", async () =>{
+it("should send a notification", async() => {
 
     const userID = "6417d6c09fb7a5a0803b711e";
     const response = await request(app)
-    
+
     .get(`/users/notifications/${userID}`);
 
-    console.log(response)
-        
+    // console.log(response)
+
     expect(response.statusCode).toBe(200);
     expect(response.body.latestJob).toBeDefined();
     expect(response.body.latestJob.category || response.body.latestJob.location || response.body.latestJob.work_type).toBeDefined();
 
-        
+
 })

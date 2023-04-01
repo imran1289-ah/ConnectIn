@@ -12,16 +12,20 @@ beforeAll(async() => {
     mongoose.connect(process.env.DATABASE);
 
     // Create a new user to upload files for
-    const userResponse = await request(app)
-        .post("/users")
-        .send({
-            firstname: "John",
-            lastname: "Doe",
-            email: "johndoe@example.com",
-            password: "password",
-            role: "User"
-        })
-    userId = userResponse.body.id;
+    const firstUser = new User({
+        firstname: 'Test',
+        lastname: 'User',
+        email: 'test@example.com',
+        password: 'password',
+        preferences: {
+            category: 'Test Category',
+            location: 'Test Location',
+            work_type: 'Test Work Type',
+        },
+        role: "User"
+    });
+    await firstUser.save();
+    userId = firstUser._id;
 
 });
 afterAll(async() => {

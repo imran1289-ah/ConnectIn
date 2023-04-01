@@ -199,11 +199,15 @@ const JobListing = () => {
                             <AlertTitle>You have yet to apply for this job.</AlertTitle>
                           </Alert>
                         )}
-                        <Button className="selectButton" variant="contained" component="label">
-                          <Link className="jobListLink" to={`/jobs/${job.job_id}`} state={{ jobState: job }}>
-                            Apply
-                          </Link>
-                        </Button>
+                        {jobsApplied.find(object => object.job_id == job.job_id) == undefined ? (
+                          <Button className="selectButton" variant="contained" component="label">
+                            <Link className="jobListLink" to={`/jobs/${job.job_id}`} state={{ jobState: job }}>
+                              Apply
+                            </Link>
+                          </Button>
+                        ) : (
+                          <></>
+                        )}
                         {job.thirdParty == true && job.jobLink != null ? (
                           <Button className="linkButton" variant="contained" component="label">
                             <Link className="jobListLink" to={{ pathname: job.jobLink }} target="_blank">

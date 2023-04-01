@@ -137,7 +137,6 @@ const JobPosting = () => {
           {checked ? (
             <div className="jobLink">
               <TextField id="job_link" label="Job Link" variant="outlined" onChange={e => setLink(e.target.value)} />
-              <FaRegEdit />
             </div>
           ) : (
             ""

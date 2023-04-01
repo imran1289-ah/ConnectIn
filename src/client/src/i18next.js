@@ -101,6 +101,8 @@ i18next.use(initReactI18next).init({
         "Company":"Company",
         "Location":"Location",
         "Category":"Category",
+        "Already connected":"Already connected",
+        "Connect":"Connect",
       },
     },
     fr: {
@@ -207,6 +209,8 @@ i18next.use(initReactI18next).init({
         "Company":"Companie",
         "Location":"Emplacement",
         "Category":"Catégorie",
+        "Already connected":"Déjà connecté",
+        "Connect":"Connecter",
       },
     },
   },

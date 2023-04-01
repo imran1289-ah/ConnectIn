@@ -101,12 +101,14 @@ const SearchUser = () => {
         //alert("Cannot connect");
       });
   };
+  
 
   const Friends = async (friendUserid, fname, lname) => {
     // console.log(ownUserId)
     // console.log(friendUserid)
+    return new Promise((resolve, reject) => {
 
-    axios
+      axios
       .post(`http://localhost:9000/users/searchfriendslist`, {
           ownUserID: sessionStorage.getItem("userID"),
           friendUserid: friendUserid,
@@ -114,13 +116,16 @@ const SearchUser = () => {
           lastname:lname,
       }).then((response) => {
         var friend = response.data;
-        console.log(response.data);
-        return friend;
+        //console.log(response.data);
+        resolve(friend);
       })
       .catch((error) => {
         console.log(error);
       });
+    })
   };
+
+
   
   return (
     // Display searched users
@@ -141,20 +146,37 @@ const SearchUser = () => {
                 </div>
                 <br></br>
                 <div className="buttonSection">
-                  {console.log(Friends(`${user._id}`,`${user.firstname}`, `${user.lastname}`))}
-                {Friends(`${user._id}`,`${user.firstname}`, `${user.lastname}`)===false ? 
-                
+                {/* {(async () => {
+                  let friend = await Friends(`${user._id}`,`${user.firstname}`, `${user.lastname}`);
+
+                  if (friend === true) {
+                    return (<button
+                    className="searchConnectButton"
+                  >
+                    Already connected
+                  </button>)}
+                  else{
+                    return (<button
+                      className="searchConnectButton"
+                      onClick={() => Clickme(`${user._id}`)}
+                    >
+                      Connect
+                    </button>)
+                  }
+
+                })} */}
+                {((Friends(`${user._id}`,`${user.firstname}`, `${user.lastname}`).then(console.log))== "true"? 
                   (<button
                       className="searchConnectButton"
                     >
-                      Already connected
+                      {t("Already connected")}
                     </button>) :
                   (<button
                       className="searchConnectButton"
                       onClick={() => Clickme(`${user._id}`)}
                     >
-                      Connect
-                    </button>)}
+                      {t("Connect")}
+                    </button>))}
                   </div>
               </div>
             )

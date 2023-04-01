@@ -455,7 +455,7 @@ const verifyConnections = async(req, res) => {
             
             return res.status(200).json(true);
         } else {
-            console.log("401 not found or error");
+            console.log("not friends");
             return res.status(200).json(false);
         }
     });

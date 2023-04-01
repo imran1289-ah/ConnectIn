@@ -107,9 +107,19 @@ i18next.use(initReactI18next).init({
         "Phone": "Phone",
         "Last Name": "Last Name",
         "Applicants": "Applicants",
-        "Post Job": "Post Job"
-        
-
+        "Post Job": "Post Job",
+        "Select a category":"Select a category",
+        "Full-Time": "Full-Time",
+        "Part-Time":"Part-Time",
+        "Internship":"Internship",
+        "Work Type": "Work Type",
+        "Onsite": "Onsite",
+        "Hybrid":"Hybrid",
+        "Remote":"Remote",
+        "Job Posts":"Job Posts",
+        "Apply":"Apply",
+        "Save Preferences":"Save Preferences",
+        "Enter a location":"Enter a location",
       },
     },
     fr: {
@@ -222,7 +232,19 @@ i18next.use(initReactI18next).init({
         "Phone": "Téléphone",
         "Last Name": "Nom de famille",
         "Applicants": "Candidats",
-        "Post Job": "Ajouter"
+        "Post Job": "Ajouter", 
+        "Select a category":"Sélectionner une catégorie",
+        "Full-Time": "Temps-pleins",
+        "Part-Time":"Temps-partiel",
+        "Internship":"Stage",
+        "Work Type": "Type d'emploi",
+        "Onsite": "Au Bureau",
+        "Hybrid":"Hybride",
+        "Remote":"Télétravail",
+        "Job Posts":"Emplois disponibles",
+        "Apply":"Postuler",  
+        "Save Preferences":"Enregistrer les préférences",
+        "Enter a location":"Écrivez l'emplacement"
 
       },
     },

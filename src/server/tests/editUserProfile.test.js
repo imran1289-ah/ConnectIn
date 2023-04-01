@@ -30,7 +30,6 @@ afterAll(async() => {
     await User.findByIdAndDelete(userId);
 
     // Closing the DB connection allows Jest to exit successfully.
-    mongoose.disconnect();
     app.close();
 });
 
@@ -47,7 +46,8 @@ describe("PATCH profile", function() {
                 workExp: ["QA"],
                 languages: ["English"],
                 education: ["McGill"],
-                volunteering: ["Grocery bagger"]
+                volunteering: ["Grocery bagger"],
+                role: "User"
             })
             .expect(200);
     });

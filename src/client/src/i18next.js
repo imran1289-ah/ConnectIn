@@ -101,6 +101,15 @@ i18next.use(initReactI18next).init({
         "Company":"Company",
         "Location":"Location",
         "Category":"Category",
+        "Applicants Summary":"Applicants Summary",
+        "Job ID": "Job ID",
+        "Job Title": "Job Title",
+        "Phone": "Phone",
+        "Last Name": "Last Name",
+        "Applicants": "Applicants",
+        "Post Job": "Post Job"
+        
+
       },
     },
     fr: {
@@ -207,6 +216,14 @@ i18next.use(initReactI18next).init({
         "Company":"Companie",
         "Location":"Emplacement",
         "Category":"Catégorie",
+        "Applicants Summary":"Sommaire des candidats",
+        "Job ID": "Numero d'identification du travail",
+        "Job Title": "Title du travail",
+        "Phone": "Téléphone",
+        "Last Name": "Nom de famille",
+        "Applicants": "Candidats",
+        "Post Job": "Ajouter"
+
       },
     },
   },

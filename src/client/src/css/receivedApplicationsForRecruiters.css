@@ -31,7 +31,7 @@
   
   .jobsApplied .jobs {
     width: 95%;
-    height: 500px;
+    height: 400px;
     border-radius: 15px;
     margin: 20px;
     display: inline-block;
@@ -53,7 +53,6 @@
     margin: 5px;
     margin-top: 40px;
     margin-left: 25px;
-    /* margin-right: 25px; */
   }
   
   .jobsApplied .jobs .jobPost .jobContent {
@@ -97,7 +96,6 @@
   }
   
   .notLoggedInContent {
-    /* border: 1px #19718d solid; */
     display: flex;
     flex-direction: column;
     align-content: center;

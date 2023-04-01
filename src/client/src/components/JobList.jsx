@@ -3,6 +3,7 @@ import axios from "axios";
 import { Context } from "../UserSession";
 import { useContext } from "react";
 import swal from "sweetalert";
+import { useTranslation } from "react-i18next";
 
 import {
   Table,
@@ -19,7 +20,7 @@ import "../css/JobList.css";
 
 const JobList = () => {
   const [jobs, setJobs] = useState([]);
-
+  const { t, i18n } = useTranslation();
   //Global loginState
   const [login, setLogin] = useContext(Context);
 
@@ -63,7 +64,7 @@ const JobList = () => {
     try {
       await axios
         .post(`http://localhost:9000/jobs/delete/${job_id}`)
-        .then(swal("Job successfully deleted!"));
+        .then(swal(t("Job successfully deleted!")));
       setJobs(jobs.filter((job) => job.job_id !== job_id));
     } catch (error) {
       console.log(error);
@@ -72,18 +73,18 @@ const JobList = () => {
 
   return (
     <div className="RecruiterJobs">
-      <h1 className="title">Job Postings Summary</h1>
+      <h1 className="title">{t("Job Postings Summary")}</h1>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Job Title</TableCell>
-              <TableCell>Company</TableCell>
+              <TableCell>{t("Job Title")}</TableCell>
+              <TableCell>{t("Company")}</TableCell>
               <TableCell>Description</TableCell>
-              <TableCell>Salary/Pay</TableCell>
-              <TableCell>Location</TableCell>
-              <TableCell>Category</TableCell>
-              <TableCell>Work Type</TableCell>
+              <TableCell>{t("Salary")}</TableCell>
+              <TableCell>{t("Location")}</TableCell>
+              <TableCell>{t("Category")}</TableCell>
+              <TableCell>{t("Work Type")}</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
@@ -101,13 +102,13 @@ const JobList = () => {
                 <TableCell>{job.work_type}</TableCell>
                 <TableCell>
                   <Button variant="contained">
-                    <Link to={`/jobs/edit/${job.job_id}`}>Edit</Link>
+                    <Link to={`/jobs/edit/${job.job_id}`}>{t("Edit")}</Link>
                   </Button>
                   <Button
                     variant="contained"
                     onClick={() => handleDelete(job.job_id)}
                   >
-                    Delete
+                    {t("Delete")}
                   </Button>
                 </TableCell>
               </TableRow>

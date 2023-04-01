@@ -138,7 +138,13 @@ i18next.use(initReactI18next).init({
         "Job Postings Summary": "Job Postings Summary",
         "Job Title": "Job Title",
         Edit: "Edit",
+        "Delete": "Delete",
         "Job successfully deleted!": "Job successfully deleted!",
+        "Advertise jobs to third party platform": "Advertise jobs to third party platform",
+        "You need to be a recruiter or an administrator to post jobs!": "You need to be a recruiter or an administrator to post jobs!",
+        "Post/Save":"Post/Save",
+        "Job Posting Page": "Job Posting Page",
+        
       },
     },
     fr: {
@@ -282,7 +288,14 @@ i18next.use(initReactI18next).init({
         "Job Postings Summary": "Résumé des offres d'emploi",
         "Job Title": "Titre d'emploi",
         Edit: "Modifier",
+        "Delete": "Supprimer",
         "Job successfully deleted!": "Travail supprimé avec succès !",
+        "Advertise jobs to third party platform": "Publicité d'emplois sur une plateforme tierce",
+        "You need to be a recruiter or an administrator to post jobs!":"Vous devez être un recruteur ou un administrateur pour publier des offres !",
+        "Post/Save":"Enregister",
+        "Job Posting Page": "Ajouter Emploi",
+        
+
       },
     },
   },

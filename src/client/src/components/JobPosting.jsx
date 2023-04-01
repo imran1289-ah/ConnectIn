@@ -5,10 +5,12 @@ import { FaRegEdit } from "react-icons/fa";
 import "../css/JobPosting.css";
 import axios from "axios";
 import swal from "sweetalert";
+import { useTranslation } from "react-i18next";
 
 const JobPosting = () => {
   //Global loginState
   const [login, setLogin] = useContext(Context);
+  const { t, i18n } = useTranslation();
 
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
@@ -39,33 +41,33 @@ const JobPosting = () => {
   if (userID && (userRole === "Recruiter" || userRole === "Administrator")) {
     return (
       <div className="Jobpostingform">
-        <h1 className="titleofpage">Job Posting Page</h1>
+        <h1 className="titleofpage">{t("Job Posting Page")}</h1>
         <div className="title">
-          <TextField id="job_title" label="Job Title" variant="outlined" />
+          <TextField id="job_title" label={t("Job Title")} variant="outlined" />
           <FaRegEdit />
         </div>
         <br />
         <br />
         <div className="company">
-          <TextField id="company_name" label="Company" variant="outlined" />
+          <TextField id="company_name" label={t("Company")} variant="outlined" />
           <FaRegEdit />
         </div>
         <br />
         <br />
         <div className="description">
-          <TextField id="job_description" label="Job Description" placeholder="Placeholder" multiline variant="outlined" />
+          <TextField id="job_description" label="Description" placeholder="Placeholder" multiline variant="outlined" />
           <FaRegEdit />
         </div>
         <br />
         <br />
         <div className="salary">
-          <TextField id="salary" label="Salary/Pay" variant="outlined" />
+          <TextField id="salary" label={t("Salary")} variant="outlined" />
           <FaRegEdit />
         </div>
         <br />
         <br />
         <div className="location">
-          <TextField id="location" label="Location" placeholder="Placeholder" multiline variant="outlined" />
+          <TextField id="location" label={t("Location")} placeholder="Placeholder" multiline variant="outlined" />
           <FaRegEdit />
         </div>
         <br />
@@ -74,17 +76,17 @@ const JobPosting = () => {
           <div className="category">
             <select id="category" onChange={e => setSelects(e.target.value)}>
               <option label="Category..."></option>
-              <option value="Full-Time">Full-Time</option>
-              <option value="Part-Time">Part-Time</option>
-              <option value="Internship">Internship</option>
+              <option value="Full-Time">{t("Full-Time")}</option>
+              <option value="Part-Time">{t("Part-Time")}</option>
+              <option value="Internship">{t("Internship")}</option>
             </select>
           </div>
           <div className="work_type">
             <select id="work_type" onChange={e => setSelects(e.target.value)}>
               <option label="Worktype..."></option>
-              <option value="onSite">On-Site</option>
-              <option value="Remote">Remote</option>
-              <option value="Hybrid">Hybrid</option>
+              <option value="onSite">{t("On-Site")}</option>
+              <option value="Remote">{t("Remote")}</option>
+              <option value="Hybrid">{t("Hybrid")}</option>
             </select>
           </div>
         </div>
@@ -100,7 +102,7 @@ const JobPosting = () => {
                 setChecked(!checked);
               }}
             />
-            Advertise jobs to third party platform
+            {t("Advertise jobs to third party platform")}
           </label>
         </div>
         <div className="jobAd">
@@ -110,14 +112,14 @@ const JobPosting = () => {
         <br />
         <br />
         <button className="button" onClick={() => createJob()}>
-          Post/Save
+          {t("Post/Save")}
         </button>
       </div>
     );
   } else {
     return (
       <div className="Jobpostingform">
-        <h1 style={{ textAlign: "center" }}>You need to be a recruiter or an administrator to post jobs!</h1>
+        <h1 style={{ textAlign: "center" }}>{t("You need to be a recruiter or an administrator to post jobs!")}</h1>
       </div>
     );
   }

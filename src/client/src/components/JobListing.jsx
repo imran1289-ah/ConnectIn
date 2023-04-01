@@ -15,12 +15,14 @@ import { useContext } from "react";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 import swal from "sweetalert";
+import { useTranslation } from "react-i18next";
 
 
 const JobListing = () =>{
 
-        //Global loginState
+    //Global loginState
     const [login, setLogin] = useContext(Context);
+    const { t, i18n } = useTranslation();
 
     //Get id of logged in user
     const userID = sessionStorage.getItem("userID");
@@ -127,36 +129,36 @@ const JobListing = () =>{
 
                 <><div className="jobFilter"><form>
                     <label>
-                        Category:
+                        {t("Category")}:
                         <select name="category" onChange={(e) => setPreferences({ ...preferences, category: e.target.value })}>
-                            <option value="">Select a category</option>
-                            <option value="Full-Time">Full-Time</option>
-                            <option value="Part-Time">Part-Time</option>
-                            <option value="Internship">Internship</option>
+                            <option value="">{t("Select a category")}</option>
+                            <option value="Full-Time">{t("Full-Time")}</option>
+                            <option value="Part-Time">{t("Part-Time")}</option>
+                            <option value="Internship">{t("Internship")}</option>
                         </select>
                     </label>
                     <br />
                     <label>
-            Location:
-            <input type="text" name="location" value={preferences.location} onChange={(e) => setPreferences({ ...preferences, location: e.target.value })} placeholder="Enter a location" />
+            {t("Location")}:
+            <input type="text" name="location" value={preferences.location} onChange={(e) => setPreferences({ ...preferences, location: e.target.value })} placeholder={t("Enter a location")} />
         </label>
                     <br />
                     <label>
-                        Work Type: 
+                        {t("Work Type")}: 
                         <select name="work_type" onChange={(e) => setPreferences({ ...preferences, work_type: e.target.value })}>
-                            <option value="">Select a work type</option>
-                            <option value="onSite">Onsite</option>
-                            <option value="Hybrid">Hybrid</option>
-                            <option value="Remote">Remote</option>
+                            <option value="">{t("Select a work type")}</option>
+                            <option value="onSite">{t("Onsite")}</option>
+                            <option value="Hybrid">{t("Hybrid")}</option>
+                            <option value="Remote">{t("Remote")}</option>
                         </select>
                     </label>
                     <br />
-                    <button type="button" onClick={savePreferences}>Save Preferences </button>
+                    <button type="button" onClick={savePreferences}>{t("Save Preferences")}</button>
                 </form>
                 </div>
                 <div data-testid="jobPostsContainer" className="jobPosts">
                         <div className="heading">
-                            <b>Job Posts</b>
+                            <b>{t("Job Posts")}</b>
                         </div>
 
                         <div className="jobs">
@@ -188,14 +190,14 @@ const JobListing = () =>{
                                        
                                         <Button className="selectButton" variant="contained" component="label">
                                             <Link className="jobListLink" to={`/jobs/${job.job_id}`} state={{ jobState: job }}>
-                                                Apply
+                                                {t("Apply")}
                                             </Link>
                                         </Button>
                                       
 
                                     </div>
 
-                                    {jobsApplied.find(object => object.job_id == job.job_id) != undefined ? <Alert className="AlertJobListing" severity='info' variant="outlined"><AlertTitle>You've already applied for this job.</AlertTitle></Alert> : <></>}
+                                    {jobsApplied.find(object => object.job_id == job.job_id) != undefined ? <Alert className="AlertJobListing" severity='info' variant="outlined"><AlertTitle>{t("You've already applied for this job.")}</AlertTitle></Alert> : <></>}
 
                                     {/* <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
 <button class = "edit">Edit</button>

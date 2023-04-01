@@ -4,7 +4,7 @@ const reportsControllers = require("../controllers/reportsController");
 
 router.post('/create', reportsControllers.createReport);
 router.get('/', reportsControllers.getReports);
-router.post('/delete/:reportId', reportsControllers.deleteReport);
+router.delete('/delete', reportsControllers.deleteReport);
 
  
 

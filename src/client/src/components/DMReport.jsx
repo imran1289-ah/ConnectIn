@@ -1,15 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Context } from "../UserSession";
 import "../css/dmReports.css";
+import swal from "sweetalert";
 
 const DMReport = () => {
 
   const [reports, setReports] = useState([]);
+  const userID = sessionStorage.getItem("userID");
+  const [login, setLogin] = useContext(Context);
 
   useEffect(() => {
     fetchReports();
+    fetchSession();
   }, []);
+
+  const fetchSession = async () => {
+    try {
+      if (userID) {
+        setLogin({
+          isLoggedIn: true,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const fetchReports = async () => {
     const {data} = await axios.get("http://localhost:9000/reports")
@@ -17,14 +33,24 @@ const DMReport = () => {
     setReports(data)
   }
 
-  const navigate = useNavigate();
-
   const deleteReport = async (reportId) => {
-    await axios.post(`/http://localhost:9000/reports/delete/${reportId}`)
+    console.log(reportId);
+    await axios.delete(`http://localhost:9000/reports/delete`, {
+      data: {
+        "id": reportId
+      }
+    })
     .then(response => {
       console.log(response.data);
-      alert("Report successfully removed!");
-      navigate("/dmReports")
+      swal("Congrats!", "You have successfully resolved a report!", "success", {
+        button: false,
+        timer: 1000,
+      })
+      .then((response) => {
+        setTimeout(function () {
+          window.location.reload();
+        }, 1200);
+      })
     })
     .catch(err => {
       console.log(err);
@@ -47,9 +73,8 @@ const DMReport = () => {
             <p><span style={{fontWeight: "bold"}}>Justification: </span>{report.justification}</p>
             <div className="report-button-bundle">
               <button className="report-button-accept" type="button">Accept</button>
-              <button className="report-button-reject" type="button">Reject</button>
+              <button className="report-button-reject" onClick={() => deleteReport(`${report._id}`)}>Reject</button>
             </div>
-            {/* <button type="button" onClick={deleteReport(`${report._id}`)}></button> */}
           </div>
         ))}
         </div>

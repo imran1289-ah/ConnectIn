@@ -5,7 +5,7 @@ const createReport = async (req, res) => {
     const {sender, receiver, reportedDM, justification} = req.body;
     const report = {sender, receiver, reportedDM, justification};
     const newReport = await Reports.create(report);
-    res.status(201).json(`Report successfully created: ${newReport}`);
+    res.status(201).json({message:`Report successfully created: ${newReport}`, id: newReport._id});
   }
   catch (err) {
     res.status(400).json("Error creating Report");
@@ -24,7 +24,9 @@ const getReports = async (req, res) => {
 
 const deleteReport = async (req, res) => {
   try {
-    const report = await Reports.findByIdAndDelete({ _id: req.params.jobId });
+    const { id } = req.body;
+    console.log("Report ID is equal to: " + id);
+    const report = await Reports.findByIdAndDelete(id);
     res.status(201).json(`Successfully deleted report: ${report}`)
   }
   catch (err) {

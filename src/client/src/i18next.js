@@ -129,6 +129,8 @@ i18next.use(initReactI18next).init({
         "Send Application":"Send Application",
         "Phone Number":"Phone Number",
         "You've already applied for this job.":"You've already applied for this job.",
+        'New Job Alert Posted: ':'New Job Alert Posted: '
+
 
       },
     },
@@ -263,7 +265,9 @@ i18next.use(initReactI18next).init({
         "Resume":"CV",
         "Send Application":"Envoyer l'application",
         "Phone Number":"Numéro de téléphone",
-        "You've already applied for this job.":"Vous avez déjà postulé pour ce poste."
+        "You've already applied for this job.":"Vous avez déjà postulé pour ce poste.",
+        'New Job Alert Posted: ':"Nouvelle alerte d'emploi publiée :"
+
 
 
       },

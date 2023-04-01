@@ -120,6 +120,16 @@ i18next.use(initReactI18next).init({
         "Apply":"Apply",
         "Save Preferences":"Save Preferences",
         "Enter a location":"Enter a location",
+        "Please fill up all the fields and upload all required documents !":"Please fill up all the fields and upload all required documents !",
+        "You've already applied for this job!":"You've already applied for this job!",
+        "You've successfully applied for this job!":"You've successfully applied for this job!",
+        "You're applying for the following job":"You're applying for the following job",
+        "Salary":"Salary",
+        "Resume":"Resume",
+        "Send Application":"Send Application",
+        "Phone Number":"Phone Number",
+        "You've already applied for this job.":"You've already applied for this job.",
+
       },
     },
     fr: {
@@ -244,7 +254,17 @@ i18next.use(initReactI18next).init({
         "Job Posts":"Emplois disponibles",
         "Apply":"Postuler",  
         "Save Preferences":"Enregistrer les préférences",
-        "Enter a location":"Écrivez l'emplacement"
+        "Enter a location":"Écrivez l'emplacement",
+        "Please fill up all the fields and upload all required documents !":"Veuillez remplir tous les champs et télécharger tous les documents requis !",
+        "You've already applied for this job!":"Vous avez déjà postulé pour ce poste !",
+        "You've successfully applied for this job!":"Vous avez postulé avec succès pour ce poste !",
+        "You're applying for the following job":"Vous postulez pour l'emploi suivant",
+        "Salary":"Salaire",
+        "Resume":"CV",
+        "Send Application":"Envoyer l'application",
+        "Phone Number":"Numéro de téléphone",
+        "You've already applied for this job.":"Vous avez déjà postulé pour ce poste."
+
 
       },
     },

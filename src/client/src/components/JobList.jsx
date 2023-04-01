@@ -1,0 +1,122 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Context } from "../UserSession";
+import { useContext } from "react";
+import swal from "sweetalert";
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Button,
+} from "@mui/material";
+import { Link } from "react-router-dom";
+import "../css/JobList.css";
+
+const JobList = () => {
+  const [jobs, setJobs] = useState([]);
+
+  //Global loginState
+  const [login, setLogin] = useContext(Context);
+
+  //Get id of logged in user
+  const userID = sessionStorage.getItem("userID");
+
+  useEffect(() => {
+    if (userID) {
+      fetchSession();
+    }
+  }, []);
+
+  //Having the loginState persist on all pages
+  const fetchSession = async () => {
+    try {
+      if (userID) {
+        setLogin({
+          isLoggedIn: true,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchJobs();
+  }, []);
+
+  const fetchJobs = async () => {
+    try {
+      const response = await axios.get(`http://localhost:9000/jobs/${userID}`);
+      console.log(userID);
+      setJobs(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async (job_id) => {
+    try {
+      await axios
+        .post(`http://localhost:9000/jobs/delete/${job_id}`)
+        .then(swal("Job successfully deleted!"));
+      setJobs(jobs.filter((job) => job.job_id !== job_id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <div className="RecruiterJobs">
+      <h1 className="title">Job Postings Summary</h1>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Job Title</TableCell>
+              <TableCell>Company</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Salary/Pay</TableCell>
+              <TableCell>Location</TableCell>
+              <TableCell>Category</TableCell>
+              <TableCell>Work Type</TableCell>
+              <TableCell>Action</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {jobs.map((job) => (
+              <TableRow key={job.job_id}>
+                <TableCell component="th" scope="row">
+                  {job.title}
+                </TableCell>
+                <TableCell>{job.company}</TableCell>
+                <TableCell>{job.description}</TableCell>
+                <TableCell>{job.salary}</TableCell>
+                <TableCell>{job.location}</TableCell>
+                <TableCell>{job.category}</TableCell>
+                <TableCell>{job.work_type}</TableCell>
+                <TableCell>
+                  <Button variant="contained">
+                    <Link to={`/jobs/edit/${job.job_id}`}>Edit</Link>
+                  </Button>
+                  <Button
+                    variant="contained"
+                    onClick={() => handleDelete(job.job_id)}
+                  >
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
+  );
+};
+
+export default JobList;

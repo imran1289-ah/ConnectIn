@@ -91,7 +91,7 @@ const Chat = () => {
     <Container>
       <div className={ChatCSS.container}>
         {/* {console.log(userConnections.connections)} */}
-        <div>
+        <div data-testid="contacts-container">
           <Contacts connections={userConnections.connections} changeChat={handleChangeChat} />
         </div>
         <hr className={ChatCSS.line} /> 

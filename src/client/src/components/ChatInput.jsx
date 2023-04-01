@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from "react";
 import ChatInputCSS from "../css/ChatInput.module.css";
 
 const ChatInput = ({ handleSendMsg, from, to }) => {

@@ -80,7 +80,7 @@ export default function BasicModal({ sender, receiver, open, onClose, message, c
             What's wrong with this message?
           </Typography>
           <FormControl fullWidth sx={{paddingTop: "10px", marginBottom: "20px"}}>
-            <Select onChange={(selected) => setReportData({...reportData, justification: selected.target.value})}>
+            <Select data-testid="select" onChange={(selected) => setReportData({...reportData, justification: selected.target.value})}>
               <MenuItem value="Hate Speech">Hate Speech</MenuItem>
               <MenuItem value="Scam/Fraud">Scam or Fraud</MenuItem>
               <MenuItem value="Bullying/Harassment">Bullying or Harrasment</MenuItem>

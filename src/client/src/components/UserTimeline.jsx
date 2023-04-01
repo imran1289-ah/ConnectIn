@@ -220,7 +220,7 @@ const UserTimeline = () => {
       }
     });
   };
-  const notify = () => toast('New job posted: ' + job.title);
+  const notify = () => toast(t('New Job Alert Posted: ') + job.title);
 
   return (
     <div>

@@ -107,7 +107,8 @@ i18next.use(initReactI18next).init({
         "Phone": "Phone",
         "Last Name": "Last Name",
         "Applicants": "Applicants",
-        "Post Job": "Post Job"
+        "Post Job": "Post Job",
+        'New Job Alert Posted: ':'New Job Alert Posted: '
         
 
       },
@@ -222,7 +223,8 @@ i18next.use(initReactI18next).init({
         "Phone": "Téléphone",
         "Last Name": "Nom de famille",
         "Applicants": "Candidats",
-        "Post Job": "Ajouter"
+        "Post Job": "Ajouter",
+        'New Job Alert Posted: ':"Nouvelle alerte d'emploi publiée :"
 
       },
     },

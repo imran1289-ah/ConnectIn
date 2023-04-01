@@ -64,7 +64,7 @@ const ViewJobsApplied = () => {
   const { t, i18n } = useTranslation();
 
   return (
-    <div className="jobsApplied">
+    <div data-testid="jobsApplied-test" className="jobsApplied">
       {userID ? (
         <div>
           <div className="heading">

@@ -23,6 +23,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [login, setLogin] = useContext(Context);
   const { t, i18n } = useTranslation();
+  const userRole = sessionStorage.getItem("role");
 
   const HandleSearch = () => {
     console.log(query);
@@ -68,12 +69,15 @@ const Navbar = () => {
     navigate("/jobsapplied");
   };
 
-  const redirectReceivedApplications =() =>{
-    navigate("/receivedApplications")
-  }
-  const redirectJobPosting = () =>{
-      navigate("/jobposting")
-  }
+  const redirectReceivedApplications = () => {
+    navigate("/receivedApplications");
+  };
+  const redirectJobPosting = () => {
+    navigate("/jobposting");
+  };
+  const redirectJobListing = () => {
+    navigate("/JobList");
+  };
 
   return (
     //Material UI navbar
@@ -166,48 +170,78 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      
                       {t("Jobs Applied")}
                     </Typography>
                   </Typography>
                 </Box>
               </IconButton>
 
-              <IconButton color="inherit" onClick={redirectReceivedApplications}>
-                <Box className="parentUserIconContainer">
-                  <Typography className="userIconContainer">
-                    <WorkIcon
-                      className="publicUserIcon"
-                      fontSize="large"
-                    ></WorkIcon>
-                    <Typography
-                      fontSize={10}
-                      className="userSubtitle"
-                      variant="subtitle2"
-                    >
-                      Applicants
+              {userRole === "Recruiter" || userRole === "Administrator" ? (
+                <IconButton
+                  color="inherit"
+                  onClick={redirectReceivedApplications}
+                >
+                  <Box className="parentUserIconContainer">
+                    <Typography className="userIconContainer">
+                      <WorkIcon
+                        className="publicUserIcon"
+                        fontSize="large"
+                      ></WorkIcon>
+                      <Typography
+                        fontSize={10}
+                        className="userSubtitle"
+                        variant="subtitle2"
+                      >
+                        {t("Applicants")}
+                      </Typography>
                     </Typography>
-                  </Typography>
-                </Box>
-              </IconButton>
-
-              <IconButton color="inherit" onClick={redirectJobPosting}>
-                <Box className="parentUserIconContainer">
-                  <Typography className="userIconContainer">
-                    <WorkIcon
-                      className="publicUserIcon"
-                      fontSize="large"
-                    ></WorkIcon>
-                    <Typography
-                      fontSize={10}
-                      className="userSubtitle"
-                      variant="subtitle2"
-                    >
-                      Post Job
+                  </Box>
+                </IconButton>
+              ) : (
+                <></>
+              )}
+              {userRole === "Recruiter" || userRole === "Administrator" ? (
+                <IconButton color="inherit" onClick={redirectJobPosting}>
+                  <Box className="parentUserIconContainer">
+                    <Typography className="userIconContainer">
+                      <WorkIcon
+                        className="publicUserIcon"
+                        fontSize="large"
+                      ></WorkIcon>
+                      <Typography
+                        fontSize={10}
+                        className="userSubtitle"
+                        variant="subtitle2"
+                      >
+                        {t("Post Job")}
+                      </Typography>
                     </Typography>
-                  </Typography>
-                </Box>
-              </IconButton>
+                  </Box>
+                </IconButton>
+              ) : (
+                <></>
+              )}
+              {userRole === "Recruiter" || userRole === "Administrator" ? (
+                <IconButton color="inherit" onClick={redirectJobListing}>
+                  <Box className="parentUserIconContainer">
+                    <Typography className="userIconContainer">
+                      <WorkIcon
+                        className="publicUserIcon"
+                        fontSize="large"
+                      ></WorkIcon>
+                      <Typography
+                        fontSize={10}
+                        className="userSubtitle"
+                        variant="subtitle2"
+                      >
+                        Edit/Delete Job
+                      </Typography>
+                    </Typography>
+                  </Box>
+                </IconButton>
+              ) : (
+                <></>
+              )}
 
               <IconButton color="inherit" onClick={redirectMessages}>
                 <Box className="parentUserIconContainer">

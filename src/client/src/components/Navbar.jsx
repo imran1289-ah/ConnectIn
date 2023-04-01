@@ -186,7 +186,7 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      Applicants
+                      {t("Applicants")}
                     </Typography>
                   </Typography>
                 </Box>
@@ -205,7 +205,7 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      Post Job
+                      {t("Post Job")}
                     </Typography>
                   </Typography>
                 </Box>

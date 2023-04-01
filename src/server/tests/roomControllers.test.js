@@ -2,7 +2,7 @@
 const request = require('supertest');
 const app = require('../index');
 const mongoose = require("mongoose");
-const room = require('../models/room');
+const room = require('../models/Room');
 const User = require('../models/user');
 
 

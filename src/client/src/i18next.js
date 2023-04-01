@@ -145,7 +145,7 @@ i18next.use(initReactI18next).init({
         "DM Reports": "DM Reports",
         "You have successfully resolved the report!": "You have successfully resolved the report!",
         "Error": "Error",
-        "Failed to resolve the report": "Failed to resolve the report"
+        "Failed to resolve the report": "Failed to resolve the report",
         "Apply on company site": "Apply on company site",
         "You have yet to apply for this job.": "You have yet to apply for this job.",
       },
@@ -291,7 +291,7 @@ i18next.use(initReactI18next).init({
         "DM Reports": "Signalements de conversations",
         "You have successfully resolved the report!": "Vous avez résolu le rapport avec succès!",
         "Error": "Échec",
-        "Failed to resolve the report": "Échec de la résolution du rapport"
+        "Failed to resolve the report": "Échec de la résolution du rapport",
         "Apply on company site": "Postuler sur le site",
         "You have yet to apply for this job.": "Vous n'avez pas encore postulé pour ce poste.",
       },

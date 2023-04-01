@@ -104,18 +104,34 @@ i18next.use(initReactI18next).init({
         Apply: "Apply",
         "Save Preferences": "Save Preferences",
         "Enter a location": "Enter a location",
-        "Please fill up all the fields and upload all required documents !": "Please fill up all the fields and upload all required documents !",
-        "You've already applied for this job!": "You've already applied for this job!",
-        "You've successfully applied for this job!": "You've successfully applied for this job!",
-        "You're applying for the following job": "You're applying for the following job",
+        "Please fill up all the fields and upload all required documents !":
+          "Please fill up all the fields and upload all required documents !",
+        "You've already applied for this job!":
+          "You've already applied for this job!",
+        "You've successfully applied for this job!":
+          "You've successfully applied for this job!",
+        "You're applying for the following job":
+          "You're applying for the following job",
         Salary: "Salary",
         Resume: "Resume",
         "Send Application": "Send Application",
         "Phone Number": "Phone Number",
-        "You've already applied for this job.": "You've already applied for this job.",
+        "You've already applied for this job.":
+          "You've already applied for this job.",
+        "New Job Alert Posted: ": "New Job Alert Posted: ",
+        "Job Postings Summary": "Job Postings Summary",
+        "Job Title": "Job Title",
+        Edit: "Edit",
+        "Delete": "Delete",
+        "Job successfully deleted!": "Job successfully deleted!",
+        "Advertise jobs to third party platform": "Advertise jobs to third party platform",
+        "You need to be a recruiter or an administrator to post jobs!": "You need to be a recruiter or an administrator to post jobs!",
+        "Post/Save":"Post/Save",
+        "Job Posting Page": "Job Posting Page",
+        "Apply on company site": "Apply on company site",
         "You have yet to apply for this job.": "You have yet to apply for this job.",
-        "Apply on company site": "Apply on company site"
-      }
+        
+      },
     },
     fr: {
       translation: {
@@ -217,19 +233,36 @@ i18next.use(initReactI18next).init({
         Apply: "Postuler",
         "Save Preferences": "Enregistrer les préférences",
         "Enter a location": "Écrivez l'emplacement",
-        "Please fill up all the fields and upload all required documents !": "Veuillez remplir tous les champs et télécharger tous les documents requis !",
-        "You've already applied for this job!": "Vous avez déjà postulé pour ce poste !",
-        "You've successfully applied for this job!": "Vous avez postulé avec succès pour ce poste !",
-        "You're applying for the following job": "Vous postulez pour l'emploi suivant",
+        "Please fill up all the fields and upload all required documents !":
+          "Veuillez remplir tous les champs et télécharger tous les documents requis !",
+        "You've already applied for this job!":
+          "Vous avez déjà postulé pour ce poste !",
+        "You've successfully applied for this job!":
+          "Vous avez postulé avec succès pour ce poste !",
+        "You're applying for the following job":
+          "Vous postulez pour l'emploi suivant",
         Salary: "Salaire",
         Resume: "CV",
         "Send Application": "Envoyer l'application",
         "Phone Number": "Numéro de téléphone",
-        "You've already applied for this job.": "Vous avez déjà postulé pour ce poste.",
+        "You've already applied for this job.":
+          "Vous avez déjà postulé pour ce poste.",
+        "New Job Alert Posted: ": "Nouvelle alerte d'emploi publiée :",
+        "Job Postings Summary": "Résumé des offres d'emploi",
+        "Job Title": "Titre d'emploi",
+        Edit: "Modifier",
+        "Delete": "Supprimer",
+        "Job successfully deleted!": "Travail supprimé avec succès !",
+        "Advertise jobs to third party platform": "Publicité d'emplois sur une plateforme tierce",
+        "You need to be a recruiter or an administrator to post jobs!":"Vous devez être un recruteur ou un administrateur pour publier des offres !",
+        "Post/Save":"Enregister",
+        "Job Posting Page": "Ajouter Emploi",
+        "Apply on company site": "Postuler sur le site",
         "You have yet to apply for this job.": "Vous n'avez pas encore postulé pour ce poste.",
-        "Apply on company site": "Postuler sur le site"
-      }
-    }
+        
+
+      },
+    },
   },
   lng: localStorage.getItem("lng") || "en"
 });

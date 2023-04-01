@@ -12,12 +12,15 @@ import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import DownloadIcon from '@mui/icons-material/Download';
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 
 
 const ReceivedApplications = () => {
   const userID = sessionStorage.getItem("userID");
   const userRole = sessionStorage.getItem("role");
+
+  const { t, i18n } = useTranslation();
 
   const [receivedApplications, setReceivedApplications] = useState([]);
 
@@ -93,26 +96,26 @@ const styles = {
   };
   
   return (
-    <div>
+    <div data-testid="receivedApplications-test">
       {userID && (userRole === "Recruiter" || userRole === "Administrator") ? (
         <div className="jobsApplied">
         <div>
           <div className="heading">
-            <h1>Applicants Summary</h1>
+            <h1>{t("Applicants Summary")}</h1>
           </div>
 
           <Table>
             <div class="jobs">
               <Thead>
                 <Tr>
-                  <Th> Job ID</Th>
-                  <Th>Job Title</Th>
-                  <Th>First Name</Th>
-                  <Th>Last Name</Th>
-                  <Th>Email</Th>
-                  <Th>Phone Number</Th>
-                  <Th>CV</Th>
-                  <Th>Cover Letter</Th>
+                  <Th>{t("Job ID")}</Th>
+                  <Th>{t("Job Title")}</Th>
+                  <Th>{t("First Name")}</Th>
+                  <Th>{t("Last Name")}</Th>
+                  <Th>{t("Email")}</Th>
+                  <Th>{t("Phone")}</Th>
+                  <Th>{t("CV")}</Th>
+                  <Th>{t("Cover Letter")}</Th>
                 </Tr>
               </Thead>
               {receivedApplications.map(receivedApplication => (

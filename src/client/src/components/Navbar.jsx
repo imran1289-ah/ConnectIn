@@ -269,7 +269,7 @@ const Navbar = () => {
                 </Box>
               </IconButton>
 
-            {role == "Recruiter" &&
+            {role == "Administrator" &&
               <IconButton color="inherit" onClick={redirectDMReports}>
                 <Box className="parentUserIconContainer">
                   <Typography className="userIconContainer">

@@ -184,7 +184,7 @@ const fetchSession = async () => {
             </form>
 
 
-                <Button className ="sendApplicationButton" onClick ={submitApplication} variant="contained" component="label">
+                <Button data-testid="submitButton" className ="sendApplicationButton" onClick ={submitApplication} variant="contained" component="label">
                     {t("Send Application")}
 
                 </Button>

@@ -130,6 +130,9 @@ i18next.use(initReactI18next).init({
         "Job Posting Page": "Job Posting Page",
         "Apply on company site": "Apply on company site",
         "You have yet to apply for this job.": "You have yet to apply for this job.",
+        "Already connected":"Already connected",
+        "Connect":"Connect",
+        "You are already connected":"You are already connected",
         
       },
     },
@@ -259,6 +262,9 @@ i18next.use(initReactI18next).init({
         "Job Posting Page": "Ajouter Emploi",
         "Apply on company site": "Postuler sur le site",
         "You have yet to apply for this job.": "Vous n'avez pas encore postulé pour ce poste.",
+        "Already connected":"Déjà connecté",
+        "Connect":"Connecter",
+        "You are already connected":"Vous êtes déjà connecté"
         
 
       },

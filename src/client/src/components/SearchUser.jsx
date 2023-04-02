@@ -44,7 +44,7 @@ const SearchUser = () => {
 
   const fetchSession = async () => {
     try {
-      const response = await axios.get(`session`);
+      const response = await axios.get(`https://connectin-api.onrender.com/session`);
       setLogin({
         isLoggedIn: true,
       });
@@ -63,7 +63,7 @@ const SearchUser = () => {
     const searchUser = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:9000/search${locationURL}`
+          `https://connectin-api.onrender.com/search${locationURL}`
         );
         setSearch(response.data);
       } catch (error) {
@@ -79,7 +79,7 @@ const SearchUser = () => {
     console.log(sessionStorage.getItem("firstname"));
     console.log(sessionStorage.getItem("lastname"));
     axios
-      .post(`http://localhost:9000/users/searchuserlist${locationURL}`, {
+      .post(`https://connectin-api.onrender.com/users/searchuserlist${locationURL}`, {
         _id: userid,
         userID: sessionStorage.getItem("userID"),
         firstname: sessionStorage.getItem("firstname"),

@@ -58,22 +58,25 @@ const JobListing = () => {
 
   // "category:full-time,location:montreal"
 
+
   const navigate = useNavigate();
   useEffect(() => {
     fetchJobs();
     fetchAppliedJob();
   }, []);
 
+
   useEffect(() => {
     fetchJobsWithFilter();
   }, [preferences]);
 
+
   const fetchJobs = async () => {
-    const { data } = await axios.get("http://localhost:9000/jobs");
+    const { data } = await axios.get("hhttps://connectin-api.onrender.com/jobs");
     setJobs(data);
   };
   const fetchJobsWithFilter = async () => {
-    const { data } = await axios.post("http://localhost:9000/jobs", preferences);
+    const { data } = await axios.post("https://connectin-api.onrender.com/jobs", preferences);
     setJobs(data);
   };
 
@@ -82,11 +85,12 @@ const JobListing = () => {
     setJobsApplied(data);
   };
 
+
   const deletePost = async (jobId, e) => {
     e.preventDefault();
     console.log(jobId);
     axios
-      .post(`http://localhost:9000/jobs/delete/${jobId}`, {
+      .post(`https://connectin-api.onrender.com/jobs/delete/${jobId}`, {
         jobId: jobId
       })
       .then(response => {
@@ -106,7 +110,7 @@ const JobListing = () => {
 
   const savePreferences = async () => {
     if (preferences.category && preferences.location && preferences.work_type) {
-      await axios.post(`http://localhost:9000/users/${userID}/preferences`, preferences);
+      await axios.post(`https://connectin-api.onrender.com/users/${userID}/preferences`, preferences);
       //   console.log(preferences);
     } else {
       swal("Please fill in all fields before saving preferences.");

@@ -36,7 +36,7 @@ const UserTimeline = () => {
     try {
       if (userID) {
         const response = await axios.get(
-          `http://localhost:9000/users/profile/${userID}`
+          `https://connectin-api.onrender.com/users/profile/${userID}`
         );
         setUserConnections({
           _id: response.data._id,
@@ -81,7 +81,7 @@ const UserTimeline = () => {
   //Fetch session information
   const fetchSession = async () => {
     try {
-      const response = await axios.get(`session`);
+      const response = await axios.get(`/session`);
       setLogin({
         isLoggedIn: true,
       });
@@ -105,7 +105,7 @@ const UserTimeline = () => {
   //HTTP Request to fetch to add post
   const savePost = async () => {
     axios
-      .post(`http://localhost:9000/users/post`, {
+      .post(`https://connectin-api.onrender.com/users/post`, {
         _id: sessionStorage.getItem("userID"),
         firstname: sessionStorage.getItem("firstname"),
         lastname: sessionStorage.getItem("lastname"),
@@ -142,7 +142,7 @@ const UserTimeline = () => {
   const [connections, setConnections] = useState([]);
   const fetchConnections = async () => {
     await axios
-      .get(`http://localhost:9000/users/${userID}/connections`)
+      .get(`https://connectin-api.onrender.com/users/${userID}/connections`)
       .then((response) => {
         setConnections(response.data);
       });
@@ -152,7 +152,7 @@ const UserTimeline = () => {
   const [posts, setPosts] = useState([]);
   const fetchPosts = async () => {
     await axios
-      .get(`http://localhost:9000/users/${userID}/posts`)
+      .get(`https://connectin-api.onrender.com/users/${userID}/posts`)
       .then((response) => {
         setPosts(response.data);
       });
@@ -190,15 +190,13 @@ const UserTimeline = () => {
       if (willDelete) {
         console.log(userID, connectionUserID);
         axios
-          .delete(
-            `http://localhost:9000/rooms/deleteRoom/${userID}/${connectionUserID}`
-          )
-          .catch((err) => {
+          .delete(`https://connectin-api.onrender.com/rooms/deleteRoom/${userID}/${connectionUserID}`)
+          .catch((err) =>{
             console.log(err);
           });
         axios
           .delete(
-            `http://localhost:9000/users/removeConnection/${userID}/connections/${connectionUserID}`
+            `https://connectin-api.onrender.com/users/removeConnection/${userID}/connections/${connectionUserID}`
           )
           .then((response) => {
             swal(

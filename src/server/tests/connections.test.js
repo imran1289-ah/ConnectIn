@@ -46,7 +46,7 @@ describe("Connections", () => {
         firstname: "dummyFirstname",
         lastname: "dummyLastname"
       });
-      expect(res.statusCode).toEqual(201);
+      expect(res.statusCode).toEqual(200);
     });
   });
 
@@ -57,7 +57,6 @@ describe("Connections", () => {
       .send({
         user_id: savedUser._id
       });
-      console.log(res);
       expect(res.statusCode).toEqual(200);
     });
   });

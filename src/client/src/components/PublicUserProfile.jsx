@@ -8,6 +8,7 @@ import swal from "sweetalert";
 import { Link, Navigate } from "react-router-dom";
 import { Select, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const PublicUserProfile = () => {
   //States
@@ -39,6 +40,7 @@ const PublicUserProfile = () => {
 
   //Global loginState
   const [login, setLogin] = useContext(Context);
+  const { t, i18n } = useTranslation();
 
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
@@ -80,8 +82,8 @@ const PublicUserProfile = () => {
       })
       .then((response) => {
         swal(
-          "Congrats!",
-          "You have successfully sent connection request!",
+          t("Congrats!"),
+          t("You have successfully sent connection request!"),
           "success",
           {
             button: false,
@@ -139,6 +141,41 @@ const PublicUserProfile = () => {
     }
   };
 
+  
+  const Friends = async (friendUserid, fname, lname) => {
+    // console.log(ownUserId)
+    // console.log(friendUserid)
+    return new Promise((resolve, reject) => {
+
+      axios
+      .post(`http://localhost:9000/users/searchfriendslist`, {
+          ownUserID: sessionStorage.getItem("userID"),
+          friendUserid: friendUserid,
+          firstname:fname,
+          lastname:lname,
+      }).then((response) => {
+        var friend = response.data;
+        //console.log(response.data);
+        if(friend){ swal(
+          t("Congrats!"),
+          t("You are already connected"),
+          "error",
+          {
+            button: false,
+            timer: 1000,
+          }
+        );}
+        else{Clickme(`${friendUserid}`)}
+
+
+        resolve(friend);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    })
+  };
+
   return (
     <div>
       {userID && publicUser && userID !== profileId ? (
@@ -161,9 +198,9 @@ const PublicUserProfile = () => {
                   <div className="connectButtonSection">
                     <button
                       className="connectButton"
-                      onClick={() => Clickme(`${publicUser._id}`)}
+                      onClick={() => Friends(`${publicUser._id}`,`${publicUser.firstname}`, `${publicUser.lastname}`)}
                     >
-                      Connect
+                      {t("Connect")}
                     </button>
                   </div>
                 </div>
@@ -174,11 +211,11 @@ const PublicUserProfile = () => {
               <p className="userBio">
                 {publicUser.bio
                   ? publicUser.bio
-                  : "The user did not add a biogragphy"}
+                  : t("The user did not add a biogragphy")}
               </p>
             </div>
             <div className="userJobInformation">
-              <span className="subTitle">Experience</span>
+              <span className="subTitle">{t("Work Experience")}</span>
               <ul className="elementList">
                 {publicUser.workExp && publicUser.workExp.length > 0 ? (
                   publicUser.workExp.map((workExperience) => (
@@ -195,13 +232,13 @@ const PublicUserProfile = () => {
                   ))
                 ) : (
                   <p className="userBio">
-                    The user did not add any work experience
+                    {t("The user did not add any work experience")}
                   </p>
                 )}
               </ul>
             </div>
             <div className="userJobInformation">
-              <span className="subTitle">Education</span>
+              <span className="subTitle">{t("Education")}</span>
               <ul className="elementList">
                 {publicUser.education && publicUser.education.length > 0 ? (
                   publicUser.education.map((education) => (
@@ -217,12 +254,14 @@ const PublicUserProfile = () => {
                     </li>
                   ))
                 ) : (
-                  <p className="userBio">The user did not add any education</p>
+                  <p className="userBio">
+                    {t("The user did not add any education")}
+                  </p>
                 )}
               </ul>
             </div>
             <div className="userKnowledgeInformation">
-              <span className="subTitle">Skills</span>
+              <span className="subTitle">{t("Skills")}</span>
               <ul className="elementList">
                 {publicUser.skills && publicUser.skills.length > 0 ? (
                   publicUser.skills.map((skill) => (
@@ -231,12 +270,14 @@ const PublicUserProfile = () => {
                     </li>
                   ))
                 ) : (
-                  <p className="userBio">The user did not add any skills</p>
+                  <p className="userBio">
+                    {t("The user did not add any skills")}
+                  </p>
                 )}{" "}
               </ul>
             </div>
             <div className="userKnowledgeInformation">
-              <span className="subTitle">Languages</span>
+              <span className="subTitle">{t("Languages")}</span>
               <ul className="elementList">
                 {publicUser.languages && publicUser.languages.length > 0 ? (
                   publicUser.languages.map((language) => (
@@ -245,12 +286,14 @@ const PublicUserProfile = () => {
                     </li>
                   ))
                 ) : (
-                  <p className="userBio">The user did not add any language</p>
+                  <p className="userBio">
+                    {t("The user did not add any language")}
+                  </p>
                 )}
               </ul>
             </div>
             <div className="userKnowledgeInformation">
-              <span className="subTitle">Volunteering</span>
+              <span className="subTitle">{t("Volunteering")}</span>
 
               <ul className="elementList">
                 {publicUser.volunteering &&
@@ -263,7 +306,7 @@ const PublicUserProfile = () => {
                 ) : (
                   <p className="userBio">
                     {" "}
-                    The user did not add any volunterring experience
+                    {t("The user did not add any volunterring experience")}
                   </p>
                 )}{" "}
               </ul>
@@ -299,7 +342,7 @@ const PublicUserProfile = () => {
                 })
               ) : (
                 <p className="userBio">
-                  The user does not have any connections
+                  {t("The user does not have any connections")}
                 </p>
               )}
             </div>

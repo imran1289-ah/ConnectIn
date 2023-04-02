@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate whether or not the front-end of the chat page renders correctly renders static elements correctly 1`] = `
+<div
+  className="MuiContainer-root MuiContainer-maxWidthLg css-1oqqzyl-MuiContainer-root"
+>
+  <div
+    className="container"
+  >
+    <div
+      data-testid="contacts-container"
+    >
+      <div
+        className="contacts"
+      >
+        <div
+          className="header"
+        >
+          My Contacts
+        </div>
+        <hr
+          className="line"
+        />
+        <div
+          className="ul"
+        />
+      </div>
+    </div>
+    <hr
+      className="line"
+    />
+    <div
+      className="selectHeader"
+    >
+      Select a chat
+    </div>
+  </div>
+</div>
+`;

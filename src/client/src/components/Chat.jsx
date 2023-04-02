@@ -86,26 +86,19 @@ const Chat = () => {
 
   return (
     <>
-      <Container>
-        <div className={ChatCSS.container}>
-          {/* {console.log(userConnections.connections)} */}
-          <div>
-            <Contacts
-              connections={userConnections.connections}
-              changeChat={handleChangeChat}
-            />
-          </div>
-          <hr className={ChatCSS.line} />
-          {/* <div className={ChatCSS.chat_container}> */}
-          {currentChat === undefined ? (
-            <div className={ContactCSS.selectHeader}>{t("Select a chat")}</div>
-          ) : (
-            <ChatContainer
-              currentChat={currentChat}
-              room={room}
-              socket={socket}
-            />
-          )}
+    <Container>
+      <div className={ChatCSS.container}>
+        {/* {console.log(userConnections.connections)} */}
+        <div data-testid="contacts-container">
+          <Contacts connections={userConnections.connections} changeChat={handleChangeChat} />
+        </div>
+        <hr className={ChatCSS.line} /> 
+        {/* <div className={ChatCSS.chat_container}> */}
+        {currentChat === undefined ? (
+          <div className={ContactCSS.selectHeader}>{t("Select a chat")}</div>
+        ) : (
+          <ChatContainer currentChat={currentChat} room={room} socket={socket}/>
+        )}
         </div>
 
         {/* </div> */}

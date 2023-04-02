@@ -12,6 +12,7 @@ import MessageIcon from "@mui/icons-material/Message";
 import WorkIcon from "@mui/icons-material/Work";
 import GroupIcon from "@mui/icons-material/Group";
 import HomeIcon from "@mui/icons-material/Home";
+import FlagIcon from '@mui/icons-material/Flag';
 import { IconButton } from "@mui/material";
 import { fontSize } from "@mui/system";
 import { Context } from "../UserSession";
@@ -24,6 +25,9 @@ const Navbar = () => {
   const [login, setLogin] = useContext(Context);
   const { t, i18n } = useTranslation();
   const userRole = sessionStorage.getItem("role");
+
+  //Get id of logged in user
+  const role = sessionStorage.getItem("role");
 
   const HandleSearch = () => {
     console.log(query);
@@ -63,6 +67,10 @@ const Navbar = () => {
 
   const redirectWaitingConnections = () => {
     navigate("/waitingConnections");
+  };
+
+  const redirectDMReports = () => {
+    navigate("/dmReports");
   };
 
   const redirectJobApplications = () => {
@@ -260,6 +268,26 @@ const Navbar = () => {
                   </Typography>
                 </Box>
               </IconButton>
+
+            {role == "Administrator" &&
+              <IconButton color="inherit" onClick={redirectDMReports}>
+                <Box className="parentUserIconContainer">
+                  <Typography className="userIconContainer">
+                    <FlagIcon
+                      className="publicUserIcon"
+                      fontSize="large"
+                    ></FlagIcon>
+                    <Typography
+                      fontSize={10}
+                      className="userSubtitle"
+                      variant="subtitle2"
+                    >
+                      DM Reports
+                    </Typography>
+                  </Typography>
+                </Box>
+              </IconButton>
+            }
 
               <IconButton color="inherit" onClick={redirectProfile}>
                 <Box className="parentUserIconContainer">

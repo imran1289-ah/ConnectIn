@@ -60,5 +60,41 @@ describe('Jobs Filter', () => {
         });
     });
 
+    describe("deleteJob", () => {
+        let jobId;
 
+        it("should create a new job", async() => {
+            const res = await request(app)
+                .post("/jobs/create")
+                .send({
+                    job_id: 1,
+                    recruiter_id: "recruiter1",
+                    description: "Test job",
+                    salary: 1000,
+                    company: "Test company",
+                    category: "Test category",
+                    title: "Test title",
+                    location: "Test location",
+                    work_type: "Full-time",
+                    thirdParty: false,
+                    jobLink: "https://testjob.com"
+                });
+            expect(res.statusCode).toEqual(200);
+            jobId = res.body.job_id;
+        });
+
+        afterAll(async() => {
+
+            // Disconnect from the test database
+            await mongoose.connection.close();
+        });
+
+        it("should delete the job", async() => {
+            const res = await request(app).post(`/jobs/delete/${jobId}`);
+            expect(res.statusCode).toEqual(200);
+            expect(res.body.message).toEqual(`Successfully removed job id ${jobId}`);
+        });
+
+
+    });
 });

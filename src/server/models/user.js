@@ -50,13 +50,15 @@ const UserSchema = new mongoose.Schema({
     preferences: {
         category: {
             type: String,
-            required:true
+            required: true
         },
         location: {
-            type: String, required:true
+            type: String,
+            required: true
         },
         work_type: {
-            type: String, required:true
+            type: String,
+            required: true
         }
     },
 });

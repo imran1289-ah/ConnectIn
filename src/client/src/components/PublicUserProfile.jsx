@@ -141,6 +141,41 @@ const PublicUserProfile = () => {
     }
   };
 
+  
+  const Friends = async (friendUserid, fname, lname) => {
+    // console.log(ownUserId)
+    // console.log(friendUserid)
+    return new Promise((resolve, reject) => {
+
+      axios
+      .post(`http://localhost:9000/users/searchfriendslist`, {
+          ownUserID: sessionStorage.getItem("userID"),
+          friendUserid: friendUserid,
+          firstname:fname,
+          lastname:lname,
+      }).then((response) => {
+        var friend = response.data;
+        //console.log(response.data);
+        if(friend){ swal(
+          t("Congrats!"),
+          t("You are already connected"),
+          "error",
+          {
+            button: false,
+            timer: 1000,
+          }
+        );}
+        else{Clickme(`${friendUserid}`)}
+
+
+        resolve(friend);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    })
+  };
+
   return (
     <div>
       {userID && publicUser && userID !== profileId ? (
@@ -163,9 +198,9 @@ const PublicUserProfile = () => {
                   <div className="connectButtonSection">
                     <button
                       className="connectButton"
-                      onClick={() => Clickme(`${publicUser._id}`)}
+                      onClick={() => Friends(`${publicUser._id}`,`${publicUser.firstname}`, `${publicUser.lastname}`)}
                     >
-                      Connect
+                      {t("Connect")}
                     </button>
                   </div>
                 </div>

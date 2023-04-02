@@ -58,9 +58,12 @@ router
     .delete(usersControllers.removeConnection);
 
 router
-    .route('/:id/preferences')
+    .route("/:id/preferences")
     .post(usersControllers.savePreferences);
 
+router
+    .route("/searchfriendslist")
+    .post(usersControllers.verifyConnections);
 router.route("/notifications/:userID").get(notificationControllers.sendNotification)
 
 module.exports = router;

@@ -41,7 +41,7 @@ export default function BasicModal({ sender, receiver, open, onClose, message, c
   const handleSendReport = async () => {
     console.log(reportData);
     await axios.post(
-      `http://localhost:9000/reports/create`,
+      `https://connectin-api.onrender.com/reports/create`,
       {
         sender: reportData.sender,
         receiver: reportData.receiver,

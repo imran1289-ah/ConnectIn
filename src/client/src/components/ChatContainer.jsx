@@ -1,12 +1,26 @@
 import ContainerCSS from "../css/ChatContainer.module.css";
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ChatInput from "./ChatInput";
+import ChatReportModal from "./ChatReportModal";
+import FlagIcon from '@mui/icons-material/Flag';
 import axios from "axios";
 
 const ChatContainer = ({ currentChat, socket, room }) => {
   const [messages, setMessages] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState([]);
   const messagesEndRef = useRef(null);
+
+  const [reportMsg, setReportMsg] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+
+  const openReportModal = (e) => {
+    setReportMsg(e);
+    setOpenModal(true);
+  }
+
+  const callbackModal = () => {
+    setOpenModal(false);
+  }
 
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
@@ -129,7 +143,6 @@ const ChatContainer = ({ currentChat, socket, room }) => {
       </div>
       <hr className={ContainerCSS.line} />
       <div className={ContainerCSS.chatBox}>
-        
       {messages.map((message, index) => {
         const isLastMessage = index === messages.length - 1;
         return (
@@ -141,6 +154,12 @@ const ChatContainer = ({ currentChat, socket, room }) => {
             ) : (
               <div className={ContainerCSS.received}>
                 <div className={ContainerCSS.textReceived}>{message.message}</div>
+                <button className={ContainerCSS.kebabButton}
+                    aria-haspopup="true"
+                    onClick={() => openReportModal(message.message)}>
+                  <FlagIcon />
+                </button>
+                <ChatReportModal callbackModal = {callbackModal} receiver={userID} sender={currentChat.userID} open={openModal} onClose={() => setOpenModal(false)} message={reportMsg} />
               </div>
             )}
             {isLastMessage && <div ref={messagesEndRef} />}
@@ -153,7 +172,6 @@ const ChatContainer = ({ currentChat, socket, room }) => {
       <div className={ContainerCSS.input}>
         <ChatInput handleSendMsg={handleSendMsg} from={userID} to={currentChat.userID} />
       </div>
-
     </div>
     
   ); 

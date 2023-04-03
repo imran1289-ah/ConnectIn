@@ -8,15 +8,15 @@ import UserSession from "../UserSession";
 
 //Test to see if login title and placeholders were rendered correctly
 test("Sign in page header rendered correctly", () => {
-  render(<UserSession>
-          <BrowserRouter>
-            <SignIn />
-          </BrowserRouter>
-        </UserSession>
-    
+  render(
+    <UserSession>
+      <BrowserRouter>
+        <SignIn />
+      </BrowserRouter>
+    </UserSession>
   );
   const title = screen.getByText(/Log in to your account/i);
-  const emailplaceholder = screen.getByText(/email or username/i);
+  const emailplaceholder = screen.getByText(/email/i);
   const passwordplaceholder = screen.getByText(/password/i);
   expect(title).toBeInTheDocument();
   expect(emailplaceholder).toBeInTheDocument();

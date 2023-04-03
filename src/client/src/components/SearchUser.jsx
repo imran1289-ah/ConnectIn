@@ -5,6 +5,7 @@ import "../css/searchuserlist.css";
 import { Context } from "../UserSession";
 
 import swal from "sweetalert";
+import { useTranslation } from "react-i18next";
 
 const SearchUser = () => {
   //States
@@ -15,6 +16,7 @@ const SearchUser = () => {
 
   //Global loginState
   const [login, setLogin] = useContext(Context);
+  const { t, i18n } = useTranslation();
 
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
@@ -85,8 +87,8 @@ const SearchUser = () => {
       })
       .then((response) => {
         swal(
-          "Congrats!",
-          "You have successfully sent connection request!",
+          t("Congrats!"),
+          t("You have successfully sent connection request!"),
           "success",
           {
             button: false,
@@ -99,6 +101,44 @@ const SearchUser = () => {
         //alert("Cannot connect");
       });
   };
+  
+
+  const Friends = async (friendUserid, fname, lname) => {
+    // console.log(ownUserId)
+    // console.log(friendUserid)
+    return new Promise((resolve, reject) => {
+
+      axios
+      .post(`http://localhost:9000/users/searchfriendslist`, {
+          ownUserID: sessionStorage.getItem("userID"),
+          friendUserid: friendUserid,
+          firstname:fname,
+          lastname:lname,
+      }).then((response) => {
+        var friend = response.data;
+        //console.log(response.data);
+        if(friend){ swal(
+          t("Congrats!"),
+          t("You are already connected"),
+          "error",
+          {
+            button: false,
+            timer: 1000,
+          }
+        );}
+        else{Clickme(`${friendUserid}`)}
+
+
+        resolve(friend);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    })
+  };
+
+
+  
   return (
     // Display searched users
     <div>
@@ -118,19 +158,21 @@ const SearchUser = () => {
                 </div>
                 <br></br>
                 <div className="buttonSection">
-                  <button
-                    className="searchConnectButton"
-                    onClick={() => Clickme(`${user._id}`)}
-                  >
-                    Connect
-                  </button>
-                </div>
+                    <button
+                      className="searchConnectButton"
+                      onClick={() => Friends(`${user._id}`,`${user.firstname}`, `${user.lastname}`)}
+                    >
+                      {t("Connect")}
+                    </button>
+                  </div>
               </div>
             )
           )}
         </div>
       ) : (
-        <h1 style={{ textAlign: "center" }}>Please login to your account</h1>
+        <h1 style={{ textAlign: "center" }}>
+          {t("Please login to your account")}
+        </h1>
       )}
     </div>
   );

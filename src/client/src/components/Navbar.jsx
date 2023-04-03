@@ -12,15 +12,22 @@ import MessageIcon from "@mui/icons-material/Message";
 import WorkIcon from "@mui/icons-material/Work";
 import GroupIcon from "@mui/icons-material/Group";
 import HomeIcon from "@mui/icons-material/Home";
+import FlagIcon from '@mui/icons-material/Flag';
 import { IconButton } from "@mui/material";
 import { fontSize } from "@mui/system";
 import { Context } from "../UserSession";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const [login, setLogin] = useContext(Context);
+  const { t, i18n } = useTranslation();
+  const userRole = sessionStorage.getItem("role");
+
+  //Get id of logged in user
+  const role = sessionStorage.getItem("role");
 
   const HandleSearch = () => {
     console.log(query);
@@ -48,25 +55,37 @@ const Navbar = () => {
 
   const redirectMessages = () => {
     navigate("/chat");
-  }
+  };
 
   const redirectJobs = () => {
-    navigate("/jobs")
-  }
+    navigate("/jobs");
+  };
 
   const redirectHome = () => {
     navigate("/userTimeline");
   };
 
-  const redirectWaitingConnections = () =>{
-    navigate("/waitingConnections")
-  }
+  const redirectWaitingConnections = () => {
+    navigate("/waitingConnections");
+  };
 
-  const redirectJobApplications = () =>{
+  const redirectDMReports = () => {
+    navigate("/dmReports");
+  };
 
-    navigate("/jobsapplied")
+  const redirectJobApplications = () => {
+    navigate("/jobsapplied");
+  };
 
-  }
+  const redirectReceivedApplications = () => {
+    navigate("/receivedApplications");
+  };
+  const redirectJobPosting = () => {
+    navigate("/jobposting");
+  };
+  const redirectJobListing = () => {
+    navigate("/JobList");
+  };
 
   return (
     //Material UI navbar
@@ -105,7 +124,7 @@ const Navbar = () => {
                     ></HomeIcon>
 
                     <Typography fontSize={10} variant="subtitle2">
-                      Home
+                      {t("home")}
                     </Typography>
                   </Typography>
                 </Box>
@@ -123,7 +142,7 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      Network
+                      {t("Network")}
                     </Typography>
                   </Typography>
                 </Box>
@@ -141,7 +160,7 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      Jobs
+                      {t("Jobs")}
                     </Typography>
                   </Typography>
                 </Box>
@@ -159,11 +178,78 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      Job Applications
+                      {t("Jobs Applied")}
                     </Typography>
                   </Typography>
                 </Box>
               </IconButton>
+
+              {userRole === "Recruiter" || userRole === "Administrator" ? (
+                <IconButton
+                  color="inherit"
+                  onClick={redirectReceivedApplications}
+                >
+                  <Box className="parentUserIconContainer">
+                    <Typography className="userIconContainer">
+                      <WorkIcon
+                        className="publicUserIcon"
+                        fontSize="large"
+                      ></WorkIcon>
+                      <Typography
+                        fontSize={10}
+                        className="userSubtitle"
+                        variant="subtitle2"
+                      >
+                        {t("Applicants")}
+                      </Typography>
+                    </Typography>
+                  </Box>
+                </IconButton>
+              ) : (
+                <></>
+              )}
+              {userRole === "Recruiter" || userRole === "Administrator" ? (
+                <IconButton color="inherit" onClick={redirectJobPosting}>
+                  <Box className="parentUserIconContainer">
+                    <Typography className="userIconContainer">
+                      <WorkIcon
+                        className="publicUserIcon"
+                        fontSize="large"
+                      ></WorkIcon>
+                      <Typography
+                        fontSize={10}
+                        className="userSubtitle"
+                        variant="subtitle2"
+                      >
+                        {t("Post Job")}
+                      </Typography>
+                    </Typography>
+                  </Box>
+                </IconButton>
+              ) : (
+                <></>
+              )}
+              {userRole === "Recruiter" || userRole === "Administrator" ? (
+                <IconButton color="inherit" onClick={redirectJobListing}>
+                  <Box className="parentUserIconContainer">
+                    <Typography className="userIconContainer">
+                      <WorkIcon
+                        className="publicUserIcon"
+                        fontSize="large"
+                      ></WorkIcon>
+                      <Typography
+                        fontSize={10}
+                        className="userSubtitle"
+                        variant="subtitle2"
+                      >
+                        Edit/Delete Job
+                      </Typography>
+                    </Typography>
+                  </Box>
+                </IconButton>
+              ) : (
+                <></>
+              )}
 
               <IconButton color="inherit" onClick={redirectMessages}>
                 <Box className="parentUserIconContainer">
@@ -183,6 +269,26 @@ const Navbar = () => {
                 </Box>
               </IconButton>
 
+            {role == "Administrator" &&
+              <IconButton color="inherit" onClick={redirectDMReports}>
+                <Box className="parentUserIconContainer">
+                  <Typography className="userIconContainer">
+                    <FlagIcon
+                      className="publicUserIcon"
+                      fontSize="large"
+                    ></FlagIcon>
+                    <Typography
+                      fontSize={10}
+                      className="userSubtitle"
+                      variant="subtitle2"
+                    >
+                      DM Reports
+                    </Typography>
+                  </Typography>
+                </Box>
+              </IconButton>
+            }
+
               <IconButton color="inherit" onClick={redirectProfile}>
                 <Box className="parentUserIconContainer">
                   <Typography className="userIconContainer">
@@ -195,7 +301,7 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      Profile
+                      {t("Profile")}
                     </Typography>
                   </Typography>
                 </Box>
@@ -213,7 +319,7 @@ const Navbar = () => {
                       className="userSubtitle"
                       variant="subtitle2"
                     >
-                      Sign Out
+                      {t("Sign Out")}
                     </Typography>
                   </Typography>
                 </Box>

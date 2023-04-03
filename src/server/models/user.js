@@ -32,6 +32,7 @@ const UserSchema = new mongoose.Schema({
         type: Number,
     },
     jobsApplied: [],
+    receivedApplications: [],
     volunteering: [],
     connections: [],
     education: [],
@@ -43,12 +44,25 @@ const UserSchema = new mongoose.Schema({
     postsMade: [],
     role: {
         type: String,
-        Enumerator: ["User","Recruiter","Administrator"],
+        Enumerator: ["User", "Recruiter", "Administrator"],
         required: true
+    },
+    preferences: {
+        category: {
+            type: String,
+            required: true
+        },
+        location: {
+            type: String,
+            required: true
+        },
+        work_type: {
+            type: String,
+            required: true
+        }
     },
 });
 
 const User = mongoose.model("Users", UserSchema);
 
 module.exports = User;
- 

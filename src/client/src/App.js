@@ -4,6 +4,7 @@ import LoginFooter from "./components/LoginFooter";
 import SignupFooter from "./components/SignupFooter";
 import JobPosting from "./components/JobPosting";
 import ViewJobsApplied from "./components/ViewJobsApplied";
+import ReceivedApplications from "./components/receivedApplicationsForRecruiters";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
@@ -20,8 +21,10 @@ import EditJobPosting from "./components/EditJobPosting";
 import EditUserProfile from "./components/EditUserProfile";
 import UserTimeline from "./components/UserTimeline";
 import UserSession from "./UserSession";
+import DMReport from "./components/DMReport";
 
 import io from "socket.io-client";
+import JobList from "./components/JobList";
 
 function App() {
   //const socket = io.connect("http://localhost:9000");
@@ -59,7 +62,15 @@ function App() {
             path="/UserProfile"
             element={
               <>
-                <Navbar /> <UserProfile />
+                <Navbar /> <UserProfile /> <LoginFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/JobList"
+            element={
+              <>
+                <Navbar /> <JobList /> <LoginFooter />
               </>
             }
           ></Route>
@@ -75,7 +86,7 @@ function App() {
             path="/users/search/:id"
             element={
               <>
-                <Navbar /> <PublicUserProfile />
+                <Navbar /> <PublicUserProfile /> <LoginFooter />
               </>
             }
           ></Route>
@@ -141,6 +152,22 @@ function App() {
             element={
               <>
                 <Navbar /> <ViewJobsApplied /> <SignupFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/dmReports"
+            element={
+              <>
+                <Navbar /> <DMReport /> <SignupFooter />
+              </>
+            }
+            ></Route>
+            <Route
+            path="/receivedApplications"
+            element={
+              <>
+                <Navbar /> <ReceivedApplications /> <SignupFooter />
               </>
             }
           ></Route>

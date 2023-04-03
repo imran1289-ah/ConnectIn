@@ -19,8 +19,24 @@ describe('getMessages', () => {
 
     beforeAll(async() => {
         mongoose.connect(process.env.DATABASE);
-        const user1 = await User.create({ firstname: 'Alice', role: 'user' });
-        const user2 = await User.create({ firstname: 'Bob', role: 'user' });
+        const user1 = await User.create({
+            firstname: 'Alice',
+            role: 'user',
+            preferences: {
+                category: "test",
+                work_type: "test",
+                location: "test"
+            }
+        });
+        const user2 = await User.create({
+            firstname: 'Bob',
+            role: 'user',
+            preferences: {
+                category: "test",
+                work_type: "test",
+                location: "test"
+            }
+        });
 
         userID1 = user1._id;
         userID2 = user2._id;
@@ -104,7 +120,15 @@ describe('getMessages', () => {
     });
 
     it('should return an empty array when there are no messages between the users', async() => {
-        const user3 = await User.create({ firstname: 'Charlie', role: 'user' });
+        const user3 = await User.create({
+            firstname: 'Charlie',
+            role: 'user',
+            preferences: {
+                category: "test",
+                work_type: "test",
+                location: "test"
+            }
+        });
         const fromUser2 = user3._id.toString();
         const response = await request(app)
             .post('/messages')

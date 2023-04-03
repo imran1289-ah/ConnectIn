@@ -148,7 +148,7 @@ const PublicUserProfile = () => {
     return new Promise((resolve, reject) => {
 
       axios
-      .post(`http://localhost:9000/users/searchfriendslist`, {
+      .post(`https://connectin-api.onrender.com/users/searchfriendslist`, {
           ownUserID: sessionStorage.getItem("userID"),
           friendUserid: friendUserid,
           firstname:fname,

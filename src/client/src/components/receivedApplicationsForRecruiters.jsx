@@ -53,7 +53,7 @@ const ReceivedApplications = () => {
   };
 
   const fetchReceivedApplications = async () => {
-    const { data } = await axios.get(`http://localhost:9000/users/${userID}/receivedApplications`);
+    const { data } = await axios.get(`https://connectin-api.onrender.com/users/${userID}/receivedApplications`);
 
     setReceivedApplications(data);
   };

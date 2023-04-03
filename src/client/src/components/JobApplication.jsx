@@ -108,15 +108,15 @@ const fetchSession = async () => {
               }
             })
             
-            await axios.post(`http://localhost:9000/users/${userID}/jobsApplied`, {
+            await axios.post(`https://connectin-api.onrender.com/users/${userID}/jobsApplied`, {
                 userId: userID,
                 jobId: job.jobState.job_id
             }).then((response) => {
               console.log(response.data);
-              axios.post(`http://localhost:9000/resume/uploadResume/${userID}`, resumeData)
+              axios.post(`https://connectin-api.onrender.com/resume/uploadResume/${userID}`, resumeData)
                 .then((res) => console.log(res))
                 .catch((error) => console.log(error));
-              axios.post(`http://localhost:9000/resume/uploadCoverLetter/${userID}`, coverLetterData)
+              axios.post(`https://connectin-api.onrender.com/resume/uploadCoverLetter/${userID}`, coverLetterData)
                 .then((res) => console.log(res))
                 .catch((error) => console.log(error))});
             swal(t("You've successfully applied for this job!"),{

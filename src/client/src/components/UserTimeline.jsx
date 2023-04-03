@@ -55,7 +55,7 @@ const UserTimeline = () => {
   const fetchNotificationForRecentJob = async () =>{
     try {
       if (userID) {
-        const notificationInfo = await axios.get(`http://localhost:9000/users/notifications/${userID}`);
+        const notificationInfo = await axios.get(`https://connectin-api.onrender.com/users/notifications/${userID}`);
         
         setJob(notificationInfo.data.latestJob)
         console.log(job)

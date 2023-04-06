@@ -226,12 +226,19 @@ const DrawerComponent = () => {
               <span className="WebLogo">ConnectIn</span>
             </Typography>
 
-            <IconButton
-              style={{ marginLeft: "auto" }}
-              onClick={() => setOpenMenu(!openMenu)}
-            >
-              <MenuIcon></MenuIcon>
-            </IconButton>
+            {sessionStorage.getItem("userID") ? (
+              <>
+                {" "}
+                <IconButton
+                  style={{ marginLeft: "auto" }}
+                  onClick={() => setOpenMenu(!openMenu)}
+                >
+                  <MenuIcon></MenuIcon>
+                </IconButton>
+              </>
+            ) : (
+              <></>
+            )}
           </Toolbar>
         </AppBar>
       </Box>

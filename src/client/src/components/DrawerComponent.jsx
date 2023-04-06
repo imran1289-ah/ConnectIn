@@ -1,13 +1,25 @@
 import React, { useContext, useState } from "react";
-import { Drawer, List, ListItem, ListItemText } from "@mui/material";
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  makeStyles,
+} from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { IconButton } from "@mui/material";
 import { Context } from "../UserSession";
+import MenuIcon from "@mui/icons-material/Menu";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import SearchIcon from "@mui/icons-material/Search";
 
 const DrawerComponent = () => {
-  const [openMenu, setOpenMenu] = useState(true);
+  const [openMenu, setOpenMenu] = useState(false);
 
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
@@ -77,96 +89,99 @@ const DrawerComponent = () => {
   };
 
   return (
-    <Drawer onClose={() => setOpenMenu(false)} open={openMenu}>
-      <List>
-        <ListItem>
-          <ListItemText>
-            <input
-              className="searchInput"
-              onChange={(e) => setQuery(e.target.value)}
-            ></input>
-            <button onClick={HandleSearch}></button>
-          </ListItemText>
-        </ListItem>
-
-        <ListItem>
-          <ListItemText>
-            <IconButton color="inherit" onClick={redirectHome}>
-              {t("home")}
-            </IconButton>
-          </ListItemText>
-        </ListItem>
-
-        <ListItem>
-          <ListItemText>
-            <IconButton color="inherit" onClick={redirectWaitingConnections}>
-              {t("Network")}
-            </IconButton>
-          </ListItemText>
-        </ListItem>
-
-        <ListItem>
-          <ListItemText>
-            <IconButton color="inherit" onClick={redirectJobs}>
-              {t("Jobs")}
-            </IconButton>
-          </ListItemText>
-        </ListItem>
-
-        <ListItem>
-          <ListItemText>
-            <IconButton color="inherit" onClick={redirectJobApplications}>
-              {t("Jobs Applied")}
-            </IconButton>
-          </ListItemText>
-        </ListItem>
-
-        {userRole === "Recruiter" || userRole === "Administrator" ? (
+    <>
+      <Drawer anchor="right" onClose={() => setOpenMenu(false)} open={openMenu}>
+        <List>
           <ListItem>
             <ListItemText>
-              <IconButton
-                color="inherit"
-                onClick={redirectReceivedApplications}
-              >
-                {t("Applicants")}
+              <input
+                style={{ width: "200px", height: "30px" }}
+                onChange={(e) => setQuery(e.target.value)}
+              ></input>
+              <button onClick={HandleSearch}>
+                <SearchIcon fontSize="small"> </SearchIcon>
+              </button>
+            </ListItemText>
+          </ListItem>
+
+          <ListItem>
+            <ListItemText>
+              <IconButton color="inherit" onClick={redirectHome}>
+                {t("home")}
               </IconButton>
             </ListItemText>
           </ListItem>
-        ) : (
-          <></>
-        )}
-        {userRole === "Recruiter" || userRole === "Administrator" ? (
+
           <ListItem>
             <ListItemText>
-              <IconButton color="inherit" onClick={redirectJobPosting}>
-                {t("Post Job")}
+              <IconButton color="inherit" onClick={redirectWaitingConnections}>
+                {t("Network")}
               </IconButton>
             </ListItemText>
           </ListItem>
-        ) : (
-          <></>
-        )}
-        {userRole === "Recruiter" || userRole === "Administrator" ? (
+
           <ListItem>
             <ListItemText>
-              <IconButton color="inherit" onClick={redirectJobListing}>
-                Edit/Delete Job
+              <IconButton color="inherit" onClick={redirectJobs}>
+                {t("Jobs")}
               </IconButton>
             </ListItemText>
           </ListItem>
-        ) : (
-          <></>
-        )}
 
-        <ListItem>
-          <ListItemText>
-            <IconButton color="inherit" onClick={redirectMessages}>
-              Messages
-            </IconButton>
-          </ListItemText>
-        </ListItem>
+          <ListItem>
+            <ListItemText>
+              <IconButton color="inherit" onClick={redirectJobApplications}>
+                {t("Jobs Applied")}
+              </IconButton>
+            </ListItemText>
+          </ListItem>
 
-        {/* {role == "Administrator" &&
+          {userRole === "Recruiter" || userRole === "Administrator" ? (
+            <ListItem>
+              <ListItemText>
+                <IconButton
+                  color="inherit"
+                  onClick={redirectReceivedApplications}
+                >
+                  {t("Applicants")}
+                </IconButton>
+              </ListItemText>
+            </ListItem>
+          ) : (
+            <></>
+          )}
+          {userRole === "Recruiter" || userRole === "Administrator" ? (
+            <ListItem>
+              <ListItemText>
+                <IconButton color="inherit" onClick={redirectJobPosting}>
+                  {t("Post Job")}
+                </IconButton>
+              </ListItemText>
+            </ListItem>
+          ) : (
+            <></>
+          )}
+          {userRole === "Recruiter" || userRole === "Administrator" ? (
+            <ListItem>
+              <ListItemText>
+                <IconButton color="inherit" onClick={redirectJobListing}>
+                  Edit/Delete Job
+                </IconButton>
+              </ListItemText>
+            </ListItem>
+          ) : (
+            <></>
+          )}
+
+          <ListItem>
+            <ListItemText>
+              <IconButton color="inherit" onClick={redirectMessages}>
+                Messages
+              </IconButton>
+            </ListItemText>
+          </ListItem>
+
+          {/* {role == "Administrator" &&
               <IconButton color="inherit" onClick={redirectDMReports}>
                 <Box className="parentUserIconContainer">
                   <Typography className="userIconContainer">
@@ -186,23 +201,41 @@ const DrawerComponent = () => {
               </IconButton>
             } */}
 
-        <ListItem>
-          <ListItemText>
-            <IconButton color="inherit" onClick={redirectProfile}>
-              {t("Profile")}
-            </IconButton>
-          </ListItemText>
-        </ListItem>
+          <ListItem>
+            <ListItemText>
+              <IconButton color="inherit" onClick={redirectProfile}>
+                {t("Profile")}
+              </IconButton>
+            </ListItemText>
+          </ListItem>
 
-        <ListItem>
-          <ListItemText>
-            <IconButton color="inherit" onClick={handleLogout}>
-              {t("Sign Out")}
+          <ListItem>
+            <ListItemText>
+              <IconButton color="inherit" onClick={handleLogout}>
+                {t("Sign Out")}
+              </IconButton>
+            </ListItemText>
+          </ListItem>
+        </List>
+      </Drawer>
+
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" style={{ background: "#19718D" }}>
+          <Toolbar>
+            <Typography component="div" sx={{ flexGrow: 1 }}>
+              <span className="WebLogo">ConnectIn</span>
+            </Typography>
+
+            <IconButton
+              style={{ marginLeft: "auto" }}
+              onClick={() => setOpenMenu(!openMenu)}
+            >
+              <MenuIcon></MenuIcon>
             </IconButton>
-          </ListItemText>
-        </ListItem>
-      </List>
-    </Drawer>
+          </Toolbar>
+        </AppBar>
+      </Box>
+    </>
   );
 };
 

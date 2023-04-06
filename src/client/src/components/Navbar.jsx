@@ -18,6 +18,9 @@ import { fontSize } from "@mui/system";
 import { Context } from "../UserSession";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import {useMediaQuery} from "@mui/material";
+import { createTheme } from "@mui/material";
+import DrawerComponent from "./DrawerComponent";
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
@@ -87,16 +90,32 @@ const Navbar = () => {
     navigate("/JobList");
   };
 
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 900,
+        lg: 1200,
+        xl: 1300,
+      },
+    },
+  });
+  
+  const matchSize = useMediaQuery(theme.breakpoints.down('xl'));
+
+  console.log(matchSize)
+
   return (
     //Material UI navbar
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{ background: "#19718D" }}>
-        {login.isLoggedIn ? (
+        {matchSize ? (<DrawerComponent></DrawerComponent>) : (<>{login.isLoggedIn ? (
           <Toolbar>
             <Typography component="div" sx={{ flexGrow: 1 }}>
               <span className="WebLogo">ConnectIn</span>
             </Typography>
-
+            
             <div className="searchArea">
               <Typography>
                 {" "}
@@ -332,7 +351,8 @@ const Navbar = () => {
               <span className="WebLogo">ConnectIn</span>
             </Typography>{" "}
           </Toolbar>
-        )}
+        )}</>)}
+        
       </AppBar>
     </Box>
   );

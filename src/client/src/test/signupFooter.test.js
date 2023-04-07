@@ -13,7 +13,7 @@ beforeAll(() => {
 });
 
 //Test to check if public profile page is being rendered correctly
-test("test if text is rendered correctly in the user profile page", () => {
+test("test if footer is rendered correctly", () => {
   render(
     <UserSession>
       <BrowserRouter>

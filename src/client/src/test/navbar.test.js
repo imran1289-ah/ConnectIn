@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../components/LoginFooter";
+import Navbar from "../components/Navbar";
 import { screen, render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
@@ -13,24 +13,16 @@ beforeAll(() => {
 });
 
 //Test to check if public profile page is being rendered correctly
-test("test to check if footer is rendered correctly", () => {
+test("test if navbar is rendered correctly", () => {
   render(
     <UserSession>
       <BrowserRouter>
-        <Footer />
+        <Navbar />
       </BrowserRouter>
     </UserSession>
   );
-  const footerHome = screen.getByText(/\bhome\b/);
-  const footerAbout = screen.getByText(/\babout\b/);
-  const footerEnglish = screen.getByText(/\bEnglish\b/);
-  const footerFrench = screen.getByText(/\bFrench\b/);
-  const footerTitle = screen.getByText(/\bConnectIn @2023\b/);
-  expect(footerHome).toBeInTheDocument();
-  expect(footerAbout).toBeInTheDocument();
-  expect(footerEnglish).toBeInTheDocument();
-  expect(footerFrench).toBeInTheDocument();
-  expect(footerTitle).toBeInTheDocument();
+  const navbarTitle = screen.getByText(/\bConnectIn\b/);
+  expect(navbarTitle).toBeInTheDocument();
 });
 
 afterAll(() => {

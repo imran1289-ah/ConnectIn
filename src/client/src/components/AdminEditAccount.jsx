@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 function AdminEditAccount() {
   const navigate = useNavigate();
   let locationURL = useLocation().pathname;
-  let accountId = locationURL.split("/")[3];
+  let accountId = locationURL.split("/")[2];
   const { t, i18n } = useTranslation();
 
   //Global loginState
@@ -48,38 +48,30 @@ function AdminEditAccount() {
     }
   };
 
-  const fetchData = async () => {
-    // axios.get(`http://localhost:9000/jobs/edit/${jobId}`).then((response) => {
-    //   setjobData(response.data);
-    // });
-  };
-
-  const savePost = async (e) => {
-    // e.preventDefault();
-    // axios
-    //   .post(`http://localhost:9000/jobs/edit/${jobId}`, {
-    //     job_id: jobData.job_id,
-    //     title: jobData.title,
-    //     description: jobData.description,
-    //     salary: jobData.salary,
-    //     category: jobData.category,
-    //     location: jobData.location,
-    //   })
-    //   .then((response) => {
-    //     console.log(response.data);
-    //     swal("Saved!", "Successfully updated the job posting!", "success", {
-    //       button: false,
-    //       timer: 2000,
-    //     });
-    //     navigate("/jobs");
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     swal("Failed!", "Cannot update the job posting!", "error", {
-    //       button: false,
-    //       timer: 2000,
-    //     });
-    //   });
+  const editAccount = async (e) => {
+    e.preventDefault();
+    console.log(accountId);
+    axios
+      .post(`http://localhost:9000/admin/edit/${accountId}`, {
+        email: accountData.email,
+        password: accountData.password,
+        role: accountData.role,
+      })
+      .then((response) => {
+        console.log(response.data);
+        swal(t("Saved!"), t("Successfully updated the user"), "success", {
+          button: false,
+          timer: 2000,
+        });
+        navigate("/manageAccounts");
+      })
+      .catch((error) => {
+        console.log(error);
+        swal(t("Failed!"), t("Cannot update the user"), "error", {
+          button: false,
+          timer: 2000,
+        });
+      });
   };
 
   if (userID && userRole === "Administrator") {
@@ -90,7 +82,7 @@ function AdminEditAccount() {
           <Col md={12}>
             <div className="AdminWrapperEditPost">
               <h3 className="AdminTitle"> {t("Edit Account")}</h3>
-              <form onSubmit={savePost}>
+              <form onSubmit={editAccount}>
                 <div className="AdminFormEditPost">
                   <label className="AdminPlaceholderEditPost">
                     {t("Email")}
@@ -101,7 +93,7 @@ function AdminEditAccount() {
                     fullWidth
                     className="AdmineditInput"
                     id="account_email"
-                    value={accountData.title}
+                    value={accountData.email}
                     variant="outlined"
                     pattern="[a-zA-Z\s]+"
                     onChange={(e) =>

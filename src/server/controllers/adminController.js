@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const bcrypt = require("bcrypt");
 
 const getAllUsers = async (req, res) => {
   try {
@@ -9,6 +10,54 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+const adminEdit = async (req, res) => {
+  const { email, password, role } = req.body;
+
+  // Checking if all fields are filled.
+  if (!email || !password || !role) {
+    return res.status(400).json({ message: "Please fill out all fields!" });
+  }
+
+  const saltRounds = 10;
+  const hashPwd = await bcrypt.hash(password, saltRounds);
+
+  // Checks if a duplicate user exists on the database
+  const isThereADuplicate = await User.findOne({ email }).lean().exec();
+  if (isThereADuplicate) {
+    return res
+      .status(409)
+      .json({ message: "A user with this email already exists." });
+  }
+
+  User.findByIdAndUpdate(req.params.id)
+    .then((user) => {
+      if (email) {
+        user.email = email;
+      }
+      if (password) {
+        user.password = hashPwd;
+      }
+      if (role) {
+        user.role = role;
+      }
+      user
+        .save()
+        .then(() => {
+          console.log("User was updated in the database");
+          console.log(user);
+          res.status(200).json(user);
+          res.end();
+        })
+        .catch((err) => console.log(err));
+    })
+    .catch(() => {
+      res
+        .status(400)
+        .json({ message: "Unexpected error when finding user by ID" });
+    });
+};
+
 module.exports = {
   getAllUsers,
+  adminEdit,
 };

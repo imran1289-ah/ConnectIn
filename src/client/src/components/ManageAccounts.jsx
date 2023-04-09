@@ -118,7 +118,7 @@ const ManageAccouts = () => {
           </TableHead>
           <TableBody>
             {accounts.map((account) => (
-              <TableRow key={account._id}>
+              userID === account._id ? null : (<TableRow key={account._id}>
                 <TableCell component="th" scope="row">
                   {account.email}
                 </TableCell>
@@ -151,7 +151,8 @@ const ManageAccouts = () => {
                     {t("Unban")}
                   </Button>
                 </TableCell>
-              </TableRow>
+              </TableRow>)
+              
             ))}
           </TableBody>
         </Table>

@@ -74,7 +74,7 @@ function AdminEditAccount() {
       });
   };
 
-  if (userID && userRole === "Administrator") {
+  if (userID && userRole === "Administrator" && (userID !== accountId)) {
     return (
       //Edit posting page
       <Container id="AdmineditAccountcontainer">

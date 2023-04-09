@@ -71,6 +71,7 @@ const verifyUser = async (req, res) => {
       firstname: user.firstname,
       lastname: user.lastname,
       role: user.role,
+      isBan : user.isBan
     };
     req.session.user = userSession;
     // console.log(`Found user ${user.email}`);

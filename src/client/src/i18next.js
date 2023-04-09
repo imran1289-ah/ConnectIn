@@ -181,6 +181,7 @@ i18next.use(initReactI18next).init({
         "Successfully updated the user": "Successfully updated the user",
         "Failed!": "Failed!",
         "Cannot update the user": "Cannot update the user",
+        "You are banned from ConnectIn":"You are banned from ConnectIn",
       },
     },
     fr: {
@@ -369,6 +370,7 @@ i18next.use(initReactI18next).init({
         "Successfully updated the user": "Mise à jour réussie de l'utilisateur",
         "Failed!": "Erreur!",
         "Cannot update the user": "Impossible de mettre à jour l'utilisateur",
+        "You are banned from ConnectIn":"Vous êtes banni de ConnectIn"
       },
     },
   },

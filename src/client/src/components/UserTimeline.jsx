@@ -228,6 +228,10 @@ const UserTimeline = () => {
     navigate("/dmReports");
   };
 
+  const redirectManageAccounts = () => {
+    navigate("/manageAccounts");
+  };
+
   return (
     <div>
       {userID && login ? (
@@ -259,7 +263,7 @@ const UserTimeline = () => {
               </IconButton>
               {role == "Administrator" && (
                 <>
-                  <IconButton>
+                  <IconButton onClick={redirectManageAccounts}>
                     <ManageAccountsOutlinedIcon></ManageAccountsOutlinedIcon>
                     <ToastContainer />
                   </IconButton>

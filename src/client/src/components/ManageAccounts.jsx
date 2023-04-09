@@ -83,7 +83,12 @@ const ManageAccouts = () => {
                 <TableCell>{account.role}</TableCell>
                 <TableCell>
                   <Button variant="contained" color="success">
-                    {t("Edit")}
+                    <Link
+                      style={{ textDecoration: "none", color: "inherit" }}
+                      to={`/manageAccounts/${account._id}`}
+                    >
+                      {t("Edit")}
+                    </Link>
                   </Button>
                 </TableCell>
                 <TableCell>

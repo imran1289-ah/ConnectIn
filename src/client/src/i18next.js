@@ -176,6 +176,7 @@ i18next.use(initReactI18next).init({
         Edit: "Edit",
         Ban: "Ban",
         Unban: "Unban",
+        "Edit Account": "Edit Account",
       },
     },
     fr: {
@@ -359,6 +360,7 @@ i18next.use(initReactI18next).init({
         Edit: "Modifier",
         Ban: "Bannir",
         Unban: "Débannir",
+        "Edit Account": "Modifier compte",
       },
     },
   },

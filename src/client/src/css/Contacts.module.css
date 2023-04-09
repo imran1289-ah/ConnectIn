@@ -52,3 +52,49 @@
 .contactImage {
     width: 20px;
 }
+
+@media (min-width: 330px) and (max-width: 600px) {
+    .connectionName {
+        font-size: 1em;
+        padding-left: 10px;
+    }
+    .header {
+        font-size: 1em;
+        padding-left: 10px;
+    }
+    .connectionInfo {
+        max-width: none;
+        padding-right: 5px;
+        padding-left: 0;
+    }
+    .MuiAvatar-root {
+        width: 50px;
+        height: 50px;
+    }
+    .connectionInfo:hover {
+        background: #F4F4F4;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 768px) {
+    .connectionName {
+        font-size: 2em;
+        padding-left: 10px;
+    }
+    .header {
+        font-size: 2em;
+        padding-left: 10px;
+    }
+    .connectionInfo {
+        max-width: none;
+        padding-right: 5px;
+        padding-left: 0;
+    }
+    .MuiAvatar-root {
+        width: 50px;
+        height: 50px;
+    }
+    .connectionInfo:hover {
+        background: #F4F4F4;
+    }
+}

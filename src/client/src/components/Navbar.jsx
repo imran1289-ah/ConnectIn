@@ -72,10 +72,6 @@ const Navbar = () => {
     navigate("/waitingConnections");
   };
 
-  const redirectDMReports = () => {
-    navigate("/dmReports");
-  };
-
   const redirectJobApplications = () => {
     navigate("/jobsapplied");
   };
@@ -294,26 +290,6 @@ const Navbar = () => {
                       </Typography>
                     </Box>
                   </IconButton>
-
-                  {role == "Administrator" && (
-                    <IconButton color="inherit" onClick={redirectDMReports}>
-                      <Box className="parentUserIconContainer">
-                        <Typography className="userIconContainer">
-                          <FlagIcon
-                            className="publicUserIcon"
-                            fontSize="large"
-                          ></FlagIcon>
-                          <Typography
-                            fontSize={10}
-                            className="userSubtitle"
-                            variant="subtitle2"
-                          >
-                            DM Reports
-                          </Typography>
-                        </Typography>
-                      </Box>
-                    </IconButton>
-                  )}
 
                   <IconButton color="inherit" onClick={redirectProfile}>
                     <Box className="parentUserIconContainer">

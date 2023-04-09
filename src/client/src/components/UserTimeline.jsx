@@ -10,8 +10,10 @@ import SendIcon from "@mui/icons-material/Send";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useTranslation } from "react-i18next";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import OutlinedFlagTwoToneIcon from "@mui/icons-material/OutlinedFlagTwoTone";
+import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
 
 const UserTimeline = () => {
   //Global state
@@ -19,6 +21,7 @@ const UserTimeline = () => {
 
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
+  const role = sessionStorage.getItem("role");
 
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -52,21 +55,20 @@ const UserTimeline = () => {
 
   const [job, setJob] = useState();
 
-  const fetchNotificationForRecentJob = async () =>{
+  const fetchNotificationForRecentJob = async () => {
     try {
       if (userID) {
-        const notificationInfo = await axios.get(`http://localhost:9000/users/notifications/${userID}`);
-        
-        setJob(notificationInfo.data.latestJob)
-        console.log(job)
+        const notificationInfo = await axios.get(
+          `http://localhost:9000/users/notifications/${userID}`
+        );
+
+        setJob(notificationInfo.data.latestJob);
+        console.log(job);
       }
     } catch (error) {
       console.log(error);
     }
-    
-  
-  }
-
+  };
 
   //fetch session once
   useEffect(() => {
@@ -220,7 +222,11 @@ const UserTimeline = () => {
       }
     });
   };
-  const notify = () => toast(t('New Job Alert Posted: ') + job.title);
+  const notify = () => toast(t("New Job Alert Posted: ") + job.title);
+
+  const redirectDMReports = () => {
+    navigate("/dmReports");
+  };
 
   return (
     <div>
@@ -251,6 +257,18 @@ const UserTimeline = () => {
                 <NotificationsNoneIcon></NotificationsNoneIcon>
                 <ToastContainer />
               </IconButton>
+              {role == "Administrator" && (
+                <>
+                  <IconButton>
+                    <ManageAccountsOutlinedIcon></ManageAccountsOutlinedIcon>
+                    <ToastContainer />
+                  </IconButton>
+                  <IconButton onClick={redirectDMReports}>
+                    <OutlinedFlagTwoToneIcon></OutlinedFlagTwoToneIcon>
+                    <ToastContainer />
+                  </IconButton>
+                </>
+              )}
             </span>
           </div>
 

@@ -60,6 +60,48 @@ const ManageAccouts = () => {
     }
   };
 
+  const ban = async (accountuserID) => {
+    axios
+      .post(`http://localhost:9000/admin/ban/${accountuserID}`, {
+        isBan: true,
+      })
+      .then((response) => {
+        console.log(response.data);
+        swal(t("Saved!"), t("Successfully updated the user"), "success", {
+          button: false,
+          timer: 2000,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        swal(t("Failed!"), t("Cannot update the user"), "error", {
+          button: false,
+          timer: 2000,
+        });
+      });
+  };
+
+  const unban = async (accountuserID) => {
+    axios
+      .post(`http://localhost:9000/admin/unban/${accountuserID}`, {
+        isBan: true,
+      })
+      .then((response) => {
+        console.log(response.data);
+        swal(t("Saved!"), t("Successfully updated the user"), "success", {
+          button: false,
+          timer: 2000,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        swal(t("Failed!"), t("Cannot update the user"), "error", {
+          button: false,
+          timer: 2000,
+        });
+      });
+  };
+
   return (
     <div className="AdminAccounts">
       <h1 style={{ textAlign: "center" }}>{t("Manage Accounts")}</h1>
@@ -92,12 +134,20 @@ const ManageAccouts = () => {
                   </Button>
                 </TableCell>
                 <TableCell>
-                  <Button variant="contained" color="error">
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => ban(account._id)}
+                  >
                     {t("Ban")}
                   </Button>
                 </TableCell>
                 <TableCell>
-                  <Button variant="contained" color="success">
+                  <Button
+                    variant="contained"
+                    color="success"
+                    onClick={() => unban(account._id)}
+                  >
                     {t("Unban")}
                   </Button>
                 </TableCell>

@@ -125,36 +125,13 @@
 }
 
 
-@media all and (max-width:560px) {
-    
-    .JAPContainer {
-        
-        width: 450px;
-        height: 1000px;
-    }
-
-    .JAPContainer .jobDetails {
-        
-        width: 75%;
-
-    }
-    
-    .JAPContainer .jobApplicationForm{
-
-        width: 75%;
-        display: flex;
-        flex-direction: column;
-        margin: none;
-        
-    }   
-}
 
 @media all and (max-width:560px) {
     
     .JAPContainer {
         
         width: 450px;
-        height: 1200px;
+        height: max-content;
     }
 
     .JAPContainer .jobDetails {
@@ -168,7 +145,7 @@
         width: 75%;
         display: flex;
         flex-direction: column;
-        margin: none;
+        margin-right: none;
         
     }   
 }

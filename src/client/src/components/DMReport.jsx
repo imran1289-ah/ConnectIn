@@ -10,6 +10,7 @@ const DMReport = () => {
 
   const [reports, setReports] = useState([]);
   const userID = sessionStorage.getItem("userID");
+  const userRole = sessionStorage.getItem("role");
   const [login, setLogin] = useContext(Context);
   const { t, i18n } = useTranslation();
 
@@ -106,6 +107,7 @@ const DMReport = () => {
     });
   };
 
+  if (userID && userRole === "Administrator"){
   return (
     <div>
       <div className="dm-reports-container">
@@ -128,7 +130,15 @@ const DMReport = () => {
         </div>
       </div>
     </div>
-  )
+  )}
+  else {
+    return (
+        <h1 style={{ textAlign: "center" }}>
+          You need to be administrator to manage reports
+        </h1>
+     
+    );
+  }
 }
 
 export default DMReport;

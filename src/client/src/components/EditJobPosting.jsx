@@ -92,10 +92,10 @@ function EditJobPosting() {
         <Row>
           <Col md={12}>
             <div className="WrapperEditPost">
-              <h3 className="Title"> EDIT YOUR POSTING </h3>
+              <h3 className="Title"> {t("EDIT YOUR POSTING")} </h3>
               <form onSubmit={savePost}>
                 <div className="FormEditPost">
-                  <label className="PlaceholderEditPost">Title</label>
+                  <label className="PlaceholderEditPost">{t("Title")}</label>
                   <br></br>
                   <TextField
                     sx={{ width: { sm: 400, md: 600 } }}
@@ -114,23 +114,23 @@ function EditJobPosting() {
                   />
                   <br></br>
                   <br></br>
-                  <label className="PlaceholderEditPost">Company</label>
+                  <label className="PlaceholderEditPost">{t("Company")}</label>
                   <br></br>
                   <TextField sx={{ width: { sm: 400, md: 600 } }} fullWidth className="editInput" id="company" value={jobData.company} variant="outlined" pattern="[a-zA-Z\s]+" onChange={e => setjobData({ ...jobData, company: e.target.value })} />
                   <br></br>
                   <br></br>
-                  <label className="PlaceholderEditPost">Description</label>
+                  <label className="PlaceholderEditPost">{t("Description")}</label>
                   <br></br>
                   <TextField sx={{ width: { sm: 400, md: 600 } }} fullWidth className="editInput" id="job_description" multiline rows={5} value={jobData.description} variant="outlined" pattern="[a-zA-Z\s]+" onChange={e => setjobData({ ...jobData, description: e.target.value })} />
                   <br></br>
                   <br></br>
-                  <label className="PlaceholderEditPost">Annual Pay</label>
+                  <label className="PlaceholderEditPost">{t("Salary")}</label>
                   <br></br>
                   <TextField sx={{ width: { sm: 400, md: 600 } }} fullWidth className="editInput" id="salary" value={jobData.salary} variant="outlined" pattern="\d+" onChange={e => setjobData({ ...jobData, salary: e.target.value })} />
                   <br></br>
                   <br></br>
                   <label className="PlaceholderEditPost">
-                    Location <br></br>
+                    {t("Location")} <br></br>
                     <TextField sx={{ width: { sm: 400, md: 600 } }} fullWidth className="editInput" id="job_title" value={jobData.location} variant="outlined" pattern="[a-zA-Z\s]+" onChange={e => setjobData({ ...jobData, location: e.target.value })} />
                   </label>
                   <br></br>
@@ -159,7 +159,7 @@ function EditJobPosting() {
                   <br></br>
 
                   <button type="submit" className="SaveButton">
-                    Save{" "}
+                    {t("Save")}
                   </button>
                 </div>
                 <br></br>

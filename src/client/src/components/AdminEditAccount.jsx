@@ -30,9 +30,8 @@ function AdminEditAccount() {
     if (userID) {
       fetchSession();
     }
-    // if (userRole !== "User") {
-    //   fetchData();
-    // }
+    fetchAccountData();
+    
   }, []);
 
   //Having the loginState persist on all pages
@@ -43,6 +42,22 @@ function AdminEditAccount() {
           isLoggedIn: true,
         });
       }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchAccountData = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:9000/users/profile/${accountId}`
+      );
+      setaccountData({
+        email:response.data.email,
+        role:response.data.role,
+        password:response.data.password
+      });
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -73,6 +88,8 @@ function AdminEditAccount() {
         });
       });
   };
+
+  
 
   if (userID && userRole === "Administrator" && (userID !== accountId)) {
     return (
@@ -131,24 +148,16 @@ function AdminEditAccount() {
                   <br></br>
                   <label className="AdminPlaceholderSignup">
                     <br />
-                    <Select
-                      required
-                      id="select"
+                    <select
                       value={accountData.role}
-                      sx={{
-                        width: 300,
-                        height: 50,
-                      }}
+                      width={{"width":"300px","height":"40px"}}
                       onChange={(e) =>
                         setaccountData({ ...accountData, role: e.target.value })
                       }
                     >
-                      <MenuItem value={"User"}>{t("User")}</MenuItem>
-                      <MenuItem value={"Recruiter"}>{t("Recruiter")}</MenuItem>
-                      <MenuItem value={"Administrator"}>
-                        {t("Administrator")}
-                      </MenuItem>
-                    </Select>
+                      <option value={"User"}>{t("User")}</option>
+                      <option value={"Recruiter"}>{t("Recruiter")}</option>
+                    </select>
                   </label>
 
                   <br></br>

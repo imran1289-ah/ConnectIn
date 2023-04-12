@@ -64,6 +64,48 @@ const DMReport = () => {
     })
   }
 
+  const ban = async (senderID, reportId) => {
+    axios
+      .post(`http://localhost:9000/admin/ban/${senderID}`, {
+        isBan: true,
+      })
+      .then((response) => {
+        console.log(response.data);
+        console.log(reportId);
+        axios.delete(`http://localhost:9000/reports/delete`, {
+          data: {
+            "id": reportId
+          }
+        })
+          .then(response => {
+            console.log(response.data);
+            swal(t("Congrats!"), t("You have successfully resolved the report!"), "success", {
+            button: false,
+            timer: 1000,
+        })
+          .then((response) => {
+            setTimeout(function () {
+            window.location.reload();
+        }, 1200);
+      })
+    })
+        .catch(err => {
+          console.log(err);
+            swal(t("Error"), t("Failed to resolve the report"), "error", {
+            button: false,
+            timer: 1000,
+        })
+    })
+      })
+    .catch((error) => {
+      console.log(error);
+      swal(t("Failed!"), t("Cannot update the user"), "error", {
+        button: false,
+        timer: 2000,
+      });
+    });
+  };
+
   return (
     <div>
       <div className="dm-reports-container">
@@ -78,7 +120,7 @@ const DMReport = () => {
             <p><span style={{fontWeight: "bold"}}>{t("Message")}: </span>{report.reportedDM}</p>
             <p><span style={{fontWeight: "bold"}}>{t("Justification")}: </span>{report.justification}</p>
             <div className="report-button-bundle">
-              <button className="report-button-accept" type="button">{t("Accept")}</button>
+              <button className="report-button-accept" type="button" onClick={() => ban(`${report.sender}`,`${report._id}` )}>{t("Ban")}</button>
               <button className="report-button-reject" onClick={() => deleteReport(`${report._id}`)}>{t("Reject")}</button>
             </div>
           </div>

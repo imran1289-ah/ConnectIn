@@ -200,6 +200,7 @@ const JobListing = () => {
                           <Alert className="YetAppliedJobs" severity="info" variant="outlined">
                             <AlertTitle>{t("You have yet to apply for this job.")}</AlertTitle>
                           </Alert>
+                          // <></>
                         )}
                         {jobsApplied.find(object => object.job_id == job.job_id) == undefined ? (
                           <Button className="selectButton" variant="contained" component="label">
@@ -217,14 +218,10 @@ const JobListing = () => {
                             </Link>
                           </Button>
                         ) : (
-                          " "
+                          <></>
                         )}
                       </Col>
 
-                      {/* <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
-                      <button class = "edit">Edit</button>
-                      </Link> */}
-                      {/* <button class = "delete" onClick={(e) => deletePost(`${job.job_id}`,e)}>Delete</button> */}
                     </div>
                   </Row>
                 ))}

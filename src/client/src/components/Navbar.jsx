@@ -264,7 +264,7 @@ const Navbar = () => {
                             className="userSubtitle"
                             variant="subtitle2"
                           >
-                            Edit/Delete Job
+                            {t("My Jobs")}
                           </Typography>
                         </Typography>
                       </Box>

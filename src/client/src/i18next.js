@@ -182,6 +182,8 @@ i18next.use(initReactI18next).init({
         "Failed!": "Failed!",
         "Cannot update the user": "Cannot update the user",
         "You are banned from ConnectIn":"You are banned from ConnectIn",
+        "My Jobs":"My Jobs",
+        "Job Alert":"Job Alert"
       },
     },
     fr: {
@@ -370,7 +372,9 @@ i18next.use(initReactI18next).init({
         "Successfully updated the user": "Mise à jour réussie de l'utilisateur",
         "Failed!": "Erreur!",
         "Cannot update the user": "Impossible de mettre à jour l'utilisateur",
-        "You are banned from ConnectIn":"Vous êtes banni de ConnectIn"
+        "You are banned from ConnectIn":"Vous êtes banni de ConnectIn",
+        "My Jobs": "Mes emplois",
+        "Job Alert":"Alerte d'emploi"
       },
     },
   },

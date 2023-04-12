@@ -260,7 +260,7 @@ const UserTimeline = () => {
               <IconButton onClick={notify}>
                 <NotificationsNoneIcon></NotificationsNoneIcon>
                 <ToastContainer />
-                <span style={{fontSize:"18px"}}>Job Alert</span>
+                <span style={{fontSize:"18px"}}>{t("Job Alert")}</span>
               </IconButton>
              
               {role == "Administrator" && (

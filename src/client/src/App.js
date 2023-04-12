@@ -151,7 +151,7 @@ function App() {
             path="/jobsApplied"
             element={
               <>
-                <Navbar /> <ViewJobsApplied /> <SignupFooter />
+                <Navbar /> <ViewJobsApplied /> <LoginFooter />
               </>
             }
           ></Route>
@@ -162,12 +162,12 @@ function App() {
                 <Navbar /> <DMReport /> <SignupFooter />
               </>
             }
-            ></Route>
-            <Route
+          ></Route>
+          <Route
             path="/receivedApplications"
             element={
               <>
-                <Navbar /> <ReceivedApplications /> <SignupFooter />
+                <Navbar /> <ReceivedApplications /> <LoginFooter />
               </>
             }
           ></Route>

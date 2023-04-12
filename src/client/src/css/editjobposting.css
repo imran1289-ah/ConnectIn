@@ -113,7 +113,7 @@
   .FormEditPost {
     margin-left: auto;
     margin-right: auto;
-    height: 300px;
+    min-height: 100vh;
     width: auto;
   }
 

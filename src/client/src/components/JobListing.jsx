@@ -109,14 +109,19 @@ const JobListing = () => {
   const savePreferences = async () => {
     if (preferences.category && preferences.location && preferences.work_type) {
       await axios.post(`http://localhost:9000/users/${userID}/preferences`, preferences);
+          setTimeout(() => {
+          swal("Preferences saved successfully!.");
+      window.location.reload();
+    }, 500);
+
+
       //   console.log(preferences);
     } else {
       swal("Please fill in all fields before saving preferences.");
     }
   };
-  
-  const getUserPreferences = async () =>{
 
+  const getUserPreferences = async () =>{
    const {data} = await axios.get(`http://localhost:9000/users/${userID}`);
     setCurrentPreferences(data.user.preferences);
     console.log(currentPreferences);
@@ -130,6 +135,7 @@ const JobListing = () => {
           <>
             <div className="jobFilter">
               <form>
+                  
                 <label>
                   {t("Category")}:
                   <select name="category" onChange={e => setPreferences({ ...preferences, category: e.target.value })}>
@@ -138,11 +144,17 @@ const JobListing = () => {
                     <option value="Part-Time">{t("Part-Time")}</option>
                     <option value="Internship">{t("Internship")}</option>
                   </select>
+                  {currentPreferences &&(<>{currentPreferences.category && (
+        <span className="saved-preferences">{` (${currentPreferences.category})`}</span>
+      )}</>)}
                 </label>
                 <br />
                 <label>
                   {t("Location")}:
                   <input type="text" name="location" value={preferences.location} onChange={e => setPreferences({ ...preferences, location: e.target.value })} placeholder={t("Enter a location")} />
+                                  {currentPreferences &&(<>{currentPreferences.location && (
+        <span className="saved-preferences">{` (${currentPreferences.location})`}</span>
+      )}</>)}
                 </label>
                 <br />
                 <label>
@@ -153,16 +165,21 @@ const JobListing = () => {
                     <option value="Hybrid">{t("Hybrid")}</option>
                     <option value="Remote">{t("Remote")}</option>
                   </select>
+                                    {currentPreferences &&(<>{currentPreferences.work_type && (
+        <span className="saved-preferences">{` (${currentPreferences.work_type})`}</span>
+      )}</>)}
                 </label>
-                <br />
+                  <label>
+      <span className="preferences-message">({t("*Saved preferences")})</span>
+    </label>
                 <button type="button" onClick={savePreferences}>
                   {t("Save Preferences")}
                 </button>
-                <p> Your current job preferences are: 
+                {/* <p> Your current job preferences are: 
                   <p>Work Type: {currentPreferences.work_type}</p>
                   <p>Location: {currentPreferences.location}</p>
                   <p>Category: {currentPreferences.category}</p>
-                  </p>
+                  </p> */}
               </form>
             </div>
             <div data-testid="jobPostsContainer" className="jobPosts">

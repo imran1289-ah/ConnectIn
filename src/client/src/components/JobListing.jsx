@@ -112,7 +112,7 @@ const JobListing = () => {
           setTimeout(() => {
           swal("Preferences saved successfully!.");
       window.location.reload();
-    }, 500);
+    }, 1000);
 
 
       //   console.log(preferences);

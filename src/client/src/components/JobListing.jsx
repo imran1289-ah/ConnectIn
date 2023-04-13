@@ -55,6 +55,7 @@ const JobListing = () => {
     location: "",
     work_type: ""
   });
+  const [currentPreferences, setCurrentPreferences] = useState();
 
   // "category:full-time,location:montreal"
 
@@ -62,6 +63,7 @@ const JobListing = () => {
   useEffect(() => {
     fetchJobs();
     fetchAppliedJob();
+    getUserPreferences();
   }, []);
 
   useEffect(() => {
@@ -84,13 +86,13 @@ const JobListing = () => {
 
   const deletePost = async (jobId, e) => {
     e.preventDefault();
-    console.log(jobId);
+    // console.log(jobId);
     axios
       .post(`http://localhost:9000/jobs/delete/${jobId}`, {
         jobId: jobId
       })
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         alert("Remove Successful!");
         navigate("/jobs");
       })
@@ -112,6 +114,14 @@ const JobListing = () => {
       swal("Please fill in all fields before saving preferences.");
     }
   };
+  
+  const getUserPreferences = async () =>{
+
+   const {data} = await axios.get(`http://localhost:9000/users/${userID}`);
+    setCurrentPreferences(data.user.preferences);
+    console.log(currentPreferences);
+
+  }
 
   return (
     <Container>
@@ -148,6 +158,11 @@ const JobListing = () => {
                 <button type="button" onClick={savePreferences}>
                   {t("Save Preferences")}
                 </button>
+                <p> Your current job preferences are: 
+                  <p>Work Type: {currentPreferences.work_type}</p>
+                  <p>Location: {currentPreferences.location}</p>
+                  <p>Category: {currentPreferences.category}</p>
+                  </p>
               </form>
             </div>
             <div data-testid="jobPostsContainer" className="jobPosts">

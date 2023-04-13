@@ -110,7 +110,7 @@ const JobListing = () => {
     if (preferences.category && preferences.location && preferences.work_type) {
       await axios.post(`http://localhost:9000/users/${userID}/preferences`, preferences);
           setTimeout(() => {
-          swal("Preferences saved successfully!.");
+          swal("Preferences saved successfully!");
       window.location.reload();
     }, 1000);
 

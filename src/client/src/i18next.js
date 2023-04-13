@@ -172,6 +172,7 @@ i18next.use(initReactI18next).init({
         "Already connected": "Already connected",
         Connect: "Connect",
         "You are already connected": "You are already connected",
+        "*Saved preferences": "*Saved preferences",
       },
     },
     fr: {
@@ -351,6 +352,7 @@ i18next.use(initReactI18next).init({
         "Already connected": "Déjà connecté",
         Connect: "Connecter",
         "You are already connected": "Vous êtes déjà connecté",
+        "*Saved preferences": "*préférences enregistrées,",
       },
     },
   },

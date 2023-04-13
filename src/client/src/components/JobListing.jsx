@@ -117,7 +117,7 @@ const JobListing = () => {
 
       //   console.log(preferences);
     } else {
-      swal("Please fill in all fields before saving preferences.");
+      swal(t("Please fill in all fields before saving preferences."));
     }
   };
 

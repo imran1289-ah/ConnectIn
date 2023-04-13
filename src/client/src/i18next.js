@@ -173,6 +173,8 @@ i18next.use(initReactI18next).init({
         Connect: "Connect",
         "You are already connected": "You are already connected",
         "*Saved preferences": "*Saved preferences",
+        "Please fill in all fields before saving preferences.":
+          "Please fill in all fields before saving preferences.",
       },
     },
     fr: {
@@ -353,6 +355,8 @@ i18next.use(initReactI18next).init({
         Connect: "Connecter",
         "You are already connected": "Vous êtes déjà connecté",
         "*Saved preferences": "*préférences enregistrées,",
+        "Please fill in all fields before saving preferences.":
+          "Veuillez remplir tous les champs avant d'enregistrer les préférences.",
       },
     },
   },

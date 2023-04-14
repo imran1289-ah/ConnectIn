@@ -8,6 +8,7 @@ import swal from 'sweetalert';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Context } from "../UserSession";
 import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -15,6 +16,8 @@ const JobApplication = () =>{
 
     //Global loginState
 const [login, setLogin] = useContext(Context);
+const { t, i18n } = useTranslation();
+
 
 //Get id of logged in user
 const userID = sessionStorage.getItem("userID");
@@ -71,7 +74,7 @@ const fetchSession = async () => {
         const alreadyJobsApplied = await axios.get(`http://localhost:9000/users/${userID}/jobsApplied`)
 
         if(fname.trim().length === 0 || lname.trim().length === 0 || email.trim().length ===0 || phoneNumber.trim().length ===0 || !resume || !coverLetter){
-          swal("Please fill up all the fields and upload all required documents !",{
+          swal(t("Please fill up all the fields and upload all required documents !"),{
                 
           });
 
@@ -79,7 +82,7 @@ const fetchSession = async () => {
         // jobsApplied.find(object => object.job_id == job.job_id) != undefined
         else if(alreadyJobsApplied.data.find(object => object.job_id == job.jobState.job_id) != undefined){
         // else if(alreadyJobsApplied.data.includes(job.jobState.job_id)){
-            swal("You've already applied for this job!",{
+            swal(t("You've already applied for this job!"),{
                 
             });
             await delay(1000);
@@ -113,7 +116,7 @@ const fetchSession = async () => {
               axios.post(`http://localhost:9000/resume/uploadCoverLetter/${userID}`, coverLetterData)
                 .then((res) => console.log(res))
                 .catch((error) => console.log(error))});
-            swal("You've successfully applied for this job!",{
+            swal(t("You've successfully applied for this job!"),{
                 confirm: true,
                 
             });
@@ -140,27 +143,27 @@ const fetchSession = async () => {
             <button onClick = {backFunction}><ArrowBackIcon/></button>
 
             <div className="jobDetails">
-            <h1>You're applying for the following job:</h1>
-            <p> Title: {job.jobState.title}</p>
+            <h1>{t("You're applying for the following job")}:</h1>
+            <p> {t("Title")}: {job.jobState.title}</p>
             <p> Description: {job.jobState.description}</p>
-            <p>Salary: ${job.jobState.salary}</p>
-            <p>Category: {job.jobState.category}</p>
-            <p>Location: {job.jobState.location}</p>
+            <p>{t("Salary")}: ${job.jobState.salary}</p>
+            <p>{t("Category")}: {job.jobState.category}</p>
+            <p>{t("Location")}: {job.jobState.location}</p>
             </div>
             
             <div className="jobApplicationForm">
                 
             <form>
             
-                <TextField className ="textbox" onChange = { (e) => {setFname(e.target.value)}} id="fname" label="First Name" variant="outlined" />
-                <TextField className ="textbox"  onChange = { (e) => {setLname(e.target.value)}} id="lname" label="Last Name" variant="outlined" />
+                <TextField className ="textbox" onChange = { (e) => {setFname(e.target.value)}} id="fname" label={t("First Name")} variant="outlined" />
+                <TextField className ="textbox"  onChange = { (e) => {setLname(e.target.value)}} id="lname" label={t("Last Name")} variant="outlined" />
                 <br/>
-                <TextField className ="textbox"  onChange = { (e) => {setEmail(e.target.value)}} id="email" label="Email" variant="outlined"  />
-                <TextField className ="textbox"  onChange = { (e) => {setPhoneNumber(e.target.value)}}id="phoneNumber" label="Phone Number" variant="outlined"/>
+                <TextField className ="textbox"  onChange = { (e) => {setEmail(e.target.value)}} id="email" label={t("Email")} variant="outlined"  />
+                <TextField className ="textbox"  onChange = { (e) => {setPhoneNumber(e.target.value)}}id="phoneNumber" label={t("Phone Number")} variant="outlined"/>
                 <br/>
                 
                 <label>
-                Resume
+                {t("Resume")}
                 <input
                   type="file"
                   accept=".pdf"
@@ -169,7 +172,7 @@ const fetchSession = async () => {
               </label>   
               <br />
               <label>
-                Cover Letter
+                {t("Cover Letter")}
                 <input
                   type="file"
                   accept=".pdf"
@@ -181,8 +184,8 @@ const fetchSession = async () => {
             </form>
 
 
-                <Button className ="sendApplicationButton" onClick ={submitApplication} variant="contained" component="label">
-                    Send Application
+                <Button data-testid="submitButton" className ="sendApplicationButton" onClick ={submitApplication} variant="contained" component="label">
+                    {t("Send Application")}
 
                 </Button>
 

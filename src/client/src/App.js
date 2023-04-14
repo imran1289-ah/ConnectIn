@@ -21,8 +21,10 @@ import EditJobPosting from "./components/EditJobPosting";
 import EditUserProfile from "./components/EditUserProfile";
 import UserTimeline from "./components/UserTimeline";
 import UserSession from "./UserSession";
+import DMReport from "./components/DMReport";
 
 import io from "socket.io-client";
+import JobList from "./components/JobList";
 
 function App() {
   //const socket = io.connect("http://localhost:9000");
@@ -61,6 +63,14 @@ function App() {
             element={
               <>
                 <Navbar /> <UserProfile /> <LoginFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/JobList"
+            element={
+              <>
+                <Navbar /> <JobList /> <LoginFooter />
               </>
             }
           ></Route>
@@ -146,10 +156,18 @@ function App() {
             }
           ></Route>
           <Route
+            path="/dmReports"
+            element={
+              <>
+                <Navbar /> <DMReport /> <SignupFooter />
+              </>
+            }
+            ></Route>
+            <Route
             path="/receivedApplications"
             element={
               <>
-                <Navbar /> <ReceivedApplications/> <SignupFooter />
+                <Navbar /> <ReceivedApplications /> <SignupFooter />
               </>
             }
           ></Route>

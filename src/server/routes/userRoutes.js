@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const usersControllers = require("../controllers/usersController");
+const notificationControllers = require("../controllers/notificationsController")
 
 router
     .route("/")
@@ -57,7 +58,12 @@ router
     .delete(usersControllers.removeConnection);
 
 router
-    .route('/:id/preferences')
+    .route("/:id/preferences")
     .post(usersControllers.savePreferences);
+
+router
+    .route("/searchfriendslist")
+    .post(usersControllers.verifyConnections);
+router.route("/notifications/:userID").get(notificationControllers.sendNotification)
 
 module.exports = router;

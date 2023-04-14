@@ -24,12 +24,25 @@ beforeAll(async() => {
         .then()
     userId = userResponse.body.id;
 
+    const adminResponse = await request(app)
+        .post("/users")
+        .send({
+            firstname: "Admin",
+            lastname: "Doe",
+            email: "admindoe@example.com",
+            password: "password",
+            role: "Admin"
+        })
+        .then()
+    adminId = adminResponse.body.id;
+
 
 });
 
 afterAll(async() => {
-    // Delete the user from the database after running all the tests
+    // Delete the user and admin from the database after running all the tests
     await User.findByIdAndDelete(userId);
+    await User.findByIdAndDelete(adminId);
     // Closing the DB connection allows Jest to exit successfully.
     mongoose.disconnect();
     app.close();
@@ -56,4 +69,12 @@ describe('GET /users/:id/jobsApplied', function() {
     //             .expect(201);
     //     })
     // })
+})
+
+describe("GET /:recruiterID/receivedApplications", () => {
+    it("Successfully fetches all the received applications", async() => {
+        await request(app)
+        .get(`/users/${adminId}/receivedApplications`)
+        .expect(200)
+    })
 })

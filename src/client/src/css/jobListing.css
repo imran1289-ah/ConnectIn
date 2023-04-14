@@ -3,16 +3,24 @@
     display: flex;
 } */
 
+.preferences-message,
+.saved-preferences {
+    font-size: 14px;
+    color: red;
+}
+
 .jobPosts {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border: 2px #19718d solid;
-    width: 80%;
-    min-height: 500px;
-    height: 750px;
+    width: 70%;
+    min-height: 600px;
+    height: 500px;
     border-radius: 15px;
-    margin: 20px;
+    margin: auto;
     display: inline-block;
-    margin-left: 120px;
-    margin-right: 120px;
 }
 
 .jobPosts .heading {
@@ -26,7 +34,7 @@
 
 .jobPosts .jobs {
     width: 95%;
-    height: 600px;
+    height: 500px;
     border-radius: 15px;
     margin: 20px;
     display: inline-block;
@@ -36,9 +44,11 @@
 
 .jobPosts .jobs .jobPost {
     border: 2px #19718d solid;
-    margin: 5px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
-    width: 95%;
+    width: 85%;
     height: auto;
     border-radius: 10px;
     flex-direction: row;
@@ -57,14 +67,32 @@
     width: 70%;
 }
 
+.jobPost .col-md-6 {
+    position: relative;
+    float: right;
+    margin-left: 35%;
+}
+
 .jobPosts .jobs .jobPost .AlertJobListing {
     border-radius: 10px;
-    width: 55%;
+    width: auto;
     border: 1px solid #19718d;
     margin: 10px;
     color: #19718d;
     height: 40px;
     border: 1px #19718d solid;
+    float: right;
+}
+
+.jobPosts .jobs .jobPost .YetAppliedJobs {
+    border-radius: 10px;
+    width: auto;
+    border: 1px solid #19718d;
+    margin: 10px;
+    color: #19718d;
+    height: 40px;
+    border: 1px #19718d solid;
+    float: right;
 }
 
 .jobPosts .jobs .jobPost .AlertJobListing ::-webkit-scrollbar {
@@ -88,19 +116,36 @@
     flex-direction: row;
 }
 
-.jobPosts .jobs .jobPost .jobContent .jobListLink {
+.jobPosts .jobs .jobPost .jobListLink {
     /* border: 5px red solid; */
     text-decoration: none;
-    color: white
+    color: white;
 }
 
-.jobPosts .jobs .jobPost .jobContent .selectButton {
+.jobPosts .jobs .jobPost .selectButton {
+    border-radius: 10;
+    color: white;
+    background-color: #19718d;
+    font-size: 14px;
+    position: relative;
+    text-align: center;
+    margin: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 55%;
+    float: right;
+}
+
+.jobPosts .jobs .jobPost .linkButton {
     border-radius: 10;
     background-color: #19718d;
     font-size: 14px;
-    width: 100px;
+    width: 55%;
     text-align: center;
+    margin: 10px;
     margin-bottom: 10px;
+    margin-top: auto;
+    float: right;
 }
 
 .notLoggedInContent .redirectSignIn {
@@ -223,8 +268,15 @@
         flex-direction: column;
         align-items: center;
     }
+    .jobPosts .jobs .jobPost {
+        width: 273%;
+    }
     .jobPosts {
-        width: 400px;
+        width: 270px;
+    }
+    .jobPost .col-md-6 {
+        position: relative;
+        float: right;
     }
     .preferences {
         display: flex;
@@ -240,6 +292,10 @@
         flex-direction: column;
         align-items: center;
     }
+    .jobPost .col-md-6 {
+        position: relative;
+        float: right;
+    }
     .jobPosts {
         width: 270px;
     }
@@ -248,5 +304,8 @@
         width: 300px;
         margin-right: 125px;
         height: 350px;
+    }
+    .jobPosts .jobs .jobPost {
+        width: 273%;
     }
 }

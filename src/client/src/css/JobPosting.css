@@ -8,6 +8,15 @@
   overflow-y: scroll;
   margin-bottom: 80px;
 }
+.jobAd {
+  font-size: larger;
+  font-weight: bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.Jobpostingform .checkbox {
+  margin-left: 8%;
+}
 
 .titleofpage {
   display: flex;
@@ -74,6 +83,14 @@
   margin-right: -18%;
 }
 
+.jobLink {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 5px auto;
+  margin-left: 0%;
+}
+
 .button {
   color: #ffffff;
   background-color: #19718d;
@@ -107,6 +124,11 @@
 }
 
 #location {
+  width: 10cm;
+  max-width: none;
+}
+
+#job_link {
   width: 10cm;
   max-width: none;
 }

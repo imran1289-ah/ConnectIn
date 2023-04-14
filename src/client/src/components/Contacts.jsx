@@ -40,10 +40,10 @@ const Contacts = ({ connections, changeChat }) => {
                      alt="comapnyPic"
                    /> */}
                   <Avatar
+                  className="Avatar"
                     alt="Logo"
                     src="./logo/logo.png"
                     size="medium"
-                    sx={{ width: 75, height: 75 }}
                   />
                   <span className={ContactCSS.connectionName}>
                     {contact.firstname} {contact.lastname}

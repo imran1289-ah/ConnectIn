@@ -81,6 +81,7 @@
         flex-direction: column;
         width: 800px;
         height: 600px;
+        margin-bottom: 100px;
     }
 
     .JAPContainer .jobDetails {

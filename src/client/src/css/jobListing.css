@@ -3,173 +3,180 @@
     display: flex;
 } */
 
+.preferences-message,
+.saved-preferences {
+    font-size: 14px;
+    color: red;
+}
+
 .jobPosts {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 2px #19718d solid;
-  width: 70%;
-  min-height: 600px;
-  height: 500px;
-  border-radius: 15px;
-  margin: auto;
-  display: inline-block;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px #19718d solid;
+    width: 70%;
+    min-height: 600px;
+    height: 500px;
+    border-radius: 15px;
+    margin: auto;
+    display: inline-block;
 }
 
 .jobPosts .heading {
-  background-color: #19718d;
-  height: 50px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  text-align: center;
-  text-transform: uppercase;
+    background-color: #19718d;
+    height: 50px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 .jobPosts .jobs {
-  width: 95%;
-  height: 500px;
-  border-radius: 15px;
-  margin: 20px;
-  display: inline-block;
-  scroll-behavior: smooth;
-  overflow-y: scroll;
+    width: 95%;
+    height: 500px;
+    border-radius: 15px;
+    margin: 20px;
+    display: inline-block;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
 }
 
 .jobPosts .jobs .jobPost {
-  border: 2px #19718d solid;
-  margin-top: 5px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  width: 85%;
-  height: auto;
-  border-radius: 10px;
-  flex-direction: row;
-  box-shadow: -3px 2px 2px #dff3f9;
+    border: 2px #19718d solid;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: 85%;
+    height: auto;
+    border-radius: 10px;
+    flex-direction: row;
+    box-shadow: -3px 2px 2px #dff3f9;
 }
 
 .jobPosts .jobs .jobPost .logo {
-  margin: 5px;
-  margin-top: 40px;
-  margin-right: 25px;
+    margin: 5px;
+    margin-top: 40px;
+    margin-right: 25px;
 }
 
 .jobPosts .jobs .jobPost .jobContent {
-  padding-left: 50px;
-  display: block;
-  width: 70%;
+    padding-left: 50px;
+    display: block;
+    width: 70%;
 }
 
 .jobPost .col-md-6 {
-  position: relative;
-  float: right;
-  margin-left: 35%;
+    position: relative;
+    float: right;
+    margin-left: 35%;
 }
 
 .jobPosts .jobs .jobPost .AlertJobListing {
-  border-radius: 10px;
-  width: auto;
-  border: 1px solid #19718d;
-  margin: 10px;
-  color: #19718d;
-  height: 40px;
-  border: 1px #19718d solid;
-  float: right;
+    border-radius: 10px;
+    width: auto;
+    border: 1px solid #19718d;
+    margin: 10px;
+    color: #19718d;
+    height: 40px;
+    border: 1px #19718d solid;
+    float: right;
 }
 
 .jobPosts .jobs .jobPost .YetAppliedJobs {
-  border-radius: 10px;
-  width: auto;
-  border: 1px solid #19718d;
-  margin: 10px;
-  color: #19718d;
-  height: 40px;
-  border: 1px #19718d solid;
-  float: right;
+    border-radius: 10px;
+    width: auto;
+    border: 1px solid #19718d;
+    margin: 10px;
+    color: #19718d;
+    height: 40px;
+    border: 1px #19718d solid;
+    float: right;
 }
 
 .jobPosts .jobs .jobPost .AlertJobListing ::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 .jobPosts .jobs .jobPost .jobContent .jobTitle:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .jobPosts .jobs .jobPost .jobContent .Tags {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .jobPosts .jobs .jobPost .jobContent .jobCategory {
-  border: 1px solid grey;
-  background-color: lightgrey;
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
+    border: 1px solid grey;
+    background-color: lightgrey;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
 }
 
 .jobPosts .jobs .jobPost .jobListLink {
-  /* border: 5px red solid; */
-  text-decoration: none;
-  color: white;
+    /* border: 5px red solid; */
+    text-decoration: none;
+    color: white;
 }
 
 .jobPosts .jobs .jobPost .selectButton {
-  border-radius: 10;
-  color: white;
-  background-color: #19718d;
-  font-size: 14px;
-  position: relative;
-  text-align: center;
-  margin: 10px;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  width: 55%;
-  float: right;
+    border-radius: 10;
+    color: white;
+    background-color: #19718d;
+    font-size: 14px;
+    position: relative;
+    text-align: center;
+    margin: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 55%;
+    float: right;
 }
 
 .jobPosts .jobs .jobPost .linkButton {
-  border-radius: 10;
-  background-color: #19718d;
-  font-size: 14px;
-  width: 55%;
-  text-align: center;
-  margin: 10px;
-  margin-bottom: 10px;
-  margin-top: auto;
-  float: right;
+    border-radius: 10;
+    background-color: #19718d;
+    font-size: 14px;
+    width: 55%;
+    text-align: center;
+    margin: 10px;
+    margin-bottom: 10px;
+    margin-top: auto;
+    float: right;
 }
 
 .notLoggedInContent .redirectSignIn {
-  border-radius: 10;
-  background-color: #19718d;
-  font-size: 14px;
-  width: 250px;
-  text-align: center;
-  margin-bottom: 10px;
+    border-radius: 10;
+    background-color: #19718d;
+    font-size: 14px;
+    width: 250px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .notLoggedInContent .redirectSignIn:hover {
-  border-radius: 10;
-  background-color: #19718d;
-  font-size: 14px;
-  width: 250px;
-  text-align: center;
-  margin-bottom: 10px;
+    border-radius: 10;
+    background-color: #19718d;
+    font-size: 14px;
+    width: 250px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .notLoggedInContent {
-  /* border: 1px #19718d solid; */
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-  margin: 200px;
-  margin-left: 400px;
-  width: 600px;
+    /* border: 1px #19718d solid; */
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin: 200px;
+    margin-left: 400px;
+    width: 600px;
 }
+
 
 /* .jobPosts .jobPost button {
   background-color: #19718d;
@@ -178,6 +185,7 @@
   border-radius: 20px;
   text-decoration: none;
 } */
+
 
 /* .jobPosts .jobPost button.edit {
   background-color: green;
@@ -198,6 +206,7 @@
   margin: 15px;
   text-decoration: none;
 } */
+
 
 /* .preferences {
   display: flex;
@@ -232,74 +241,71 @@
 } */
 
 .jobFilter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  margin-top: 10px;
-  padding: 20px;
-  background-color: #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #f0f0f0;
 }
 
 .jobFilter form {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 .jobFilter label {
-  margin-right: 10px;
-  font-size: large;
+    margin-right: 10px;
+    font-size: large;
 }
 
 @media all and (max-width: 690px) {
-  .jobPosts_Container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .jobPosts .jobs .jobPost {
-    width: 273%;
-  }
-  .jobPosts {
-    width: 270px;
-  }
-  .jobPost .col-md-6 {
-    position: relative;
-    float: right;
-  }
-  .preferences {
-    display: flex;
-    width: 300px;
-    margin-right: 125px;
-    height: 350px;
-  }
+    .jobPosts_Container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .jobPosts .jobs .jobPost {
+        width: 273%;
+    }
+    .jobPosts {
+        width: 270px;
+    }
+    .jobPost .col-md-6 {
+        position: relative;
+        float: right;
+    }
+    .preferences {
+        display: flex;
+        width: 300px;
+        margin-right: 125px;
+        height: 350px;
+    }
 }
 
 @media all and (max-width: 280px) {
-  .Container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .jobPost .col-md-6 {
-    position: relative;
-    float: right;
-  }
-
-  .jobPosts {
-    width: 270px;
-  }
-  .preferences {
-    display: flex;
-    width: 300px;
-    margin-right: 125px;
-    height: 350px;
-  }
-
-  .jobPosts .jobs .jobPost {
-    width: 273%;
-  }
+    .Container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .jobPost .col-md-6 {
+        position: relative;
+        float: right;
+    }
+    .jobPosts {
+        width: 270px;
+    }
+    .preferences {
+        display: flex;
+        width: 300px;
+        margin-right: 125px;
+        height: 350px;
+    }
+    .jobPosts .jobs .jobPost {
+        width: 273%;
+    }
 }

@@ -172,6 +172,11 @@ i18next.use(initReactI18next).init({
         "Already connected": "Already connected",
         Connect: "Connect",
         "You are already connected": "You are already connected",
+        "*Saved preferences": "*Saved preferences",
+        "Please fill in all fields before saving preferences.":
+          "Please fill in all fields before saving preferences.",
+        "No jobs found based on your preferences":
+          "No jobs found based on your preferences",
       },
     },
     fr: {
@@ -351,6 +356,11 @@ i18next.use(initReactI18next).init({
         "Already connected": "Déjà connecté",
         Connect: "Connecter",
         "You are already connected": "Vous êtes déjà connecté",
+        "*Saved preferences": "*préférences enregistrées",
+        "Please fill in all fields before saving preferences.":
+          "Veuillez remplir tous les champs avant d'enregistrer les préférences.",
+        "No jobs found based on your preferences":
+          "Aucun emploi trouvé en fonction de vos préférences",
       },
     },
   },

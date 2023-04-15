@@ -208,8 +208,8 @@ const EditUserProfile = () => {
               </label>
                {(userData.workExp.length !== 0 ?
                 (<div className="editChanges">
-                  {userData.workExp.map(exp =><span style={{color: "white"}}>{exp}</span>)
-                  .reduce((prev,curr) => [prev, <span style={{color: "white"}}>, </span>, curr])}
+                  {userData.workExp.map(exp =><span style={{color: "black"}}>{exp}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "black"}}>, </span>, curr])}
                 </div>) 
               : (<div></div>)
               )}      
@@ -229,8 +229,8 @@ const EditUserProfile = () => {
               </label>
               {(userData.education.length !== 0 ?
                 (<div className="editChanges">
-                  {userData.education.map(education =><span style={{color: "white"}}>{education}</span>)
-                  .reduce((prev,curr) => [prev, <span style={{color: "white"}}>, </span>, curr])}
+                  {userData.education.map(education =><span style={{color: "black"}}>{education}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "black"}}>, </span>, curr])}
                 </div>) 
               : (<div></div>)
               )}
@@ -252,8 +252,8 @@ const EditUserProfile = () => {
               </label>
               {(userData.skills.length !== 0 ?
                 (<div className="editChanges">
-                  {userData.skills.map(skill =><span style={{color: "white"}}>{skill}</span>)
-                  .reduce((prev,curr) => [prev, <span style={{color: "white"}}>, </span>, curr])}
+                  {userData.skills.map(skill =><span style={{color: "black"}}>{skill}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "black"}}>, </span>, curr])}
                 </div>) 
               : (<div></div>)
               )}
@@ -273,8 +273,8 @@ const EditUserProfile = () => {
               </label>
               {(userData.languages.length !== 0 ?
                 (<div className="editChanges">
-                  {userData.languages.map(language =><span style={{color: "white"}}>{language}</span>)
-                  .reduce((prev,curr) => [prev, <span style={{color: "white"}}>, </span>, curr])}
+                  {userData.languages.map(language =><span style={{color: "black"}}>{language}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "black"}}>, </span>, curr])}
                 </div>) 
               : (<div></div>)
               )}
@@ -294,8 +294,8 @@ const EditUserProfile = () => {
               </label>
               {(userData.volunteering.length !== 0 ?
                 (<div className="editChanges">
-                  {userData.volunteering.map(volunteering =><span style={{color: "white"}}>{volunteering}</span>)
-                  .reduce((prev,curr) => [prev, <span style={{color: "white"}}>, </span>, curr])}
+                  {userData.volunteering.map(volunteering =><span style={{color: "black"}}>{volunteering}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "black"}}>, </span>, curr])}
                 </div>) 
               : (<div></div>)
               )}

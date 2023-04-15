@@ -24,6 +24,13 @@ const SignIn = () => {
       })
       .then((response) => {
         console.log(response.data);
+        if (response.data.userSession.isBan){
+          MessageRef.current.style.color = "red";
+          MessageRef.current.innerHTML = t("You are banned from ConnectIn");
+          axios.post("session/logout").then((response) => {
+          });
+          return;
+        }
         sessionStorage.setItem("userID", response.data.userSession.user_id);
         MessageRef.current.style.color = "#66FF00";
         MessageRef.current.innerHTML = t("Login Sucess. Welcome Back");

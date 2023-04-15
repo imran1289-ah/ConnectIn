@@ -79,8 +79,16 @@
   }
 }
 
-@media (min-device-width: 1024px) and (max-device-width: 1100px) {
+@media (min-device-width: 1024px) and (max-device-width: 1339px) {
   .searchInput {
-    width: 240px;
+    width: 220px;
+  }
+
+  .WebLogo {
+    font-size: 20px;
+  }
+
+  .parentUserIconContainer {
+    margin-right: 5px;
   }
 }

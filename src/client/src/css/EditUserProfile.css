@@ -1,7 +1,6 @@
 .EditUserProfileContainer {
-  /* display: flex;
-  justify-content: center; */
-
+  display: flex;
+  justify-content: center;
 }
 .editChanges {
   width:350px;
@@ -17,8 +16,9 @@
 }
 
 .userProfileForm {
-  margin: 75px;
+  margin: 75px 0;
   display: flex;
+  width: 1100px;
   flex-direction: column;
   background: rgb(224, 224, 224);
   border-radius: 70px;

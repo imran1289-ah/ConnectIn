@@ -121,31 +121,40 @@ const EditUserProfile = () => {
   };
 
   const languagesChange = () => {
-    setUserData({ ...userData, languages: [...userData.languages, languages] });
-    setLanguages("");
+    if (languages != "") {
+      setUserData({ ...userData, languages: [...userData.languages, languages] });
+      setLanguages("");
+    }
   };
 
   const educationChange = () => {
-    setUserData({ ...userData, education: [...userData.education, education] });
-    setEducation("");
+    if (education != "") {
+      setUserData({ ...userData, education: [...userData.education, education] });
+      setEducation("");
+    }
   };
 
   const skillsChange = () => {
-    setUserData({ ...userData, skills: [...userData.skills, skills] });
-    setSkills("");
+    if (skills != "") {
+      setUserData({ ...userData, skills: [...userData.skills, skills] });
+      setSkills("");
+    }
+
   };
 
   const workExpChange = () => {
-    setUserData({ ...userData, workExp: [...userData.workExp, workExp] });
-    setWorkExp("");
+    if (workExp != "") {
+      setUserData({ ...userData, workExp: [...userData.workExp, workExp] });
+      setWorkExp("");
+    }
+    
   };
 
   const volunteeringChange = () => {
-    setUserData({
-      ...userData,
-      volunteering: [...userData.volunteering, volunteering],
-    });
-    setVolunteering("");
+    if (volunteering != "") {
+      setUserData({...userData, volunteering: [...userData.volunteering, volunteering] });
+      setVolunteering("");
+    }
   };
   const handleResumeChange = (e) => {
     setResume(e.target.files[0]);
@@ -197,6 +206,13 @@ const EditUserProfile = () => {
                   onChange={(e) => setWorkExp(e.target.value)}
                 />
               </label>
+               {(userData.workExp.length != 0 ?
+                (<div>
+                  {userData.workExp.map(exp =><span style={{color: "white"}}>{exp}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "white"}}>, </span>, curr])}
+                </div>) 
+              : (<div></div>)
+              )}             
               <br />
               <div className="list-button">
                 <button type="button" onClick={educationChange}>
@@ -211,6 +227,13 @@ const EditUserProfile = () => {
                   onChange={(e) => setEducation(e.target.value)}
                 />
               </label>
+              {(userData.education.length != 0 ?
+                (<div>
+                  {userData.education.map(education =><span style={{color: "white"}}>{education}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "white"}}>, </span>, curr])}
+                </div>) 
+              : (<div></div>)
+              )}
               <br />
             </div>
             <div className="edit-left-side">
@@ -227,6 +250,13 @@ const EditUserProfile = () => {
                   onChange={(e) => setSkills(e.target.value)}
                 />
               </label>
+              {(userData.skills.length != 0 ?
+                (<div>
+                  {userData.skills.map(skill =><span style={{color: "white"}}>{skill}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "white"}}>, </span>, curr])}
+                </div>) 
+              : (<div></div>)
+              )}
               <br />
               <div className="list-button">
                 <button type="button" onClick={languagesChange}>
@@ -241,6 +271,13 @@ const EditUserProfile = () => {
                   onChange={(e) => setLanguages(e.target.value)}
                 />
               </label>
+              {(userData.languages.length != 0 ?
+                (<div>
+                  {userData.languages.map(language =><span style={{color: "white"}}>{language}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "white"}}>, </span>, curr])}
+                </div>) 
+              : (<div></div>)
+              )}
               <br />
               <div className="list-button">
                 <button type="button" onClick={volunteeringChange}>
@@ -255,6 +292,13 @@ const EditUserProfile = () => {
                   onChange={(e) => setVolunteering(e.target.value)}
                 />
               </label>
+              {(userData.volunteering.length != 0 ?
+                (<div>
+                  {userData.volunteering.map(volunteering =><span style={{color: "white"}}>{volunteering}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "white"}}>, </span>, curr])}
+                </div>) 
+              : (<div></div>)
+              )}
               <br />
               <label>
                 Resume

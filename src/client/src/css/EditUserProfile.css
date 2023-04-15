@@ -38,6 +38,11 @@
   margin: 5px;
 }
 
+.workexps {
+  display: flex;
+  padding-inline-start: 0;
+}
+
 .userProfileForm .submit-button button {
   background-color: 0077ff;
   color: #fff;

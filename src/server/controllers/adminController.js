@@ -21,17 +21,22 @@ const adminEdit = async (req, res) => {
   const saltRounds = 10;
   const hashPwd = await bcrypt.hash(password, saltRounds);
 
-  const isThereADuplicate = await User.findOne({email, _id : {$ne: req.params.id}}).lean().exec()
+  const isThereADuplicate = await User.findOne({
+    email,
+    _id: { $ne: req.params.id },
+  })
+    .lean()
+    .exec();
   if (isThereADuplicate) {
     return res
       .status(409)
       .json({ message: "A user with this email already exists." });
   }
-  
+
   User.findByIdAndUpdate(req.params.id)
     .then((user) => {
       if (email && user.email !== email) {
-        user.email = email
+        user.email = email;
       }
       if (password && user.password !== password) {
         user.password = hashPwd;
@@ -81,7 +86,6 @@ const adminBan = async (req, res) => {
 };
 
 const adminUnBan = async (req, res) => {
-  const { isBan } = req.body;
   User.findByIdAndUpdate(
     req.params.id,
     { $set: { isBan: false } },

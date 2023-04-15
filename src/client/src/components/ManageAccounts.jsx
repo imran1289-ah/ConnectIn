@@ -83,9 +83,7 @@ const ManageAccouts = () => {
 
   const unban = async (accountuserID) => {
     axios
-      .post(`http://localhost:9000/admin/unban/${accountuserID}`, {
-        isBan: true,
-      })
+      .post(`http://localhost:9000/admin/unban/${accountuserID}`)
       .then((response) => {
         console.log(response.data);
         swal(t("Saved!"), t("Successfully updated the user"), "success", {
@@ -117,43 +115,44 @@ const ManageAccouts = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {accounts.map((account) => (
-              userID === account._id ? null : (<TableRow key={account._id}>
-                <TableCell component="th" scope="row">
-                  {account.email}
-                </TableCell>
-                <TableCell>{account.role}</TableCell>
-                <TableCell>
-                  <Button variant="contained" color="success">
-                    <Link
-                      style={{ textDecoration: "none", color: "inherit" }}
-                      to={`/manageAccounts/${account._id}`}
+            {accounts.map((account) =>
+              userID === account._id ? null : (
+                <TableRow key={account._id}>
+                  <TableCell component="th" scope="row">
+                    {account.email}
+                  </TableCell>
+                  <TableCell>{account.role}</TableCell>
+                  <TableCell>
+                    <Button variant="contained" color="success">
+                      <Link
+                        style={{ textDecoration: "none", color: "inherit" }}
+                        to={`/manageAccounts/${account._id}`}
+                      >
+                        {t("Edit")}
+                      </Link>
+                    </Button>
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      onClick={() => ban(account._id)}
                     >
-                      {t("Edit")}
-                    </Link>
-                  </Button>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    variant="contained"
-                    color="error"
-                    onClick={() => ban(account._id)}
-                  >
-                    {t("Ban")}
-                  </Button>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    variant="contained"
-                    color="success"
-                    onClick={() => unban(account._id)}
-                  >
-                    {t("Unban")}
-                  </Button>
-                </TableCell>
-              </TableRow>)
-              
-            ))}
+                      {t("Ban")}
+                    </Button>
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      variant="contained"
+                      color="success"
+                      onClick={() => unban(account._id)}
+                    >
+                      {t("Unban")}
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              )
+            )}
           </TableBody>
         </Table>
       </TableContainer>

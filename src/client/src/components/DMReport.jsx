@@ -76,30 +76,6 @@ const DMReport = () => {
       .then((response) => {
         console.log(response.data);
         console.log(reportId);
-        //     axios.delete(`http://localhost:9000/reports/delete`, {
-        //       data: {
-        //         "id": reportId
-        //       }
-        //     })
-        //       .then(response => {
-        //         console.log(response.data);
-        //         swal(t("Congrats!"), t("You have successfully resolved the report!"), "success", {
-        //         button: false,
-        //         timer: 1000,
-        //     })
-        //       .then((response) => {
-        //         setTimeout(function () {
-        //         window.location.reload();
-        //     }, 1200);
-        //   })
-        // })
-        //     .catch(err => {
-        //       console.log(err);
-        //         swal(t("Error"), t("Failed to resolve the report"), "error", {
-        //         button: false,
-        //         timer: 1000,
-        //     })
-        // })
         deleteReport(reportId);
       })
       .catch((error) => {

@@ -198,7 +198,6 @@ const EditUserProfile = () => {
                   {t("Add")}
                 </button>
               </div>
-              <div  className="editChanges">
               <label>
                 {t("Work Experience")}
                 <input
@@ -208,21 +207,18 @@ const EditUserProfile = () => {
                 />
               </label>
                {(userData.workExp.length !== 0 ?
-                (<div>
+                (<div className="editChanges">
                   {userData.workExp.map(exp =><span style={{color: "white"}}>{exp}</span>)
                   .reduce((prev,curr) => [prev, <span style={{color: "white"}}>, </span>, curr])}
                 </div>) 
               : (<div></div>)
-              )} 
-              </div>
-                        
+              )}      
               <br />
               <div className="list-button">
                 <button type="button" onClick={educationChange}>
                   {t("Add")}
                 </button>
               </div>
-              <div  className="editChanges">
               <label>
                 {t("Education")}
                 <input
@@ -232,13 +228,12 @@ const EditUserProfile = () => {
                 />
               </label>
               {(userData.education.length !== 0 ?
-                (<div>
+                (<div className="editChanges">
                   {userData.education.map(education =><span style={{color: "white"}}>{education}</span>)
                   .reduce((prev,curr) => [prev, <span style={{color: "white"}}>, </span>, curr])}
                 </div>) 
               : (<div></div>)
               )}
-              </div>
               <br />
             </div>
             <div className="edit-left-side">

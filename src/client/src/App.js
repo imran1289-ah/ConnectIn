@@ -64,7 +64,7 @@ function App() {
             path="/UserProfile"
             element={
               <>
-                <Navbar /> <UserProfile /> <LoginFooter />
+                <Navbar /> <UserProfile />
               </>
             }
           ></Route>
@@ -88,7 +88,7 @@ function App() {
             path="/users/search/:id"
             element={
               <>
-                <Navbar /> <PublicUserProfile /> <LoginFooter />
+                <Navbar /> <PublicUserProfile />
               </>
             }
           ></Route>

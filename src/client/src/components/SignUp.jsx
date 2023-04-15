@@ -7,8 +7,9 @@ import { Link, Navigate } from "react-router-dom";
 import LoginFooter from './LoginFooter';
 import swal from "sweetalert";
 import axios from "axios";
-import { Select, MenuItem } from "@mui/material"; 
+import { Select, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function SignUp() {
   const [userData, setUserData] = useState({
@@ -18,6 +19,8 @@ function SignUp() {
     password: "",
     role: "",
   });
+
+  const { t, i18n } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -29,13 +32,13 @@ function SignUp() {
         lastname: userData.lastName,
         email: userData.email,
         password: userData.password,
-        role: userData.role
+        role: userData.role,
       })
       .then((response) => {
         console.log(response.data);
-        swal("Success!","Successfully created an account!","success",{
-          button:false,
-          timer:2000
+        swal("Success!", t("Successfully created an account!"), "success", {
+          button: false,
+          timer: 2000,
         });
         //sets field to blank after form submission
         setUserData({ firstName: "", lastName: "", email: "", password: "" });
@@ -43,9 +46,9 @@ function SignUp() {
       })
       .catch((error) => {
         console.log(error);
-        swal("Failed!","Failed to create an account!","error",{
-          button:false,
-          timer:2000
+        swal("Failed!", t("Failed to create an account!"), "error", {
+          button: false,
+          timer: 2000,
         });
       });
   };
@@ -56,15 +59,15 @@ function SignUp() {
         <Navbar />
         <div className={SignUpCSS.WrapperSignup}>
           <div className={SignUpCSS.Card}>
-            <h3 className={SignUpCSS.Title}> Create your account today! </h3>
+            <h3 className={SignUpCSS.Title}> {t("Create your account today!")}  </h3>
             <form onSubmit={submitSignup} className={SignUpCSS.form}>
                 <label className={SignUpCSS.PlaceholderSignup}>
-                  First Name
+                  {t("First Name")}
                   <br></br>
                   <input required
                     aria-label="firstname"
                     className={SignUpCSS.Input}
-                    placeholder="Enter Your First Name"
+                    placeholder={t("Enter Your First Name")}
                     name="firstname"
                     value={userData.firstName}
                     onChange={(e) =>
@@ -79,11 +82,11 @@ function SignUp() {
                 <br></br>
 
                 <label className={SignUpCSS.PlaceholderSignup}>
-                  Last Name
+                  {t("Last Name")}
                   <br></br>
                   <input required
                     className={SignUpCSS.Input}
-                    placeholder="Enter Your Last Name"
+                    placeholder={t("Enter Your Last Name")}
                     name="lastname"
                     value={userData.lastName}
                     onChange={(e) =>
@@ -95,11 +98,11 @@ function SignUp() {
                 <br></br>
 
                 <label className={SignUpCSS.PlaceholderSignup}>
-                  Email
+                   {t("Email")}
                   <br></br>
                   <input required
                     className={SignUpCSS.Input}
-                    placeholder="Enter Your Email"
+                    placeholder={t("enteremail")}
                     name="email"
                     value={userData.email}
                     onChange={(e) =>
@@ -110,11 +113,11 @@ function SignUp() {
                 <br></br>
                 <br></br>
                 <label className={SignUpCSS.PlaceholderSignup}>
-                  Password
+                  {t("password")}
                   <br></br>
                   <input required
                     className={SignUpCSS.Input}
-                    placeholder="Enter your password"
+                    placeholder={t("enterpassword")}
                     name="password"
                     type="password"
                     value={userData.password}
@@ -125,7 +128,7 @@ function SignUp() {
                 </label>
                 <br></br>
                 <br></br>
-                <label className={SignUpCSS.PlaceholderSignup}>Account Type
+                <label className={SignUpCSS.PlaceholderSignup}>{t("Account Type")}
                 </label>
                 <br />
                 <Select required className={SignUpCSS.selecter} id="select" value={userData.role} 
@@ -133,39 +136,34 @@ function SignUp() {
                 onChange={(e) =>
                   setUserData({ ...userData, role: e.target.value })
                 }>
-                  <MenuItem value={"User"}>User</MenuItem>
-                  <MenuItem value={"Recruiter"}>Recruiter</MenuItem>
-                  <MenuItem value={"Administrator"}>Administrator</MenuItem>
+                  <MenuItem value={"User"}>{t("User")}</MenuItem>
+                  <MenuItem value={"Recruiter"}>{t("Recruiter")}</MenuItem>
+                  <MenuItem value={"Administrator"}>{t("Administrator")}</MenuItem>
                 </Select>
                 <br />
                 <br />
-              <button className={SignUpCSS.SignupButton}>Sign Up</button>
+              <button className={SignUpCSS.SignupButton}>{t("Sign Up")}</button>
             </form>
           </div>
           <div className={SignUpCSS.WelcomeText}>
           <h1>
             <p>
               {" "}
-              Sign up today to connect with your boss, your colleagues, and
-              your friends!{" "}
+              {t("signuptext1")}{" "}
             </p>
           </h1>
             <p className={SignUpCSS.paragraph}>
               {" "}
-              We are the leading platform for networking and sharing your
-              professional activities.
-              Our mission is to help you to become more productive in your
-              life.
-              Social networking has never been easier with the help of our
-              dedicated team of developers.
-              Join us today and you won't regret it. We are like LinkedIn,
-              but better!{" "}
+              {t("signuptext2")}
+              {t("signuptext3")}
+              {t("signuptext4")}
+              {t("signuptext5")}" "}
             </p>
           <div className={SignUpCSS.LinkSignup}>
             {" "}
             <strong>
-              Already have an account ?{" "}
-              <Link to={`/signin`}> Log In</Link>
+              {t("Already have an account ?")}{" "}
+              <Link to={`/signin`}>{t("logIn")}/Link>
             </strong>
           </div>
         </div>

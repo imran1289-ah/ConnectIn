@@ -5,6 +5,7 @@ import LoginFooter from "../components/LoginFooter";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import { Context } from "../UserSession";
+import { useTranslation } from "react-i18next";
 
 const SignIn = () => {
   //State for each input
@@ -13,6 +14,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const MessageRef = useRef(null);
   const [login, setLogin] = useContext(Context);
+  const { t, i18n } = useTranslation();
 
   //HTTP Request to autenticate user
   const submitLogin = async (e) => {
@@ -24,9 +26,16 @@ const SignIn = () => {
       })
       .then((response) => {
         console.log(response.data);
+        if (response.data.userSession.isBan){
+          MessageRef.current.style.color = "red";
+          MessageRef.current.innerHTML = t("You are banned from ConnectIn");
+          axios.post("session/logout").then((response) => {
+          });
+          return;
+        }
         sessionStorage.setItem("userID", response.data.userSession.user_id);
         MessageRef.current.style.color = "#66FF00";
-        MessageRef.current.innerHTML = "Login Sucess. Welcome Back";
+        MessageRef.current.innerHTML = t("Login Sucess. Welcome Back");
         setLogin({
           isLoggedIn: true,
         });
@@ -38,7 +47,9 @@ const SignIn = () => {
       .catch((error) => {
         console.log(error);
         MessageRef.current.style.color = "red";
-        MessageRef.current.innerHTML = "Incorrect Credentials Please try again";
+        MessageRef.current.innerHTML = t(
+          "Incorrect Credentials Please try again"
+        );
       });
   };
 
@@ -51,12 +62,12 @@ const SignIn = () => {
           <p className={SignInCSS.LoginMessage} ref={MessageRef}>
           ConnectIn
           <br />
-          Log in to your account{" "}
+          {t("Log in to your account")}{" "}
         </p>
         <form>
           <div className={SignInCSS.Form}>
             <div className={SignInCSS.formLabel}>
-              Email
+              {t("Email")}
             </div>
             <input
               className={SignInCSS.LoginInput}
@@ -66,7 +77,7 @@ const SignIn = () => {
             <br></br>
             <br></br>
             <div className={SignInCSS.formLabel}>
-              Password
+              {t("password")}
             </div>
             <input
               className={SignInCSS.LoginInput}
@@ -77,12 +88,12 @@ const SignIn = () => {
             <br></br>
             <br></br>
             <div className={SignInCSS.Link}>
-              Don't have an account? <Link to={`/signup`}>Sign Up Now!</Link>
+              {t("donthave")} <Link to={`/signup`}>{t("Sign Up")}</Link>
             </div>
           </div>
           <br></br>
           <button className={SignInCSS.LoginButton} onClick={submitLogin}>
-            Log In
+            {t("logIn")}
           </button>
         </form>
       </div>

@@ -10,6 +10,12 @@ import swal from "sweetalert";
 import { useNavigate, Link } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { useTranslation } from "react-i18next";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import OutlinedFlagTwoToneIcon from "@mui/icons-material/OutlinedFlagTwoTone";
+import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
 
 const UserTimeline = () => {
   //Global state
@@ -17,8 +23,12 @@ const UserTimeline = () => {
 
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
+  const role = sessionStorage.getItem("role");
 
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+
+  //user connection state
   const [userConnections, setUserConnections] = useState({
     _id: "",
     firstname: "",
@@ -26,6 +36,7 @@ const UserTimeline = () => {
     connections: [],
   });
 
+  //http request to fetch user
   const fetchUserConnections = async () => {
     try {
       if (userID) {
@@ -44,6 +55,23 @@ const UserTimeline = () => {
     }
   };
 
+  const [job, setJob] = useState();
+
+  const fetchNotificationForRecentJob = async () => {
+    try {
+      if (userID) {
+        const notificationInfo = await axios.get(
+          `http://localhost:9000/users/notifications/${userID}`
+        );
+
+        setJob(notificationInfo.data.latestJob);
+        console.log(job);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //fetch session once
   useEffect(() => {
     fetchSession();
@@ -51,6 +79,7 @@ const UserTimeline = () => {
     fetchConnections();
     //fetchConnectionPosts();
     fetchPosts();
+    fetchNotificationForRecentJob();
   }, []);
 
   //Fetch session information
@@ -70,13 +99,14 @@ const UserTimeline = () => {
     }
   };
 
+  //Post state
   const [postData, setpostData] = useState({
     description: "",
     attachment: null,
     timestamp: new Date(),
   });
 
-  //HTTP Request to fetch posts and add posts ....
+  //HTTP Request to fetch to add post
   const savePost = async () => {
     axios
       .post(`http://localhost:9000/users/post`, {
@@ -88,10 +118,15 @@ const UserTimeline = () => {
       })
       .then((response) => {
         console.log(response.data);
-        swal("Congrats!", "You have successfully created a post!", "success", {
-          button: false,
-          timer: 1000,
-        });
+        swal(
+          t("Congrats!"),
+          t("You have successfully created a post!"),
+          "success",
+          {
+            button: false,
+            timer: 1000,
+          }
+        );
         navigate("/userTimeline");
       })
       .then((response) => {
@@ -117,6 +152,7 @@ const UserTimeline = () => {
       });
   };
 
+  //http request to fetch posts
   const [posts, setPosts] = useState([]);
   const fetchPosts = async () => {
     await axios
@@ -126,6 +162,7 @@ const UserTimeline = () => {
       });
   };
 
+  //display post
   const userPosts = posts.map((post) => (
     <div className={TimelineCSS.userPostsTimeline}>
       <span className={TimelineCSS.subTitleTimeline}>
@@ -135,10 +172,76 @@ const UserTimeline = () => {
     </div>
   ));
 
+  //sort posts based on timestamp
   //const allPosts = [...allConnectionsPosts, ...userPosts]
   const allSortedPosts = [...userPosts].sort((a, b) => {
     return a.timestamp > b.timestamp ? 1 : -1;
   });
+
+  //http request to remove connection
+  const removeConnection = async (
+    connectionUserID,
+    connectionFirstName,
+    connectionLastName
+  ) => {
+    swal({
+      title: `Are you sure you want to remove ${connectionFirstName} ${connectionLastName} from your connection ?`,
+      text: "Once the user is deleted, the user will be removed from your connections",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        console.log(userID, connectionUserID);
+        axios
+          .delete(
+            `http://localhost:9000/rooms/deleteRoom/${userID}/${connectionUserID}`
+          )
+          .catch((err) => {
+            console.log(err);
+          });
+        axios
+          .delete(
+            `http://localhost:9000/users/removeConnection/${userID}/connections/${connectionUserID}`
+          )
+          .then((response) => {
+            swal(
+              `${connectionFirstName} ${connectionLastName} has been removed`,
+              {
+                icon: "success",
+              }
+            );
+            setTimeout(function () {
+              window.location.reload();
+            }, 1200);
+          })
+
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        swal(`${connectionFirstName} ${connectionLastName} was not removed`);
+      }
+    });
+  };
+
+  const notify = () => {
+    if(job!=null){
+    toast(t('New Job Alert Posted: ') + job.title);
+    }
+    else{
+      toast(t('No jobs found based on your preferences'))
+    }
+  }
+  
+  const redirectDMReports = () => {
+    navigate("/dmReports");
+  };
+
+  const redirectManageAccounts = () => {
+    navigate("/manageAccounts");
+  };
+
 
   return (
     <div className={TimelineCSS.body}>
@@ -166,9 +269,25 @@ const UserTimeline = () => {
             </span>
             <br></br>
             <span className={TimelineCSS.userNameTimeline}>
-              <IconButton>
+              <IconButton onClick={notify}>
                 <NotificationsNoneIcon></NotificationsNoneIcon>
+                <ToastContainer />
+                <span style={{fontSize:"18px"}}>{t("Job Alert")}</span>
               </IconButton>
+             
+              {role == "Administrator" && (
+                <>
+                  <br></br>
+                  <IconButton onClick={redirectManageAccounts}>
+                    <ManageAccountsOutlinedIcon></ManageAccountsOutlinedIcon>
+                    <ToastContainer />
+                  </IconButton>
+                  <IconButton onClick={redirectDMReports}>
+                    <OutlinedFlagTwoToneIcon></OutlinedFlagTwoToneIcon>
+                    <ToastContainer />
+                  </IconButton>
+                </>
+              )}
             </span>
           </div>
 
@@ -177,12 +296,12 @@ const UserTimeline = () => {
             {/* Create a post section*/}
             <br></br>
             <div style={{ fontWeight: "bold", textAlign: "center" }}>
-              Welcome to your timeline{" "}
+              {t("Welcome to your timeline")}{" "}
             </div>
             <div className={TimelineCSS.writePost}>
               <TextField
                 id="outlined-basic"
-                label="Start A Post"
+                label={t("Start A Post")}
                 variant="standard"
                 className={TimelineCSS.postTextField}
                 value={postData.description}
@@ -232,19 +351,34 @@ const UserTimeline = () => {
                           >
                             {connection.firstname} {connection.lastname}
                           </Link>
+                          <IconButton
+                            onClick={() =>
+                              removeConnection(
+                                `${connection.userID}`,
+                                `${connection.firstname}`,
+                                `${connection.lastname}`
+                              )
+                            }
+                          >
+                            <HighlightOffIcon></HighlightOffIcon>
+                          </IconButton>
                         </span>
                       </div>
                     </l1>
                   );
                 })
               ) : (
-                <p className={TimelineCSS.userBio}>You do not have any connection</p>
+
+                <p className="userBio">{t("You do not have any connection")}</p>
+
               )}
             </div>
           </div>
         </div>
       ) : (
-        <h1 style={{ textAlign: "center" }}>Please login to your account</h1>
+        <h1 style={{ textAlign: "center" }}>
+          {t("Please login to your account")}
+        </h1>
       )}
       <LoginFooter />
     </div>

@@ -45,7 +45,40 @@
   padding-bottom: 5px;
   padding-right: 1em;
   padding-left: 70%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
   /* border-style: solid; */
+}
+
+.kebabButton {
+  display: inline;
+  background-color: snow;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 6px;
+  border-style: none;
+  border-radius: 7px;
+  padding: 5px;
+  transition-duration: 0.3s;
+}
+
+.kebabButton:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+.kebabButton:active {
+  background: #19718d;
+}
+
+.received .kebabButton {
+  visibility: hidden;
+  opacity: 0;
+  transition-duration: 0.2s;
+}
+
+.received:hover .kebabButton {
+  visibility: visible;
+  opacity:1;
 }
 
 .received {
@@ -54,7 +87,9 @@
   padding-bottom: 5px;
   padding-left: 1em;
   padding-right: 70%;
-  justify-content: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .textSent {

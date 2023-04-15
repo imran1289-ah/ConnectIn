@@ -1,6 +1,17 @@
 const request = require("supertest");
 const app = require("../index");
 const { getSessionInfo, destroySession } = require("../controllers/sessionController");
+const mongoose = require("mongoose");
+
+beforeAll(async() => {
+    // Connects to the DB
+    mongoose.connect(process.env.DATABASE);
+});
+
+afterAll(async() => {
+    await mongoose.disconnect();
+    app.close();
+});
 
 describe("getSessionInfo", () => {
     test("returns user info when user is logged in", async() => {

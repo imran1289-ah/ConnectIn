@@ -16,7 +16,11 @@
     height: 500px;
     border-radius: 15px;
     margin: auto;
+    margin-top: 20px;
     display: inline-block;
+}
+.jobPosts .NoJobsFound{
+  text-align: center;
 }
 
 .jobPosts .heading {
@@ -355,7 +359,6 @@
     }
     
     .notLoggedInContent {
-      /* border: 1px #19718d solid; */
       display: flex;
       flex-direction: column;
       align-content: center;
@@ -394,6 +397,8 @@
         height: 570px;
         border-radius: 15px;
         margin: auto;
+        margin-top: 25px;
+        margin-bottom: 50px;
         display: inline-block;
       }
     
@@ -457,7 +462,7 @@
         margin-top:170px;
       }
       .jobPosts .jobPost{
-        min-height: 500px;
+        min-height: 550px;
       }
     
       .jobPosts .AlertJobListing{
@@ -479,7 +484,7 @@
         margin: 20px;
         position: absolute;
         right: 50px;
-        top: 280px;
+        top: 330px;
     
       }
       
@@ -488,7 +493,7 @@
         margin: 20px;
         position: absolute;
         right: 50px;
-        top: 350px;
+        top: 400px;
         
       }
       .jobPosts .jobs .jobPost .col-md-6{
@@ -525,14 +530,14 @@
       .jobPosts {
         
         width: 85%;
-        height: 580px;
+        height: 600px;
         border-radius: 15px;
         margin: auto;
         display: inline-block;
         margin-top:100px;
       }
       .jobPosts .jobPost{
-        min-height: 500px;
+        min-height: 550px;
       }
     
       .jobPosts .AlertJobListing{
@@ -554,7 +559,7 @@
         margin: 20px;
         position: absolute;
         right: 50px;
-        top: 280px;
+        top: 330px;
     
       }
       
@@ -563,7 +568,7 @@
         margin: 20px;
         position: absolute;
         right: 50px;
-        top: 350px;
+        top: 400px;
         
       }
       .jobPosts .jobs .jobPost .col-md-6{
@@ -608,7 +613,7 @@
         margin-top:200px;
       }
       .jobPosts .jobPost{
-        min-height: 500px;
+        min-height: 550px;
       }
     
       .jobPosts .AlertJobListing{
@@ -630,7 +635,7 @@
         margin: 20px;
         position: absolute;
         right: 50px;
-        top: 280px;
+        top: 330px;
     
       }
       
@@ -639,7 +644,7 @@
         margin: 20px;
         position: absolute;
         right: 50px;
-        top: 350px;
+        top: 400px;
         
       }
       .jobPosts .jobs .jobPost .col-md-6{
@@ -680,9 +685,10 @@
         margin: auto;
         display: inline-block;
         margin-top:210px;
+        margin-bottom: 1000px;
       }
       .jobPosts .jobPost{
-        min-height: 500px;
+        min-height: 550px;
       }
     
       .jobPosts .AlertJobListing{
@@ -703,8 +709,8 @@
     
         margin: 20px;
         position: absolute;
-        right: 50px;
-        top: 280px;
+        right: 40px;
+        top: 350px;
     
       }
       
@@ -712,8 +718,8 @@
        
         margin: 20px;
         position: absolute;
-        right: 50px;
-        top: 350px;
+        right: 40px;
+        top: 420px;
         
       }
       .jobPosts .jobs .jobPost .col-md-6{

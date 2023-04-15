@@ -140,8 +140,8 @@ i18next.use(initReactI18next).init({
         Edit: "Edit",
         Delete: "Delete",
         "Job Ffully deleted!": "Job successfully deleted!",
-        "Advertise jobs to third party platform":
-          "Advertise jobs to third party platform",
+        "Advertise job from third party platform":
+          "Advertise job from third party platform",
         "You need to be a recruiter or an administrator to post jobs!":
           "You need to be a recruiter or an administrator to post jobs!",
         "Post/Save": "Post/Save",
@@ -177,6 +177,7 @@ i18next.use(initReactI18next).init({
           "Please fill in all fields before saving preferences.",
         "No jobs found based on your preferences":
           "No jobs found based on your preferences",
+          "No jobs found":"No jobs found",
       },
     },
     fr: {
@@ -322,7 +323,7 @@ i18next.use(initReactI18next).init({
         Edit: "Modifier",
         Delete: "Supprimer",
         "Job successfully deleted!": "Emploi supprimé avec succès !",
-        "Advertise jobs to third party platform":
+        "Advertise job from third party platform":
           "Publicité d'emplois sur une plateforme tierce",
         "You need to be a recruiter or an administrator to post jobs!":
           "Vous devez être un recruteur ou un administrateur pour publier des offres !",
@@ -361,6 +362,7 @@ i18next.use(initReactI18next).init({
           "Veuillez remplir tous les champs avant d'enregistrer les préférences.",
         "No jobs found based on your preferences":
           "Aucun emploi trouvé en fonction de vos préférences",
+          "No jobs found":"Aucune offre d'emploi trouvée",
       },
     },
   },

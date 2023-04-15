@@ -72,7 +72,7 @@ function App() {
             path="/JobList"
             element={
               <>
-                <Navbar /> <JobList /> <LoginFooter />
+                <JobList />
               </>
             }
           ></Route>
@@ -96,7 +96,7 @@ function App() {
             path="/waitingConnections"
             element={
               <>
-                <Navbar /> <WaitingConnections /> <LoginFooter />
+                <WaitingConnections />
               </>
             }
           ></Route>

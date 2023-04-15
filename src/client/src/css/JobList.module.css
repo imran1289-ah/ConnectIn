@@ -1,0 +1,72 @@
+.body {
+  min-height: 100dvh;
+}
+
+.RecruiterJobs {
+  height: 100%;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  overflow-x: hidden;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.table-container {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  min-width: 650px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 1rem;
+}
+
+thead {
+  background-color: #ddd;
+}
+
+tbody tr:nth-of-type(even) {
+  background-color: #f5f5f5;
+}
+
+td:last-child {
+  display: flex;
+  justify-content: space-between;
+}
+
+td:last-child button {
+  margin-left: 0.5rem;
+}
+
+td:last-child a {
+  text-decoration: none;
+  color: inherit;
+}
+
+td:last-child button {
+  background-color: #f44336;
+  color: white;
+  border-radius: 4px;
+}
+
+td:last-child button:hover {
+  background-color: #d32f2f;
+}
+
+td:last-child button:first-child {
+  background-color: #4caf50;
+}
+
+td:last-child button:first-child:hover {
+  background-color: #388e3c;
+}

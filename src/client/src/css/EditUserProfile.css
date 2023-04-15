@@ -3,6 +3,11 @@
   justify-content: center; */
 
 }
+.editChanges {
+  width:350px;
+  white-space: normal;
+  word-wrap:break-word;
+}
 
 .EditUserForm-Container {
   margin: 50px;
@@ -77,4 +82,8 @@
   font-size: 1rem;
   cursor: pointer;
   width: 100%;
+}
+
+@media (min-width: px) and (max-device-width: 1320px) {
+
 }

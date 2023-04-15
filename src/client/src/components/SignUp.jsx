@@ -157,7 +157,7 @@ function SignUp() {
               {t("signuptext2")}
               {t("signuptext3")}
               {t("signuptext4")}
-              {t("signuptext5")}" "}
+              {t("signuptext5")}{" "}
             </p>
           <div className={SignUpCSS.LinkSignup}>
             {" "}

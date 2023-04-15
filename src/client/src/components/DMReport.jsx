@@ -105,10 +105,17 @@ const DMReport = () => {
                   <span style={{ fontWeight: "bold" }}>{t("Receiver")}: </span>
                   {report.receiver}
                 </p>
-                <p>
-                  <span style={{ fontWeight: "bold" }}>{t("Message")}: </span>
-                  {report.reportedDM}
-                </p>
+                {(report.reportedDM.props === undefined ? (
+                  <p>
+                    <span style={{ fontWeight: "bold" }}>{t("Message")}: </span>
+                    {report.reportedDM}
+                  </p>
+                ) : (
+                  <p>
+                    <span style={{ fontWeight: "bold" }}>{t("Message")}: </span>
+                    <a href={report.reportedDM.props.href}>{report.reportedDM.props.children}</a>
+                  </p>
+                ))}
                 <p>
                   <span style={{ fontWeight: "bold" }}>
                     {t("Justification")}:{" "}

@@ -20,13 +20,13 @@
   margin: 75px;
   display: flex;
   flex-direction: column;
-  background: #19718d;
+  background: rgb(224, 224, 224);
   border-radius: 70px;
 }
 
 .EditUserForm-Container label {
   font-style: normal;
-  color: #ffffff;
+  color: black;
   display: block;
   margin-bottom: 0.5rem;
   font-weight: bold;
@@ -65,7 +65,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: black;
 }
 
 .userProfileForm .list-button {

@@ -163,7 +163,7 @@ function SignUp() {
             {" "}
             <strong>
               {t("Already have an account ?")}{" "}
-              <Link to={`/signin`}>{t("logIn")}/Link>
+              <Link to={`/signin`}>{t("logIn")}</Link>
             </strong>
           </div>
         </div>

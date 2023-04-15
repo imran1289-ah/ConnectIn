@@ -222,8 +222,16 @@ const UserTimeline = () => {
       }
     });
   };
-  const notify = () => toast(t("New Job Alert Posted: ") + job.title);
 
+  const notify = () => {
+    if(job!=null){
+    toast(t('New Job Alert Posted: ') + job.title);
+    }
+    else{
+      toast(t('No jobs found based on your preferences'))
+    }
+  }
+  
   const redirectDMReports = () => {
     navigate("/dmReports");
   };
@@ -231,6 +239,7 @@ const UserTimeline = () => {
   const redirectManageAccounts = () => {
     navigate("/manageAccounts");
   };
+
 
   return (
     <div>

@@ -40,7 +40,7 @@ function App() {
             path="/signup"
             element={
               <>
-                <Navbar /> <SignUp /> <SignupFooter />
+                <SignUp />
               </>
             }
           ></Route>
@@ -48,7 +48,7 @@ function App() {
             path="/signin"
             element={
               <>
-                <Navbar /> <SignIn /> <LoginFooter />
+                <SignIn />
               </>
             }
           ></Route>
@@ -145,7 +145,7 @@ function App() {
             path="/userTimeline"
             element={
               <>
-                <Navbar /> <UserTimeline /> <SignupFooter />
+                <UserTimeline />
               </>
             }
           ></Route>

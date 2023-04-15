@@ -189,6 +189,7 @@ i18next.use(initReactI18next).init({
           "Please fill in all fields before saving preferences.",
         "No jobs found based on your preferences":
           "No jobs found based on your preferences",
+          "No user found":"No user found",
       },
     },
     fr: {
@@ -385,6 +386,7 @@ i18next.use(initReactI18next).init({
           "Veuillez remplir tous les champs avant d'enregistrer les préférences.",
         "No jobs found based on your preferences":
           "Aucun emploi trouvé en fonction de vos préférences",
+          "No user found":"Aucun utilisateur trouvé",
       },
     },
   },

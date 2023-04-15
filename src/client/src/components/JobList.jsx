@@ -73,7 +73,7 @@ const JobList = () => {
 
   return (
     <div className="RecruiterJobs">
-      <h1 className="title">{t("Job Postings Summary")}</h1>
+      <h1 className="pageTitle">{t("Job Postings Summary")}</h1>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>

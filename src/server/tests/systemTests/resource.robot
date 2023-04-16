@@ -15,7 +15,7 @@ Check Pending Connections
     [Documentation]    Checks the pending connections
     ...                of the user.
     Click Element    xpath:(//html/body/div/div[1]/header/div/div[3]/button[2])
-    Wait Until Page Contains    Pending connection requests
+    Wait Until Page Contains    Pending connections requests
 
 Sign Up
     [Documentation]    Create an account of the application.
@@ -27,13 +27,13 @@ Sign Up
     Input Text      xpath:(//*[@class='Input'])[3]    ${email}
     Input Password      xpath:(//*[@class='Input'])[4]    ${pwd}
     Click Element    id:select
-    IF    ${USER_TYPE} == User
+    IF    "${USER_TYPE}" == "User"
         Wait Until Element Is Visible    xpath:(//*/ul/li[1])
         Click Element    xpath:(//*/ul/li[1])
-    ELSE IF    ${USER_TYPE} == Recruiter
+    ELSE IF    "${USER_TYPE}" == "Recruiter"
         Wait Until Element Is Visible    xpath:(//*/ul/li[2])
         Click Element    xpath:(//*/ul/li[2])
-    ELSE IF    ${USER_TYPE} == Administrator
+    ELSE IF    ${USER_TYPE} == "Administrator"
         Wait Until Element Is Visible    xpath:(//*/ul/li[3])
         Click Element    xpath:(//*/ul/li[3])
     ELSE
@@ -70,11 +70,11 @@ Search for Users
 Sign Out & Close
     [Documentation]    Signs out from the application.
     [Arguments]    ${USER_TYPE}
-    IF    ${USER_TYPE} == User
+    IF    "${USER_TYPE}" == "User"
         Click Element   xpath://html/body/div/div[1]/header/div/div[3]/button[7]
-    ELSE IF    ${USER_TYPE} == Recruiter
+    ELSE IF    "${USER_TYPE}" == "Recruiter"
         Click Element   xpath://html/body/div/div[1]/header/div/div[3]/button[10]
-    ELSE IF    ${USER_TYPE} == Administrator
+    ELSE IF    "${USER_TYPE}" == "Administrator"
         Click Element    xpath:(//*[@id="root"]/div[1]/header/div/div[3]/button[11])
     ELSE
         Fail    "Invalid User Type"

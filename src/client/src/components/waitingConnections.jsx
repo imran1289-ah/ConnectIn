@@ -134,6 +134,9 @@ const WaitingConnections = () => {
       {userID && login ? (
         <div className="background">
           <h1>{t("Pending connections requests")}</h1>
+          {
+            userRequests.length < 1 ? (<p>You have no connection requests!</p>):(<></>)
+          }
           {userRequests.map((object) => (
             <div className="userWaitingConnection">
               <div className="connectionDisplay ">
@@ -173,7 +176,7 @@ const WaitingConnections = () => {
                       </td>
                       <td>
                         <button
-                          className="rejectButton"
+                          className="rejbectButton"
                           onClick={() =>
                             DeleteWaitingConnection(
                               `${object.firstname}`,

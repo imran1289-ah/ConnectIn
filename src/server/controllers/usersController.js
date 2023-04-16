@@ -325,6 +325,10 @@ const addJobAppliedToUser = async (req, res) => {
 //Action to add user's post to their account.
 const addTimelinePost = async (req, res) => {
   const { _id, firstname, lastname, description, timestamp } = req.body;
+
+  if (!_id || !firstname|| !lastname || !description|| !timestamp) {
+    return res.status(400).json({ message: "Please fill out all fields!" });
+  }
   const user = await User.findByIdAndUpdate(_id, {
     $addToSet: {
       postsMade: {
@@ -349,12 +353,36 @@ const addTimelinePost = async (req, res) => {
 
 //controller to fetch user post
 const getUserPostsbyID = async (req, res) => {
-  try {
-    const user = await User.findOne({ _id: req.params.id });
-    return res.status(200).json(user.postsMade);
-  } catch (err) {
+  try{
+      const user = await User.findOne({ _id: req.params.id })
+      let userPosts = [];
+      let connectionPosts = [];
+      let connectionPost = []
+      let extractedPost = [];
+      userPosts = user.postsMade;
+      const awaitPromises = user.connections.map(async connection => {
+        const connectionUser = await User.findOne({_id: connection.userID})
+        connectionPost = connectionUser.postsMade
+        connectionPosts = connectionPosts.concat(connectionPost)
+      })
+      Promise.all(awaitPromises)
+        .then(() =>{
+          extractedPost = userPosts.concat(connectionPosts)
+          const sortPost = extractedPost.sort((a,b) =>{
+            return a.timestamp < b.timestamp ? 1 : -1;
+          })
+          console.log(sortPost)
+          return res.status(200).json(sortPost);
+        })
+        .catch(err =>{
+          console.log(err);
+      })
+  }
+  catch (err) {
     res.status(400).json({ message: "Unable to retrieve posts made." });
   }
+
+
 };
 
 //controller to fetch user connection

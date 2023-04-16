@@ -134,7 +134,7 @@ const UserTimeline = () => {
       })
       .catch((error) => {
         console.log(error);
-        swal("Failed", "Your post was not created, try again!", "error", {
+        swal(t("Failed"), t("Your post was not created, try again!"), "error", {
           button: false,
           timer: 1000,
         });
@@ -173,7 +173,7 @@ const UserTimeline = () => {
   //sort posts based on timestamp
   //const allPosts = [...allConnectionsPosts, ...userPosts]
   const allSortedPosts = [...userPosts].sort((a, b) => {
-    return a.timestamp > b.timestamp ? 1 : -1;
+    // return a.timestamp < b.timestamp ? 1 : -1;
   });
 
   //http request to remove connection

@@ -25,6 +25,8 @@ import DMReport from "./components/DMReport";
 
 import io from "socket.io-client";
 import JobList from "./components/JobList";
+import ManageAccounts from "./components/ManageAccounts";
+import AdminEditAccount from "./components/AdminEditAccount";
 
 function App() {
   //const socket = io.connect("http://localhost:9000");
@@ -38,7 +40,7 @@ function App() {
             path="/signup"
             element={
               <>
-                <Navbar /> <SignUp /> <SignupFooter />
+                <SignUp />
               </>
             }
           ></Route>
@@ -46,7 +48,7 @@ function App() {
             path="/signin"
             element={
               <>
-                <Navbar /> <SignIn /> <LoginFooter />
+                <SignIn />
               </>
             }
           ></Route>
@@ -143,7 +145,7 @@ function App() {
             path="/userTimeline"
             element={
               <>
-                <Navbar /> <UserTimeline /> <SignupFooter />
+                <UserTimeline />
               </>
             }
           ></Route>
@@ -162,12 +164,28 @@ function App() {
                 <Navbar /> <DMReport /> <SignupFooter />
               </>
             }
-            ></Route>
-            <Route
+          ></Route>
+          <Route
             path="/receivedApplications"
             element={
               <>
                 <Navbar /> <ReceivedApplications /> <SignupFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/manageAccounts"
+            element={
+              <>
+                <Navbar /> <ManageAccounts /> <SignupFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/manageAccounts/:id"
+            element={
+              <>
+                <Navbar /> <AdminEditAccount /> <SignupFooter />
               </>
             }
           ></Route>

@@ -1,6 +1,7 @@
 import React from "react";
-import "../css/loginfooter.css";
+import LoginFooterCSS from "../css/loginfooter.module.css";
 import { useTranslation } from "react-i18next";
+
 const Footer = () => {
   const { t, i18n } = useTranslation();
 
@@ -11,8 +12,8 @@ const Footer = () => {
 
   return (
     // Footer of the page
-    <div className="FooterLine">
-      <div className="Info">
+    <div className={LoginFooterCSS.FooterLine}>
+      <div className={LoginFooterCSS.Info}>
         {t("home")} | {t("about")} |
         <button
           style={{

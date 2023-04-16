@@ -7,7 +7,7 @@ Library    SeleniumLibrary
 *** Keywords ***
 Launch Browser
     [Documentation]    Launches MS Edge and opens the sign in page.
-    Open Browser    http://localhost:3000/signin    Edge
+    Open Browser    http://localhost:3000/signin    Chrome
     Sleep    3s
     Maximize Browser Window
 

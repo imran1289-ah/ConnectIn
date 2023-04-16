@@ -208,11 +208,12 @@
       transform: translate(-50%, -50%);
       border: 2px #19718d solid;
       width: 90%;
-      height: 600px;
+      height: 650px;
       border-radius: 15px;
       margin: auto;
       display: inline-block;
-      margin-top: 150px;
+      margin-top: 40px;
+      
     }
     
     .jobPosts .heading {
@@ -397,7 +398,7 @@
         height: 570px;
         border-radius: 15px;
         margin: auto;
-        margin-top: 25px;
+        margin-top: 180px;
         margin-bottom: 50px;
         display: inline-block;
       }
@@ -422,6 +423,25 @@
       }
       .jobPosts .jobs .jobPost .col-md-6{
         margin: 20px;
+      }
+      .jobFilter {
+        margin-bottom: 20px;
+        margin-top: 10px;
+        padding: 20px;
+        background-color: #f0f0f0;
+      }
+      
+      .jobFilter form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .jobFilter label {
+        margin-right: 10px;
+        font-size: large;
       }
     }
     
@@ -534,7 +554,7 @@
         border-radius: 15px;
         margin: auto;
         display: inline-block;
-        margin-top:100px;
+        margin-top:110px;
       }
       .jobPosts .jobPost{
         min-height: 550px;
@@ -610,7 +630,7 @@
         border-radius: 15px;
         margin: auto;
         display: inline-block;
-        margin-top:200px;
+        margin-top:180px;
       }
       .jobPosts .jobPost{
         min-height: 550px;

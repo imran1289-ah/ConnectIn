@@ -10,7 +10,7 @@ const ReportSchema = new mongoose.Schema({
         required: true
     },
     reportedDM: {
-        type: String,
+        type: Object,
         required: true
     },
     justification: {

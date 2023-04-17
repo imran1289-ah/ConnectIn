@@ -1,14 +1,13 @@
 .EditUserProfileContainer {
   /* display: flex;
   justify-content: center; */
-
 }
 
 .EditUserForm-Container {
   margin: 50px;
   display: flex;
   justify-content: space-evenly;
-  flex-direction: row
+  flex-direction: row;
 }
 
 .userProfileForm {
@@ -29,7 +28,7 @@
 
 .EditUserForm-Container input,
 .EditUserForm-Container textarea {
-  box-sizing:border-box;
+  box-sizing: border-box;
   padding: 0.5rem;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -47,11 +46,10 @@
   cursor: pointer;
   width: 75%;
   margin: 15px;
-
 }
 
 .userProfileForm .submit-button,
-.userProfileForm .edit-profile-title{
+.userProfileForm .edit-profile-title {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,7 +58,7 @@
 
 .userProfileForm .list-button {
   float: right;
-  box-sizing:border-box; 
+  box-sizing: border-box;
 }
 
 .userProfileForm button {
@@ -72,4 +70,72 @@
   font-size: 1rem;
   cursor: pointer;
   width: 100%;
+}
+
+/*Responsive for iphone 6 and up*/
+@media (min-width: 330px) and (max-width: 600px) {
+  .edit-profile-title {
+    text-align: center;
+  }
+
+  .userProfileForm {
+    width: auto;
+    height: auto;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .EditUserForm-Container {
+    width: auto;
+    height: auto;
+    display: inline;
+  }
+}
+
+/*Media queries for ipad*/
+@media (min-device-width: 768px) and (max-device-width: 1070px) {
+  .edit-profile-title {
+    text-align: center;
+  }
+
+  .userProfileForm {
+    width: auto;
+    height: auto;
+    margin: auto;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+
+  .EditUserForm-Container {
+    width: auto;
+    height: auto;
+    display: inline;
+  }
+}
+
+@media (min-device-width: 600px) and (max-device-width: 768px) {
+  .edit-profile-title {
+    text-align: center;
+  }
+
+  .userProfileForm {
+    width: auto;
+    height: auto;
+    margin: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .EditUserForm-Container {
+    width: auto;
+    height: auto;
+    display: inline;
+  }
 }

@@ -121,21 +121,21 @@ const EditUserProfile = () => {
   };
 
   const languagesChange = () => {
-    if (languages !== "") {
+    if (languages.length !== 0) {
       setUserData({ ...userData, languages: [...userData.languages, languages] });
       setLanguages("");
     }
   };
 
   const educationChange = () => {
-    if (education !== "") {
+    if (education.length !== 0) {
       setUserData({ ...userData, education: [...userData.education, education] });
       setEducation("");
     }
   };
 
   const skillsChange = () => {
-    if (skills !== "") {
+    if (skills.length !== 0) {
       setUserData({ ...userData, skills: [...userData.skills, skills] });
       setSkills("");
     }
@@ -143,7 +143,7 @@ const EditUserProfile = () => {
   };
 
   const workExpChange = () => {
-    if (workExp !== "") {
+    if (workExp.length !== 0) {
       setUserData({ ...userData, workExp: [...userData.workExp, workExp] });
       setWorkExp("");
     }
@@ -151,7 +151,7 @@ const EditUserProfile = () => {
   };
 
   const volunteeringChange = () => {
-    if (volunteering !== "") {
+    if (volunteering.length !== 0) {
       setUserData({...userData, volunteering: [...userData.volunteering, volunteering] });
       setVolunteering("");
     }

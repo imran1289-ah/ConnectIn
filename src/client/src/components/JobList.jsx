@@ -62,10 +62,22 @@ const JobList = () => {
 
   const handleDelete = async (job_id) => {
     try {
-      await axios
-        .post(`http://localhost:9000/jobs/delete/${job_id}`)
-        .then(swal(t("Job successfully deleted!")));
-      setJobs(jobs.filter((job) => job.job_id !== job_id));
+      // Display confirmation dialog using swal
+      swal({
+        title: t("Are you sure?"),
+        text: t("This action cannot be undone!"),
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then(async (willDelete) => {
+        if (willDelete) {
+          await axios.post(`http://localhost:9000/jobs/delete/${job_id}`);
+          swal(t("Job successfully deleted!"));
+          setJobs(jobs.filter((job) => job.job_id !== job_id));
+        } else {
+          swal(t("Job deletion canceled!"));
+        }
+      });
     } catch (error) {
       console.log(error);
     }

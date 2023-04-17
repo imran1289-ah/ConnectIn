@@ -1,6 +1,7 @@
 import React from "react";
 import LoginFooterCSS from "../css/loginfooter.module.css";
 import { useTranslation } from "react-i18next";
+
 const Footer = () => {
   const { t, i18n } = useTranslation();
 

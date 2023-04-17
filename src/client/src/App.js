@@ -6,7 +6,7 @@ import JobPosting from "./components/JobPosting";
 import ViewJobsApplied from "./components/ViewJobsApplied";
 import ReceivedApplications from "./components/receivedApplicationsForRecruiters";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import UserProfile from "./components/UserProfile";
 import JobApplication from "./components/JobApplication";
@@ -40,7 +40,7 @@ function App() {
             path="/signup"
             element={
               <>
-                <Navbar /> <SignUp /> <SignupFooter />
+                <SignUp />
               </>
             }
           ></Route>
@@ -48,7 +48,7 @@ function App() {
             path="/signin"
             element={
               <>
-                <Navbar /> <SignIn /> <LoginFooter />
+                <SignIn />
               </>
             }
           ></Route>
@@ -64,7 +64,7 @@ function App() {
             path="/UserProfile"
             element={
               <>
-                <Navbar /> <UserProfile /> <LoginFooter />
+                <Navbar /> <UserProfile />
               </>
             }
           ></Route>
@@ -88,7 +88,7 @@ function App() {
             path="/users/search/:id"
             element={
               <>
-                <Navbar /> <PublicUserProfile /> <LoginFooter />
+                <Navbar /> <PublicUserProfile />
               </>
             }
           ></Route>
@@ -145,7 +145,7 @@ function App() {
             path="/userTimeline"
             element={
               <>
-                <Navbar /> <UserTimeline /> <SignupFooter />
+                <UserTimeline />
               </>
             }
           ></Route>
@@ -186,6 +186,14 @@ function App() {
             element={
               <>
                 <Navbar /> <AdminEditAccount /> <SignupFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/"
+            element={
+              <>
+                <Navigate to="/signin"></Navigate>
               </>
             }
           ></Route>

@@ -29,6 +29,9 @@ const EditUserProfile = () => {
   const [login, setLogin] = useContext(Context);
   const { t, i18n } = useTranslation();
 
+  const [resumeExists, setResumeExists] = useState(false);
+const [coverLetterExists, setCoverLetterExists] = useState(false);
+
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
 
@@ -72,6 +75,24 @@ const EditUserProfile = () => {
     link.click();
     URL.revokeObjectURL(url);
   };
+
+  useEffect(() => {
+  const fetchUserFiles = async () => {
+    const resumeResponse = await fetch(`/resume/getResume/${userID}`);
+    const coverLetterResponse = await fetch(`/resume/getCoverLetter/${userID}`);
+    if (resumeResponse.status === 200) {
+      setResumeExists(true);
+    }
+    if (coverLetterResponse.status === 200) {
+      setCoverLetterExists(true);
+    }
+  };
+  if (userID) {
+    fetchSession();
+    fetchUserFiles();
+  }
+}, []);
+
 
   const navigate = useNavigate();
 
@@ -308,9 +329,11 @@ const EditUserProfile = () => {
                   onChange={handleResumeChange}
                 />
               </label>
-              <button type="button" onClick={downloadResume}>
+             {resumeExists && (
+  <button onClick={downloadResume}>
                 {t("Download Resume")}
               </button>
+              )}
               <br />
               <label>
                 {t("Cover Letter")}
@@ -320,9 +343,11 @@ const EditUserProfile = () => {
                   onChange={handleCoverLetterChange}
                 />
               </label>
-              <button onClick={downloadCoverLetter}>
+              {coverLetterExists && (
+  <button onClick={downloadCoverLetter}>
                 {t("Download CoverLetter")}
               </button>
+                )}
             </div>
           </div>
           <div className="submit-button">

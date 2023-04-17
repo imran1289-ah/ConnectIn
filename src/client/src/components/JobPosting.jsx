@@ -169,6 +169,51 @@ const JobPosting = () => {
             />
           </div>
           {/* <br />
+        <div className="title">
+          <TextField id="job_title" label={t("Job Title")} variant="outlined" />
+          <FaRegEdit />
+        </div>
+        <br />
+        <br />
+        <div className="company">
+          <TextField
+            id="company_name"
+            label={t("Company")}
+            variant="outlined"
+          />
+          <FaRegEdit />
+        </div>
+        <br />
+        <br />
+        <div className="description">
+          <TextField
+            id="job_description"
+            label="Description"
+            placeholder="Placeholder"
+            multiline
+            variant="outlined"
+          />
+          <FaRegEdit />
+        </div>
+        <br />
+        <br />
+        <div className="salary">
+          <TextField id="salary" label={t("Salary")} variant="outlined" />
+          <FaRegEdit />
+        </div>
+        <br />
+        <br />
+        <div className="location">
+          <TextField
+            id="location"
+            label={t("Location")}
+            placeholder="Placeholder"
+            multiline
+            variant="outlined"
+          />
+          <FaRegEdit />
+        </div>
+        {/* <br />
         <br />
         <div className="jobLink">
           <TextField id="job_link" label="Job Link" variant="outlined" onChange={e => setLink(e.target.value)} />

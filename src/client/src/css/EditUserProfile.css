@@ -1,6 +1,11 @@
 .EditUserProfileContainer {
-  /* display: flex;
-  justify-content: center; */
+  display: flex;
+  justify-content: center;
+}
+.editChanges {
+  width:350px;
+  white-space: normal;
+  word-wrap:break-word;
 }
 
 .EditUserForm-Container {
@@ -11,16 +16,18 @@
 }
 
 .userProfileForm {
-  margin: 75px;
+  margin: 75px 0;
   display: flex;
+  width: 1100px;
   flex-direction: column;
-  background: #19718d;
+  background: rgb(224, 224, 224);
   border-radius: 70px;
+  box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.4);
 }
 
 .EditUserForm-Container label {
   font-style: normal;
-  color: #ffffff;
+  color: black;
   display: block;
   margin-bottom: 0.5rem;
   font-weight: bold;
@@ -34,7 +41,11 @@
   border: 1px solid #ccc;
   border-radius: 0.25rem;
   width: 100%;
-  margin: 5px;
+}
+
+.workexps {
+  display: flex;
+  padding-inline-start: 0;
 }
 
 .userProfileForm .submit-button button {
@@ -53,12 +64,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: black;
 }
 
 .userProfileForm .list-button {
   float: right;
-  box-sizing: border-box;
+  box-sizing:border-box; 
+  margin-bottom: 5px;
 }
 
 .userProfileForm button {
@@ -93,6 +105,12 @@
     height: auto;
     display: inline;
   }
+
+  .editChanges {
+    width:260px;
+    white-space: normal;
+    word-wrap:break-word;
+  }
 }
 
 /*Media queries for ipad*/
@@ -116,6 +134,12 @@
     height: auto;
     display: inline;
   }
+
+  .editChanges {
+    width:670px;
+    white-space: normal;
+    word-wrap:break-word;
+  }
 }
 
 @media (min-device-width: 600px) and (max-device-width: 768px) {
@@ -137,5 +161,11 @@
     width: auto;
     height: auto;
     display: inline;
+  }
+
+  .editChanges {
+    width:480px;
+    white-space: normal;
+    word-wrap:break-word;
   }
 }

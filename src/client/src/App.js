@@ -64,7 +64,7 @@ function App() {
             path="/UserProfile"
             element={
               <>
-                <Navbar /> <UserProfile />
+                <Navbar /> <UserProfile /><SignupFooter />
               </>
             }
           ></Route>
@@ -72,7 +72,7 @@ function App() {
             path="/JobList"
             element={
               <>
-                <Navbar /> <JobList /> <LoginFooter />
+                <JobList />
               </>
             }
           ></Route>
@@ -96,7 +96,7 @@ function App() {
             path="/waitingConnections"
             element={
               <>
-                <Navbar /> <WaitingConnections /> <LoginFooter />
+                <WaitingConnections />
               </>
             }
           ></Route>
@@ -105,7 +105,7 @@ function App() {
             path="/editUserProfile"
             element={
               <>
-                <Navbar /> <EditUserProfile /> <LoginFooter />
+                <Navbar /> <EditUserProfile /><SignupFooter />
               </>
             }
           ></Route>

@@ -16,7 +16,9 @@ import {
   Button,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import "../css/JobList.css";
+import JobListCSS from "../css/JobList.module.css";
+import Navbar from "./Navbar";
+import LoginFooter from "./LoginFooter"
 
 const JobList = () => {
   const [jobs, setJobs] = useState([]);
@@ -72,50 +74,54 @@ const JobList = () => {
   };
 
   return (
-    <div className="RecruiterJobs">
-      <h1 className="title">{t("Job Postings Summary")}</h1>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>{t("Job Title")}</TableCell>
-              <TableCell>{t("Company")}</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>{t("Salary")}</TableCell>
-              <TableCell>{t("Location")}</TableCell>
-              <TableCell>{t("Category")}</TableCell>
-              <TableCell>{t("Work Type")}</TableCell>
-              <TableCell>Action</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {jobs.map((job) => (
-              <TableRow key={job.job_id}>
-                <TableCell component="th" scope="row">
-                  {job.title}
-                </TableCell>
-                <TableCell>{job.company}</TableCell>
-                <TableCell>{job.description}</TableCell>
-                <TableCell>{job.salary}</TableCell>
-                <TableCell>{job.location}</TableCell>
-                <TableCell>{job.category}</TableCell>
-                <TableCell>{job.work_type}</TableCell>
-                <TableCell>
-                  <Button variant="contained">
-                    <Link to={`/jobs/edit/${job.job_id}`}>{t("Edit")}</Link>
-                  </Button>
-                  <Button
-                    variant="contained"
-                    onClick={() => handleDelete(job.job_id)}
-                  >
-                    {t("Delete")}
-                  </Button>
-                </TableCell>
+    <div className={JobListCSS.body}>
+      <Navbar />
+      <div className={JobListCSS.RecruiterJobs}>
+        <h1 className={JobListCSS.title}>{t("Job Postings Summary")}</h1>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>{t("Job Title")}</TableCell>
+                <TableCell>{t("Company")}</TableCell>
+                <TableCell>Description</TableCell>
+                <TableCell>{t("Salary")}</TableCell>
+                <TableCell>{t("Location")}</TableCell>
+                <TableCell>{t("Category")}</TableCell>
+                <TableCell>{t("Work Type")}</TableCell>
+                <TableCell>Action</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {jobs.map((job) => (
+                <TableRow key={job.job_id}>
+                  <TableCell component="th" scope="row">
+                    {job.title}
+                  </TableCell>
+                  <TableCell>{job.company}</TableCell>
+                  <TableCell>{job.description}</TableCell>
+                  <TableCell>{job.salary}</TableCell>
+                  <TableCell>{job.location}</TableCell>
+                  <TableCell>{job.category}</TableCell>
+                  <TableCell>{job.work_type}</TableCell>
+                  <TableCell>
+                    <Button variant="contained">
+                      <Link to={`/jobs/edit/${job.job_id}`}>{t("Edit")}</Link>
+                    </Button>
+                    <Button
+                      variant="contained"
+                      onClick={() => handleDelete(job.job_id)}
+                    >
+                      {t("Delete")}
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+      <LoginFooter />
     </div>
   );
 };

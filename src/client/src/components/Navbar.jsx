@@ -92,13 +92,13 @@ const Navbar = () => {
         xs: 0,
         sm: 600,
         md: 900,
-        lg: 1200,
+        lg: 1024,
         xl: 1300,
       },
     },
   });
 
-  const matchSize = useMediaQuery(theme.breakpoints.down("xl"));
+  const matchSize = useMediaQuery(theme.breakpoints.down("lg"));
 
   console.log(matchSize);
 

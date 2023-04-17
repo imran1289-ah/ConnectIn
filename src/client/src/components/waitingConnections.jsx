@@ -139,9 +139,9 @@ const WaitingConnections = () => {
           }
           {userRequests.map((object) => (
             <div className="userWaitingConnection">
-              <div className="connectionDisplay ">
-                <div>
-                  <table>
+              <div className="connectionDisplay">
+                <div className="anotherdiv" > 
+                  <table className="connectionsTable">
                     <tr>
                       <td>
                         <img
@@ -152,9 +152,10 @@ const WaitingConnections = () => {
                         ></img>
                       </td>
                       <td>
-                        <h3 position={"center"}>
+                        <h3>
                           {object.firstname} {object.lastname}
                         </h3>
+                        
                       </td>
                       <td>
                         {/* <img src = './images/acceptButton' alt= "bad"
@@ -173,9 +174,7 @@ const WaitingConnections = () => {
                         >
                           {t("Accept")}
                         </button>
-                      </td>
-                      <td>
-                        <button
+                                                <button
                           className="rejbectButton"
                           onClick={() =>
                             DeleteWaitingConnection(
@@ -187,6 +186,9 @@ const WaitingConnections = () => {
                         >
                           {t("Reject")}
                         </button>
+                      </td>
+                      <td>
+
                       </td>
                     </tr>
                   </table>

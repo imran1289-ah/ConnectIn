@@ -28,7 +28,7 @@
   margin: 5px;
 }
 .connectionDisplay {
-  left: 50%;
+  width:100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,4 +45,15 @@
   margin: 20px;
   align-items: center;
   border-radius: 10px;
+}
+.anotherdiv{
+  width: 100%;
+}
+.connectionsTable{
+  border-collapse: collapse;
+  width: 100%;
+}
+tr, td {
+  text-align: center;
+  width: 15%;
 }

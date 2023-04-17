@@ -80,7 +80,7 @@ function App() {
             path="/users/search"
             element={
               <>
-                <Navbar /> <SearchUser /> <LoginFooter />
+                <Navbar /> <SearchUser /> <SignupFooter />
               </>
             }
           ></Route>

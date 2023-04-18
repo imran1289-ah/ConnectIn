@@ -5,17 +5,21 @@
   justify-content: center;
   margin-top: 5%;
   scroll-behavior: smooth;
-  overflow-y: scroll;
+
   margin-bottom: 80px;
 }
+
 .jobAd {
   font-size: larger;
   font-weight: bold;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
-.Jobpostingform .checkbox {
-  margin-left: 8%;
+@media (max-width: 960px) {
+  select {
+    display: inline-block;
+  }
 }
 
 .titleofpage {
@@ -24,71 +28,32 @@
   margin-top: 0%;
 }
 
-.title {
-  align-items: center;
+.thirdparty {
+  font-size: small;
   display: flex;
-  justify-content: space-around;
-  margin: 5px auto;
-  margin-left: 0%;
-  margin-right: -18%;
+  justify-content: center;
 }
 
-.description {
-  align-items: center;
-  display: flex;
-  justify-content: space-around;
-  margin: 5px auto;
-  margin-left: 0%;
-  margin-right: -18%;
-}
-
-.salary {
-  align-items: center;
-  display: flex;
-  justify-content: space-around;
-  margin: 5px auto;
-  margin-left: 0%;
-  margin-right: -18%;
-}
-
-.company {
-  align-items: center;
-  display: flex;
-  justify-content: space-around;
-  margin: 5px auto;
-  margin-left: 0%;
-  margin-right: -18%;
-}
-
-.category {
-  align-items: center;
-  display: flex;
-  justify-content: space-around;
-  margin: 5px auto;
-}
-
-.work_type {
-  align-items: center;
-  display: flex;
-  justify-content: space-around;
-  margin: 5px auto;
-}
-
-.location {
-  align-items: center;
-  display: flex;
-  justify-content: space-around;
-  margin: 5px auto;
-  margin-left: 0%;
-  margin-right: -18%;
-}
-
+.title,
+.description,
+.salary,
+.company,
+.category,
+.work_type,
+.location,
 .jobLink {
   align-items: center;
   display: flex;
   justify-content: space-around;
   margin: 5px auto;
-  margin-left: 0%;
+  width: 90%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: -webkit-fill-available;
 }
 
 .button {
@@ -101,63 +66,53 @@
   border-radius: 10px;
 }
 
-#job_title {
-  width: 10cm;
-  max-width: none;
+#job_title,
+#job_description,
+#salary,
+#location,
+#job_link,
+#company_name {
+  max-width: 550px;
 }
 
 #job_description {
-  width: 10cm;
-  max-width: none;
   height: 10cm;
   max-height: none;
-}
-
-#salary {
-  width: 10cm;
-  max-width: none;
-}
-
-#category {
-  width: 10cm;
-  max-width: none;
-}
-
-#location {
-  width: 10cm;
-  max-width: none;
-}
-
-#job_link {
-  width: 10cm;
-  max-width: none;
-}
-
-#company_name {
-  width: 10cm;
-  max-width: none;
-}
-
-#work_type {
-  width: 10cm;
-  max-width: none;
 }
 
 .selection {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  width: inherit;
 }
 
-#category {
-  padding: 5px;
-  width: max-content;
-  height: max-content;
-}
-
+#category,
 #work_type {
   padding: 5px;
-  width: max-content;
-  height: max-content;
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 767px) {
+  #job_title,
+  #job_description,
+  #salary,
+  #location,
+  #job_link,
+  #company_name {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* Media query for laptops and larger devices */
+@media screen and (min-width: 768px) {
+  #job_title,
+  #job_description,
+  #salary,
+  #location,
+  #job_link,
+  #company_name {
+    width: 500px;
+  }
 }

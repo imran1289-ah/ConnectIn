@@ -142,31 +142,40 @@ const [coverLetterExists, setCoverLetterExists] = useState(false);
   };
 
   const languagesChange = () => {
-    setUserData({ ...userData, languages: [...userData.languages, languages] });
-    setLanguages("");
+    if (languages.length !== 0) {
+      setUserData({ ...userData, languages: [...userData.languages, languages] });
+      setLanguages("");
+    }
   };
 
   const educationChange = () => {
-    setUserData({ ...userData, education: [...userData.education, education] });
-    setEducation("");
+    if (education.length !== 0) {
+      setUserData({ ...userData, education: [...userData.education, education] });
+      setEducation("");
+    }
   };
 
   const skillsChange = () => {
-    setUserData({ ...userData, skills: [...userData.skills, skills] });
-    setSkills("");
+    if (skills.length !== 0) {
+      setUserData({ ...userData, skills: [...userData.skills, skills] });
+      setSkills("");
+    }
+
   };
 
   const workExpChange = () => {
-    setUserData({ ...userData, workExp: [...userData.workExp, workExp] });
-    setWorkExp("");
+    if (workExp.length !== 0) {
+      setUserData({ ...userData, workExp: [...userData.workExp, workExp] });
+      setWorkExp("");
+    }
+    
   };
 
   const volunteeringChange = () => {
-    setUserData({
-      ...userData,
-      volunteering: [...userData.volunteering, volunteering],
-    });
-    setVolunteering("");
+    if (volunteering.length !== 0) {
+      setUserData({...userData, volunteering: [...userData.volunteering, volunteering] });
+      setVolunteering("");
+    }
   };
   const handleResumeChange = (e) => {
     setResume(e.target.files[0]);
@@ -218,6 +227,13 @@ const [coverLetterExists, setCoverLetterExists] = useState(false);
                   onChange={(e) => setWorkExp(e.target.value)}
                 />
               </label>
+               {(userData.workExp.length !== 0 ?
+                (<div className="editChanges">
+                  {userData.workExp.map(exp =><span style={{color: "black"}}>{exp}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "black"}}>, </span>, curr])}
+                </div>) 
+              : (<div></div>)
+              )}      
               <br />
               <div className="list-button">
                 <button type="button" onClick={educationChange}>
@@ -232,6 +248,13 @@ const [coverLetterExists, setCoverLetterExists] = useState(false);
                   onChange={(e) => setEducation(e.target.value)}
                 />
               </label>
+              {(userData.education.length !== 0 ?
+                (<div className="editChanges">
+                  {userData.education.map(education =><span style={{color: "black"}}>{education}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "black"}}>, </span>, curr])}
+                </div>) 
+              : (<div></div>)
+              )}
               <br />
             </div>
             <div className="edit-left-side">
@@ -248,6 +271,13 @@ const [coverLetterExists, setCoverLetterExists] = useState(false);
                   onChange={(e) => setSkills(e.target.value)}
                 />
               </label>
+              {(userData.skills.length !== 0 ?
+                (<div className="editChanges">
+                  {userData.skills.map(skill =><span style={{color: "black"}}>{skill}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "black"}}>, </span>, curr])}
+                </div>) 
+              : (<div></div>)
+              )}
               <br />
               <div className="list-button">
                 <button type="button" onClick={languagesChange}>
@@ -262,6 +292,13 @@ const [coverLetterExists, setCoverLetterExists] = useState(false);
                   onChange={(e) => setLanguages(e.target.value)}
                 />
               </label>
+              {(userData.languages.length !== 0 ?
+                (<div className="editChanges">
+                  {userData.languages.map(language =><span style={{color: "black"}}>{language}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "black"}}>, </span>, curr])}
+                </div>) 
+              : (<div></div>)
+              )}
               <br />
               <div className="list-button">
                 <button type="button" onClick={volunteeringChange}>
@@ -276,6 +313,13 @@ const [coverLetterExists, setCoverLetterExists] = useState(false);
                   onChange={(e) => setVolunteering(e.target.value)}
                 />
               </label>
+              {(userData.volunteering.length !== 0 ?
+                (<div className="editChanges">
+                  {userData.volunteering.map(volunteering =><span style={{color: "black"}}>{volunteering}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "black"}}>, </span>, curr])}
+                </div>) 
+              : (<div></div>)
+              )}
               <br />
               <label>
                 Resume

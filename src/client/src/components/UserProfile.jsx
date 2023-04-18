@@ -189,6 +189,7 @@ const UserProfile = () => {
                   ? publicUser.bio
                   : t("You have not added any biography")}
               </p>
+              <br></br>
             </div>
             <div className="userJobInformation">
               <span className="subTitle">{t("Work Experience")}</span>

@@ -69,12 +69,32 @@
 }
 
 /*To be changed later*/
-@media (min-device-width: 768px) and (max-device-width: 1024px) {
+@media (min-device-width: 768px) and (max-device-width: 1023px) {
   .searchArea {
     display: none;
   }
 
   .userButtons {
     display: none;
+  }
+}
+
+@media (min-device-width: 1024px) and (max-device-width: 1339px) {
+  .searchInput {
+    width: 220px;
+  }
+
+  .WebLogo {
+    font-size: 20px;
+  }
+
+  .parentUserIconContainer {
+    margin-right: auto;
+  }
+}
+
+@media (min-device-width: 1340px) and (max-device-width: 1400px) {
+  .parentUserIconContainer {
+    margin-right: 5px;
   }
 }

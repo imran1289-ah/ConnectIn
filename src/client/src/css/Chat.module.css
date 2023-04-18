@@ -26,5 +26,6 @@
 @media (min-width: 330px) and (max-width: 600px) {
     .container {
         width: 100%;
+        overflow-x: auto;
     }
 }

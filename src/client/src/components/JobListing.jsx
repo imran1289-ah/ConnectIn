@@ -175,11 +175,7 @@ const JobListing = () => {
                 <button type="button" onClick={savePreferences}>
                   {t("Save Preferences")}
                 </button>
-                {/* <p> Your current job preferences are: 
-                  <p>Work Type: {currentPreferences.work_type}</p>
-                  <p>Location: {currentPreferences.location}</p>
-                  <p>Category: {currentPreferences.category}</p>
-                  </p> */}
+                
               </form>
             </div>
             <div data-testid="jobPostsContainer" className="jobPosts">
@@ -187,15 +183,13 @@ const JobListing = () => {
                 <b>{t("Job Posts")}</b>
               </div>
 
+               
               <div className="jobs">
+                {jobs.length!=0 ? (
+                <div>
                 {jobs.map(job => (
                   <Row>
                     <div key={job._id} className="jobPost">
-                      <Col>
-                        <div className="logo">
-                          <Avatar alt="Logo" src="./logo/logo.png" sx={{ width: 75, height: 75 }} />
-                        </div>
-                      </Col>
                       <Col>
                         <div className="jobContent">
                           <h3 className="jobTitle">
@@ -219,6 +213,12 @@ const JobListing = () => {
                             <h3 className="jobCategory">
                               <WorkIcon />
                               {job.category}
+                            </h3>
+                          </div>
+                          <div className="Tags">
+                            <h3 className="jobCategory">
+                              $
+                              {job.salary}/hour
                             </h3>
                           </div>
                         </div>
@@ -253,25 +253,21 @@ const JobListing = () => {
                         )}
                       </Col>
 
-                      {/* <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
-                      <button class = "edit">Edit</button>
-                      </Link> */}
-                      {/* <button class = "delete" onClick={(e) => deletePost(`${job.job_id}`,e)}>Delete</button> */}
+                      
                     </div>
                   </Row>
                 ))}
+
+                </div> ):(<div className="NoJobsFound"><h1>{t("No jobs found")}</h1></div>)} 
+
               </div>
+
+
+
             </div>
           </>
         ) : (
-          /* <div className="preferences">
-                    <b>Preferences</b>
-                    <div className="preference"> Software</div>
-                    <div className="preference"> Full-time</div>
-                    <div className="preference"> 120k or higher</div>
-                    <button> Change</button>  
-                    
-            </div> */
+          
           <div className="notLoggedInContent">
             <h1>Please login to your account!</h1>
             <p>It looks like you are not logged in.</p>

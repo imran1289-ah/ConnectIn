@@ -6,7 +6,7 @@ import JobPosting from "./components/JobPosting";
 import ViewJobsApplied from "./components/ViewJobsApplied";
 import ReceivedApplications from "./components/receivedApplicationsForRecruiters";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import UserProfile from "./components/UserProfile";
 import JobApplication from "./components/JobApplication";
@@ -56,7 +56,7 @@ function App() {
             path="/jobPosting"
             element={
               <>
-                <Navbar /> <JobPosting /> <LoginFooter />
+                <Navbar /> <JobPosting /> <SignupFooter />
               </>
             }
           ></Route>
@@ -64,7 +64,7 @@ function App() {
             path="/UserProfile"
             element={
               <>
-                <Navbar /> <UserProfile /> <LoginFooter />
+                <Navbar /> <UserProfile /><SignupFooter />
               </>
             }
           ></Route>
@@ -72,7 +72,7 @@ function App() {
             path="/JobList"
             element={
               <>
-                <Navbar /> <JobList /> <LoginFooter />
+                <JobList />
               </>
             }
           ></Route>
@@ -80,7 +80,7 @@ function App() {
             path="/users/search"
             element={
               <>
-                <Navbar /> <SearchUser /> <LoginFooter />
+                <Navbar /> <SearchUser /> <SignupFooter />
               </>
             }
           ></Route>
@@ -88,7 +88,7 @@ function App() {
             path="/users/search/:id"
             element={
               <>
-                <Navbar /> <PublicUserProfile /> <LoginFooter />
+                <Navbar /> <PublicUserProfile />
               </>
             }
           ></Route>
@@ -96,7 +96,7 @@ function App() {
             path="/waitingConnections"
             element={
               <>
-                <Navbar /> <WaitingConnections /> <LoginFooter />
+                <WaitingConnections />
               </>
             }
           ></Route>
@@ -105,7 +105,7 @@ function App() {
             path="/editUserProfile"
             element={
               <>
-                <Navbar /> <EditUserProfile /> <LoginFooter />
+                <Navbar /> <EditUserProfile /><SignupFooter />
               </>
             }
           ></Route>
@@ -113,7 +113,7 @@ function App() {
             path="/jobs"
             element={
               <>
-                <Navbar /> <JobListing /> <LoginFooter />
+                <Navbar /> <JobListing /> <SignupFooter />
               </>
             }
           ></Route>
@@ -121,7 +121,7 @@ function App() {
             path="/jobs/:id"
             element={
               <>
-                <Navbar /> <JobApplication /> <LoginFooter />
+                <Navbar /> <JobApplication /> <SignupFooter />
               </>
             }
           ></Route>
@@ -186,6 +186,14 @@ function App() {
             element={
               <>
                 <Navbar /> <AdminEditAccount /> <SignupFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/"
+            element={
+              <>
+                <Navigate to="/signin"></Navigate>
               </>
             }
           ></Route>

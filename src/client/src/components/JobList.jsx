@@ -17,6 +17,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import JobListCSS from "../css/JobList.module.css";
+import "../css/JobList.css";
 import Navbar from "./Navbar";
 import LoginFooter from "./LoginFooter"
 
@@ -64,20 +65,32 @@ const JobList = () => {
 
   const handleDelete = async (job_id) => {
     try {
-      await axios
-        .post(`http://localhost:9000/jobs/delete/${job_id}`)
-        .then(swal(t("Job successfully deleted!")));
-      setJobs(jobs.filter((job) => job.job_id !== job_id));
+      // Display confirmation dialog using swal
+      swal({
+        title: t("Are you sure?"),
+        text: t("This action cannot be undone!"),
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then(async (willDelete) => {
+        if (willDelete) {
+          await axios.post(`http://localhost:9000/jobs/delete/${job_id}`);
+          swal(t("Job successfully deleted!"));
+          setJobs(jobs.filter((job) => job.job_id !== job_id));
+        } else {
+          swal(t("Job deletion canceled!"));
+        }
+      });
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className={JobListCSS.body}>
+<div className={JobListCSS.body}>
       <Navbar />
-      <div className={JobListCSS.RecruiterJobs}>
-        <h1 className={JobListCSS.title}>{t("Job Postings Summary")}</h1>
+      <div className="RecruiterJobs">
+        <h1 className="pageTitle">{t("Job Postings Summary")}</h1>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -90,31 +103,32 @@ const JobList = () => {
                 <TableCell>{t("Category")}</TableCell>
                 <TableCell>{t("Work Type")}</TableCell>
                 <TableCell>Action</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {jobs.map((job) => (
-                <TableRow key={job.job_id}>
-                  <TableCell component="th" scope="row">
-                    {job.title}
-                  </TableCell>
-                  <TableCell>{job.company}</TableCell>
-                  <TableCell>{job.description}</TableCell>
-                  <TableCell>{job.salary}</TableCell>
-                  <TableCell>{job.location}</TableCell>
-                  <TableCell>{job.category}</TableCell>
-                  <TableCell>{job.work_type}</TableCell>
-                  <TableCell>
-                    <Button variant="contained">
-                      <Link to={`/jobs/edit/${job.job_id}`}>{t("Edit")}</Link>
-                    </Button>
-                    <Button
-                      variant="contained"
-                      onClick={() => handleDelete(job.job_id)}
-                    >
-                      {t("Delete")}
-                    </Button>
-                  </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {jobs.map((job) => (
+              <TableRow key={job.job_id}>
+                <TableCell component="th" scope="row">
+                  {job.title}
+                </TableCell>
+                <TableCell>{job.company}</TableCell>
+                <TableCell>{job.description}</TableCell>
+                <TableCell>{job.salary}</TableCell>
+                <TableCell>{job.location}</TableCell>
+                <TableCell>{job.category}</TableCell>
+                <TableCell>{job.work_type}</TableCell>
+                <TableCell>
+                  <Button variant="contained">
+                    <Link to={`/jobs/edit/${job.job_id}`}>{t("Edit")}</Link>
+                  </Button>
+                  <Button
+                    variant="contained"
+                    onClick={() => handleDelete(job.job_id)}
+                  >
+                    {t("Delete")}
+                  </Button>
+                </TableCell>
+
                 </TableRow>
               ))}
             </TableBody>

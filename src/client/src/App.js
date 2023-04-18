@@ -56,7 +56,7 @@ function App() {
             path="/jobPosting"
             element={
               <>
-                <Navbar /> <JobPosting /> <LoginFooter />
+                <Navbar /> <JobPosting /> <SignupFooter />
               </>
             }
           ></Route>
@@ -113,7 +113,7 @@ function App() {
             path="/jobs"
             element={
               <>
-                <Navbar /> <JobListing /> <LoginFooter />
+                <Navbar /> <JobListing /> <SignupFooter />
               </>
             }
           ></Route>
@@ -121,7 +121,7 @@ function App() {
             path="/jobs/:id"
             element={
               <>
-                <Navbar /> <JobApplication /> <LoginFooter />
+                <Navbar /> <JobApplication /> <SignupFooter />
               </>
             }
           ></Route>

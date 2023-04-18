@@ -6,7 +6,7 @@ import JobPosting from "./components/JobPosting";
 import ViewJobsApplied from "./components/ViewJobsApplied";
 import ReceivedApplications from "./components/receivedApplicationsForRecruiters";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import UserProfile from "./components/UserProfile";
 import JobApplication from "./components/JobApplication";
@@ -25,6 +25,8 @@ import DMReport from "./components/DMReport";
 
 import io from "socket.io-client";
 import JobList from "./components/JobList";
+import ManageAccounts from "./components/ManageAccounts";
+import AdminEditAccount from "./components/AdminEditAccount";
 
 function App() {
   //const socket = io.connect("http://localhost:9000");
@@ -38,7 +40,7 @@ function App() {
             path="/signup"
             element={
               <>
-                <Navbar /> <SignUp /> <SignupFooter />
+                <SignUp />
               </>
             }
           ></Route>
@@ -46,7 +48,7 @@ function App() {
             path="/signin"
             element={
               <>
-                <Navbar /> <SignIn /> <LoginFooter />
+                <SignIn />
               </>
             }
           ></Route>
@@ -62,7 +64,7 @@ function App() {
             path="/UserProfile"
             element={
               <>
-                <Navbar /> <UserProfile /> <LoginFooter />
+                <Navbar /> <UserProfile /><SignupFooter />
               </>
             }
           ></Route>
@@ -70,7 +72,7 @@ function App() {
             path="/JobList"
             element={
               <>
-                <Navbar /> <JobList /> <LoginFooter />
+                <JobList />
               </>
             }
           ></Route>
@@ -78,7 +80,7 @@ function App() {
             path="/users/search"
             element={
               <>
-                <Navbar /> <SearchUser /> <LoginFooter />
+                <Navbar /> <SearchUser /> <SignupFooter />
               </>
             }
           ></Route>
@@ -86,7 +88,7 @@ function App() {
             path="/users/search/:id"
             element={
               <>
-                <Navbar /> <PublicUserProfile /> <LoginFooter />
+                <Navbar /> <PublicUserProfile />
               </>
             }
           ></Route>
@@ -94,7 +96,7 @@ function App() {
             path="/waitingConnections"
             element={
               <>
-                <Navbar /> <WaitingConnections /> <LoginFooter />
+                <WaitingConnections />
               </>
             }
           ></Route>
@@ -103,7 +105,7 @@ function App() {
             path="/editUserProfile"
             element={
               <>
-                <Navbar /> <EditUserProfile /> <LoginFooter />
+                <Navbar /> <EditUserProfile /><SignupFooter />
               </>
             }
           ></Route>
@@ -143,7 +145,7 @@ function App() {
             path="/userTimeline"
             element={
               <>
-                <Navbar /> <UserTimeline /> <SignupFooter />
+                <UserTimeline />
               </>
             }
           ></Route>
@@ -162,12 +164,36 @@ function App() {
                 <Navbar /> <DMReport /> <SignupFooter />
               </>
             }
-            ></Route>
-            <Route
+          ></Route>
+          <Route
             path="/receivedApplications"
             element={
               <>
                 <Navbar /> <ReceivedApplications /> <SignupFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/manageAccounts"
+            element={
+              <>
+                <Navbar /> <ManageAccounts /> <SignupFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/manageAccounts/:id"
+            element={
+              <>
+                <Navbar /> <AdminEditAccount /> <SignupFooter />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/"
+            element={
+              <>
+                <Navigate to="/signin"></Navigate>
               </>
             }
           ></Route>

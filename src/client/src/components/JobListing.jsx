@@ -55,6 +55,7 @@ const JobListing = () => {
     location: "",
     work_type: ""
   });
+  const [currentPreferences, setCurrentPreferences] = useState();
 
   // "category:full-time,location:montreal"
 
@@ -62,6 +63,7 @@ const JobListing = () => {
   useEffect(() => {
     fetchJobs();
     fetchAppliedJob();
+    getUserPreferences();
   }, []);
 
   useEffect(() => {
@@ -84,13 +86,13 @@ const JobListing = () => {
 
   const deletePost = async (jobId, e) => {
     e.preventDefault();
-    console.log(jobId);
+    // console.log(jobId);
     axios
       .post(`http://localhost:9000/jobs/delete/${jobId}`, {
         jobId: jobId
       })
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         alert("Remove Successful!");
         navigate("/jobs");
       })
@@ -107,11 +109,24 @@ const JobListing = () => {
   const savePreferences = async () => {
     if (preferences.category && preferences.location && preferences.work_type) {
       await axios.post(`http://localhost:9000/users/${userID}/preferences`, preferences);
+          setTimeout(() => {
+          swal("Preferences saved successfully!");
+      window.location.reload();
+    }, 1000);
+
+
       //   console.log(preferences);
     } else {
-      swal("Please fill in all fields before saving preferences.");
+      swal(t("Please fill in all fields before saving preferences."));
     }
   };
+
+  const getUserPreferences = async () =>{
+   const {data} = await axios.get(`http://localhost:9000/users/${userID}`);
+    setCurrentPreferences(data.user.preferences);
+    console.log(currentPreferences);
+
+  }
 
   return (
     <Container>
@@ -120,6 +135,7 @@ const JobListing = () => {
           <>
             <div className="jobFilter">
               <form>
+                  
                 <label>
                   {t("Category")}:
                   <select name="category" onChange={e => setPreferences({ ...preferences, category: e.target.value })}>
@@ -128,11 +144,17 @@ const JobListing = () => {
                     <option value="Part-Time">{t("Part-Time")}</option>
                     <option value="Internship">{t("Internship")}</option>
                   </select>
+                  {currentPreferences &&(<>{currentPreferences.category && (
+        <span className="saved-preferences">{` (${currentPreferences.category})`}</span>
+      )}</>)}
                 </label>
                 <br />
                 <label>
                   {t("Location")}:
                   <input type="text" name="location" value={preferences.location} onChange={e => setPreferences({ ...preferences, location: e.target.value })} placeholder={t("Enter a location")} />
+                                  {currentPreferences &&(<>{currentPreferences.location && (
+        <span className="saved-preferences">{` (${currentPreferences.location})`}</span>
+      )}</>)}
                 </label>
                 <br />
                 <label>
@@ -143,11 +165,17 @@ const JobListing = () => {
                     <option value="Hybrid">{t("Hybrid")}</option>
                     <option value="Remote">{t("Remote")}</option>
                   </select>
+                                    {currentPreferences &&(<>{currentPreferences.work_type && (
+        <span className="saved-preferences">{` (${currentPreferences.work_type})`}</span>
+      )}</>)}
                 </label>
-                <br />
+                  <label>
+      <span className="preferences-message">({t("*Saved preferences")})</span>
+    </label>
                 <button type="button" onClick={savePreferences}>
                   {t("Save Preferences")}
                 </button>
+                
               </form>
             </div>
             <div data-testid="jobPostsContainer" className="jobPosts">
@@ -155,15 +183,13 @@ const JobListing = () => {
                 <b>{t("Job Posts")}</b>
               </div>
 
+               
               <div className="jobs">
+                {jobs.length!=0 ? (
+                <div>
                 {jobs.map(job => (
                   <Row>
                     <div key={job._id} className="jobPost">
-                      <Col>
-                        <div className="logo">
-                          <Avatar alt="Logo" src="./logo/logo.png" sx={{ width: 75, height: 75 }} />
-                        </div>
-                      </Col>
                       <Col>
                         <div className="jobContent">
                           <h3 className="jobTitle">
@@ -187,6 +213,12 @@ const JobListing = () => {
                             <h3 className="jobCategory">
                               <WorkIcon />
                               {job.category}
+                            </h3>
+                          </div>
+                          <div className="Tags">
+                            <h3 className="jobCategory">
+                              $
+                              {job.salary}/hour
                             </h3>
                           </div>
                         </div>
@@ -221,25 +253,21 @@ const JobListing = () => {
                         )}
                       </Col>
 
-                      {/* <Link to = {`/jobs/edit/${job.job_id}`} state = {{jobState:job}}>
-                      <button class = "edit">Edit</button>
-                      </Link> */}
-                      {/* <button class = "delete" onClick={(e) => deletePost(`${job.job_id}`,e)}>Delete</button> */}
+                      
                     </div>
                   </Row>
                 ))}
+
+                </div> ):(<div className="NoJobsFound"><h1>{t("No jobs found")}</h1></div>)} 
+
               </div>
+
+
+
             </div>
           </>
         ) : (
-          /* <div className="preferences">
-                    <b>Preferences</b>
-                    <div className="preference"> Software</div>
-                    <div className="preference"> Full-time</div>
-                    <div className="preference"> 120k or higher</div>
-                    <button> Change</button>  
-                    
-            </div> */
+          
           <div className="notLoggedInContent">
             <h1>Please login to your account!</h1>
             <p>It looks like you are not logged in.</p>

@@ -193,6 +193,7 @@ i18next.use(initReactI18next).init({
           "Failed":"Failed",
           "Your post was not created, try again!":"Your post was not created, try again!",
           "No jobs found":"No jobs found",
+          "Job Application": "Job Application",
       },
     },
     fr: {
@@ -393,6 +394,7 @@ i18next.use(initReactI18next).init({
           "Failed":"Erreur",
           "Your post was not created, try again!":"Votre message n'a pas été créé, réessayez !",
           "No jobs found":"Aucune offre d'emploi trouvée",
+          "Job Application":"Demande d'emploi",
       },
     },
   },

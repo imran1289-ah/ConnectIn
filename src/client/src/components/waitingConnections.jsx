@@ -1,6 +1,6 @@
 import { margin } from "@mui/system";
 import React, { useState, useEffect, useContext } from "react";
-import waitingConnectionsCSS from "../css/waitingConnections.module.css";
+import "../css/waitingConnections.css";
 import axios from "axios";
 import Navbar from "./Navbar";
 import LoginFooter from "./LoginFooter"
@@ -132,10 +132,9 @@ const WaitingConnections = () => {
 
   return (
     //Connection request acceptance or denial page
-    <div className={waitingConnectionsCSS.body}>
-      <Navbar /> 
+    <div>
       {userID && login ? (
-        <div className={waitingConnectionsCSS.background}>
+        <div className="background">
           <h1>{t("Pending connections requests")}</h1>
           {
             userRequests.length < 1 ? (<p>You have no connection requests!</p>):(<></>)
@@ -151,7 +150,7 @@ const WaitingConnections = () => {
                           margin="20px"
                           src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
                           alt="comapnyPic"
-                          className={waitingConnectionsCSS.companyPic}
+                          className="companyPic"
                         ></img>
                       </td>
                       <td>
@@ -166,7 +165,7 @@ const WaitingConnections = () => {
                     
                   </img>  */}
                         <button
-                          className={waitingConnectionsCSS.acceptButton}
+                          className= "acceptButton"
                           onClick={() =>
                             Acceptbutton(
                               `${object.firstname}`,
@@ -203,7 +202,6 @@ const WaitingConnections = () => {
       ) : (
         <h1 style={{ textAlign: "center" }}>Please login to your account</h1>
       )}
-      <LoginFooter />
     </div>
   );
 };

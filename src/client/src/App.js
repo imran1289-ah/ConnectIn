@@ -96,7 +96,7 @@ function App() {
             path="/waitingConnections"
             element={
               <>
-                <WaitingConnections />
+                <Navbar /><WaitingConnections /><SignupFooter />
               </>
             }
           ></Route>

@@ -140,8 +140,8 @@ i18next.use(initReactI18next).init({
         Edit: "Edit",
         Delete: "Delete",
         "Job Ffully deleted!": "Job successfully deleted!",
-        "Advertise jobs to third party platform":
-          "Advertise jobs to third party platform",
+        "Advertise job from third party platform":
+          "Advertise job from third party platform",
         "You need to be a recruiter or an administrator to post jobs!":
           "You need to be a recruiter or an administrator to post jobs!",
         "Post/Save": "Post/Save",
@@ -172,12 +172,28 @@ i18next.use(initReactI18next).init({
         "Already connected": "Already connected",
         Connect: "Connect",
         "You are already connected": "You are already connected",
+        "Manage Accounts": "Manage Accounts",
+        Edit: "Edit",
+        Ban: "Ban",
+        Unban: "Unban",
+        "Edit Account": "Edit Account",
+        "Saved!": "Saved!",
+        "Successfully updated the user": "Successfully updated the user",
+        "Failed!": "Failed!",
+        "Cannot update the user": "Cannot update the user",
+        "You are banned from ConnectIn":"You are banned from ConnectIn",
+        "My Jobs":"My Jobs",
+        "Job Alert":"Job Alert",
         "*Saved preferences": "*Saved preferences",
         "Please fill in all fields before saving preferences.":
           "Please fill in all fields before saving preferences.",
         "No jobs found based on your preferences":
           "No jobs found based on your preferences",
           "You have no connection requests!":"You have no connection requests!",
+          "No user found":"No user found",
+          "Failed":"Failed",
+          "Your post was not created, try again!":"Your post was not created, try again!",
+          "No jobs found":"No jobs found",
       },
     },
     fr: {
@@ -323,7 +339,7 @@ i18next.use(initReactI18next).init({
         Edit: "Modifier",
         Delete: "Supprimer",
         "Job successfully deleted!": "Emploi supprimé avec succès !",
-        "Advertise jobs to third party platform":
+        "Advertise job from third party platform":
           "Publicité d'emplois sur une plateforme tierce",
         "You need to be a recruiter or an administrator to post jobs!":
           "Vous devez être un recruteur ou un administrateur pour publier des offres !",
@@ -357,12 +373,28 @@ i18next.use(initReactI18next).init({
         "Already connected": "Déjà connecté",
         Connect: "Connecter",
         "You are already connected": "Vous êtes déjà connecté",
+        "Manage Accounts": "Gestion des comptes",
+        Edit: "Modifier",
+        Ban: "Bannir",
+        Unban: "Débannir",
+        "Edit Account": "Modifier compte",
+        "Saved!": "Enregistré!",
+        "Successfully updated the user": "Mise à jour réussie de l'utilisateur",
+        "Failed!": "Erreur!",
+        "Cannot update the user": "Impossible de mettre à jour l'utilisateur",
+        "You are banned from ConnectIn":"Vous êtes banni de ConnectIn",
+        "My Jobs": "Mes emplois",
+        "Job Alert":"Alerte d'emploi",
         "*Saved preferences": "*préférences enregistrées",
         "Please fill in all fields before saving preferences.":
           "Veuillez remplir tous les champs avant d'enregistrer les préférences.",
         "No jobs found based on your preferences":
           "Aucun emploi trouvé en fonction de vos préférences",
           "You have no connection requests!":"Vous n'avez pas de demandes de connection!",
+          "No user found":"Aucun utilisateur trouvé",
+          "Failed":"Erreur",
+          "Your post was not created, try again!":"Votre message n'a pas été créé, réessayez !",
+          "No jobs found":"Aucune offre d'emploi trouvée",
       },
     },
   },

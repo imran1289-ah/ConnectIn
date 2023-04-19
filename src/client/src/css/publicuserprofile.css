@@ -12,7 +12,7 @@
 }
 
 .userInformation {
-  min-height: 220px;
+  min-height: auto;
   width: 700px;
   border-radius: 15px;
   margin: 20px;
@@ -153,7 +153,7 @@
   }
 
   .userInformation {
-    min-height: 150px;
+    min-height: auto;
     width: auto;
     margin: 10px;
   }
@@ -179,33 +179,6 @@
   }
 }
 
-/*Media queries for ipad*/
-@media (min-device-width: 768px) and (max-device-width: 1024px) {
-  .userProfileContainer {
-    display: block;
-  }
-
-  .right {
-    width: auto;
-    margin: 20px;
-  }
-
-  .userInformation {
-    min-height: 140px;
-    width: auto;
-  }
-
-  .userJobInformation {
-    min-height: 130px;
-    width: auto;
-  }
-
-  .userKnowledgeInformation {
-    min-height: 100px;
-    width: auto;
-  }
-}
-
 @media (min-device-width: 600px) and (max-device-width: 768px) {
   .userProfileContainer {
     display: block;
@@ -217,7 +190,7 @@
   }
 
   .userInformation {
-    min-height: 140px;
+    min-height: auto;
     width: auto;
   }
 
@@ -232,7 +205,8 @@
   }
 }
 
-@media (min-device-width: 1025px) and (max-device-width: 1320px) {
+/*Media queries for ipad*/
+@media (min-device-width: 768px) and (max-device-width: 1023px) {
   .userProfileContainer {
     display: block;
   }
@@ -243,7 +217,7 @@
   }
 
   .userInformation {
-    min-height: 140px;
+    min-height: auto;
     width: auto;
   }
 
@@ -255,5 +229,25 @@
   .userKnowledgeInformation {
     min-height: 100px;
     width: auto;
+  }
+}
+
+@media (min-device-width: 1024px) and (max-device-width: 1110px) {
+  .connectionName {
+    margin-left: 10px;
+    font-size: 20px;
+  }
+
+  .right {
+    min-width: auto;
+  }
+
+  .left {
+    margin-left: auto;
+    width: 700px;
+  }
+
+  .userInformation {
+    min-height: auto;
   }
 }

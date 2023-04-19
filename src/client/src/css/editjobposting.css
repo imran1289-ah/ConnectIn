@@ -74,6 +74,27 @@
   height: 30px;
 }
 
+.selection {
+  margin-left: 50%;
+  margin-right: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+#category {
+  margin-right: 150px;
+  padding: 5px;
+  width: max-content;
+  height: max-content;
+}
+
+#work_type {
+  margin-left: 150px;
+  padding: 5px;
+  width: max-content;
+  height: max-content;
+}
+
 /* Responsive to Iphone 6 and above */
 @media (min-width: 330px) and (max-width: 600px) {
   .WrapperEditPost {
@@ -92,7 +113,7 @@
   .FormEditPost {
     margin-left: auto;
     margin-right: auto;
-    height: 300px;
+    min-height: 100vh;
     width: auto;
   }
 

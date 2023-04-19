@@ -7,7 +7,7 @@ Library    SeleniumLibrary
 
 *** Variables ***
 ${WEBPAGE}    http://localhost:3000/signin
-${BROWSER}    Edge
+${BROWSER}    Chrome
 ${FNAME}    Timothy
 ${LNAME}    Adams
 ${USER}    tim.ad@email.com

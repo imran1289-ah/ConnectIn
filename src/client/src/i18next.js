@@ -162,6 +162,7 @@ i18next.use(initReactI18next).init({
         "My Jobs": "My Jobs",
         "Job Alert": "Job Alert",
         "*Saved preferences": "*Saved preferences",
+         "You have no connection requests!":"You have no connection requests!",
         "Please fill in all fields before saving preferences.": "Please fill in all fields before saving preferences.",
         "No jobs found based on your preferences": "No jobs found based on your preferences",
         "No user found": "No user found",
@@ -170,6 +171,7 @@ i18next.use(initReactI18next).init({
         "No jobs found": "No jobs found",
         "Job Application": "Job Application"
       }
+
     },
     fr: {
       translation: {
@@ -328,10 +330,11 @@ i18next.use(initReactI18next).init({
         "My Jobs": "Mes emplois",
         "Job Alert": "Alerte d'emploi",
         "*Saved preferences": "*préférences enregistrées",
+        "You have no connection requests!":"Vous n'avez pas de demandes de connection!",
         "Please fill in all fields before saving preferences.": "Veuillez remplir tous les champs avant d'enregistrer les préférences.",
         "No jobs found based on your preferences": "Aucun emploi trouvé en fonction de vos préférences",
         "No user found": "Aucun utilisateur trouvé",
-        Failed: "Erreur",
+        "Failed": "Erreur",
         "Your post was not created, try again!": "Votre message n'a pas été créé, réessayez !",
         "No jobs found": "Aucune offre d'emploi trouvée",
         "Job Application": "Demande d'emploi"

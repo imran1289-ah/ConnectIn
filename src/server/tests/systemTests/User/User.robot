@@ -15,3 +15,22 @@ Some Tests
     # Report A DM
     # Create A Post    This is a test
     Sign Out & Close    User
+
+Connection adding and removing test 
+    Login to ConnectIn    ${USER1}    ${PWD1}
+    Search and add Users
+    Sign Out    User
+    Login to ConnectIn    ${USER2}    ${PWD2}
+    Adding new connection
+    Sign Out    Recruiter
+    Login to ConnectIn    ${USER2}    ${PWD2}
+    Removing a connection
+    Sign Out & Close   Recruiter
+
+Rejecting a connection request
+   Login to ConnectIn    ${USER1}    ${PWD1}
+    Search and add Users
+    Sign Out    User
+    Login to ConnectIn    ${USER2}    ${PWD2}
+    Rejecting a new connection
+    Sign Out & Close   Recruiter

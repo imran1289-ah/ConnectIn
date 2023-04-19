@@ -7,7 +7,7 @@ Library    SeleniumLibrary
 *** Keywords ***
 Launch Browser
     [Documentation]    Launches MS Edge and opens the sign in page.
-    Open Browser    http://localhost:3000/signin    Edge
+    Open Browser    http://localhost:3000/signin    Chrome
     Sleep    3s
     Maximize Browser Window
 
@@ -54,6 +54,7 @@ Login to ConnectIn
     Click Button    xpath:(//*[@id="root"]/div/div[2]/div/form/button)
     Sleep    5s
 
+
 Search for Users
     [Documentation]    Searches for a specific user of the application.
     ...                If no argument is passed through, all users will
@@ -67,9 +68,47 @@ Search for Users
     Sleep    2s
     Page Should Contain Element    class:singleUser
 
-Sign Out & Close
+Search and add Users
+    [Documentation]    Searches for 2 users named andrew. 
+    ...                If both are present, sends both of them connection requests.
+    [Arguments]    ${user}=adrew
+    Search for Users    ${user}
+    Click Button    xpath:(//*[@id="root"]/div[2]/div/div[1]/div[2]/button)
+    Wait Until Page Contains Element    class:swal-modal
+    Wait Until Element Contains    class:swal-text    You have successfully sent connection request!
+    Sleep    3s
+    Click Button    xpath:(//*[@id="root"]/div[2]/div/div[2]/div[2]/button)
+    Wait Until Page Contains Element    class:swal-modal
+    Wait Until Element Contains    class:swal-text    You are already connected
+    Sleep    3s
+
+Adding new connection
+    [Documentation]    Adds waiting connection to connections list.
+    Click Button    xpath:(//*[@id="root"]/div/div[1]/header/div/div[3]/button[2])
+    Click Button    xpath:(//*[@id="root"]/div[2]/div/div/div/div/table/tr/td[3]/button[1])
+    Wait Until Page Contains Element    class:swal-modal
+    Wait Until Element Contains    class:swal-text    Updated waiting connections!
+    Sleep    3s
+
+Rejecting a new connection
+    [Documentation]    Rejects a user from waiting connections.
+    Click Button    xpath:(//*[@id="root"]/div/div[1]/header/div/div[3]/button[2])
+    Click Button    xpath:(//*[@id="root"]/div[2]/div/div/div/div/table/tr/td[3]/button[2])
+    Wait Until Page Contains Element    class:swal-modal
+    Wait Until Element Contains    class:swal-text    Updated waiting connections!
+    Sleep    3s
+
+Removing a connection
+    [Documentation]    Removes a connection
+    Click Button    xpath:(//*[@id="root"]/div/div[2]/div[3]/div/l1/div/span/button)
+    Click Button    xpath:(/html/body/div[2]/div/div[4]/div[2]/button)
+    Wait Until Page Contains Element    class:swal-modal
+    Sleep    3s
+ 
+Sign Out
     [Documentation]    Signs out from the application.
     [Arguments]    ${USER_TYPE}
+    Click Button    xpath:(//*/header/div/div[3]/button[1])
     IF    "${USER_TYPE}" == "User"
         Click Element   xpath:(//*[@id="root"]/div/div[1]/header/div/div[3]/button[7])
     ELSE IF    "${USER_TYPE}" == "Recruiter"
@@ -80,6 +119,11 @@ Sign Out & Close
         Fail    "Invalid User Type"
     END
     Sleep    3s
+    
+Sign Out & Close
+    [Documentation]    Signs out from the application and closes browser.
+    [Arguments]    ${USER_TYPE}
+    Sign Out    ${USER_TYPE}
     Close Browser
 
 Create A Post

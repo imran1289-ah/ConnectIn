@@ -10,7 +10,7 @@ Test Setup    Launch Browser
 Some Tests
     # Sign Up    ${FNAME}    ${LNAME}    ${USER}    ${PWD}    User
     Login to ConnectIn    ${USER}    ${PWD}
-    Search for Users
+    # Search for Users    Timothy
     # Message A User    Hello!
     # Report A DM
     # Create A Post    This is a test

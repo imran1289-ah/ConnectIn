@@ -132,7 +132,7 @@ Create A Post
     Click Element    xpath:(/html/body/div/div[1]/header/div/div[3]/button[1])
     Page Should Contain Textfield    xpath:(//*[@id="outlined-basic"])
     Input Text    xpath:(//*[@id="outlined-basic"])    ${post_message}
-    Click Element    xpath:(//html/body/div/div[2]/div/div[2]/div[2]/button)
+    Click Element    xpath:(//*[@id="root"]/div/div[2]/div[2]/div[2]/button)
     Wait Until Page Contains Element    class:swal-modal
     Sleep    3s
     Page Should Contain    ${post_message}

@@ -89,6 +89,15 @@ Adding new connection
     Wait Until Page Contains Element    class:swal-modal
     Wait Until Element Contains    class:swal-text    Updated waiting connections!
     Sleep    3s
+
+Rejecting a new connection
+    [Documentation]    Rejects a user from waiting connections.
+    Click Button    xpath:(//*[@id="root"]/div/div[1]/header/div/div[3]/button[2])
+    Click Button    xpath:(//*[@id="root"]/div[2]/div/div/div/div/table/tr/td[3]/button[2])
+    Wait Until Page Contains Element    class:swal-modal
+    Wait Until Element Contains    class:swal-text    Updated waiting connections!
+    Sleep    3s
+
 Removing a connection
     [Documentation]    Removes a connection
     Click Button    xpath:(//*[@id="root"]/div/div[2]/div[3]/div/l1/div/span/button)

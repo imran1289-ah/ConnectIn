@@ -53,7 +53,7 @@
   border-collapse: collapse;
   width: 100%;
 }
-tr, td {
+.connectionsTableRowAndColumn {
   text-align: center;
   width: 15%;
 }

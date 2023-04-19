@@ -137,15 +137,15 @@ const WaitingConnections = () => {
         <div className="background">
           <h1>{t("Pending connections requests")}</h1>
           {
-            userRequests.length < 1 ? (<p>You have no connection requests!</p>):(<></>)
+            userRequests.length < 1 ? (<p> {t("You have no connection requests!")}</p>):(<></>)
           }
           {userRequests.map((object) => (
             <div className="userWaitingConnection">
               <div className="connectionDisplay">
                 <div className="anotherdiv" > 
                   <table className="connectionsTable">
-                    <tr>
-                      <td>
+                    <tr className="connectionsTableRowAndColumn ">
+                      <td className="connectionsTableRowAndColumn ">
                         <img
                           margin="20px"
                           src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
@@ -153,13 +153,13 @@ const WaitingConnections = () => {
                           className="companyPic"
                         ></img>
                       </td>
-                      <td>
+                      <td className="connectionsTableRowAndColumn ">
                         <h3>
                           {object.firstname} {object.lastname}
                         </h3>
                         
                       </td>
-                      <td>
+                      <td className="connectionsTableRowAndColumn ">
                         {/* <img src = './images/acceptButton' alt= "bad"
                   >
                     
@@ -189,7 +189,7 @@ const WaitingConnections = () => {
                           {t("Reject")}
                         </button>
                       </td>
-                      <td>
+                      <td className="connectionsTableRowAndColumn ">
 
                       </td>
                     </tr>

@@ -22,10 +22,10 @@ Sign Up
     ...                Works with any type of user.
     [Arguments]    ${fname}    ${lastname}    ${email}    ${pwd}    ${USER_TYPE}
     Click Element    xpath:(//*/a)
-    Input Text      xpath:(//*[@class='Input'])[1]    ${FNAME}
-    Input Text      xpath:(//*[@class='Input'])[2]    ${lastname}
-    Input Text      xpath:(//*[@class='Input'])[3]    ${email}
-    Input Password      xpath:(//*[@class='Input'])[4]    ${pwd}
+    Input Text      xpath:(//*[@id="root"]/div/div[2]/div[1]/form/label[1]/input)    ${FNAME}
+    Input Text      xpath:(//*[@id="root"]/div/div[2]/div[1]/form/label[2]/input)    ${lastname}
+    Input Text      xpath:(//*[@id="root"]/div/div[2]/div[1]/form/label[3]/input)    ${email}
+    Input Password      xpath:(//*[@id="root"]/div/div[2]/div[1]/form/label[4]/input)    ${pwd}
     Click Element    id:select
     IF    "${USER_TYPE}" == "User"
         Wait Until Element Is Visible    xpath:(//*/ul/li[1])
@@ -39,7 +39,7 @@ Sign Up
     ELSE
         Fail    "Invalid User Type"
     END
-    Click Button    class:SignupButton
+    Click Button    xpath:(//*[@id="root"]/div/div[2]/div[1]/form/button)
     Wait Until Page Contains Element    class:swal-modal
     Wait Until Element Contains    class:swal-text    Successfully created an account!
     Sleep    3s
@@ -49,9 +49,9 @@ Login to ConnectIn
     ...                Works with any type of user.
     [Arguments]    ${USER}    ${PWD}
     # Title Should Be    ConnectIn - Log In
-    Input Text      xpath:(//*[@class='LoginInput'])[1]    ${USER}
-    Input Text      xpath:(//*[@class='LoginInput'])[2]    ${PWD}
-    Click Button    xpath:(//*[@class='LoginButton'])
+    Input Text      xpath:(//*[@id="root"]/div/div[2]/div/form/div/input[1])    ${USER}
+    Input Text      xpath:(//*[@id="root"]/div/div[2]/div/form/div/input[2])  ${PWD}
+    Click Button    xpath:(//*[@id="root"]/div/div[2]/div/form/button)
     Sleep    5s
 
 Search for Users
@@ -59,11 +59,11 @@ Search for Users
     ...                If no argument is passed through, all users will
     ...                be searched.
     [Arguments]    ${user}=nothing
-    Page Should Contain Element    xpath:(/html/body/div/div[1]/header/div/div[2]/p/button)
+    Page Should Contain Element    xpath:(//*[@id="root"]/div/div[1]/header/div/div[2]/p/button)
     IF    "${user}" != "nothing"
-        Input Text    xpath:(//*[@id="root"]/div[1]/header/div/div[2]/p/input)    ${user}
+        Input Text    xpath:(//*[@id="root"]/div/div[1]/header/div/div[2]/p/input)    ${user}
     END
-    Click Element    xpath:(//html/body/div/div[1]/header/div/div[2]/p/button)
+    Click Element    xpath:(//*[@id="root"]/div/div[1]/header/div/div[2]/p/button)
     Sleep    2s
     Page Should Contain Element    class:singleUser
 
@@ -71,11 +71,11 @@ Sign Out & Close
     [Documentation]    Signs out from the application.
     [Arguments]    ${USER_TYPE}
     IF    "${USER_TYPE}" == "User"
-        Click Element   xpath://html/body/div/div[1]/header/div/div[3]/button[7]
+        Click Element   xpath:(//*[@id="root"]/div/div[1]/header/div/div[3]/button[7])
     ELSE IF    "${USER_TYPE}" == "Recruiter"
-        Click Element   xpath://html/body/div/div[1]/header/div/div[3]/button[10]
+        Click Element   xpath:(//*[@id="root"]/div/div[1]/header/div/div[3]/button[10])
     ELSE IF    "${USER_TYPE}" == "Administrator"
-        Click Element    xpath:(//*[@id="root"]/div[1]/header/div/div[3]/button[11])
+        Click Element    xpath:(//*[@id="root"]/div/div[1]/header/div/div[3]/button[11])
     ELSE
         Fail    "Invalid User Type"
     END
@@ -88,7 +88,7 @@ Create A Post
     Click Element    xpath:(/html/body/div/div[1]/header/div/div[3]/button[1])
     Page Should Contain Textfield    xpath:(//*[@id="outlined-basic"])
     Input Text    xpath:(//*[@id="outlined-basic"])    ${post_message}
-    Click Element    xpath:(//html/body/div/div[2]/div/div[2]/div[2]/button)
+    Click Element    xpath:(//*[@id="root"]/div/div[2]/div[2]/div[2]/button)
     Wait Until Page Contains Element    class:swal-modal
     Sleep    3s
     Page Should Contain    ${post_message}

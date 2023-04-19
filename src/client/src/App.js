@@ -64,7 +64,8 @@ function App() {
             path="/UserProfile"
             element={
               <>
-                <Navbar /> <UserProfile /><SignupFooter />
+                <Navbar /> <UserProfile />
+                <SignupFooter />
               </>
             }
           ></Route>
@@ -105,7 +106,8 @@ function App() {
             path="/editUserProfile"
             element={
               <>
-                <Navbar /> <EditUserProfile /><SignupFooter />
+                <Navbar /> <EditUserProfile />
+                <SignupFooter />
               </>
             }
           ></Route>

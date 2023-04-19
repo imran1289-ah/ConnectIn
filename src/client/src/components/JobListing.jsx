@@ -109,11 +109,10 @@ const JobListing = () => {
   const savePreferences = async () => {
     if (preferences.category && preferences.location && preferences.work_type) {
       await axios.post(`http://localhost:9000/users/${userID}/preferences`, preferences);
-          setTimeout(() => {
-          swal("Preferences saved successfully!");
-      window.location.reload();
-    }, 1000);
-
+      setTimeout(() => {
+        swal("Preferences saved successfully!");
+        window.location.reload();
+      }, 1000);
 
       //   console.log(preferences);
     } else {
@@ -121,12 +120,11 @@ const JobListing = () => {
     }
   };
 
-  const getUserPreferences = async () =>{
-   const {data} = await axios.get(`http://localhost:9000/users/${userID}`);
+  const getUserPreferences = async () => {
+    const { data } = await axios.get(`http://localhost:9000/users/${userID}`);
     setCurrentPreferences(data.user.preferences);
     console.log(currentPreferences);
-
-  }
+  };
 
   return (
     <Container>
@@ -135,7 +133,6 @@ const JobListing = () => {
           <>
             <div className="jobFilter">
               <form>
-                  
                 <label>
                   {t("Category")}:
                   <select name="category" onChange={e => setPreferences({ ...preferences, category: e.target.value })}>
@@ -144,17 +141,13 @@ const JobListing = () => {
                     <option value="Part-Time">{t("Part-Time")}</option>
                     <option value="Internship">{t("Internship")}</option>
                   </select>
-                  {currentPreferences &&(<>{currentPreferences.category && (
-        <span className="saved-preferences">{` (${currentPreferences.category})`}</span>
-      )}</>)}
+                  {currentPreferences && <>{currentPreferences.category && <span className="saved-preferences">{` (${currentPreferences.category})`}</span>}</>}
                 </label>
                 <br />
                 <label>
                   {t("Location")}:
                   <input type="text" name="location" value={preferences.location} onChange={e => setPreferences({ ...preferences, location: e.target.value })} placeholder={t("Enter a location")} />
-                                  {currentPreferences &&(<>{currentPreferences.location && (
-        <span className="saved-preferences">{` (${currentPreferences.location})`}</span>
-      )}</>)}
+                  {currentPreferences && <>{currentPreferences.location && <span className="saved-preferences">{` (${currentPreferences.location})`}</span>}</>}
                 </label>
                 <br />
                 <label>
@@ -165,17 +158,14 @@ const JobListing = () => {
                     <option value="Hybrid">{t("Hybrid")}</option>
                     <option value="Remote">{t("Remote")}</option>
                   </select>
-                                    {currentPreferences &&(<>{currentPreferences.work_type && (
-        <span className="saved-preferences">{` (${currentPreferences.work_type})`}</span>
-      )}</>)}
+                  {currentPreferences && <>{currentPreferences.work_type && <span className="saved-preferences">{` (${currentPreferences.work_type})`}</span>}</>}
                 </label>
-                  <label>
-      <span className="preferences-message">({t("*Saved preferences")})</span>
-    </label>
+                <label>
+                  <span className="preferences-message">({t("*Saved preferences")})</span>
+                </label>
                 <button type="button" onClick={savePreferences}>
                   {t("Save Preferences")}
                 </button>
-                
               </form>
             </div>
             <div data-testid="jobPostsContainer" className="jobPosts">
@@ -183,91 +173,85 @@ const JobListing = () => {
                 <b>{t("Job Posts")}</b>
               </div>
 
-               
               <div className="jobs">
-                {jobs.length!=0 ? (
-                <div>
-                {jobs.map(job => (
-                  <Row>
-                    <div key={job._id} className="jobPost">
-                      <Col>
-                        <div className="jobContent">
-                          <h3 className="jobTitle">
-                            <b>{job.title}</b>
-                          </h3>
+                {jobs.length != 0 ? (
+                  <div>
+                    {jobs.map(job => (
+                      <Row>
+                        <div key={job._id} className="jobPost">
+                          <Col>
+                            <div className="jobContent">
+                              <h3 className="jobTitle">
+                                <b>{job.title}</b>
+                              </h3>
 
-                          <p>
-                            <BusinessIcon></BusinessIcon>
-                            {job.company}
-                          </p>
-                          <p>
-                            <PlaceIcon></PlaceIcon>
-                            {job.location}
-                          </p>
-                          <p>
-                            <MapsHomeWorkIcon></MapsHomeWorkIcon>
-                            {job.work_type}
-                          </p>
+                              <p>
+                                <BusinessIcon></BusinessIcon>
+                                {job.company}
+                              </p>
+                              <p>
+                                <PlaceIcon></PlaceIcon>
+                                {job.location}
+                              </p>
+                              <p>
+                                <MapsHomeWorkIcon></MapsHomeWorkIcon>
+                                {job.work_type}
+                              </p>
 
-                          <div className="Tags">
-                            <h3 className="jobCategory">
-                              <WorkIcon />
-                              {job.category}
-                            </h3>
-                          </div>
-                          <div className="Tags">
-                            <h3 className="jobCategory">
-                              $
-                              {job.salary}/hour
-                            </h3>
-                          </div>
+                              <div className="Tags">
+                                <h3 className="jobCategory">
+                                  <WorkIcon />
+                                  {job.category}
+                                </h3>
+                              </div>
+                              <div className="Tags">
+                                <h3 className="jobCategory">${job.salary}/hour</h3>
+                              </div>
+                            </div>
+                          </Col>
+                          <Col md={6}>
+                            {jobsApplied.find(object => object.job_id == job.job_id) != undefined ? (
+                              <Alert className="AlertJobListing" variant="outlined">
+                                <AlertTitle>{t("You've already applied for this job.")}</AlertTitle>
+                              </Alert>
+                            ) : (
+                              <Alert className="YetAppliedJobs" severity="info" variant="outlined">
+                                <AlertTitle>{t("You have yet to apply for this job.")}</AlertTitle>
+                              </Alert>
+                              // <></>
+                            )}
+                            {jobsApplied.find(object => object.job_id == job.job_id) == undefined ? (
+                              <Button className="selectButton" variant="contained" component="label">
+                                <Link className="jobListLink" to={`/jobs/${job.job_id}`} state={{ jobState: job }}>
+                                  {t("Apply")}
+                                </Link>
+                              </Button>
+                            ) : (
+                              <></>
+                            )}
+                            {job.thirdParty == true && job.jobLink != null ? (
+                              <Button className="linkButton" variant="contained" component="label">
+                                <Link className="jobListLink" to={{ pathname: job.jobLink }} target="_blank">
+                                  {t("Apply on company site")}
+                                </Link>
+                              </Button>
+                            ) : (
+                              <></>
+                            )}
+                          </Col>
                         </div>
-                      </Col>
-                      <Col md={6}>
-                        {jobsApplied.find(object => object.job_id == job.job_id) != undefined ? (
-                          <Alert className="AlertJobListing" variant="outlined">
-                            <AlertTitle>{t("You've already applied for this job.")}</AlertTitle>
-                          </Alert>
-                        ) : (
-                          <Alert className="YetAppliedJobs" severity="info" variant="outlined">
-                            <AlertTitle>{t("You have yet to apply for this job.")}</AlertTitle>
-                          </Alert>
-                        )}
-                        {jobsApplied.find(object => object.job_id == job.job_id) == undefined ? (
-                          <Button className="selectButton" variant="contained" component="label">
-                            <Link className="jobListLink" to={`/jobs/${job.job_id}`} state={{ jobState: job }}>
-                              {t("Apply")}
-                            </Link>
-                          </Button>
-                        ) : (
-                          <></>
-                        )}
-                        {job.thirdParty == true && job.jobLink != null ? (
-                          <Button className="linkButton" variant="contained" component="label">
-                            <Link className="jobListLink" to={{ pathname: job.jobLink }} target="_blank">
-                              {t("Apply on company site")}
-                            </Link>
-                          </Button>
-                        ) : (
-                          " "
-                        )}
-                      </Col>
-
-                      
-                    </div>
-                  </Row>
-                ))}
-
-                </div> ):(<div className="NoJobsFound"><h1>{t("No jobs found")}</h1></div>)} 
-
+                      </Row>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="NoJobsFound">
+                    <h1>{t("No jobs found")}</h1>
+                  </div>
+                )}
               </div>
-
-
-
             </div>
           </>
         ) : (
-          
           <div className="notLoggedInContent">
             <h1>Please login to your account!</h1>
             <p>It looks like you are not logged in.</p>

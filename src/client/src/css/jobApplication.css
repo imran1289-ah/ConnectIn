@@ -7,7 +7,6 @@
     margin:auto;
     margin-top: 30px;
     padding: auto;
-    border: 2px #19718d solid;
     display: flex;
     flex-direction: row;
     align-content: space-evenly;
@@ -15,12 +14,17 @@
 }
 .JAPContainer .jobDetails {
     border: 1px white solid;
-    width: 500px;
+    width: 800px;
     border-radius: 10px;
-    height: 80%;
+    height: 100%;
     margin: 50px;
     margin-left: 100px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 7px 0px;
+
+}
+.JAPContainer .jobDetails .desc{
+    
+    padding:15px
 
 }
 

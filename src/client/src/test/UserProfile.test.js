@@ -1,5 +1,5 @@
 import React from "react";
-import PublicUserProfile from "../components/PublicUserProfile";
+import UserProfile from "../components/UserProfile";
 import { screen, render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
@@ -13,11 +13,11 @@ beforeAll(() => {
 });
 
 //Test to check if public profile page is being rendered correctly
-test("test if text is rendered correctly in the profile page", () => {
+test("test if text is rendered correctly in the user profile page", () => {
   render(
     <UserSession>
-      <BrowserRouter initialEntries={["/user/6410a8d1165eca75f68ba37c"]}>
-        <PublicUserProfile />
+      <BrowserRouter>
+        <UserProfile />
       </BrowserRouter>
     </UserSession>
   );

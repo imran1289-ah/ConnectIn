@@ -72,10 +72,6 @@ const Navbar = () => {
     navigate("/waitingConnections");
   };
 
-  const redirectDMReports = () => {
-    navigate("/dmReports");
-  };
-
   const redirectJobApplications = () => {
     navigate("/jobsapplied");
   };
@@ -96,13 +92,13 @@ const Navbar = () => {
         xs: 0,
         sm: 600,
         md: 900,
-        lg: 1200,
+        lg: 1024,
         xl: 1300,
       },
     },
   });
 
-  const matchSize = useMediaQuery(theme.breakpoints.down("xl"));
+  const matchSize = useMediaQuery(theme.breakpoints.down("lg"));
 
   console.log(matchSize);
 
@@ -268,7 +264,7 @@ const Navbar = () => {
                             className="userSubtitle"
                             variant="subtitle2"
                           >
-                            Edit/Delete Job
+                            {t("My Jobs")}
                           </Typography>
                         </Typography>
                       </Box>
@@ -294,26 +290,6 @@ const Navbar = () => {
                       </Typography>
                     </Box>
                   </IconButton>
-
-                  {role == "Administrator" && (
-                    <IconButton color="inherit" onClick={redirectDMReports}>
-                      <Box className="parentUserIconContainer">
-                        <Typography className="userIconContainer">
-                          <FlagIcon
-                            className="publicUserIcon"
-                            fontSize="large"
-                          ></FlagIcon>
-                          <Typography
-                            fontSize={10}
-                            className="userSubtitle"
-                            variant="subtitle2"
-                          >
-                            DM Reports
-                          </Typography>
-                        </Typography>
-                      </Box>
-                    </IconButton>
-                  )}
 
                   <IconButton color="inherit" onClick={redirectProfile}>
                     <Box className="parentUserIconContainer">

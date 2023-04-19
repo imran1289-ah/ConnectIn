@@ -1,8 +1,8 @@
-#editPostcontainer {
+#AdmineditPostcontainer {
   min-height: 50vh;
 }
 
-.InputJobDescription {
+.AdminInputJobDescription {
   background: rgba(255, 254, 254, 0.6);
   border: 1px solid #2d3d77;
   border-radius: 10px;
@@ -10,12 +10,12 @@
   height: 200px;
   text-align: center;
 }
-.InputJobDescription ::placeholder {
+.AdminInputJobDescription ::placeholder {
   padding-top: 80px;
   line-height: 40px;
 }
 
-.WrapperEditPost {
+.AdminWrapperEditPost {
   justify-content: center;
   top: 70%;
   margin: auto;
@@ -26,7 +26,7 @@
   min-height: 90vh;
 }
 
-.Title {
+.AdminTitle {
   font-style: normal;
   color: hwb(0 0% 100%);
   text-align: center;
@@ -35,7 +35,7 @@
   line-height: 72px;
 }
 
-.PlaceholderEditPost {
+.AdminPlaceholderEditPost {
   font-style: normal;
   color: hsl(0, 0%, 0%);
   font-weight: bold;
@@ -45,7 +45,7 @@
   line-height: 30px;
 }
 
-.LinkEditPost {
+.AdminLinkEditPost {
   font-style: normal;
   color: hsl(0, 0%, 0%);
   font-weight: 200;
@@ -55,7 +55,7 @@
   margin-right: 10%;
 }
 
-.Input {
+.AdminInput {
   background: rgba(255, 254, 254, 0.6);
   border: 1px solid #2d3d77;
   border-radius: 10px;
@@ -64,7 +64,7 @@
   text-align: center;
 }
 
-.SaveButton {
+.AdminSaveButton {
   box-sizing: border-box;
   background: #cfb79d;
   border: 1px solid #000000;
@@ -74,30 +74,9 @@
   height: 30px;
 }
 
-.selection {
-  margin-left: 50%;
-  margin-right: 50%;
-  justify-content: center;
-  align-items: center;
-}
-
-#category {
-  margin-right: 150px;
-  padding: 5px;
-  width: max-content;
-  height: max-content;
-}
-
-#work_type {
-  margin-left: 150px;
-  padding: 5px;
-  width: max-content;
-  height: max-content;
-}
-
 /* Responsive to Iphone 6 and above */
 @media (min-width: 330px) and (max-width: 600px) {
-  .WrapperEditPost {
+  .AdminWrapperEditPost {
     position: relative;
     margin: auto;
     text-align: center;
@@ -106,26 +85,26 @@
     top: 65%;
   }
 
-  #editPostcontainer {
+  #AdmineditPostcontainer {
     min-height: 15vh;
   }
 
-  .FormEditPost {
+  .AdminFormEditPost {
     margin-left: auto;
     margin-right: auto;
-    min-height: 100vh;
+    height: 300px;
     width: auto;
   }
 
-  .Input {
+  .AdminInput {
     width: 270px;
   }
 
-  .SaveButton {
+  .AdminSaveButton {
     margin-top: 10%;
     margin-left: auto;
   }
-  .Title {
+  .AdminTitle {
     font-size: 22px;
   }
 }

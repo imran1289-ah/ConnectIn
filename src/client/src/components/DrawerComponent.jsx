@@ -165,7 +165,7 @@ const DrawerComponent = () => {
             <ListItem>
               <ListItemText>
                 <IconButton color="inherit" onClick={redirectJobListing}>
-                  Edit/Delete Job
+                {t("My Jobs")}
                 </IconButton>
               </ListItemText>
             </ListItem>

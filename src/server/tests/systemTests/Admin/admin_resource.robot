@@ -24,17 +24,17 @@ View DM Reports
     [Documentation]    Opens the DM reports page
     ...                to check the reports that
     ...                that were made by users.
-    Page Should Contain Button    xpath:(//*[@id="root"]/div/div[2]/div[1]/span[2]/button[3]/svg)
+    Page Should Contain Button    xpath:(//*[@id="root"]/div/div[2]/div[1]/span[2]/button[3])
     # Clicks Applicants Button from the navbar.
-    Click Button    xpath:(//*[@id="root"]/div/div[2]/div[1]/span[2]/button[3]/svg)
-    Page Should Contain    DM REPORTS
+    Click Button    xpath:(//*[@id="root"]/div/div[2]/div[1]/span[2]/button[3])
+    Page Should Contain    DM Reports
 
 Accept DM Report
     [Documentation]    Clicks the accept button to
     ...                ban the reported user from
     ...                ConnectIn.
-    Page Should Contain    xpath:(//*[@id="root"]/div[2]/div/div[2]/div[1])
-    Click Button   xpath:(//*[@id="root"]/div[2]/div/div[2]/div[1]/div/button[1]) 
+    Page Should Contain Element    xpath:(//*[@id="root"]/div[2]/div/div[2]/div)
+    Click Button   xpath:(//*[@id="root"]/div[2]/div/div[2]/div/div/button[1]) 
     Wait Until Page Contains Element    class:swal-modal
     Wait Until Element Contains    class:swal-text    You have successfully resolved the report!
     Sleep    3s
@@ -49,13 +49,15 @@ Accept DM Report
 #     Sleep    3s
 
 View Manage Accounts
-    Page Should Contain Button    xpath:(//*[@id="root"]/div[2]/div/table/tbody/tr/td[2]/button)
-    Page Should Contain Button    xpath:(//*[@id="root"]/div[2]/div/table/tbody/tr/td[3]/button)
-    Page Should Contain Button    xpath:(//*[@id="root"]/div[2]/div/table/tbody/tr/td[4]/button)
+    [Documentation]    Opens the View Manage accounts page.
+    Page Should Contain Button    xpath:(//*[@id="root"]/div/div[2]/div[1]/span[2]/button[2])
+    Click Button    xpath:(//*[@id="root"]/div/div[2]/div[1]/span[2]/button[2])
+    Sleep    1s
 
 Unban User From Manage Accounts Page
-    Page Should Contain     jane.doe@email.com
-    Click Button    xpath:(//*[@id="root"]/div[2]/div/table/tbody/tr/td[3]/button)
+    Press Keys    None    PAGE_DOWN
+    Wait Until Page Contains    ${USERUSER}
+    Click Button    xpath:(//*[@id="root"]/div[2]/div/table/tbody/tr/td[4]/button)
     Wait Until Page Contains Element    class:swal-modal
     Wait Until Element Contains    class:swal-text    Successfully updated the user
     Sleep    3s

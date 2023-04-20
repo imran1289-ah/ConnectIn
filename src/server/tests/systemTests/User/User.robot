@@ -14,6 +14,25 @@ Some Tests
     # Message A User    Hello!
     # Report A DM
     # Create A Post    This is a test
+    Check Notifications
+    # Apply for a Job    ${FNAME}    ${LNAME}    ${USER}
+    Sign Out & Close    User
+
+Edit My Profile
+    Login to ConnectIn    ${USER}    ${PWD}
+    Go to Profile Page    User
+    Edit the User Profile    
+    ...    This is a bio test    
+    ...    Software Tester @ ConnectIn    
+    ...    Software Engineering - ConU    
+    ...    Word    
+    ...    English
+    Sign Out & Close    User
+
+Change Job Preferences
+    Login to ConnectIn    ${USER}    ${PWD}
+    Go to Job Listing Page
+    Change Job Preferences    Part-Time    Montreal    Hybrid
     Sign Out & Close    User
 
 Connection adding and removing test 

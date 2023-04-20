@@ -1,27 +1,33 @@
 .EditUserProfileContainer {
-  /* display: flex;
-  justify-content: center; */
-
+  display: flex;
+  justify-content: center;
+}
+.editChanges {
+  width:350px;
+  white-space: normal;
+  word-wrap:break-word;
 }
 
 .EditUserForm-Container {
   margin: 50px;
   display: flex;
   justify-content: space-evenly;
-  flex-direction: row
+  flex-direction: row;
 }
 
 .userProfileForm {
-  margin: 75px;
+  margin: 75px 0;
   display: flex;
+  width: 1100px;
   flex-direction: column;
-  background: #19718d;
+  background: rgb(224, 224, 224);
   border-radius: 70px;
+  box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.4);
 }
 
 .EditUserForm-Container label {
   font-style: normal;
-  color: #ffffff;
+  color: black;
   display: block;
   margin-bottom: 0.5rem;
   font-weight: bold;
@@ -29,13 +35,17 @@
 
 .EditUserForm-Container input,
 .EditUserForm-Container textarea {
-  box-sizing:border-box;
+  box-sizing: border-box;
   padding: 0.5rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 0.25rem;
   width: 100%;
-  margin: 5px;
+}
+
+.workexps {
+  display: flex;
+  padding-inline-start: 0;
 }
 
 .userProfileForm .submit-button button {
@@ -47,20 +57,20 @@
   cursor: pointer;
   width: 75%;
   margin: 15px;
-
 }
 
 .userProfileForm .submit-button,
-.userProfileForm .edit-profile-title{
+.userProfileForm .edit-profile-title {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: black;
 }
 
 .userProfileForm .list-button {
   float: right;
   box-sizing:border-box; 
+  margin-bottom: 5px;
 }
 
 .userProfileForm button {
@@ -72,4 +82,90 @@
   font-size: 1rem;
   cursor: pointer;
   width: 100%;
+}
+
+/*Responsive for iphone 6 and up*/
+@media (min-width: 330px) and (max-width: 600px) {
+  .edit-profile-title {
+    text-align: center;
+  }
+
+  .userProfileForm {
+    width: auto;
+    height: auto;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .EditUserForm-Container {
+    width: auto;
+    height: auto;
+    display: inline;
+  }
+
+  .editChanges {
+    width:260px;
+    white-space: normal;
+    word-wrap:break-word;
+  }
+}
+
+/*Media queries for ipad*/
+@media (min-device-width: 768px) and (max-device-width: 1070px) {
+  .edit-profile-title {
+    text-align: center;
+  }
+
+  .userProfileForm {
+    width: auto;
+    height: auto;
+    margin: auto;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+
+  .EditUserForm-Container {
+    width: auto;
+    height: auto;
+    display: inline;
+  }
+
+  .editChanges {
+    width:670px;
+    white-space: normal;
+    word-wrap:break-word;
+  }
+}
+
+@media (min-device-width: 600px) and (max-device-width: 768px) {
+  .edit-profile-title {
+    text-align: center;
+  }
+
+  .userProfileForm {
+    width: auto;
+    height: auto;
+    margin: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .EditUserForm-Container {
+    width: auto;
+    height: auto;
+    display: inline;
+  }
+
+  .editChanges {
+    width:480px;
+    white-space: normal;
+    word-wrap:break-word;
+  }
 }

@@ -1,7 +1,8 @@
-/* 
-.jobPosts_Container{
-    display: flex;
-} */
+.preferences-message,
+.saved-preferences {
+  font-size: 14px;
+  color: red;
+}
 
 .jobPosts {
   position: absolute;
@@ -14,7 +15,11 @@
   height: 500px;
   border-radius: 15px;
   margin: auto;
+  margin-top: 20px;
   display: inline-block;
+}
+.jobPosts .NoJobsFound {
+  text-align: center;
 }
 
 .jobPosts .heading {
@@ -111,7 +116,6 @@
 }
 
 .jobPosts .jobs .jobPost .jobListLink {
-  /* border: 5px red solid; */
   text-decoration: none;
   color: white;
 }
@@ -161,7 +165,6 @@
 }
 
 .notLoggedInContent {
-  /* border: 1px #19718d solid; */
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -170,66 +173,6 @@
   margin-left: 400px;
   width: 600px;
 }
-
-/* .jobPosts .jobPost button {
-  background-color: #19718d;
-  display: block;
-  width: 100px;
-  border-radius: 20px;
-  text-decoration: none;
-} */
-
-/* .jobPosts .jobPost button.edit {
-  background-color: green;
-  display: block;
-  color: white;
-  width: 100px;
-  border-radius: 20px;
-  margin: 15px;
-  text-decoration: none;
-}
-
-.jobPosts .jobPost button.delete {
-  background-color: red;
-  display: block;
-  color: white;
-  width: 100px;
-  border-radius: 20px;
-  margin: 15px;
-  text-decoration: none;
-} */
-
-/* .preferences {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: lightblue;
-  text-align: center;
-  width: 30%;
-  height: 525px;
-
-  margin: 20px;
-  margin-left: 125px;
-  border-radius: 20px;
-}
-
-.preferences button {
-  background-color: #19718d;
-  display: block;
-  width: 100px;
-  border-radius: 20px;
-  margin: 15px;
-}
-
-.preferences .preference {
-  border: 1px white solid;
-  border-radius: 20px;
-  background-color: white;
-  color: black;
-  width: 200px;
-  height: 50px;
-  margin: 15px;
-} */
 
 .jobFilter {
   display: flex;
@@ -253,53 +196,515 @@
   font-size: large;
 }
 
-@media all and (max-width: 690px) {
-  .jobPosts_Container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .jobPosts .jobs .jobPost {
-    width: 273%;
-  }
+@media all and (max-width: 1024px) {
   .jobPosts {
-    width: 270px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px #19718d solid;
+    width: 90%;
+    height: 650px;
+    border-radius: 15px;
+    margin: auto;
+    display: inline-block;
+    margin-top: 40px;
   }
+
+  .jobPosts .heading {
+    background-color: #19718d;
+    height: 50px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .jobPosts .jobs {
+    width: 95%;
+    height: 500px;
+    border-radius: 15px;
+    margin: 20px;
+    display: inline-block;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+  }
+
+  .jobPosts .jobs .jobPost {
+    border: 2px #19718d solid;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: 85%;
+    height: auto;
+    border-radius: 10px;
+    flex-direction: row;
+    box-shadow: -3px 2px 2px #dff3f9;
+  }
+
+  .jobPosts .jobs .jobPost .logo {
+    margin: 5px;
+    margin-top: 40px;
+    margin-right: 25px;
+  }
+
+  .jobPosts .jobs .jobPost .jobContent {
+    padding-left: 50px;
+    display: block;
+    width: 70%;
+  }
+
   .jobPost .col-md-6 {
     position: relative;
     float: right;
+    margin-left: 35%;
   }
-  .preferences {
+
+  .jobPosts .jobs .jobPost .AlertJobListing {
+    border-radius: 10px;
+    width: 50%;
+    border: 1px solid #19718d;
+    margin: 10px;
+    color: #19718d;
+    height: 40px;
+    border: 1px #19718d solid;
+    float: right;
+  }
+
+  .jobPosts .jobs .jobPost .YetAppliedJobs {
+    border-radius: 10px;
+    width: auto;
+    border: 1px solid #19718d;
+    margin: 10px;
+    color: #19718d;
+    height: 40px;
+    border: 1px #19718d solid;
+    float: right;
+  }
+
+  .jobPosts .jobs .jobPost .AlertJobListing ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .jobPosts .jobs .jobPost .jobContent .jobTitle:hover {
+    text-decoration: underline;
+  }
+
+  .jobPosts .jobs .jobPost .jobContent .Tags {
     display: flex;
-    width: 300px;
-    margin-right: 125px;
-    height: 350px;
+    flex-direction: row;
+  }
+
+  .jobPosts .jobs .jobPost .jobContent .jobCategory {
+    border: 1px solid grey;
+    background-color: lightgrey;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .jobPosts .jobs .jobPost .jobListLink {
+    /* border: 5px red solid; */
+    text-decoration: none;
+    color: white;
+  }
+
+  .jobPosts .jobs .jobPost .selectButton {
+    border-radius: 10;
+    color: white;
+    background-color: #19718d;
+    font-size: 14px;
+    position: relative;
+    text-align: center;
+    margin: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 55%;
+    float: right;
+  }
+
+  .jobPosts .jobs .jobPost .linkButton {
+    border-radius: 10;
+    background-color: #19718d;
+    font-size: 14px;
+    width: 55%;
+    text-align: center;
+    margin: 10px;
+    margin-bottom: 10px;
+    margin-top: auto;
+    float: right;
+  }
+
+  .notLoggedInContent .redirectSignIn {
+    border-radius: 10;
+    background-color: #19718d;
+    font-size: 14px;
+    width: 250px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .notLoggedInContent .redirectSignIn:hover {
+    border-radius: 10;
+    background-color: #19718d;
+    font-size: 14px;
+    width: 250px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .notLoggedInContent {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin: 200px;
+    margin-left: 400px;
+    width: 600px;
+  }
+
+  .jobFilter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+
+  .jobFilter form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .jobFilter label {
+    margin-right: 10px;
+    font-size: large;
+  }
+}
+
+@media all and (max-width: 905px) {
+  .jobPosts {
+    border: 2px #19718d solid;
+    width: 85%;
+    height: 570px;
+    border-radius: 15px;
+    margin: auto;
+    margin-top: 180px;
+    margin-bottom: 50px;
+    display: inline-block;
+  }
+
+  .jobPosts .AlertJobListing {
+    display: none;
+  }
+  .jobPosts .YetAppliedJobs {
+    display: none;
+  }
+
+  .jobPosts .jobs .jobPost .selectButton {
+    margin: 20px;
+  }
+
+  .jobPosts .jobs .jobPost .linkButton {
+    margin: 20px;
+  }
+  .jobPosts .jobs .jobPost .col-md-6 {
+    margin: 20px;
+  }
+  .jobFilter {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+
+  .jobFilter form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .jobFilter label {
+    margin-right: 10px;
+    font-size: large;
+  }
+}
+
+@media all and (max-width: 610px) {
+  .logo {
+    display: none;
+  }
+
+  .jobFilter {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+
+  .jobFilter form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .jobFilter label {
+    margin-right: 10px;
+    font-size: large;
+  }
+  .jobPosts {
+    width: 85%;
+    height: 580px;
+    border-radius: 15px;
+    margin: auto;
+    display: inline-block;
+    margin-top: 170px;
+  }
+  .jobPosts .jobPost {
+    min-height: 550px;
+  }
+
+  .jobPosts .AlertJobListing {
+    /* display: none; */
+    margin: 20px;
+    position: absolute;
+    right: 500px;
+    top: 280px;
+  }
+  .jobPosts .AlertJobListing {
+    display: none;
+  }
+  .jobPosts .YetAppliedJobs {
+    display: none;
+  }
+
+  .jobPosts .jobs .jobPost .selectButton {
+    margin: 20px;
+    position: absolute;
+    right: 50px;
+    top: 330px;
+  }
+
+  .jobPosts .jobs .jobPost .linkButton {
+    margin: 20px;
+    position: absolute;
+    right: 50px;
+    top: 400px;
+  }
+  .jobPosts .jobs .jobPost .col-md-6 {
+    margin: 20px;
+  }
+}
+
+@media all and (max-width: 450px) {
+  .logo {
+    display: none;
+  }
+
+  .jobFilter {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+
+  .jobFilter form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .jobFilter label {
+    margin-right: 10px;
+    font-size: large;
+  }
+  .jobPosts {
+    width: 85%;
+    height: 600px;
+    border-radius: 15px;
+    margin: auto;
+    display: inline-block;
+    margin-top: 110px;
+  }
+  .jobPosts .jobPost {
+    min-height: 550px;
+  }
+
+  .jobPosts .AlertJobListing {
+    /* display: none; */
+    margin: 20px;
+    position: absolute;
+    right: 500px;
+    top: 280px;
+  }
+  .jobPosts .AlertJobListing {
+    display: none;
+  }
+  .jobPosts .YetAppliedJobs {
+    display: none;
+  }
+
+  .jobPosts .jobs .jobPost .selectButton {
+    margin: 20px;
+    position: absolute;
+    right: 50px;
+    top: 330px;
+  }
+
+  .jobPosts .jobs .jobPost .linkButton {
+    margin: 20px;
+    position: absolute;
+    right: 50px;
+    top: 400px;
+  }
+  .jobPosts .jobs .jobPost .col-md-6 {
+    margin: 20px;
+  }
+}
+
+@media all and (max-width: 375px) {
+  .logo {
+    display: none;
+  }
+
+  .jobFilter {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+
+  .jobFilter form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .jobFilter label {
+    margin-right: 10px;
+    font-size: large;
+  }
+  .jobPosts {
+    width: 85%;
+    height: 580px;
+    border-radius: 15px;
+    margin: auto;
+    display: inline-block;
+    margin-top: 180px;
+  }
+  .jobPosts .jobPost {
+    min-height: 550px;
+  }
+
+  .jobPosts .AlertJobListing {
+    /* display: none; */
+    margin: 20px;
+    position: absolute;
+    right: 500px;
+    top: 280px;
+  }
+  .jobPosts .AlertJobListing {
+    display: none;
+  }
+  .jobPosts .YetAppliedJobs {
+    display: none;
+  }
+
+  .jobPosts .jobs .jobPost .selectButton {
+    margin: 20px;
+    position: absolute;
+    right: 50px;
+    top: 330px;
+  }
+
+  .jobPosts .jobs .jobPost .linkButton {
+    margin: 20px;
+    position: absolute;
+    right: 50px;
+    top: 400px;
+  }
+  .jobPosts .jobs .jobPost .col-md-6 {
+    margin: 20px;
   }
 }
 
 @media all and (max-width: 280px) {
-  .Container {
+  .logo {
+    display: none;
+  }
+
+  .jobFilter {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+
+  .jobFilter form {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
   }
 
-  .jobPost .col-md-6 {
-    position: relative;
-    float: right;
+  .jobFilter label {
+    margin-right: 10px;
+    font-size: large;
   }
-
   .jobPosts {
-    width: 270px;
+    width: 85%;
+    height: 580px;
+    border-radius: 15px;
+    margin: auto;
+    display: inline-block;
+    margin-top: 210px;
+    margin-bottom: 1000px;
   }
-  .preferences {
-    display: flex;
-    width: 300px;
-    margin-right: 125px;
-    height: 350px;
+  .jobPosts .jobPost {
+    min-height: 550px;
   }
 
-  .jobPosts .jobs .jobPost {
-    width: 273%;
+  .jobPosts .AlertJobListing {
+    /* display: none; */
+    margin: 20px;
+    position: absolute;
+    right: 500px;
+    top: 280px;
+  }
+  .jobPosts .AlertJobListing {
+    display: none;
+  }
+  .jobPosts .YetAppliedJobs {
+    display: none;
+  }
+
+  .jobPosts .jobs .jobPost .selectButton {
+    margin: 20px;
+    position: absolute;
+    right: 40px;
+    top: 350px;
+  }
+
+  .jobPosts .jobs .jobPost .linkButton {
+    margin: 20px;
+    position: absolute;
+    right: 40px;
+    top: 420px;
+  }
+  .jobPosts .jobs .jobPost .col-md-6 {
+    margin: 20px;
   }
 }

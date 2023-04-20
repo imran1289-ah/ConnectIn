@@ -4,16 +4,16 @@
 
 .jobsApplied {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   border: 2px #19718d solid;
-  width: max-content;
-  min-height: 500px;
-  height: 500px;
+  width: 90%;
+  height: 600px;
   border-radius: 15px;
   margin: auto;
   display: inline-block;
+  margin-top: 10px;
 }
 
 .jobsApplied .heading {
@@ -41,9 +41,8 @@
 
 .jobsApplied .jobs .jobPost {
   border: 2px #19718d solid;
-  margin: 5px;
-  width: 95%;
   height: auto;
+  width: min-content;
   border-radius: 10px;
   flex-direction: row;
   box-shadow: -3px 2px 2px #dff3f9;
@@ -112,11 +111,16 @@
     width: 350px;
     margin-bottom: 1000px;
   }
+
+  .jobsApplied .jobs .jobPost {
+    width: min-content;
+  }
+
   .jobsApplied .heading {
     height: fit-content;
   }
   .jobContent {
-    height: 420px;
+    height: min-content;
     width: auto;
   }
 }

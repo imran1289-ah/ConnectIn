@@ -1,0 +1,25 @@
+.body {
+  min-height: 100dvh;
+}
+
+.RecruiterJobs {
+  height: 100%;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  overflow-x: hidden;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.table-container {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}

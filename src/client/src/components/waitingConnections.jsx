@@ -2,6 +2,8 @@ import { margin } from "@mui/system";
 import React, { useState, useEffect, useContext } from "react";
 import "../css/waitingConnections.css";
 import axios from "axios";
+import Navbar from "./Navbar";
+import LoginFooter from "./LoginFooter"
 //import logo from "./images/acceptButton";
 import swal from "sweetalert";
 import { Context } from "../UserSession";
@@ -137,13 +139,16 @@ const AddSelftoFriends = async(user_id) =>{
       {userID && login ? (
         <div className="background">
           <h1>{t("Pending connections requests")}</h1>
+          {
+            userRequests.length < 1 ? (<p> {t("You have no connection requests!")}</p>):(<></>)
+          }
           {userRequests.map((object) => (
             <div className="userWaitingConnection">
-              <div className="connectionDisplay ">
-                <div>
-                  <table>
-                    <tr>
-                      <td>
+              <div className="connectionDisplay">
+                <div className="anotherdiv" > 
+                  <table className="connectionsTable">
+                    <tr className="connectionsTableRowAndColumn ">
+                      <td className="connectionsTableRowAndColumn ">
                         <img
                           margin="20px"
                           src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
@@ -151,18 +156,19 @@ const AddSelftoFriends = async(user_id) =>{
                           className="companyPic"
                         ></img>
                       </td>
-                      <td>
-                        <h3 position={"center"}>
+                      <td className="connectionsTableRowAndColumn ">
+                        <h3>
                           {object.firstname} {object.lastname}
                         </h3>
+                        
                       </td>
-                      <td>
+                      <td className="connectionsTableRowAndColumn ">
                         {/* <img src = './images/acceptButton' alt= "bad"
                   >
                     
                   </img>  */}
                         <button
-                          className="acceptButton"
+                          className= "acceptButton"
                           onClick={() =>
                             Acceptbutton(
                               `${object.firstname}`,
@@ -173,10 +179,8 @@ const AddSelftoFriends = async(user_id) =>{
                         >
                           {t("Accept")}
                         </button>
-                      </td>
-                      <td>
-                        <button
-                          className="rejectButton"
+                                                <button
+                          className="rejbectButton"
                           onClick={() =>
                             DeleteWaitingConnection(
                               `${object.firstname}`,
@@ -187,6 +191,9 @@ const AddSelftoFriends = async(user_id) =>{
                         >
                           {t("Reject")}
                         </button>
+                      </td>
+                      <td className="connectionsTableRowAndColumn ">
+
                       </td>
                     </tr>
                   </table>

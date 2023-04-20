@@ -41,9 +41,7 @@ const getJobsByRecruiter = async (req, res) => {
     const jobs = await Job.find({ recruiter_id: recruiterId });
     res.status(200).json(jobs);
   } catch (err) {
-    res
-      .status(500)
-      .json({ message: "Unable to retrieve jobs for this recruiter." });
+    res.status(500).json({ message: "Unable to retrieve jobs for this recruiter." });
     console.log(err);
   }
 };
@@ -93,9 +91,9 @@ const deleteJob = async (req, res) => {
 };
 
 const updateJobData = asyncHandler(async (req, res) => {
-  const { job_id, title, description, salary, category, location } = req.body;
+  const { job_id, title, company, description, salary, category, location, work_type } = req.body;
 
-  if (!job_id || !title || !description || !salary || !category || !location) {
+  if (!job_id || !title || !description || !salary || !category || !location || !company || !work_type) {
     return res.status(400).json({ message: "Please fill out all fields!" });
   }
 
@@ -109,18 +107,18 @@ const updateJobData = asyncHandler(async (req, res) => {
     { job_id: job_id },
     {
       title: title,
+      company: company,
       description: description,
       salary: salary,
       category: category,
       location: location,
+      work_type: work_type
     }
-  ).then((update) => {
+  ).then(update => {
     if (update) {
       res.status(200).json({ message: "Successfully Updated Job Posting" });
     } else {
-      return res
-        .status(400)
-        .json({ message: "Error Updating the Job Posting" });
+      return res.status(400).json({ message: "Error Updating the Job Posting" });
     }
   });
 });
@@ -132,5 +130,5 @@ module.exports = {
   updateJobData,
   createJob,
   deleteJob,
-  getJobsByRecruiter,
+  getJobsByRecruiter
 };

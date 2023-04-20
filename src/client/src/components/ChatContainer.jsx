@@ -65,59 +65,61 @@ const ChatContainer = ({ currentChat, socket, room }) => {
   };
 
   const handleSendMsg = async (msg, file) => {
-    const data = new FormData();
-    data.append("message", msg.trim());
-    data.append("from", userID);
-    data.append("to", currentChat.userID);
-    data.append("room", room);
-    data.append("value", new Date(Date.now()));
-    data.append("file", file);
-  
-    if (msg.trim().length !== 0 || file) {
-      // emit message to server using socket connection
-      socket.current.emit("sendMessage", {
-        message: msg.trim(),
-        from: userID,
-        to: currentChat.userID,
-        room: room,
-        value: new Date(Date.now()),
-        file: file,
-      });
+  const data = new FormData();
+  data.append("message", msg.trim());
+  data.append("from", userID);
+  data.append("to", currentChat.userID);
+  data.append("room", room);
+  data.append("value", new Date(Date.now()));
+  data.append("file", file);
+
+  if (msg.trim().length !== 0 || file) {
+    // emit message to server using socket connection
+    socket.current.emit("sendMessage", {
+      message: msg.trim(),
+      from: userID,
+      to: currentChat.userID,
+      room: room,
+      value: new Date(Date.now()),
+      file: file,
+    });
   
       try {
-        const response = await axios.post(
-          "https://connectin-api.onrender.com/messages/addMessage",
-          data
-        );
-  
-        let messageObject = {
+      const response = await axios.post(
+        "https://connectin-api.onrender.com/messages/addMessage",
+        data
+      );
+
+      let messageObject = {
+        fromSelf: true,
+        message: msg.trim(),
+        file: response.data,
+      };
+
+      if (response.data.downloadLink) {
+        messageObject = {
           fromSelf: true,
-          message: msg.trim(),
+          message: (
+            <a
+              href={response.data.downloadLink}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {response.data.attachment}
+            </a>
+          ),
           file: response.data,
         };
-  
-        if (response.data.downloadLink) {
-          messageObject = {
-            fromSelf: true,
-            message: (
-              <a
-                href={response.data.downloadLink}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {response.data.filename}
-              </a>
-            ),
-            file: response.data,
-          };
-        }
-  
-        setMessages(prevMessages => [...prevMessages, messageObject]);
-      } catch (error) {
-        console.log(error);
       }
+
+      setMessages([...messages, messageObject]); // add new message to messages list
+
+    } catch (error) {
+      console.log(error);
     }
-  };
+  }
+};
+
 
   useEffect(() => {
     socket.current.on("receiveMessage", (message) => {

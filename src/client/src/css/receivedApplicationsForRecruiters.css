@@ -1,123 +1,135 @@
 .jobs Th {
-    width: 200px;
-  }
-  
+  width: 200px;
+}
+
+.responsiveTable {
+  width: auto;
+}
+
+.jobsApplied .table {
+  min-width: auto;
+}
+
+.jobsApplied {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px #19718d solid;
+  width: 900px;
+  min-height: 500px;
+  height: 500px;
+  border-radius: 15px;
+  margin: auto;
+  display: inline-block;
+}
+
+.jobsApplied .heading {
+  background-color: #19718d;
+  height: 50px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.jobsApplied h1 {
+  margin-block-start: auto;
+  margin-block-end: auto;
+}
+
+.jobsApplied .jobs {
+  width: auto;
+  height: 400px;
+  border-radius: 15px;
+  margin: 20px;
+  display: inline-block;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+}
+
+.jobsApplied .jobs .jobPost {
+  border: 2px #19718d solid;
+  margin: 5px;
+  width: 95%;
+  height: auto;
+  border-radius: 10px;
+  flex-direction: row;
+  box-shadow: -3px 2px 2px #dff3f9;
+}
+
+.jobsApplied .jobs .jobPost .logo {
+  margin: 5px;
+  margin-top: 40px;
+  margin-left: 25px;
+}
+
+.jobsApplied .jobs .jobPost .jobContent {
+  padding-left: 10px;
+  padding-right: 10px;
+  display: block;
+  width: fit-content;
+}
+
+.jobsApplied .jobs .jobPost .jobContent .jobTitle:hover {
+  text-decoration: underline;
+}
+
+.jobsApplied .jobs .jobPost .jobContent .Tags {
+  display: flex;
+  flex-direction: row;
+}
+.jobsApplied .jobs .jobPost .jobContent .jobCategory {
+  border: 1px solid grey;
+  background-color: lightgrey;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.notLoggedInContent .redirectSignIn {
+  border-radius: 10;
+  background-color: #19718d;
+  font-size: 14px;
+  width: 250px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.notLoggedInContent .redirectSignIn:hover {
+  border-radius: 10;
+  background-color: #19718d;
+  font-size: 14px;
+  width: 250px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.notLoggedInContent {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  margin: 200px;
+  margin-left: 400px;
+  width: 600px;
+}
+
+@media (min-width: 330px) and (max-width: 600px) {
   .jobsApplied {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 2px #19718d solid;
-    width: 900px;
-    min-height: 500px;
-    height: 500px;
-    border-radius: 15px;
-    margin: auto;
-    display: inline-block;
+    margin-top: 20%;
+    height: 420px;
+    width: 350px;
+    margin-bottom: 1000px;
   }
-  
-  .jobsApplied .heading {
-    background-color: #19718d;
-    height: 50px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    text-align: center;
-    text-transform: uppercase;
-  }
-  .jobsApplied h1 {
-    margin-block-start: auto;
-    margin-block-end: auto;
-  }
-  
-  .jobsApplied .jobs {
-    width: 95%;
-    height: 400px;
-    border-radius: 15px;
-    margin: 20px;
-    display: inline-block;
-    scroll-behavior: smooth;
-    overflow-y: scroll;
-  }
-  
+
   .jobsApplied .jobs .jobPost {
-    border: 2px #19718d solid;
-    margin: 5px;
-    width: 95%;
-    height: auto;
-    border-radius: 10px;
-    flex-direction: row;
-    box-shadow: -3px 2px 2px #dff3f9;
+    width: min-content;
   }
-  
-  .jobsApplied .jobs .jobPost .logo {
-    margin: 5px;
-    margin-top: 40px;
-    margin-left: 25px;
+
+  .jobsApplied .heading {
+    height: fit-content;
   }
-  
-  .jobsApplied .jobs .jobPost .jobContent {
-    padding-left: 10px;
-    padding-right: 10px;
-    display: block;
-    width: fit-content;
+  .jobContent {
+    height: 500px;
+    width: auto;
   }
-  
-  .jobsApplied .jobs .jobPost .jobContent .jobTitle:hover {
-    text-decoration: underline;
-  }
-  
-  .jobsApplied .jobs .jobPost .jobContent .Tags {
-    display: flex;
-    flex-direction: row;
-  }
-  .jobsApplied .jobs .jobPost .jobContent .jobCategory {
-    border: 1px solid grey;
-    background-color: lightgrey;
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .notLoggedInContent .redirectSignIn {
-    border-radius: 10;
-    background-color: #19718d;
-    font-size: 14px;
-    width: 250px;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  .notLoggedInContent .redirectSignIn:hover {
-    border-radius: 10;
-    background-color: #19718d;
-    font-size: 14px;
-    width: 250px;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  
-  .notLoggedInContent {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-    margin: 200px;
-    margin-left: 400px;
-    width: 600px;
-  }
-  
-  @media (min-width: 330px) and (max-width: 600px) {
-    .jobsApplied {
-      margin-top: 20%;
-      height: 420px;
-      width: 350px;
-      margin-bottom: 1000px;
-    }
-    .jobsApplied .heading {
-      height: fit-content;
-    }
-    .jobContent {
-      height: 420px;
-      width: auto;
-    }
-  }
-  
+}

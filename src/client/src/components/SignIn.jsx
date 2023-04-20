@@ -1,6 +1,8 @@
 import React, { useState, useRef, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../css/signin.css";
+import SignInCSS from "../css/signin.module.css";
+import LoginFooter from "../components/LoginFooter";
+import Navbar from "../components/Navbar";
 import axios from "axios";
 import { Context } from "../UserSession";
 import { useTranslation } from "react-i18next";
@@ -25,6 +27,13 @@ const SignIn = () => {
       })
       .then((response) => {
         console.log(response.data);
+        if (response.data.userSession.isBan){
+          MessageRef.current.style.color = "red";
+          MessageRef.current.innerHTML = t("You are banned from ConnectIn");
+          axios.post("session/logout").then((response) => {
+          });
+          return;
+        }
         sessionStorage.setItem("userID", response.data.userSession.user_id);
         sessionStorage.setItem("firstname", response.data.userSession.firstname);
         sessionStorage.setItem("lastname", response.data.userSession.lastname);
@@ -43,54 +52,57 @@ const SignIn = () => {
         console.log(error);
         MessageRef.current.style.color = "red";
         MessageRef.current.innerHTML = t(
-          "Incorrect Credentials Please try again"
+          "Incorrect credentials. Please try again"
         );
       });
   };
 
   return (
     //Signin page
-    <div className="Wrapper">
-      <div className="Form">
-        <p className="LoginMessage" ref={MessageRef}>
+    <div className={SignInCSS.body}>
+      <Navbar />
+      <div className={SignInCSS.Wrapper}>
+        <div className={SignInCSS.Card}>
+          <p className={SignInCSS.LoginMessage} ref={MessageRef}>
+          ConnectIn
+          <br />
           {t("Log in to your account")}{" "}
         </p>
         <form>
-          <div className="Form">
-            <label className="Placeholder">
+          <div className={SignInCSS.Form}>
+            <div className={SignInCSS.formLabel}>
               {t("Email")}
-              <br></br>
-              <input
-                className="LoginInput"
-                placeholder={t("enteremail")}
-                onChange={(e) => setUser(e.target.value)}
-              ></input>
-            </label>
+            </div>
+            <input
+              className={SignInCSS.LoginInput}
+              placeholder={t("enteremail")}
+              onChange={(e) => setUser(e.target.value)}
+            ></input>
             <br></br>
             <br></br>
-            <label className="Placeholder">
+            <div className={SignInCSS.formLabel}>
               {t("password")}
-              <br></br>
-              <input
-                className="LoginInput"
-                placeholder={t("enterpassword")}
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-              ></input>
-            </label>
+            </div>
+            <input
+              className={SignInCSS.LoginInput}
+              placeholder={t("enterpassword")}
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            ></input>
             <br></br>
             <br></br>
-            <div className="Link">
-              {t("donthave")} <Link to={`/signup`}> {t("Sign Up")}</Link>
+            <div className={SignInCSS.Link}>
+              {t("donthave")} <Link to={`/signup`}>{t("Sign Up")}</Link>
             </div>
           </div>
           <br></br>
-          <br></br>
-          <button className="LoginButton" onClick={submitLogin}>
+          <button className={SignInCSS.LoginButton} onClick={submitLogin}>
             {t("logIn")}
           </button>
         </form>
       </div>
+    </div>
+    <LoginFooter />
     </div>
   );
 };

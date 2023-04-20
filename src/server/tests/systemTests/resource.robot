@@ -71,19 +71,19 @@ Search for Users
 Search and add Users
     [Documentation]    Searches for 2 users named andrew. 
     ...                If both are present, sends both of them connection requests.
-    [Arguments]    ${user}=adrew
+    [Arguments]    ${is_already_connected}    ${user}=adrew
     Search for Users    ${user}
     Click Button    xpath:(//*[@id="root"]/div[2]/div/div[1]/div[2]/button)
     Wait Until Page Contains Element    class:swal-modal
-    Wait Until Element Contains    class:swal-text    You have successfully sent connection request!
-    Sleep    3s
-    Click Button    xpath:(//*[@id="root"]/div[2]/div/div[2]/div[2]/button)
-    Wait Until Page Contains Element    class:swal-modal
-    Wait Until Element Contains    class:swal-text    You are already connected
+    IF  "${is_already_connected}" == "no"
+        Wait Until Element Contains    class:swal-text    You have successfully sent connection request!
+    ELSE
+        Wait Until Element Contains    class:swal-text    You are already connected
+    END
     Sleep    3s
 
 Adding new connection
-    [Documentation]    Adds waiting connection to connections list.
+    [Documentation]    Adds waiting connection to connections  list.
     Click Button    xpath:(//*[@id="root"]/div/div[1]/header/div/div[3]/button[2])
     Click Button    xpath:(//*[@id="root"]/div[2]/div/div/div/div/table/tr/td[3]/button[1])
     Wait Until Page Contains Element    class:swal-modal
@@ -127,7 +127,7 @@ Sign Out & Close
 Create A Post
     [Arguments]    ${post_message}
     [Documentation]    Creates a post on the timeline page.
-    Click Element    xpath:(/html/body/div/div[1]/header/div/div[3]/button[1])
+    Click Element    xpath:(//*[@id="root"]/div/div[1]/header/div/div[3]/button[1])
     Page Should Contain Textfield    xpath:(//*[@id="outlined-basic"])
     Input Text    xpath:(//*[@id="outlined-basic"])    ${post_message}
     Click Element    xpath:(//*[@id="root"]/div/div[2]/div[2]/div[2]/button)

@@ -7,12 +7,13 @@ Library    SeleniumLibrary
 *** Variables ***
 ${WEBPAGE}    http://localhost:3000/signin
 ${BROWSER}    Chrome
-${FNAME}    John
-${LNAME}    Doe
-${USER}    j.d@email.com
-${PWD}    test123
 
 ${USER1}    jb@gmail.com
+${FNAME1}    John
+${LNAME1}    Molson
 ${PWD1}    jb
+
 ${USER2}    aj@gmail.com
+${FNAME2}    Adam
+${LNAME2}    Johns
 ${PWD2}    aj

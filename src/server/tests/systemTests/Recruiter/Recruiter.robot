@@ -8,22 +8,28 @@ Resource    ../resource.robot
 Test Setup    Launch Browser
 
 *** Test Cases ***
-Some Tests
-    # Sign Up    ${FNAME}    ${LNAME}    ${USER}    ${PWD}    Recruiter
+Signing up & Logging in
+    Sign Up    ${FNAME}    ${LNAME}    ${USER}    ${PWD}    Recruiter
     Login to ConnectIn    ${USER}    ${PWD}
-    View Applicants
-    Go Back
-    Sleep    1s
-    Check Pending Connections
-    Go Back
-    Go to Profile Page    Administrator
+    Sign Out & Close    Recruiter
+
+Edit My Profile
+    Login to ConnectIn    ${USER}    ${PWD}
+    Go to Profile Page    Recruiter
     Edit the User Profile    
     ...    This is a bio test    
     ...    Software Tester @ ConnectIn    
     ...    Software Engineering - ConU    
     ...    Word    
-    ...    English
-    # Post a Job
-    # Edit A Job
-    # Delete A Job
+    ...    French
+    Sign Out & Close    Recruiter
+
+Job Posting
+    Login to ConnectIn    ${USER}    ${PWD}
+    View Applicants
+    Go Back
+    Sleep    1s
+    Post a Job
+    Edit A Job
+    Delete A Job
     Sign Out & Close    Recruiter

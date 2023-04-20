@@ -55,7 +55,7 @@ const [coverLetterExists, setCoverLetterExists] = useState(false);
   };
 
   const downloadResume = async () => {
-    const response = await fetch(`/resume/getResume/${userID}`);
+    const response = await fetch(`https://connectin-api.onrender.com/resume/getResume/${userID}`);
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -66,7 +66,7 @@ const [coverLetterExists, setCoverLetterExists] = useState(false);
   };
 
   const downloadCoverLetter = async () => {
-    const response = await fetch(`/resume/getCoverLetter/${userID}`);
+    const response = await fetch(`https://connectin-api.onrender.com/resume/getCoverLetter/${userID}`);
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -78,8 +78,8 @@ const [coverLetterExists, setCoverLetterExists] = useState(false);
 
   useEffect(() => {
   const fetchUserFiles = async () => {
-    const resumeResponse = await fetch(`/resume/getResume/${userID}`);
-    const coverLetterResponse = await fetch(`/resume/getCoverLetter/${userID}`);
+    const resumeResponse = await fetch(`https://connectin-api.onrender.com/resume/getResume/${userID}`);
+    const coverLetterResponse = await fetch(`https://connectin-api.onrender.com/resume/getCoverLetter/${userID}`);
     if (resumeResponse.status === 200) {
       setResumeExists(true);
     }

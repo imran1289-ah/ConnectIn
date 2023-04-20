@@ -1,0 +1,228 @@
+.body {
+  height: 100vh;
+}
+
+.userTimelineContainer {
+  display: flex;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+  padding: 20px;
+}
+
+.writePost {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 70px;
+  width: auto;
+  border-radius: 15px;
+  margin: 20px;
+  height: auto;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.postTextField {
+  width: 93%;
+  margin: 10px 0 10px 10px !important;
+  height: auto;
+  border-radius: 10px;
+  background: #f4f2f2;
+}
+
+.userPostsTimeline {
+  min-height: 100px;
+  width: auto;
+  border-radius: 15px;
+  margin: 20px;
+  margin-bottom: 50px;
+  height: auto;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.companyPic {
+  margin-left: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 70%;
+}
+
+.connectionName{
+  font-size: 26px;
+  margin-left: 20px;
+}
+
+.userBio {
+  margin-left: 20px;
+}
+
+.connectionsInfo {
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  width: 300px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.contacts {
+  height: auto;
+  border-radius: 15px;
+  margin-bottom: auto;
+  width: auto;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.userNameTimeline {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+.middleTimeline {
+  width: clamp(30vw, 600px, 50vw);
+  padding: 0 15px;
+}
+
+.connectionsLinkTimeline {
+  font-size: 15px;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+.rightTimeline {
+  height: auto;
+  min-width: 350px;
+  border-radius: 15px;
+  margin-bottom: auto;
+  margin-top: 20px;
+  width: auto;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.leftTimeline {
+  height: auto;
+  min-height: 200px;
+  min-width: 220px;
+  border-radius: 15px;
+  margin-bottom: auto;
+  width: auto;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.postText {
+  margin: auto;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.subTitleTimeline {
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.subTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-left: 20px;
+}
+
+.body {
+  background-color: #ffffff;
+}
+
+@media screen and (max-width: 1020px) {
+  .userTimelineContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+      "left contacts"
+      "middle middle";
+    gap: 2em;
+  }
+
+  .leftTimeline {
+    grid-area: left;
+  }
+
+  .contacts {
+    grid-area: contacts;
+    max-height: 336px;
+    overflow-y: auto;
+  }
+
+  .middleTimeline {
+    grid-area: middle;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+/*Responsive for iphone 6 and up*/
+@media screen and (max-width: 600px) {
+  .userTimelineContainer {
+    display: block;
+  }
+
+  .middleTimeline {
+    margin: auto;
+  }
+
+  .postTextField {
+    width: 85%;
+    height: 50px;
+  }
+
+  .rightTimeline {
+    width: auto;
+    margin: 10px;
+  }
+
+  .connectionNameTimeline {
+    margin-left: 40px;
+    font-size: 26px;
+  }
+
+  .userPostsTimeline {
+    width: auto;
+  }
+  .userInformationTimeline {
+    min-height: 60px;
+    width: auto;
+    margin: 10px;
+  }
+}
+
+@media (min-device-width: 600px) and (max-device-width: 768px) {
+  .userTimelineContainer {
+    display: block;
+  }
+
+  .rightTimeline {
+    width: auto;
+    margin: 20px;
+  }
+
+  .postTextField {
+    width: 92%;
+    height: 50px;
+  }
+
+  .userPostsTimeline {
+    width: auto;
+  }
+
+  .userInformationTimeline {
+    min-height: 80px;
+    width: auto;
+  }
+}

@@ -18,11 +18,11 @@
 .searchArea {
   display: flex;
   justify-content: center;
-  width: 40%;
+  width: 35%;
 }
 
 .searchInput {
-  width: 400px;
+  width: 300px;
   height: 40px;
   background: #edf1f7;
   border-radius: 4px;
@@ -69,12 +69,33 @@
 }
 
 /*To be changed later*/
-@media (min-device-width: 768px) and (max-device-width: 1024px) {
+@media (min-device-width: 768px) and (max-device-width: 1023px) {
   .searchArea {
     display: none;
   }
 
   .userButtons {
     display: none;
+  }
+}
+
+@media (min-device-width: 1024px) and (max-device-width: 1339px) {
+  .searchInput {
+    width: 200px;
+  }
+
+  .WebLogo {
+    font-size: 15px;
+
+  }
+
+  .parentUserIconContainer {
+    margin-right: -5px;
+  }
+}
+
+@media (min-device-width: 1340px) and (max-device-width: 1400px) {
+  .parentUserIconContainer {
+    margin-right: 5px;
   }
 }

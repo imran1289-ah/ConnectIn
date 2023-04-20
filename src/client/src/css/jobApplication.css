@@ -1,93 +1,159 @@
-.JAPContainer{
-    margin-top: 50px;
-    text-align: center;
-    border-radius: 10%;
-    width: 95%;
-    height: 500px;
-    margin:auto;
-    margin-top: 30px;
-    padding: auto;
-    border: 2px #19718d solid;
-    display: flex;
-    flex-direction: row;
-    align-content: space-evenly;
-
+.JAPContainer {
+  margin-top: 50px;
+  text-align: center;
+  border-radius: 10%;
+  width: 95%;
+  height: 500px;
+  margin: auto;
+  margin-top: 30px;
+  padding: auto;
+  display: flex;
+  flex-direction: row;
+  align-content: space-evenly;
 }
 .JAPContainer .jobDetails {
-    border: 1px white solid;
-    width: 500px;
-    border-radius: 10px;
-    height: 80%;
-    margin: 50px;
-    margin-left: 100px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 7px 0px;
-
+  border: 1px white solid;
+  width: 800px;
+  border-radius: 10px;
+  height: 100%;
+  margin: 50px;
+  margin-left: 100px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 7px 0px;
+}
+.JAPContainer .jobDetails .desc {
+  padding: 15px;
 }
 
 .JAPContainer .jobApplicationForm {
-    border-radius: 10px;
-    height: 80%;
-    margin: 50px;
-    
+  border-radius: 10px;
+  height: 80%;
+  margin: 50px;
 }
-.JAPContainer button{
-    width: 50px;
-    height: 10%;
-    margin:25px;
-    margin-right:0px
+.JAPContainer button {
+  width: 50px;
+  height: 10%;
+  margin: 25px;
+  margin-right: 0px;
 }
-
 
 .JAPContainer .uploadButton {
-
-    border-radius: 10px;
-    background-color: #19718d;
-    font-size: 14px;
-    margin: 15px;
+  border-radius: 10px;
+  background-color: #19718d;
+  font-size: 14px;
+  margin: 15px;
 }
 
 .JAPContainer .uploadButton:hover {
-
-    border-radius: 10px;
-    background-color: #19718d;
-    font-size: 14px;
-    margin: 15px;
+  border-radius: 10px;
+  background-color: #19718d;
+  font-size: 14px;
+  margin: 15px;
 }
 
 .JAPContainer .sendApplicationButton {
-
-    border-radius: 10px;
-    background-color: #19718d;
-    font-size: 14px;
-    margin: 15px;
+  border-radius: 10px;
+  background-color: #19718d;
+  font-size: 14px;
+  margin: 15px;
 }
 .JAPContainer .sendApplicationButton:hover {
-
-    border-radius: 10px;
-    background-color: #19718d;
-    font-size: 14px;
-    margin: 15px;
+  border-radius: 10px;
+  background-color: #19718d;
+  font-size: 14px;
+  margin: 15px;
 }
 
 .JAPContainer .textbox {
-    margin: 35px;
+  margin: 15px;
 }
 
+@media all and (max-width: 1100px) {
+  .JAPContainer {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    height: 600px;
+    margin-bottom: 100px;
+  }
 
-@media all and (max-width:800px) {
-    .JAPContainer{
-        width: auto;
-    }
-    
-    
+  .JAPContainer .jobDetails {
+    width: 80%;
+    margin-top: -50px;
+  }
+
+  .JAPContainer .jobApplicationForm {
+    display: flex;
+    flex-direction: row;
+    margin-top: -30px;
+    margin-left: 85px;
+  }
 }
 
-@media all and (max-width:445px) {
-    .JAPContainer{
-        width: auto;
-    }
-    .JAPContainer .Textbox{
-        margin: 15px;
-    }
-    
+@media all and (max-width: 810px) {
+  .JAPContainer {
+    width: 550px;
+    height: 1000px;
+    margin-bottom: 100px;
+  }
+
+  .JAPContainer .jobDetails {
+    width: 75%;
+  }
+
+  .JAPContainer .jobApplicationForm {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    margin: none;
+  }
+}
+
+@media all and (max-width: 560px) {
+  .JAPContainer {
+    width: 450px;
+    height: max-content;
+  }
+
+  .JAPContainer .jobDetails {
+    width: 60%;
+  }
+
+  .JAPContainer .jobApplicationForm {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    margin-right: none;
+  }
+}
+
+@media all and (max-width: 460px) {
+  .JAPContainer {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 1200px;
+    border: none;
+    height: 1100px;
+  }
+
+  .JAPContainer .jobDetails {
+    width: 390px;
+    margin-top: 50px;
+    margin-left: -50px;
+  }
+
+  .JAPContainer .jobApplicationForm {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin: none;
+  }
+
+  .JAPContainer button {
+    width: 50px;
+    height: 10%;
+    margin: -10px;
+    margin-right: 0px;
+    right: 15px;
+  }
 }

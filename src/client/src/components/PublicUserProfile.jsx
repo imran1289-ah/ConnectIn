@@ -141,39 +141,35 @@ const PublicUserProfile = () => {
     }
   };
 
-  
   const Friends = async (friendUserid, fname, lname) => {
     // console.log(ownUserId)
     // console.log(friendUserid)
     return new Promise((resolve, reject) => {
-
       axios
-      .post(`https://connectin-api.onrender.com/users/searchfriendslist`, {
+        .post(`https://connectin-api.onrender.com/users/searchfriendslist`, {
           ownUserID: sessionStorage.getItem("userID"),
           friendUserid: friendUserid,
-          firstname:fname,
-          lastname:lname,
-      }).then((response) => {
-        var friend = response.data;
-        //console.log(response.data);
-        if(friend){ swal(
-          t("Congrats!"),
-          t("You are already connected"),
-          "error",
-          {
-            button: false,
-            timer: 1000,
+          firstname: fname,
+          lastname: lname,
+        })
+        .then((response) => {
+          var friend = response.data;
+          //console.log(response.data);
+          if (friend) {
+            swal(t("Congrats!"), t("You are already connected"), "error", {
+              button: false,
+              timer: 1000,
+            });
+          } else {
+            Clickme(`${friendUserid}`);
           }
-        );}
-        else{Clickme(`${friendUserid}`)}
 
-
-        resolve(friend);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    })
+          resolve(friend);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
   };
 
   return (
@@ -198,7 +194,13 @@ const PublicUserProfile = () => {
                   <div className="connectButtonSection">
                     <button
                       className="connectButton"
-                      onClick={() => Friends(`${publicUser._id}`,`${publicUser.firstname}`, `${publicUser.lastname}`)}
+                      onClick={() =>
+                        Friends(
+                          `${publicUser._id}`,
+                          `${publicUser.firstname}`,
+                          `${publicUser.lastname}`
+                        )
+                      }
                     >
                       {t("Connect")}
                     </button>
@@ -213,6 +215,7 @@ const PublicUserProfile = () => {
                   ? publicUser.bio
                   : t("The user did not add a biogragphy")}
               </p>
+              <br></br>
             </div>
             <div className="userJobInformation">
               <span className="subTitle">{t("Work Experience")}</span>

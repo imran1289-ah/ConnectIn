@@ -146,9 +146,9 @@ const fetchSession = async () => {
             <button onClick = {backFunction}><ArrowBackIcon/></button>
 
             <div className="jobDetails">
-            <h1>{t("You're applying for the following job")}:</h1>
+            <h1>{t("Job Application")}:</h1>
             <p> {t("Title")}: {job.jobState.title}</p>
-            <p> Description: {job.jobState.description}</p>
+            <p className="desc">Description: {job.jobState.description}</p>
             <p>{t("Salary")}: ${job.jobState.salary}</p>
             <p>{t("Category")}: {job.jobState.category}</p>
             <p>{t("Location")}: {job.jobState.location}</p>

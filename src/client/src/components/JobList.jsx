@@ -16,7 +16,10 @@ import {
   Button,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import JobListCSS from "../css/JobList.module.css";
 import "../css/JobList.css";
+import Navbar from "./Navbar";
+import LoginFooter from "./LoginFooter"
 
 const JobList = () => {
   const [jobs, setJobs] = useState([]);
@@ -62,30 +65,44 @@ const JobList = () => {
 
   const handleDelete = async (job_id) => {
     try {
-      await axios
-        .post(`https://connectin-api.onrender.com/jobs/delete/${job_id}`)
-        .then(swal(t("Job successfully deleted!")));
-      setJobs(jobs.filter((job) => job.job_id !== job_id));
+      // Display confirmation dialog using swal
+      swal({
+        title: t("Are you sure?"),
+        text: t("This action cannot be undone!"),
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then(async (willDelete) => {
+        if (willDelete) {
+          await axios.post(`https://connectin-api.onrender.com/jobs/delete/${job_id}`);
+          swal(t("Job successfully deleted!"));
+          setJobs(jobs.filter((job) => job.job_id !== job_id));
+        } else {
+          swal(t("Job deletion canceled!"));
+        }
+      });
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className="RecruiterJobs">
-      <h1 className="title">{t("Job Postings Summary")}</h1>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>{t("Job Title")}</TableCell>
-              <TableCell>{t("Company")}</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>{t("Salary")}</TableCell>
-              <TableCell>{t("Location")}</TableCell>
-              <TableCell>{t("Category")}</TableCell>
-              <TableCell>{t("Work Type")}</TableCell>
-              <TableCell>Action</TableCell>
+<div className={JobListCSS.body}>
+      <Navbar />
+      <div className="RecruiterJobs">
+        <h1 className="pageTitle">{t("Job Postings Summary")}</h1>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>{t("Job Title")}</TableCell>
+                <TableCell>{t("Company")}</TableCell>
+                <TableCell>Description</TableCell>
+                <TableCell>{t("Salary")}</TableCell>
+                <TableCell>{t("Location")}</TableCell>
+                <TableCell>{t("Category")}</TableCell>
+                <TableCell>{t("Work Type")}</TableCell>
+                <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -111,11 +128,14 @@ const JobList = () => {
                     {t("Delete")}
                   </Button>
                 </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+      <LoginFooter />
     </div>
   );
 };

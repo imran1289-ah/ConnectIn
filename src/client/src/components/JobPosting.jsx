@@ -27,7 +27,7 @@ const JobPosting = () => {
     try {
       if (userID) {
         setLogin({
-          isLoggedIn: true
+          isLoggedIn: true,
         });
       }
     } catch (error) {
@@ -70,7 +70,6 @@ const JobPosting = () => {
       const location = document.getElementById("location").value;
       const workType = document.getElementById("work_type").value;
 
-  
       if (
         !title ||
         !company ||
@@ -83,16 +82,16 @@ const JobPosting = () => {
       ) {
         swal(
           isNaN(salary)
-            ? "Please enter numbers in salary"
-            : "Please fill all required fields"
+            ? t("Please enter numbers in salary")
+            : t("Please fill all required fields")
         );
         return;
       }
-  
+
       const jobData = {
         job_id: Math.floor(Math.random() * 1000000), // generate a random job_id
         recruiter_id: sessionStorage.getItem("userID"),
-  
+
         title,
         company,
         description,
@@ -101,20 +100,20 @@ const JobPosting = () => {
         location,
         work_type: workType,
         thirdParty: document.getElementById("checkbox").value,
-        jobLink: link
+        jobLink: link,
       };
-  
+
       const response = await axios.post(
         `https://connectin-api.onrender.com/jobs/create`,
         jobData
       );
       swal({
-        title: "Job posting created successfully!",
+        title: t("Job posting created successfully!"),
         icon: "success",
       }).then(() => {
         window.location.href = "/jobs"; // Redirect to Jobs
       });
-  
+
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -125,6 +124,51 @@ const JobPosting = () => {
     return (
       <div className="Jobpostingform">
         <h1 className="titleofpage">{t("Job Posting Page")}</h1>
+        <div className="form">
+          <div className="title">
+            <TextField
+              id="job_title"
+              label={t("Job Title")}
+              variant="outlined"
+            />
+          </div>
+          <br />
+          <br />
+          <div className="company">
+            <TextField
+              id="company_name"
+              label={t("Company")}
+              variant="outlined"
+            />
+          </div>
+          <br />
+          <br />
+          <div className="description">
+            <TextField
+              id="job_description"
+              label="Description"
+              placeholder="Placeholder"
+              multiline
+              variant="outlined"
+            />
+          </div>
+          <br />
+          <br />
+          <div className="salary">
+            <TextField id="salary" label={t("Salary")} variant="outlined" />
+          </div>
+          <br />
+          <br />
+          <div className="location">
+            <TextField
+              id="location"
+              label={t("Location")}
+              placeholder="Placeholder"
+              multiline
+              variant="outlined"
+            />
+          </div>
+          {/* <br />
         <div className="title">
           <TextField id="job_title" label={t("Job Title")} variant="outlined" />
           <FaRegEdit />
@@ -132,13 +176,23 @@ const JobPosting = () => {
         <br />
         <br />
         <div className="company">
-          <TextField id="company_name" label={t("Company")} variant="outlined" />
+          <TextField
+            id="company_name"
+            label={t("Company")}
+            variant="outlined"
+          />
           <FaRegEdit />
         </div>
         <br />
         <br />
         <div className="description">
-          <TextField id="job_description" label="Description" placeholder="Placeholder" multiline variant="outlined" />
+          <TextField
+            id="job_description"
+            label="Description"
+            placeholder="Placeholder"
+            multiline
+            variant="outlined"
+          />
           <FaRegEdit />
         </div>
         <br />
@@ -150,7 +204,13 @@ const JobPosting = () => {
         <br />
         <br />
         <div className="location">
-          <TextField id="location" label={t("Location")} placeholder="Placeholder" multiline variant="outlined" />
+          <TextField
+            id="location"
+            label={t("Location")}
+            placeholder="Placeholder"
+            multiline
+            variant="outlined"
+          />
           <FaRegEdit />
         </div>
         {/* <br />
@@ -159,71 +219,90 @@ const JobPosting = () => {
           <TextField id="job_link" label="Job Link" variant="outlined" onChange={e => setLink(e.target.value)} />
           <FaRegEdit />
         </div> */}
-        <br />
-        <br />
-        <div className="selection">
-          <div className="category">
-            <select id="category" onChange={e => setSelects(e.target.value)}>
-              <option label="Category..."></option>
-              <option value="Full-Time">{t("Full-Time")}</option>
-              <option value="Part-Time">{t("Part-Time")}</option>
-              <option value="Internship">{t("Internship")}</option>
-            </select>
-          </div>
-          <div className="work_type">
-            <select id="work_type" onChange={e => setSelects(e.target.value)}>
-              <option label="Worktype..."></option>
-              <option value="onSite">{t("On-Site")}</option>
-              <option value="Remote">{t("Remote")}</option>
-              <option value="Hybrid">{t("Hybrid")}</option>
-            </select>
-          </div>
-        </div>
-        <br />
-        <div className="checkbox">
-          <label>
-            <input
-              type="checkbox"
-              id="checkbox"
-              checked={checked}
-              value={checked}
-              onChange={() => {
-                setChecked(!checked);
-              }}
-            />
-            {t("Advertise jobs to third party platform")}
-          </label>
-        </div>
-        <div className="jobAd">
           <br />
-          {checked ? (
-            <div className="jobLink">
-              <TextField id="job_link" label="Job Link" variant="outlined" onChange={e => setLink(e.target.value)} />
+          <br />
+          <div className="selection">
+            <div className="category">
+              <select
+                id="category"
+                onChange={(e) => setSelects(e.target.value)}
+              >
+                <option label={t("Category")}></option>
+                <option value="Full-Time">{t("Full-Time")}</option>
+                <option value="Part-Time">{t("Part-Time")}</option>
+                <option value="Internship">{t("Internship")}</option>
+              </select>
             </div>
-          ) : (
-            ""
-          )}
-          {checked ? <br /> : ""}
-          {checked ? "Your job will be advertised on a third party platform!" : ""}
+            <div className="work_type">
+              <select
+                id="work_type"
+                onChange={(e) => setSelects(e.target.value)}
+              >
+                <option label={t("Work type")}></option>
+                <option value="onSite">{t("On-Site")}</option>
+                <option value="Remote">{t("Remote")}</option>
+                <option value="Hybrid">{t("Hybrid")}</option>
+              </select>
+            </div>
+          </div>
+          <br />
+          <div className="checkbox">
+            <label>
+              <input
+                type="checkbox"
+                id="checkbox"
+                checked={checked}
+                value={checked}
+                onChange={() => {
+                  setChecked(!checked);
+                }}
+              />
+              {t("Advertise jobs to third party platform")}
+            </label>
+          </div>
+          <div className="jobAd">
+            <br />
+            {checked ? (
+              <div className="jobLink">
+                <TextField
+                  id="job_link"
+                  label={t("Job Link")}
+                  variant="outlined"
+                  onChange={(e) => setLink(e.target.value)}
+                />
+              </div>
+            ) : (
+              ""
+            )}
+            {checked ? <br /> : ""}
+            {checked ? (
+              <div className="thirdparty">
+                {t("Your job will be advertised on a third party platform!")}
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+          <br />
+          <br />
+          <button className="button" onClick={() => createJob()}>
+            {t("Post/Save")}
+          </button>
         </div>
-        <br />
-        <br />
-        <button className="button" onClick={() => createJob()}>
-          {t("Post/Save")}
-        </button>
       </div>
     );
   } else {
     return (
       <div className="Jobpostingform">
-        <h1 style={{ textAlign: "center" }}>{t("You need to be a recruiter or an administrator to post jobs!")}</h1>
+        <h1 style={{ textAlign: "center" }}>
+          {t("You need to be a recruiter or an administrator to post jobs!")}
+        </h1>
       </div>
     );
   }
 };
 
 export default JobPosting;
-
 
 const getJobs = async () => {
   try {

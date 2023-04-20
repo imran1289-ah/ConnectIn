@@ -1,30 +1,32 @@
-.header{
+.header {
     margin: 0px;
 }
 
-.chatBox{
-  height: auto;
-  overflow-y: auto;
+.chatBox {
+    height: auto;
+    overflow-y: auto;
+    max-width: 100%;
 }
 
 .header {
-  text-align: left;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 20px;
-  padding-right: 20px;
-  font-size: x-large;
-  font-weight: bold;
+    text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: x-large;
+    font-weight: bold;
+    max-width: 100%;
 }
 
 .line {
-  color: #19718d;
-  background: #19718d;
-  height: 1px;
-  margin: 0;
+    color: #19718d;
+    background: #19718d;
+    height: 1px;
+    margin: 0;
 }
 
-.container{
+.container {
     background: white;
     flex-grow: 2;
     flex-direction: column;
@@ -32,86 +34,96 @@
 }
 
 .input {
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  padding-top: 5px;
-  padding-bottom: 5px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .sent {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-right: 1em;
-  padding-left: 70%;
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  /* border-style: solid; */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 1em;
+    padding-left: 70%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    /* border-style: solid; */
 }
 
 .kebabButton {
-  display: inline;
-  background-color: snow;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 6px;
-  border-style: none;
-  border-radius: 7px;
-  padding: 5px;
-  transition-duration: 0.3s;
+    display: inline;
+    background-color: snow;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 6px;
+    border-style: none;
+    border-radius: 7px;
+    padding: 5px;
+    transition-duration: 0.3s;
 }
 
 .kebabButton:hover {
-  cursor: pointer;
-  background-color: lightgray;
+    cursor: pointer;
+    background-color: lightgray;
 }
 
 .kebabButton:active {
-  background: #19718d;
+    background: #19718d;
 }
 
 .received .kebabButton {
-  visibility: hidden;
-  opacity: 0;
-  transition-duration: 0.2s;
+    visibility: hidden;
+    opacity: 0;
+    transition-duration: 0.2s;
 }
 
 .received:hover .kebabButton {
-  visibility: visible;
-  opacity:1;
+    visibility: visible;
+    opacity: 1;
 }
 
 .received {
-  overflow-wrap: break-word;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 1em;
-  padding-right: 70%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+    overflow-wrap: break-word;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 1em;
+    padding-right: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .textSent {
-  background: rgb(28, 137, 201);
-  width: auto;
-  text-align: right;
-  color: white;
-  border-radius: 15px 15px 2px 15px;
-  padding: 10px;
-  word-wrap: break-word;
+    background: rgb(28, 137, 201);
+    width: auto;
+    text-align: right;
+    color: white;
+    border-radius: 15px 15px 2px 15px;
+    padding: 10px;
+    word-wrap: break-word;
 }
 
 .textReceived {
-  background: rgb(204, 204, 204);
-  width: auto;
-  text-align: left;
-  color: black;
-  border-radius: 15px 15px 15px 2px;
-  padding: 10px; 
-  word-wrap: break-word;
+    background: rgb(204, 204, 204);
+    width: auto;
+    text-align: left;
+    color: black;
+    border-radius: 15px 15px 15px 2px;
+    padding: 10px;
+    word-wrap: break-word;
 }
 
 .messagesContainer {
-  overflow-y: auto;
+    overflow-y: auto;
+}
+
+@media (min-width: 330px) and (max-width: 600px) {
+    .chatBox {
+        max-width: 95%;
+        overflow-x: auto;
+    }
+    .container {
+        max-width: 95%;
+    }
 }

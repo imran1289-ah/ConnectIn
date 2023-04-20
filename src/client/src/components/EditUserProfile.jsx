@@ -29,6 +29,9 @@ const EditUserProfile = () => {
   const [login, setLogin] = useContext(Context);
   const { t, i18n } = useTranslation();
 
+  const [resumeExists, setResumeExists] = useState(false);
+const [coverLetterExists, setCoverLetterExists] = useState(false);
+
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
 
@@ -73,6 +76,24 @@ const EditUserProfile = () => {
     URL.revokeObjectURL(url);
   };
 
+  useEffect(() => {
+  const fetchUserFiles = async () => {
+    const resumeResponse = await fetch(`/resume/getResume/${userID}`);
+    const coverLetterResponse = await fetch(`/resume/getCoverLetter/${userID}`);
+    if (resumeResponse.status === 200) {
+      setResumeExists(true);
+    }
+    if (coverLetterResponse.status === 200) {
+      setCoverLetterExists(true);
+    }
+  };
+  if (userID) {
+    fetchSession();
+    fetchUserFiles();
+  }
+}, []);
+
+
   const navigate = useNavigate();
 
   const submitEditProfile = async (e) => {
@@ -113,31 +134,40 @@ const EditUserProfile = () => {
   };
 
   const languagesChange = () => {
-    setUserData({ ...userData, languages: [...userData.languages, languages] });
-    setLanguages("");
+    if (languages.length !== 0) {
+      setUserData({ ...userData, languages: [...userData.languages, languages] });
+      setLanguages("");
+    }
   };
 
   const educationChange = () => {
-    setUserData({ ...userData, education: [...userData.education, education] });
-    setEducation("");
+    if (education.length !== 0) {
+      setUserData({ ...userData, education: [...userData.education, education] });
+      setEducation("");
+    }
   };
 
   const skillsChange = () => {
-    setUserData({ ...userData, skills: [...userData.skills, skills] });
-    setSkills("");
+    if (skills.length !== 0) {
+      setUserData({ ...userData, skills: [...userData.skills, skills] });
+      setSkills("");
+    }
+
   };
 
   const workExpChange = () => {
-    setUserData({ ...userData, workExp: [...userData.workExp, workExp] });
-    setWorkExp("");
+    if (workExp.length !== 0) {
+      setUserData({ ...userData, workExp: [...userData.workExp, workExp] });
+      setWorkExp("");
+    }
+    
   };
 
   const volunteeringChange = () => {
-    setUserData({
-      ...userData,
-      volunteering: [...userData.volunteering, volunteering],
-    });
-    setVolunteering("");
+    if (volunteering.length !== 0) {
+      setUserData({...userData, volunteering: [...userData.volunteering, volunteering] });
+      setVolunteering("");
+    }
   };
   const handleResumeChange = (e) => {
     setResume(e.target.files[0]);
@@ -189,6 +219,13 @@ const EditUserProfile = () => {
                   onChange={(e) => setWorkExp(e.target.value)}
                 />
               </label>
+               {(userData.workExp.length !== 0 ?
+                (<div className="editChanges">
+                  {userData.workExp.map(exp =><span style={{color: "black"}}>{exp}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "black"}}>, </span>, curr])}
+                </div>) 
+              : (<div></div>)
+              )}      
               <br />
               <div className="list-button">
                 <button type="button" onClick={educationChange}>
@@ -203,6 +240,13 @@ const EditUserProfile = () => {
                   onChange={(e) => setEducation(e.target.value)}
                 />
               </label>
+              {(userData.education.length !== 0 ?
+                (<div className="editChanges">
+                  {userData.education.map(education =><span style={{color: "black"}}>{education}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "black"}}>, </span>, curr])}
+                </div>) 
+              : (<div></div>)
+              )}
               <br />
             </div>
             <div className="edit-left-side">
@@ -219,6 +263,13 @@ const EditUserProfile = () => {
                   onChange={(e) => setSkills(e.target.value)}
                 />
               </label>
+              {(userData.skills.length !== 0 ?
+                (<div className="editChanges">
+                  {userData.skills.map(skill =><span style={{color: "black"}}>{skill}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "black"}}>, </span>, curr])}
+                </div>) 
+              : (<div></div>)
+              )}
               <br />
               <div className="list-button">
                 <button type="button" onClick={languagesChange}>
@@ -233,6 +284,13 @@ const EditUserProfile = () => {
                   onChange={(e) => setLanguages(e.target.value)}
                 />
               </label>
+              {(userData.languages.length !== 0 ?
+                (<div className="editChanges">
+                  {userData.languages.map(language =><span style={{color: "black"}}>{language}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "black"}}>, </span>, curr])}
+                </div>) 
+              : (<div></div>)
+              )}
               <br />
               <div className="list-button">
                 <button type="button" onClick={volunteeringChange}>
@@ -247,6 +305,13 @@ const EditUserProfile = () => {
                   onChange={(e) => setVolunteering(e.target.value)}
                 />
               </label>
+              {(userData.volunteering.length !== 0 ?
+                (<div className="editChanges">
+                  {userData.volunteering.map(volunteering =><span style={{color: "black"}}>{volunteering}</span>)
+                  .reduce((prev,curr) => [prev, <span style={{color: "black"}}>, </span>, curr])}
+                </div>) 
+              : (<div></div>)
+              )}
               <br />
               <label>
                 Resume
@@ -256,9 +321,11 @@ const EditUserProfile = () => {
                   onChange={handleResumeChange}
                 />
               </label>
-              <button type="button" onClick={downloadResume}>
+             {resumeExists && (
+  <button onClick={downloadResume}>
                 {t("Download Resume")}
               </button>
+              )}
               <br />
               <label>
                 {t("Cover Letter")}
@@ -268,9 +335,11 @@ const EditUserProfile = () => {
                   onChange={handleCoverLetterChange}
                 />
               </label>
-              <button onClick={downloadCoverLetter}>
+              {coverLetterExists && (
+  <button onClick={downloadCoverLetter}>
                 {t("Download CoverLetter")}
               </button>
+                )}
             </div>
           </div>
           <div className="submit-button">

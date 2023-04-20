@@ -1,0 +1,110 @@
+#AdmineditPostcontainer {
+  min-height: 50vh;
+}
+
+.AdminInputJobDescription {
+  background: rgba(255, 254, 254, 0.6);
+  border: 1px solid #2d3d77;
+  border-radius: 10px;
+  width: 400px;
+  height: 200px;
+  text-align: center;
+}
+.AdminInputJobDescription ::placeholder {
+  padding-top: 80px;
+  line-height: 40px;
+}
+
+.AdminWrapperEditPost {
+  justify-content: center;
+  top: 70%;
+  margin: auto;
+  text-align: center;
+  position: relative;
+  width: auto;
+  border-radius: 70px;
+  min-height: 90vh;
+}
+
+.AdminTitle {
+  font-style: normal;
+  color: hwb(0 0% 100%);
+  text-align: center;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 72px;
+}
+
+.AdminPlaceholderEditPost {
+  font-style: normal;
+  color: hsl(0, 0%, 0%);
+  font-weight: bold;
+  font-size: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 30px;
+}
+
+.AdminLinkEditPost {
+  font-style: normal;
+  color: hsl(0, 0%, 0%);
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+  margin-right: 10%;
+}
+
+.AdminInput {
+  background: rgba(255, 254, 254, 0.6);
+  border: 1px solid #2d3d77;
+  border-radius: 10px;
+  width: 400px;
+  height: 30px;
+  text-align: center;
+}
+
+.AdminSaveButton {
+  box-sizing: border-box;
+  background: #cfb79d;
+  border: 1px solid #000000;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 70px;
+  width: 150px;
+  height: 30px;
+}
+
+/* Responsive to Iphone 6 and above */
+@media (min-width: 330px) and (max-width: 600px) {
+  .AdminWrapperEditPost {
+    position: relative;
+    margin: auto;
+    text-align: center;
+    height: auto;
+    width: 330px;
+    top: 65%;
+  }
+
+  #AdmineditPostcontainer {
+    min-height: 15vh;
+  }
+
+  .AdminFormEditPost {
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+    width: auto;
+  }
+
+  .AdminInput {
+    width: 270px;
+  }
+
+  .AdminSaveButton {
+    margin-top: 10%;
+    margin-left: auto;
+  }
+  .AdminTitle {
+    font-size: 22px;
+  }
+}

@@ -1,6 +1,6 @@
 import { margin } from "@mui/system";
 import React, { useState, useEffect, useContext } from "react";
-import waitingConnectionsCSS from "../css/waitingConnections.module.css";
+import "../css/waitingConnections.css";
 import axios from "axios";
 import Navbar from "./Navbar";
 import LoginFooter from "./LoginFooter"
@@ -132,37 +132,40 @@ const WaitingConnections = () => {
 
   return (
     //Connection request acceptance or denial page
-    <div className={waitingConnectionsCSS.body}>
-      <Navbar /> 
+    <div>
       {userID && login ? (
-        <div className={waitingConnectionsCSS.background}>
+        <div className="background">
           <h1>{t("Pending connections requests")}</h1>
+          {
+            userRequests.length < 1 ? (<p> {t("You have no connection requests!")}</p>):(<></>)
+          }
           {userRequests.map((object) => (
-            <div className={waitingConnectionsCSS.userWaitingConnection}>
-              <div className={waitingConnectionsCSS.connectionDisplay}>
-                <div>
-                  <table>
-                    <tr>
-                      <td>
+            <div className="userWaitingConnection">
+              <div className="connectionDisplay">
+                <div className="anotherdiv" > 
+                  <table className="connectionsTable">
+                    <tr className="connectionsTableRowAndColumn ">
+                      <td className="connectionsTableRowAndColumn ">
                         <img
                           margin="20px"
                           src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
                           alt="comapnyPic"
-                          className={waitingConnectionsCSS.companyPic}
+                          className="companyPic"
                         ></img>
                       </td>
-                      <td>
-                        <h3 position={"center"}>
+                      <td className="connectionsTableRowAndColumn ">
+                        <h3>
                           {object.firstname} {object.lastname}
                         </h3>
+                        
                       </td>
-                      <td>
+                      <td className="connectionsTableRowAndColumn ">
                         {/* <img src = './images/acceptButton' alt= "bad"
                   >
                     
                   </img>  */}
                         <button
-                          className={waitingConnectionsCSS.acceptButton}
+                          className= "acceptButton"
                           onClick={() =>
                             Acceptbutton(
                               `${object.firstname}`,
@@ -173,10 +176,8 @@ const WaitingConnections = () => {
                         >
                           {t("Accept")}
                         </button>
-                      </td>
-                      <td>
-                        <button
-                          className={waitingConnectionsCSS.rejectButton}
+                                                <button
+                          className="rejbectButton"
                           onClick={() =>
                             DeleteWaitingConnection(
                               `${object.firstname}`,
@@ -188,6 +189,9 @@ const WaitingConnections = () => {
                           {t("Reject")}
                         </button>
                       </td>
+                      <td className="connectionsTableRowAndColumn ">
+
+                      </td>
                     </tr>
                   </table>
                 </div>
@@ -198,7 +202,6 @@ const WaitingConnections = () => {
       ) : (
         <h1 style={{ textAlign: "center" }}>Please login to your account</h1>
       )}
-      <LoginFooter />
     </div>
   );
 };

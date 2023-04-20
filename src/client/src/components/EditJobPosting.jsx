@@ -48,7 +48,7 @@ function EditJobPosting() {
   };
 
   const fetchData = async () => {
-    axios.get(`http://localhost:9000/jobs/edit/${jobId}`).then(response => {
+    axios.get(`https://connectin-api.onrender.com/jobs/edit/${jobId}`).then(response => {
       setjobData(response.data);
     });
   };
@@ -56,7 +56,7 @@ function EditJobPosting() {
   const savePost = async e => {
     e.preventDefault();
     axios
-      .post(`http://localhost:9000/jobs/edit/${jobId}`, {
+      .post(`https://connectin-api.onrender.com/jobs/edit/${jobId}`, {
         job_id: jobData.job_id,
         title: jobData.title,
         company: jobData.company,

@@ -15,6 +15,9 @@ dotenv.config();
 //Session length
 const session_length = 1000 * 60 * 60;
 
+//Set proxy
+app.set("trust proxy", 1);
+
 //MongoDB seission store
 const mongoDBstore = new MongoDBStore({
   uri: process.env.DATABASE,
@@ -22,26 +25,29 @@ const mongoDBstore = new MongoDBStore({
 });
 
 app.use(
-  session({
-    secret: "secret123",
-    name: "user_session_id",
-    store: mongoDBstore,
-    cookie: {
-      maxAge: session_length,
-      sameSite: false,
-      secure: false,
-    },
-    resave: true,
-    saveUninitialized: false,
-  })
+    session({
+        secret: "secret123",
+        name: "user_session_id",
+        store: mongoDBstore,
+        cookie: {
+            maxAge: session_length,
+            sameSite: false,
+            secure: true,
+        },
+        resave: true,
+        saveUninitialized: false,
+    })
+
 );
 
 //Cors middleware to accept request from client
 app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
+
+    cors({
+        origin: "https://connectin.vercel.app",
+        credentials: true,
+    })
+
 );
 
 //Supress DeprecationWarning message
@@ -82,10 +88,11 @@ const server = app.listen(port, () => {
 });
 
 const socketApp = io(server, {
-  cors: {
-    origin: "http://localhost:3000",
-    credentials: true,
-  },
+    cors: {
+        origin: "https://connectin.vercel.app",
+        credentials: true,
+    },
+
 });
 
 socketApp.on("connection", (socket) => {

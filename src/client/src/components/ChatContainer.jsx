@@ -37,7 +37,7 @@ const ChatContainer = ({ currentChat, socket, room }) => {
     try {
       if (userID) {
         const response = await axios.post(
-          `http://localhost:9000/messages`,
+          `https://connectin-api.onrender.com/messages`,
           {
             from: userID,
             to: currentChat.userID,
@@ -47,7 +47,7 @@ const ChatContainer = ({ currentChat, socket, room }) => {
           if (
             message.downloadLink &&
             message.downloadLink !==
-              "http://localhost:9000/messages/download/null"
+              "https://connectin-api.onrender.com/messages/download/null"
           ) {
             message.message = (
               <a href={message.downloadLink} target="_blank" rel="noreferrer">
@@ -86,7 +86,7 @@ const ChatContainer = ({ currentChat, socket, room }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:9000/messages/addMessage",
+        "https://connectin-api.onrender.com/messages/addMessage",
         data
       );
 
@@ -98,6 +98,20 @@ const ChatContainer = ({ currentChat, socket, room }) => {
 
       if (response.data.downloadLink) {
         messageObject = {
+        from: userID,
+        to: currentChat.userID,
+        room: room,
+        value: new Date(Date.now()),
+        file: file,
+      });
+  
+      try {
+        const response = await axios.post(
+          "https://connectin-api.onrender.com/messages/addMessage",
+          data
+        );
+  
+        let messageObject = {
           fromSelf: true,
           message: (
             <a

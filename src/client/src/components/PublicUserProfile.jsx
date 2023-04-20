@@ -74,7 +74,7 @@ const PublicUserProfile = () => {
   const Clickme = async (userid) => {
     console.log(userid);
     axios
-      .post(`http://localhost:9000/users/searchuserlist`, {
+      .post(`https://connectin-api.onrender.com/users/searchuserlist`, {
         _id: userid,
         firstname: sessionStorage.getItem("firstname"),
         lastname: sessionStorage.getItem("lastname"),
@@ -100,7 +100,7 @@ const PublicUserProfile = () => {
   const fetchProfile = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:9000/users/profile/${profileId}`
+        `https://connectin-api.onrender.com/users/profile/${profileId}`
       );
       setPublicUser({
         _id: response.data._id,
@@ -125,7 +125,7 @@ const PublicUserProfile = () => {
     try {
       if (userID) {
         const response = await axios.get(
-          `http://localhost:9000/users/profile/${profileId}`
+          `https://connectin-api.onrender.com/users/profile/${profileId}`
         );
 
         setUserConnections({
@@ -146,7 +146,7 @@ const PublicUserProfile = () => {
     // console.log(friendUserid)
     return new Promise((resolve, reject) => {
       axios
-        .post(`http://localhost:9000/users/searchfriendslist`, {
+        .post(`https://connectin-api.onrender.com/users/searchfriendslist`, {
           ownUserID: sessionStorage.getItem("userID"),
           friendUserid: friendUserid,
           firstname: fname,

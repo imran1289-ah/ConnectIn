@@ -104,7 +104,7 @@ const JobPosting = () => {
       };
 
       const response = await axios.post(
-        `http://localhost:9000/jobs/create`,
+        `https://connectin-api.onrender.com/jobs/create`,
         jobData
       );
       swal({
@@ -306,7 +306,7 @@ export default JobPosting;
 
 const getJobs = async () => {
   try {
-    const response = await axios.get("/jobs");
+    const response = await axios.get("https://connectin-api.onrender.com/jobs");
     console.log(response.data);
   } catch (error) {
     console.log(error);

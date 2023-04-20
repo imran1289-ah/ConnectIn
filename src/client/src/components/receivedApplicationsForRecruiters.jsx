@@ -53,7 +53,7 @@ const ReceivedApplications = () => {
   };
 
   const fetchReceivedApplications = async () => {
-    const { data } = await axios.get(`http://localhost:9000/users/${userID}/receivedApplications`);
+    const { data } = await axios.get(`https://connectin-api.onrender.com/users/${userID}/receivedApplications`);
 
     setReceivedApplications(data);
   };
@@ -74,7 +74,7 @@ const styles = {
   
 
   const downloadResume = async (user_id) => {
-    const response = await fetch(`/resume/getResume/${user_id}`);
+    const response = await fetch(`https://connectin-api.onrender.com/resume/getResume/${user_id}`);
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -85,7 +85,7 @@ const styles = {
   };
 
   const downloadCoverLetter = async (user_id) => {
-    const response = await fetch(`/resume/getCoverLetter/${user_id}`);
+    const response = await fetch(`https://connectin-api.onrender.com/resume/getCoverLetter/${user_id}`);
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');

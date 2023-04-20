@@ -55,7 +55,7 @@ const JobList = () => {
 
   const fetchJobs = async () => {
     try {
-      const response = await axios.get(`http://localhost:9000/jobs/${userID}`);
+      const response = await axios.get(`https://connectin-api.onrender.com/jobs/${userID}`);
       console.log(userID);
       setJobs(response.data);
     } catch (error) {
@@ -74,7 +74,7 @@ const JobList = () => {
         dangerMode: true,
       }).then(async (willDelete) => {
         if (willDelete) {
-          await axios.post(`http://localhost:9000/jobs/delete/${job_id}`);
+          await axios.post(`https://connectin-api.onrender.com/jobs/delete/${job_id}`);
           swal(t("Job successfully deleted!"));
           setJobs(jobs.filter((job) => job.job_id !== job_id));
         } else {

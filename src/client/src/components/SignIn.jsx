@@ -16,11 +16,12 @@ const SignIn = () => {
   const [login, setLogin] = useContext(Context);
   const { t, i18n } = useTranslation();
 
+
   //HTTP Request to autenticate user
   const submitLogin = async (e) => {
     e.preventDefault();
     axios
-      .post("users/signin", {
+      .post("https://connectin-api.onrender.com/users/signin", {
         email: user,
         password: password,
       })
@@ -34,6 +35,9 @@ const SignIn = () => {
           return;
         }
         sessionStorage.setItem("userID", response.data.userSession.user_id);
+        sessionStorage.setItem("firstname", response.data.userSession.firstname);
+        sessionStorage.setItem("lastname", response.data.userSession.lastname);
+        sessionStorage.setItem("role", response.data.userSession.role);
         MessageRef.current.style.color = "#66FF00";
         MessageRef.current.innerHTML = t("Login Sucess. Welcome Back");
         setLogin({

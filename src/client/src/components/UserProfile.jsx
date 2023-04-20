@@ -73,7 +73,7 @@ const UserProfile = () => {
     try {
       if (userID) {
         const response = await axios.get(
-          `http://localhost:9000/users/profile/${userID}`
+          `https://connectin-api.onrender.com/users/profile/${userID}`
         );
         setPublicUser({
           _id: response.data._id,
@@ -99,7 +99,7 @@ const UserProfile = () => {
     try {
       if (userID) {
         const response = await axios.get(
-          `http://localhost:9000/users/profile/${userID}`
+          `https://connectin-api.onrender.com/users/profile/${userID}`
         );
 
         setUserConnections({
@@ -131,7 +131,7 @@ const UserProfile = () => {
       if (willDelete) {
         axios
           .delete(
-            `http://localhost:9000/users/removeConnection/${userID}/connections/${connectionUserID}`
+            `https://connectin-api.onrender.com/users/removeConnection/${userID}/connections/${connectionUserID}`
           )
           .then((response) => {
             swal(

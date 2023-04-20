@@ -29,14 +29,15 @@ const Chat = () => {
 
   //Get id of logged in user
   const userID = sessionStorage.getItem("userID");
-
+  
   useEffect(() => {
-    if (userID) {
-      fetchSession();
-      fetchUserConnections();
-      socket.current = io.connect("http://localhost:9000");
-    }
-  }, []);
+     if (userID) {
+        fetchSession();
+       fetchUserConnections();
+       socket.current = io.connect("https://connectin-api.onrender.com")
+     }
+   }, []);
+
 
   const fetchSession = async () => {
     try {
@@ -54,7 +55,7 @@ const Chat = () => {
     try {
       if (userID) {
         const response = await axios.get(
-          `http://localhost:9000/users/profile/${userID}`
+          `https://connectin-api.onrender.com/users/profile/${userID}`
         );
 
         setUserConnections({
@@ -70,20 +71,18 @@ const Chat = () => {
     }
   };
   const handleChangeChat = async (chat) => {
-    setCurrentChat(chat);
+    setCurrentChat(chat)
     // console.log(chat.userID)
     // console.log(userID);
-    await axios
-      .post("http://localhost:9000/rooms", {
-        userID_1: sessionStorage.getItem("userID"),
-        userID_2: chat.userID,
-      })
-      .then((response) => {
-        setRoom(response.data);
-        socket.current.emit("joinRoom", response.data);
-      });
-  };
-
+    await axios.post("https://connectin-api.onrender.com/rooms",{
+      userID_1: sessionStorage.getItem("userID"),
+      userID_2: chat.userID
+    }).then((response) =>{
+      setRoom(response.data)
+      socket.current.emit("joinRoom", response.data);
+    })
+}
+ 
   return (
     <>
     <Container>

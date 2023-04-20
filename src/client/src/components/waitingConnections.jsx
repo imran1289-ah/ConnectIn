@@ -13,21 +13,25 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const WaitingConnections = () => {
-  const AddSelftoFriends = async (user_id) => {
-    axios.post(`http://localhost:9000/users/newConnection`, {
-      firstname: sessionStorage.getItem("firstname"),
-      lastname: sessionStorage.getItem("lastname"),
-      userID: sessionStorage.getItem("userID"),
-      _id: user_id,
-      //roomID:  user_id + sessionStorage.getItem("userID") ,
-    });
-  };
+
+const AddSelftoFriends = async(user_id) =>{
+  axios
+  .post(`https://connectin-api.onrender.com/users/newConnection`, {
+    firstname: sessionStorage.getItem("firstname"),
+    lastname: sessionStorage.getItem("lastname"),
+    userID :sessionStorage.getItem("userID") ,
+    _id: user_id,
+    //roomID:  user_id + sessionStorage.getItem("userID") ,
+
+  })
+}
+
 
   const Acceptbutton = async (first, last, user_id) => {
     console.log(first);
     console.log(last);
     axios
-      .post(`http://localhost:9000/users/newConnection`, {
+      .post(`https://connectin-api.onrender.com/users/newConnection`, {
         firstname: first,
         lastname: last,
         userID: user_id,
@@ -47,7 +51,7 @@ const WaitingConnections = () => {
       });
 
     await axios
-      .post("http://localhost:9000/rooms/addRoom", {
+      .post("https://connectin-api.onrender.com/rooms/addRoom", {
         userID_1: user_id,
         userID_2: sessionStorage.getItem("userID"),
       })
@@ -60,7 +64,7 @@ const WaitingConnections = () => {
     console.log(first);
     console.log(last);
     axios
-      .patch(`http://localhost:9000/users/deleteAwaiting`, {
+      .patch(`https://connectin-api.onrender.com/users/deleteAwaiting`, {
         firstname: first,
         lastname: last,
         userID: user_id,
@@ -121,14 +125,13 @@ const WaitingConnections = () => {
   const lName = console.log(sessionStorage.getItem("lastname"));
   const fetchData = async () => {
     console.log(userID);
-    await axios
-      .post(`http://localhost:9000/users/waitingConnections`, {
-        user_id: userID,
-      })
-      .then((response) => {
-        setUserRequests(response.data);
-      });
-  };
+    await axios.post(`https://connectin-api.onrender.com/users/waitingConnections`,{
+      user_id: userID
+    }).then(response => {
+      setUserRequests(response.data)
+    })
+  }
+  
 
   return (
     //Connection request acceptance or denial page

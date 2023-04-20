@@ -30,7 +30,7 @@ const DMReport = () => {
   };
 
   const fetchReports = async () => {
-    const { data } = await axios.get("http://localhost:9000/reports");
+    const { data } = await axios.get("https://connectin-api.onrender.com/reports");
     console.log(data);
     setReports(data);
   };
@@ -38,7 +38,7 @@ const DMReport = () => {
   const deleteReport = async (reportId) => {
     console.log(reportId);
     await axios
-      .delete(`http://localhost:9000/reports/delete`, {
+      .delete(`https://connectin-api.onrender.com/reports/delete`, {
         data: {
           id: reportId,
         },

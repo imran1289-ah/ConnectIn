@@ -106,7 +106,7 @@ const [coverLetterExists, setCoverLetterExists] = useState(false);
     coverLetterData.append("coverLetter", coverLetter);
     if (userID) {
       axios
-        .patch(`http://localhost:9000/users/profile/${userID}`, {
+        .patch(`https://connectin-api.onrender.com/users/profile/${userID}`, {
           bio: userData.bio,
           headLine: userData.headLine,
           languages: userData.languages,
@@ -118,18 +118,10 @@ const [coverLetterExists, setCoverLetterExists] = useState(false);
         })
         .then((response) => {
           console.log(response.data);
-          axios
-            .post(
-              `http://localhost:9000/resume/uploadResume/${userID}`,
-              resumeData
-            )
+          axios.post(`https://connectin-api.onrender.com/resume/uploadResume/${userID}`, resumeData)
             .then((res) => console.log(res))
             .catch((error) => console.log(error));
-          axios
-            .post(
-              `http://localhost:9000/resume/uploadCoverLetter/${userID}`,
-              coverLetterData
-            )
+          axios.post(`https://connectin-api.onrender.com/resume/uploadCoverLetter/${userID}`, coverLetterData)
             .then((res) => console.log(res))
             .catch((error) => console.log(error));
           navigate("/UserProfile");

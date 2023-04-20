@@ -37,7 +37,7 @@ const DrawerComponent = () => {
 
   const handleLogout = async () => {
     navigate("/signin");
-    await axios.post("session/logout").then((response) => {
+    await axios.post("https://connectin-api.onrender.com/session/logout").then((response) => {
       console.log(response.data);
 
       setLogin({

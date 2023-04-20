@@ -70,7 +70,7 @@ const DMReport = () => {
 
   const ban = async (senderID, reportId) => {
     axios
-      .post(`http://localhost:9000/admin/ban/${senderID}`, {
+      .post(`https://connectin-api.onrender.com/admin/ban/${senderID}`, {
         isBan: true,
       })
       .then((response) => {

@@ -74,7 +74,7 @@ const JobListing = () => {
 
 
   const fetchJobs = async () => {
-    const { data } = await axios.get("hhttps://connectin-api.onrender.com/jobs");
+    const { data } = await axios.get("https://connectin-api.onrender.com/jobs");
     setJobs(data);
   };
   const fetchJobsWithFilter = async () => {

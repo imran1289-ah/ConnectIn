@@ -52,7 +52,7 @@ const ManageAccouts = () => {
 
   const fetchAccounts = async () => {
     try {
-      const response = await axios.get(`http://localhost:9000/admin/users`);
+      const response = await axios.get(`https://connectin-api.onrender.com/admin/users`);
       console.log(userID);
       setAccounts(response.data);
     } catch (error) {
@@ -62,7 +62,7 @@ const ManageAccouts = () => {
 
   const ban = async (accountuserID) => {
     axios
-      .post(`http://localhost:9000/admin/ban/${accountuserID}`, {
+      .post(`https://connectin-api.onrender.com/admin/ban/${accountuserID}`, {
         isBan: true,
       })
       .then((response) => {
@@ -83,7 +83,7 @@ const ManageAccouts = () => {
 
   const unban = async (accountuserID) => {
     axios
-      .post(`http://localhost:9000/admin/unban/${accountuserID}`)
+      .post(`https://connectin-api.onrender.com/admin/unban/${accountuserID}`)
       .then((response) => {
         console.log(response.data);
         swal(t("Saved!"), t("Successfully updated the user"), "success", {

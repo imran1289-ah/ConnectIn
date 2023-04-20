@@ -50,7 +50,7 @@ function AdminEditAccount() {
   const fetchAccountData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:9000/users/profile/${accountId}`
+        `https://connectin-api.onrender.com/users/profile/${accountId}`
       );
       setaccountData({
         email:response.data.email,
@@ -67,7 +67,7 @@ function AdminEditAccount() {
     e.preventDefault();
     console.log(accountId);
     axios
-      .post(`http://localhost:9000/admin/edit/${accountId}`, {
+      .post(`https://connectin-api.onrender.com/admin/edit/${accountId}`, {
         email: accountData.email,
         password: accountData.password,
         role: accountData.role,

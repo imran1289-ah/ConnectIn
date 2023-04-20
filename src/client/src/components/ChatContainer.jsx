@@ -83,8 +83,8 @@ const ChatContainer = ({ currentChat, socket, room }) => {
       value: new Date(Date.now()),
       file: file,
     });
-
-    try {
+  
+      try {
       const response = await axios.post(
         "https://connectin-api.onrender.com/messages/addMessage",
         data
@@ -98,20 +98,6 @@ const ChatContainer = ({ currentChat, socket, room }) => {
 
       if (response.data.downloadLink) {
         messageObject = {
-        from: userID,
-        to: currentChat.userID,
-        room: room,
-        value: new Date(Date.now()),
-        file: file,
-      });
-  
-      try {
-        const response = await axios.post(
-          "https://connectin-api.onrender.com/messages/addMessage",
-          data
-        );
-  
-        let messageObject = {
           fromSelf: true,
           message: (
             <a

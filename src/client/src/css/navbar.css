@@ -81,15 +81,16 @@
 
 @media (min-device-width: 1024px) and (max-device-width: 1339px) {
   .searchInput {
-    width: 220px;
+    width: 200px;
   }
 
   .WebLogo {
-    font-size: 20px;
+    font-size: 15px;
+
   }
 
   .parentUserIconContainer {
-    margin-right: auto;
+    margin-right: -5px;
   }
 }
 

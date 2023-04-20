@@ -110,7 +110,7 @@ const JobListing = () => {
     if (preferences.category && preferences.location && preferences.work_type) {
       await axios.post(`http://localhost:9000/users/${userID}/preferences`, preferences);
       setTimeout(() => {
-        swal("Preferences saved successfully!");
+        swal(t("Preferences saved successfully!"));
         window.location.reload();
       }, 1000);
 
@@ -151,7 +151,7 @@ const JobListing = () => {
                 </label>
                 <br />
                 <label>
-                  {t("Work Type")}:
+                  {t("Work type")}:
                   <select name="work_type" onChange={e => setPreferences({ ...preferences, work_type: e.target.value })}>
                     <option value="">{t("Select a work type")}</option>
                     <option value="onSite">{t("Onsite")}</option>

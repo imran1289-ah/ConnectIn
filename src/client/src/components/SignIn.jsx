@@ -48,7 +48,7 @@ const SignIn = () => {
         console.log(error);
         MessageRef.current.style.color = "red";
         MessageRef.current.innerHTML = t(
-          "Incorrect Credentials Please try again"
+          "Incorrect credentials. Please try again"
         );
       });
   };
@@ -71,7 +71,7 @@ const SignIn = () => {
             </div>
             <input
               className={SignInCSS.LoginInput}
-              placeholder="Enter your email"
+              placeholder={t("enteremail")}
               onChange={(e) => setUser(e.target.value)}
             ></input>
             <br></br>
@@ -81,7 +81,7 @@ const SignIn = () => {
             </div>
             <input
               className={SignInCSS.LoginInput}
-              placeholder="Enter your password"
+              placeholder={t("enterpassword")}
               type="password"
               onChange={(e) => setPassword(e.target.value)}
             ></input>

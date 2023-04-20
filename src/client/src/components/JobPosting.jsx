@@ -82,8 +82,8 @@ const JobPosting = () => {
       ) {
         swal(
           isNaN(salary)
-            ? "Please enter numbers in salary"
-            : "Please fill all required fields"
+            ? t("Please enter numbers in salary")
+            : t("Please fill all required fields")
         );
         return;
       }
@@ -108,7 +108,7 @@ const JobPosting = () => {
         jobData
       );
       swal({
-        title: "Job posting created successfully!",
+        title: t("Job posting created successfully!"),
         icon: "success",
       }).then(() => {
         window.location.href = "/jobs"; // Redirect to Jobs
@@ -227,7 +227,7 @@ const JobPosting = () => {
                 id="category"
                 onChange={(e) => setSelects(e.target.value)}
               >
-                <option label="Category..."></option>
+                <option label={t("Category")}></option>
                 <option value="Full-Time">{t("Full-Time")}</option>
                 <option value="Part-Time">{t("Part-Time")}</option>
                 <option value="Internship">{t("Internship")}</option>
@@ -238,7 +238,7 @@ const JobPosting = () => {
                 id="work_type"
                 onChange={(e) => setSelects(e.target.value)}
               >
-                <option label="Worktype..."></option>
+                <option label={t("Work type")}></option>
                 <option value="onSite">{t("On-Site")}</option>
                 <option value="Remote">{t("Remote")}</option>
                 <option value="Hybrid">{t("Hybrid")}</option>
@@ -266,7 +266,7 @@ const JobPosting = () => {
               <div className="jobLink">
                 <TextField
                   id="job_link"
-                  label="Job Link"
+                  label={t("Job Link")}
                   variant="outlined"
                   onChange={(e) => setLink(e.target.value)}
                 />
@@ -277,7 +277,7 @@ const JobPosting = () => {
             {checked ? <br /> : ""}
             {checked ? (
               <div className="thirdparty">
-                Your job will be advertised on a third party platform!
+                {t("Your job will be advertised on a third party platform!")}
               </div>
             ) : (
               ""

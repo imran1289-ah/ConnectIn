@@ -36,7 +36,7 @@ function SignUp() {
       })
       .then((response) => {
         console.log(response.data);
-        swal("Success!", t("Successfully created an account!"), "success", {
+        swal(t("Success!"), t("Successfully created an account!"), "success", {
           button: false,
           timer: 2000,
         });
@@ -67,7 +67,7 @@ function SignUp() {
                   <input required
                     aria-label="firstname"
                     className={SignUpCSS.Input}
-                    placeholder={t("Enter Your First Name")}
+                    placeholder={t("Enter your first name")}
                     name="firstname"
                     value={userData.firstName}
                     onChange={(e) =>
@@ -86,7 +86,7 @@ function SignUp() {
                   <br></br>
                   <input required
                     className={SignUpCSS.Input}
-                    placeholder={t("Enter Your Last Name")}
+                    placeholder={t("Enter your last name")}
                     name="lastname"
                     value={userData.lastName}
                     onChange={(e) =>

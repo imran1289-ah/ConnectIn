@@ -70,7 +70,7 @@ function EditJobPosting() {
       })
       .then(response => {
         console.log(response.data);
-        swal("Saved!", "Successfully updated the job posting!", "success", {
+        swal(t("Saved!"), t("Successfully updated the job posting!"), "success", {
           button: false,
           timer: 2000
         });
@@ -78,7 +78,7 @@ function EditJobPosting() {
       })
       .catch(error => {
         console.log(error);
-        swal("Failed!", "Cannot update the job posting!", "error", {
+        swal("Failed!", t("Cannot update the job posting!"), "error", {
           button: false,
           timer: 2000
         });
@@ -138,7 +138,7 @@ function EditJobPosting() {
                   <div className="selection">
                     <div className="category">
                       <select id="category" onChange={e => setjobData({ ...jobData, category: e.target.value })}>
-                        <option label="Category..."></option>
+                        <option label={t("Category")}></option>
                         <option value="Full-Time">{t("Full-Time")}</option>
                         <option value="Part-Time">{t("Part-Time")}</option>
                         <option value="Internship">{t("Internship")}</option>
@@ -146,7 +146,7 @@ function EditJobPosting() {
                     </div>
                     <div className="work_type">
                       <select id="work_type" onChange={e => setjobData({ ...jobData, work_type: e.target.value })}>
-                        <option label="Worktype..."></option>
+                        <option label={t("Work type")}></option>
                         <option value="onSite">{t("On-Site")}</option>
                         <option value="Remote">{t("Remote")}</option>
                         <option value="Hybrid">{t("Hybrid")}</option>

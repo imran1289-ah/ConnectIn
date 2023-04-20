@@ -33,7 +33,7 @@ Sign Up
     ELSE IF    "${USER_TYPE}" == "Recruiter"
         Wait Until Element Is Visible    xpath:(//*/ul/li[2])
         Click Element    xpath:(//*/ul/li[2])
-    ELSE IF    ${USER_TYPE} == "Administrator"
+    ELSE IF    "${USER_TYPE}" == "Administrator"
         Wait Until Element Is Visible    xpath:(//*/ul/li[3])
         Click Element    xpath:(//*/ul/li[3])
     ELSE
@@ -140,9 +140,11 @@ Create A Post
 Report a DM
     [Documentation]    Create a DM report of the first 
     ...                message sent by the receiving user.
-    Page Should Contain Element    xpath:(//html/body/div/div[2]/div/div[2]/div[2]/div[5]/div/button)
-    Mouse Over    xpath:(//html/body/div/div[2]/div/div[2]/div[2]/div[5]/div/button)
-    Click Element    xpath:(//html/body/div/div[2]/div/div[2]/div[2]/div[5]/div/button)
+    # Page Should Contain Element    xpath:(//html/body/div/div[2]/div/div[2]/div[2]/div[5]/div/button)
+    
+    Mouse Over    xpath:(//*[@id="root"]/div[2]/div/div[2]/div[2]/div[2]/div)
+    Sleep    1s
+    Click Element    xpath:(//*[@id="root"]/div[2]/div/div[2]/div[2]/div[2]/div/button)
     Wait Until Page Contains    Chat Report
     Click Element    xpath:(//html/body/div[4]/div[3]/div/div/div)
     Wait Until Element Is Visible    xpath:(//*/ul/li[1])
@@ -153,9 +155,19 @@ Report a DM
 
 Message A User
     [Documentation]    Messages the first user in the contacts list.
-    [Arguments]    ${message}
-    Page Should Contain Element    xpath:(//*/div/div[3]/button[5])
-    Click Button    xpath:(//*/div/div[3]/button[5])
+    [Arguments]    ${message}    ${USER_TYPE}
+     IF    "${USER_TYPE}" == "User"
+        Wait Until Element Is Visible    xpath:(//*/div/div[3]/button[5])
+        Click Element    xpath:(//*/div/div[3]/button[5])
+    ELSE IF    "${USER_TYPE}" == "Recruiter"
+        Wait Until Element Is Visible    xpath:(//*/div/div[3]/button[8])
+        Click Element    xpath:(//*/div/div[3]/button[8])
+    ELSE IF    "${USER_TYPE}" == "Administrator"
+        Wait Until Element Is Visible    xpath:(//*/div/div[3]/button[8])
+        Click Element    xpath:(//*/div/div[3]/button[8])
+    ELSE
+        Fail    "Invalid User Type"
+    END
     Sleep    3s
     Click Element    xpath:(//*[@id="root"]/div[2]/div/div[1]/div/div[2]/div)
     Page Should Contain Element    xpath:(//*/form/input)
@@ -163,3 +175,4 @@ Message A User
     Click Button    xpath:(//*/form/button)
     Sleep    2s
     Page Should Contain    ${message}
+

@@ -138,7 +138,6 @@ function SignUp() {
                 }>
                   <MenuItem value={"User"}>{t("User")}</MenuItem>
                   <MenuItem value={"Recruiter"}>{t("Recruiter")}</MenuItem>
-                  <MenuItem value={"Administrator"}>{t("Administrator")}</MenuItem>
                 </Select>
                 <br />
                 <br />

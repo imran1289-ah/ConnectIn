@@ -26,7 +26,7 @@ test("page renders properly", () => {
   const heading = screen.getByRole("heading", { level: 3 });
   const title = screen.getByText(/Title/i);
   const description = screen.getByText(/Description/i);
-  const annualPay = screen.getByText(/Annual Pay/i);
+  const annualPay = screen.getByText(/Salary/i);
   const location = screen.getByText(/Location/i);
   expect(heading).toBeInTheDocument();
   expect(title).toBeInTheDocument();

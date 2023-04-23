@@ -124,7 +124,7 @@ const JobListing = () => {
   };
 
   const getUserPreferences = async () => {
-    const { data } = await axios.get(`http://localhost:9000/users/${userID}`);
+    const { data } = await axios.get(`https://connectin-api.onrender.com/users/${userID}`);
     setCurrentPreferences(data.user.preferences);
     console.log(currentPreferences);
   };

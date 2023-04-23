@@ -257,7 +257,7 @@ const JobPosting = () => {
                   setChecked(!checked);
                 }}
               />
-              {t("Advertise jobs to third party platform")}
+              {t("Advertise jobs from third party platform")}
             </label>
           </div>
           <div className="jobAd">
@@ -277,7 +277,7 @@ const JobPosting = () => {
             {checked ? <br /> : ""}
             {checked ? (
               <div className="thirdparty">
-                {t("Your job will be advertised on a third party platform!")}
+                {t("Your job will be advertised from a third party platform!")}
               </div>
             ) : (
               ""
